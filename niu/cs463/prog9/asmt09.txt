@@ -1,0 +1,82 @@
+
+CSCI 463                       Assignment 9                                     
+Fall-2002                       (100 pts)                    Due: 11/08/02 (Fri)
+
+               Chapter 6    Operating System Machine
+               Section 6.1  Virtual Memory
+
+
+For this assignment, read Chapter 6 (The Operating System Machine Level)
+in general and Section 6.1 (Virtual Memory) in particular. 
+ 
+Step 1. From the course web page (http://www.cs.niu.edu/~sjchung) 
+        copy Prog09.in, Prog09.sjc, and Prog09.hlp.
+
+Step 2. Copy your Prog09.hlp as Prog09.c.
+
+Step 3. Complete Prog09.c after you have understood what is provided for you 
+        (in Prog09.hlp) and what is to be done to complete Prog09.c 
+
+Step 4. After you have completed and documented your Prog09.c, 
+        "Build" (Compile & Link/Edit) your prog09.c to get prog09.exe.
+
+Step 5. Run your Prog09.exe by: Prog09 < Prog09.in > Prog09.out
+        Your Prog09.out should look reasonably same as Prog09.sjc.
+        See also the sample run shown on Page 2 of this assignment.
+
+Step 6. Hand in:
+
+1) Your answers to the Questions on Page 2 of this assignment
+2) Your 3.5" diskette, containing the files: 
+   Prog09.c, Prog09.obj, Prog09.exe, Prog09.in and Prog09.out
+3) Printed Copies of Prog09.c (well-documented) and Prog09.out
+
+
+                          Due: 11/08/02             Name:_____________________
+CSCI 463                  Assignment 09                  (Last)      (First)
+Fall-2002                Virtual Memory
+
+
+Given: Virtual Memory Size = 2G 
+       Main Memory Size = 32M   
+       Page Size = Frame Size = 4K
+
+
+ 1. Largest Address in Virtual Memory = _______________ (in hex)
+
+ 2. Largest Page Number in Virtual Memory  = __________ (in hex)
+
+ 3. Largest Address in Main Memory = ___________ (in hex)
+
+ 4. Largest Frame Number in Main Memory = _______ (in hex)
+
+
+Assume: Address of First Byte of Program = virtAdr[0] = 12345678
+        Size of Program = 8K bytes
+
+ 5. Address of Last Byte of Program = _______
+
+ 6. Page # to which virtAdr[0] belongs = pageNum[0] = _________
+
+ 7. Position of virtAdr[0] in the Page = bytePos[0] = _________
+ 
+ 8. Frame # to which pageNum[0] is mapped = framNum[0]  = _____
+ 
+ 9. Position of pageNum[0] among the pages = pagePos[0] = _____
+
+
+10. Address of First Byte in Next Page = virtAdr[1] = _________
+
+11. Page # to which virtAdr[1] belongs = pageNum[1] = _________
+
+12. Frame # to which pageNum[1] is mapped = framNum[1] = ______
+
+
+13. Address of First Byte in Next Page = virtAdr[2] = _________
+
+14. Page # to which virtAdr[2] belongs = pageNum[2] = _________
+
+15. Frame # to which pageNum[2] is mapped = framNum[2] = ______
+
+
+16. Number of Pages occupied by Program = _____

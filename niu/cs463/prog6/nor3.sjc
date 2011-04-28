@@ -1,0 +1,13 @@
+
+c463.sp2\asmts\nor3.sjc
+
+Created by: PLAsim nor3.cfg test3.in > nor3.sjc 
+
+0 0 0 : 1
+0 0 1 : 0 
+0 1 0 : 0 
+0 1 1 : 0 
+1 0 0 : 0 
+1 0 1 : 0 
+1 1 0 : 0 
+1 1 1 : 0 

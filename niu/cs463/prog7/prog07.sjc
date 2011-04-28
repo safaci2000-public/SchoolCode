@@ -1,0 +1,188 @@
+
+c463.fa2\asmts\prog07.sjc
+
+Cache Memory Functions: Main Memory -> Cache
+General Information for the given Memory System
+
+Enter the size of Main Memory (in Mega bytes).
+To Exit, enter the zero:->32M
+Enter the size of the Cache (in Kilo bytes):->64K
+Choose one for the Block Size in bytes: 1,2,4,8,16,32,64:->8
+Choose one for the Set Size in slots: 1,2,4,8,16,32,64:->4
+------------------------------------------------
+               Memory System                    
+------------------------------------------------
+        Main Memory Size in Mega bytes = 32M
+                Main Memory Size in hex: 2000000
+  Largest Address in Main Memory in hex: 1FFFFFF
+------------------------------------------------
+                            Block Size = 08
+          Total Number of Blocks in hex: 400000
+            Largest Block Number in hex: 3FFFFF
+------------------------------------------------
+       Cache Memory Size in Kilo bytes = 64K
+               Cache Memory Size in hex: 10000
+ Largest Address in Cache Memory in hex: FFFF
+------------------------------------------------
+                             Slot Size = 08
+           Total Number of Slots in hex: 2000
+             Largest Slot Number in hex: 1FFF
+------------------------------------------------
+                              Set Size = 04
+            Total Number of Sets in hex: 800
+              Largest Set Number in hex: 7FF
+------------------------------------------------
+
+Enter Address of a Byte in Main Memory <= 1FFFFFF.
+To return to the Main Menu, enter the Zero Address:->
+
+------------------------------------------------
+The Byte's Address in Main Memory     = 1ABCDE5
+The Byte belongs to the Block whose # = 3579BC
+------------------------------------------------
+          Under Associative Mapping             
+ The Byte at 1ABCDE5 is copied into Cache Memory:
+------------------------------------------------
+    Field:    Tag       Slot#      Byte Location
+  Content:    3579BC     1FFF           5
+# of bits:    22       Not Appl.	3
+------------------------------------------------
+            Under Direct Mapping                
+ The Byte at 1ABCDE5 is copied into Cache Memory:
+------------------------------------------------
+    Field:    Tag     Slot#        Byte Location
+  Content:    1AB     19BC              5
+# of bits:    9       13  		3
+------------------------------------------------
+       Under Set Associative Mapping            
+ The Byte at 1ABCDE5 is copied into Cache Memory:
+------------------------------------------------
+    Field:    Tag      Set#        Byte Location
+  Content:    6AF      1BC		5
+# of bits:    11       11               3
+------------------------------------------------
+
+Enter Address of a Byte in Main Memory <= 1FFFFFF.
+To return to the Main Menu, enter the Zero Address:->
+
+------------------------------------------------
+The Byte's Address in Main Memory     = 1ABCDE6
+The Byte belongs to the Block whose # = 3579BC
+------------------------------------------------
+          Under Associative Mapping             
+ The Byte at 1ABCDE6 is copied into Cache Memory:
+------------------------------------------------
+    Field:    Tag       Slot#      Byte Location
+  Content:    3579BC     1FFF           6
+# of bits:    22       Not Appl.	3
+------------------------------------------------
+            Under Direct Mapping                
+ The Byte at 1ABCDE6 is copied into Cache Memory:
+------------------------------------------------
+    Field:    Tag     Slot#        Byte Location
+  Content:    1AB      19BC		6
+# of bits:    9        13               3
+------------------------------------------------
+       Under Set Associative Mapping            
+ The Byte at 1ABCDE6 is copied into Cache Memory:
+------------------------------------------------
+    Field:    Tag      Set#        Byte Location
+  Content:    6AF      1BC		6
+# of bits:    11       11               3
+------------------------------------------------
+
+Enter Address of a Byte in Main Memory <= 1FFFFFF.
+To return to the Main Menu, enter the Zero Address:->
+Enter the size of Main Memory (in Mega bytes).
+To Exit, enter the zero:->64M
+Enter the size of the Cache (in Kilo bytes):->128K
+Choose one for the Block Size in bytes: 1,2,4,8,16,32,64:->16
+Choose one for the Set Size in slots: 1,2,4,8,16,32,64:->4
+------------------------------------------------
+               Memory System                    
+------------------------------------------------
+        Main Memory Size in Mega bytes = 64M
+                Main Memory Size in hex: 4000000
+  Largest Address in Main Memory in hex: 3FFFFFF
+------------------------------------------------
+                            Block Size = 16
+          Total Number of Blocks in hex: 400000
+            Largest Block Number in hex: 3FFFFF
+------------------------------------------------
+       Cache Memory Size in Kilo bytes = 128K
+               Cache Memory Size in hex: 20000
+ Largest Address in Cache Memory in hex: 1FFFF
+------------------------------------------------
+                             Slot Size = 16
+           Total Number of Slots in hex: 2000
+             Largest Slot Number in hex: 1FFF
+------------------------------------------------
+                              Set Size = 04
+            Total Number of Sets in hex: 800
+              Largest Set Number in hex: 7FF
+------------------------------------------------
+
+Enter Address of a Byte in Main Memory <= 3FFFFFF.
+To return to the Main Menu, enter the Zero Address:->
+
+------------------------------------------------
+The Byte's Address in Main Memory     = 1234567
+The Byte belongs to the Block whose # = 123456
+------------------------------------------------
+          Under Associative Mapping             
+ The Byte at 1234567 is copied into Cache Memory:
+------------------------------------------------
+    Field:    Tag       Slot#      Byte Location
+  Content:    123456     1FFF           7
+# of bits:    22       Not Appl.	4
+------------------------------------------------
+            Under Direct Mapping                
+ The Byte at 1234567 is copied into Cache Memory:
+------------------------------------------------
+    Field:    Tag     Slot#        Byte Location
+  Content:    91      1456		7
+# of bits:    9       13  		4
+------------------------------------------------
+       Under Set Associative Mapping            
+ The Byte at 1234567 is copied into Cache Memory:
+------------------------------------------------
+    Field:    Tag      Set#        Byte Location
+  Content:    246      456		7
+# of bits:    11       11               4
+------------------------------------------------
+
+Enter Address of a Byte in Main Memory <= 3FFFFFF.
+To return to the Main Menu, enter the Zero Address:->
+
+------------------------------------------------
+The Byte's Address in Main Memory     = 3FFFFFF
+The Byte belongs to the Block whose # = 3FFFFF
+------------------------------------------------
+          Under Associative Mapping             
+ The Byte at 3FFFFFF is copied into Cache Memory:
+------------------------------------------------
+    Field:    Tag       Slot#      Byte Location
+  Content:    3FFFFF     1FFF           15
+# of bits:    22       Not Appl.	4
+------------------------------------------------
+            Under Direct Mapping                
+ The Byte at 3FFFFFF is copied into Cache Memory:
+------------------------------------------------
+    Field:    Tag     Slot#        Byte Location
+  Content:    1FF     1FFF              15
+# of bits:    9       13  		4
+------------------------------------------------
+       Under Set Associative Mapping            
+ The Byte at 3FFFFFF is copied into Cache Memory:
+------------------------------------------------
+    Field:    Tag      Set#        Byte Location
+  Content:    7FF      7FF		15
+# of bits:    11       11               4
+------------------------------------------------
+
+Enter Address of a Byte in Main Memory <= 3FFFFFF.
+To return to the Main Menu, enter the Zero Address:->
+Enter the size of Main Memory (in Mega bytes).
+To Exit, enter the zero:->0M
+
+Bye for Now!

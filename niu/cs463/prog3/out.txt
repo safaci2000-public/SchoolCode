@@ -1,0 +1,82 @@
+
+
+This Program reads an integer constant and a floating-point,
+and computes their sum, then displays the sum.
+
+Enter an integer constant in the range of 0 thru 256
+To Exit, press <Enter> key only.
+1
+
+
+Enter a floating-point in the range of 0.00 thru 256.00
+To Exit, press <Enter> key only.
+0.2345
+
+
+When the integer constant is 1  
+and the floating-point constant is 0.2345
+their sum is   1.2345 
+
+
+Enter an integer constant in the range of 0 thru 256
+To Exit, press <Enter> key only.
+16
+
+
+Enter a floating-point in the range of 0.00 thru 256.00
+To Exit, press <Enter> key only.
+48.25
+
+
+When the integer constant is 16 
+and the floating-point constant is 48.25 
+their sum is  16.25   
+
+
+Enter an integer constant in the range of 0 thru 256
+To Exit, press <Enter> key only.
+12x
+
+An Invalid integer constant was entered!
+
+Enter an integer constant in the range of 0 thru 256
+To Exit, press <Enter> key only.
+123
+
+
+Enter a floating-point in the range of 0.00 thru 256.00
+To Exit, press <Enter> key only.
+45.y7
+
+An Invalid float-point was entered!
+
+Enter a floating-point in the range of 0.00 thru 256.00
+To Exit, press <Enter> key only.
+45.67
+
+
+When the integer constant is 123
+and the floating-point constant is 45.67 
+their sum is 176.67   
+
+
+Enter an integer constant in the range of 0 thru 256
+To Exit, press <Enter> key only.
+256
+
+
+Enter a floating-point in the range of 0.00 thru 256.00
+To Exit, press <Enter> key only.
+256.99
+
+
+When the integer constant is 256
+and the floating-point constant is 256.99
+their sum is 286.99   
+
+
+Enter an integer constant in the range of 0 thru 256
+To Exit, press <Enter> key only.
+
+
+Bye for Now!

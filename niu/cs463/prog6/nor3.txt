@@ -1,0 +1,6 @@
+file is designed based on a truth table.  
+
+The only time when the result would be true is if all binary values are 0.
+
+hence the one line config file.  any other occurance would produce a false result.
+

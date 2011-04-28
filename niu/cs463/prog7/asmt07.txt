@@ -1,0 +1,103 @@
+
+CSCI 463                   Assignment 7                    Due: 10/25/02 (Fri) 
+Fall-2002                   (100 pts)                           
+                        Cache Memory Mappings                          
+
+        Section 4.5     Improving Performance (pp. 264-282)
+        Section 4.5.1   Cache Memory          (pp. 265-270)
+
+
+For this Assignment, read again Chapter 4 (MicroArchitecture Level) in general
+and Section 4.5.1 (Cache Memory) in particular, and the notes in the Prog06.hlp
+file to understand the concept for the hierarchy of memory subsystems and for 
+the Cache Memory Mappings (Associative, Direct and Set Associative).       
+
+Note that the Associative Cache Mapping uses the first available space (slots)
+in Cache Memory, which is not discussed in the text by Tanenbaum. Also, assume
+a unified (not split, hence both instructions and data in Cache) Level 1 Cache
+(i.e., there is only one Cache Memory).
+ 
+Step 1. From the Course Web Page (http://www.cs.niu.edu/~sjchung)
+        copy Prog07.hlp, Prog07.in and Prog07.sjc, and bring your 
+        (printed) copies of the files to the class, Monday, 10/28/02.
+
+Step 2. Complete the questions on Page 2 of this assignment.
+
+Step 3. Complete Prog07.hlp after you have understood what is provided 
+        for you and what is to be done (completed) by you.
+
+Step 4. After you complete Prog07.hlp, rename it as Prog07.c, and
+        "Build" (Compile & Link/Edit) it to get Prog07.exe.
+
+Step 5. Then, run your Prog07.exe by: Prog07 < Prog07.in > Prog07.out.
+        Your Prog07.out should compare correctly to Prog07.sjc.
+
+Step 6. Hand in:
+        1) Page 2 of this assignment.
+        2) Your 3.5" diskette, containing the files: your Prog07.c, Prog07.obj,
+           Prog07.exe and Prog07.out, along with Prog07.in & Prog07.sjc.
+        3) Printed Copies of your Prog07.c and Prog07.out.
+
+
+                           
+CSCI 463                 Assignment 7               Name:________________,__________  
+Fall-2002               Due: 10/25/02                    (Last:spell)   (First)
+
+
+For the following questions, assume:  
+1) Size of Main Memory  = 64M bytes
+2) Size of Cache Memory = 64K bytes
+3) Block Size = Slot Size = 32 bytes/block (or slot)
+4) Set Size   = 2 slots/set (= 64 bytes/set)
+  
+1. Largest Address in Main Memory in hex = ______________
+   Show your work:
+
+
+2. Largest Block Number in hex = ______________
+   Show your work:
+
+
+3. Largest Address in Cache Memory in hex = ______________
+   Show your work:
+
+
+4. Largest Slot Number in hex = ______________
+   Show your work:
+
+
+5. Largest Set Number in hex = ______________
+   Show your work:
+
+
+
+Now, consider the Byte in Main Memory with 1234567 as its address:
+
+6. The Block Number that this byte belongs to: ______________
+   Show your work:
+
+
+
+7. Under the Direct Mapping:
+
+1) (Total Number of Blocks)/(Total Number of Slots) = __________ (in hex)
+
+2) The Slot Number that this Byte will be mapped to: ___________ (in hex)
+   Show your work:
+
+
+3) The Tag is: _______
+   Show your work:    
+
+
+
+8. Under the Set Associative Mapping:
+
+1) (Total Number of Blocks)/(Total Number of Sets) = __________ (in hex)
+
+2) The Set Number that this Byte will be mapped to: ______________
+   Show your work:    
+
+
+3) The Tag is: _______         
+   Show your work:    

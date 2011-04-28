@@ -1,0 +1,104 @@
+
+CSCI 463                   Assignment 3                     Due: Week of 09/09/02  
+Fall-2002                   (100 pts)                
+
+                       Macros (Section 7.2: pp.494-498)
+             Assembly Process (Section 7.3: pp.498-506)
+            Linking & Loading (Section 7.4: pp.506-512)
+
+
+                        Part I (50 points)
+
+1. From the course web page, download into your directory:
+   1) Assemble.exe and Link.exe.
+   2) Prog03a.asm, divFloat.asm, Prog03a.in and Prog03a.sjc 
+
+2. Assemble and link/edit:
+   1) Assemble Prog03a.asm by:  Assemble Prog03a.asm
+   2) Assemble divFloat.asm by: Assemble divFloat.asm
+   3) Link/Edit Prog03a.obj and divFloat.obj by: Link Prog03a + divFloat  
+
+3. Execute Prog03a.exe by: Prog03a < Prog03a.in > Prog03a.out
+   Your Prog03a.out should be compared correctly to Prog03a.sjc.
+
+4. While executing Prog03a.exe using the DEBUG (i.e., DEBUG Prog03a.exe),
+   answer the Questions on the next page.
+
+
+
+                       Part II (50 points)
+
+Write Prog03b.asm, an Assembler program, that will:
+
+1. Read an integer constant and check if it is valid 
+ 
+2. Read a floating-point constant and check if it is valid 
+
+3. Compute the sum of the integer and floating-point constants
+
+4. Display the integer constant, the float-constant, and the sum
+
+5. The above 4 steps will be repeated until the user presses <Enter> key.
+
+                                                                        
+Hand in:
+
+1.  Page 2 of this assignment (check your answers again)
+2.  Your 3.5" diskette, containing the following your files: 
+    Prog03b.asm(well-documented), Prog03b.obj, Prog03b.exe, 
+    Prog03b.in, and Prog03b.out 
+3.  Printed copies of your Prog03a.asm, Prog03b.in, and Prog03b.out
+ 
+Section ____        Due: Week of 09/09/02 
+CSCI 463                   Assignment 3               Name:________________,__________ 
+Fall-2002                   (100 pts)                      (Last: spell)    (First)
+
+
+
+1. Explain the Assembly Directives EXTRN and PUBLIC:
+
+   EXTRN divFloat:Far _____________________________________________________
+
+
+   PUBLIC Len1, Num1  _____________________________________________________
+
+
+With DEBUG Prog03a.exe and appropriate DEBUG commands, answer: 
+
+2. The Offset Addresses of the following PROCedures:
+
+   ClrStorage = ________    GetDividnd = ________     ChkDividnd = ________
+
+   GetDivisor = ________    ChkDisivor = ________     divFloat   = ________
+
+
+3. About the "call divFloat" instruction:
+
+   1) Offset Address of this instruction = ________
+
+   2) Machine Code of this instruction   = ____________
+
+   3) Offset Address of the next instruction ("jmp Start") = ________
+
+   4) Right before this instruction is executed,
+
+      CS = ______   IP = ______   SP = ______   Top 2-byte of Stack = ________
+
+   5) Right after this instruction is executed,
+
+      CS = ______   IP = ______   SP = ______   Top 2-byte of Stack = ________
+
+                                           Next Top 2-byte of Stack = ________
+
+
+4. About the "retf" instruction (in the divFloat PROCedure):
+
+   1) Right before this instruction is executed,
+
+      CS = ______   IP = ______   SP = ______   Top 2-byte of Stack = ________
+
+                                           Next Top 2-byte of Stack = ________
+
+   2) Right after this instruction is executed,
+
+      CS = ______   IP = ______   SP = ______   Top 2-byte of Stack = ________

@@ -1,0 +1,127 @@
+
+CSCI 463                      Assignment 5                     Due: 10/02/02 (Fri) 
+Fall-2002                      (100 pts)                                        
+            Building Code Word that will correct Errors in Transmission
+
+            Read pp.61-64 (Section 2.2.4) of the text by Tanenbaum, and
+           study "Network Architecture: Hamming Codes & Cyclic Redundancy 
+            for Transmission Error Correction" from the course web page.   
+
+
+Part I  (50 points)
+Answer the questions on Pages 2 & 3 of this assignment.
+
+
+Part II (50 points)
+1. From j:\c463\fa02 (or http://www.cs.niu.edu/~sjchung/c463),
+   copy Prog05.hlp, Prog05.in, and Prog05.sjc into your directory.
+
+2. While you don't have to use the Prog05.hlp file, 
+   it further explains this assignment.  
+
+3. In case you should choose to use this file, complete its 
+   "buildCodeWord" function and rename Prog05.hlp as Prog05.c.
+
+4. Complile and link/edit your Prog05.c to get Prog05.obj and Prog05.exe.
+
+5. Run your Prog05.exe by the DOS command: Prog05 < Prog05.in > Prog05.out
+   Your Prog05.out should compare correctly to Prog05.sjc.
+
+
+Hand in:
+1) Page 2 of this assignment (check your answers again).
+2) Printed copies of your Prog05.asm and Prog05.out.
+3) Your 3.5" diskette, containing the following your files: 
+   Prog05.c(well-documented), Prog05.obj, Prog05.exe, and Prog05.out.
+
+
+                     Due: 10/02/02(Fri)
+CSCI 463                Assignment 5               Name:_________________,__________ 
+Fall-2002                (100 pts)                      (Last: spell)     (First)
+            
+
+Before you try these questions, 
+get printed copies of the Prog05.hlp, Prog05.in and Prog05.sjc files
+in j:\c463\fa02 (or http://www.cs.niu.edu/~sjchung/c463) and study them.
+
+
+Given: Message Word = "11" =  m1 m2, thus m = length of Message Word = 2  
+
+1. Compute r = Number of Check Bits for Correcting 1-bit Transmission Errors  
+           
+             = ______ bits
+
+   Show your work: 
+
+
+
+2. n = Length of Code Word to build for Correcting 1-bit Transmission Errors
+  
+     = _____ bits
+
+
+3. Denoting the check bits by c1, c2, . . , and the message word bits by m1, m2, . . , 
+   indicate their positions in Code Word:  
+ 
+
+   Code Word = ___ ___ ___ ___ ___     
+                          1   2   3   4   5                       
+
+
+4. Build the code word, showing p[] and c[][]. 
+  
+
+      p[] = {           } = {       }
+
+   c[0][] = {           } = {       }
+
+   c[1][] = {           } = {       }
+
+   c[2][] = {           } = {       }
+
+ 
+  Code Word = ____________
+
+
+  Show your work:
+
+                      Due: 10/02/02(Fri)
+CSCI 463                Assignment 5               Name:_________________,__________ 
+Fall-2002                (100 pts)                      (Last: spell)     (First)
+
+
+
+5. Consider building Code Words of length n bits for Message Words of length m bits
+   as a function f: where I is the set of natural numbers, where m = 2 for
+
+   the above problem (e.g., Message Word = "11").  Then,
+
+
+   1) n = _____ 
+      
+   2)  = _____    
+
+
+   3) When the Code Word for the Message Word "00" is transmitted, the word received  
+      at the destination may not be exactly the same as the one sent. i.e., there     
+      might have been transmission errors (errors in transmission). 
+
+ 
+     a) Total Number of no transmission errors    = ____  
+
+
+      b) Total Number of 1-bit transmission errors = ____  
+
+
+      c) Total Number of 2-bit transmission errors = ____  
+
+
+      d) Total Number of 3-bit transmission errors = ____  
+
+
+      e) Total Number of 4-bit transmission errors = ____  
+
+            
+
+      f) Total Number of 5-bit transmission errors = ____  
+

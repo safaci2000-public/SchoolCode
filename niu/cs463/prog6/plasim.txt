@@ -1,0 +1,101 @@
+
+
+PLAsim - a Programmed Logic Array Simulator
+Programmed Logic Arrays (PLAs) are devices that allow the quick
+implementation of arbitrary Boolean functions.  PLAsim is a
+simulator of a PLA.
+
+Operation
+
+The simulator is run from the command line, with a mandatory configuration
+file, and an optional input file given as arguments.  The configuration
+file determines the logical function computed.  If present, an input file
+containing space separated strings of 0s and 1s is applied to the PLA and
+the results displayed.  If no input file is given, binary input strings
+are given from the command line.
+
+A typical session implementing a 1-bit half adder is given here:
+
+plasim add1.dat test2.inp
+
+0 0 : 0 0
+0 1 : 0 1
+1 0 : 0 1
+1 1 : 1 0
+
+All possible combinations of the two single bit inputs are given on the
+left and the carry and sum bit are given on the right.
+
+Configuration
+Each .dat file for PLAsim consists of three sections.
+The first section describes the size of the PLA.  The second describes
+the connections from the inputs to some AND gates. And the third describes
+connections from the AND gates to the outputs.  Each section is discussed in
+turn.
+
+Size
+
+This section consists of three integers on a single line, separated by
+spaces.  The first, m, is the number of inputs to the PLA. The second, n,
+is the number of AND gates in the PLA.  The third, r, is the number of OR
+gates in the PLA.  Since the outputs of the OR gates are connected
+directly to the outputs of the PLA, this last number also determines the
+number of outputs of the PLA.
+
+AND array
+
+This section consists of a two dimensional array of ones and zeros,
+representing the connections between the inputs and the AND gates on the
+PLA.  The size of the array is n by 2m.  Each line represents the inputs
+of one AND gate in the PLA.  The entries on each line connect the inputs
+of the AND gate to the corresponding PLA input (or negated PLA input,
+hence the line length of 2m).  A 1 establishes a connection between that
+input line and the AND gate input.  A 0 means that there is no such
+connection. The AND inputs are numbered from the left, with each PLA input
+followed by its negated form.  In other words the columns of the AND array
+could be labeled as
+
+I1 #I1 I2 #I2 I3 #I3 ...  In #In
+where # is used to represent the negation of the corresponding PLA input line.
+
+Because of this input ordering, the connections in the array are established
+as pairs.  A connection to a particular input is done with a 1 0,
+while a connection to the negated form of the same input is done with a
+0 1.  A 0 0 combination means that the gate is not hooked
+up to the input at all.  A 1 1 combination implies that the gate is
+hooked up to both an input and its negated form.  This should never happen.
+
+OR array
+
+This section also consists of a two dimensional array of ones and zeros,
+representing the connections between the AND gate outputs and the OR gate
+inputs on the PLA.  The size of the array is r by n.  Each line represents
+the all the inputs of one OR gate in the array.  The OR gate inputs, from
+left to right, correspond directly to the AND gates in the AND gate array,
+from top to bottom.  A 1 establishes a connection from the AND gate to the
+OR gate, while a 0 means no connection.  When the PLA is functioning the
+outputs of the OR gates are listed in order from top to bottom.
+
+Example
+The following configuration file, add1.dat shows one possible
+implementation of the 1-bit adder given above:
+
+2 3 2
+
+1 0 0 1
+0 1 1 0
+1 0 1 0
+
+0 0 1
+1 1 0
+
+Three AND gates are connected to two inputs.  The three AND gates are also
+connected to two OR gates which provide two PLA outputs. The first two
+AND gates encode the sum bit.  The sum bit is on only when one of the
+inputs is zero and the other input is one. The first AND gate recognizes
+the input 1 0, while the second AND gate recognizes the input 0 1.  The
+outputs of both AND gates are connected as inputs into the second OR gate.
+
+The carry bit is on only when both inputs are 1.  The third AND gate is
+connected to recognize this pattern.  And the output of this gate is
+used as the only input of the first OR gate.

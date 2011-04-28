@@ -1,0 +1,126 @@
+General Information for the Virtual-Main Memory System:
+
+Enter the size of Virtual Memory (in Giga bytes):->
+Enter the size of Main Memory (in Mega bytes):->
+Choose one for the size of Page (in Kilo bytes):1,2,4,8,16,32,64:->
+------------------------------------------------------
+            Virtual-Main Memory System                
+------------------------------------------------------
+    Virtual Memory Size in Giga bytes = 1G = 2**30
+    Largest Address in Virtual Memory = 3FFFFFFF
+                   Page Size in bytes = 4K = 2**12
+        Virtual Memory Size/Page Size = 40000 = 2**18
+Largest Page Number in Virtual Memory = 3FFFF
+------------------------------------------------------
+ Virtual Memory Size/Main Memory Size = 64
+------------------------------------------------------
+       Main Memory Size in Mega bytes = 16M = 2**24
+       Largest Address in Main Memory = FFFFFF
+                  Frame Size in bytes = 4K = 2**12
+          Main Memory Size/Frame Size = 1000 = 2**12
+  Largest Frame Number in Main Memory = FFF
+------------------------------------------------------
+About a Program in Virtual Memory:
+Enter the address of its First Byte <= 3FFFFFFF:-> 
+--------------------------------------------------------------
+      Address of First Byte of Program = virtAdr[0] = 12345678
+    Page # to which virtAdr[0] belongs = pageNum[0] = 12345
+    Position of virtAdr[0] in the Page = bytePos[0] = 678
+ Frame # to which pageNum[0] is mapped = framNum[0] = 345
+Position of pageNum[0] among the pages = pagePos[0] = 12
+--------------------------------------------------------------
+Enter the size of the program in K bytes:->
+Size of the program in K bytes = 4K
+Address of First Byte = 12345678
+Address of Last Byte  = 12346677
+--------------------------------------------------------------
+    Address of First Byte in Next Page = virtAdr[1] = 12346000
+    Page # to which virtAdr[1] belongs = pageNum[1] = 12346
+ Frame # to which pageNum[1] is mapped = framNum[1] = 346
+--------------------------------------------------------------
+Number of Pages occupied by Program = 2
+
+Type '1' to continue, '0' to exit:->
+Enter the size of Virtual Memory (in Giga bytes):->
+Enter the size of Main Memory (in Mega bytes):->
+Choose one for the size of Page (in Kilo bytes):1,2,4,8,16,32,64:->
+------------------------------------------------------
+            Virtual-Main Memory System                
+------------------------------------------------------
+    Virtual Memory Size in Giga bytes = 2G = 2**31
+    Largest Address in Virtual Memory = 7FFFFFFF
+                   Page Size in bytes = 8K = 2**13
+        Virtual Memory Size/Page Size = 40000 = 2**18
+Largest Page Number in Virtual Memory = 3FFFF
+------------------------------------------------------
+ Virtual Memory Size/Main Memory Size = 64
+------------------------------------------------------
+       Main Memory Size in Mega bytes = 32M = 2**25
+       Largest Address in Main Memory = 1FFFFFF
+                  Frame Size in bytes = 8K = 2**13
+          Main Memory Size/Frame Size = 1000 = 2**12
+  Largest Frame Number in Main Memory = FFF
+------------------------------------------------------
+About a Program in Virtual Memory:
+Enter the address of its First Byte <= 7FFFFFFF:-> 
+--------------------------------------------------------------
+      Address of First Byte of Program = virtAdr[0] = 12345678
+    Page # to which virtAdr[0] belongs = pageNum[0] = 91A2
+    Position of virtAdr[0] in the Page = bytePos[0] = 1678
+ Frame # to which pageNum[0] is mapped = framNum[0] = 1A2
+Position of pageNum[0] among the pages = pagePos[0] = 9
+--------------------------------------------------------------
+Enter the size of the program in K bytes:->
+Size of the program in K bytes = 8K
+Address of First Byte = 12345678
+Address of Last Byte  = 12347677
+--------------------------------------------------------------
+    Address of First Byte in Next Page = virtAdr[1] = 12346000
+    Page # to which virtAdr[1] belongs = pageNum[1] = 91A3
+ Frame # to which pageNum[1] is mapped = framNum[1] = 1A3
+--------------------------------------------------------------
+Number of Pages occupied by Program = 2
+
+Type '1' to continue, '0' to exit:->
+Enter the size of Virtual Memory (in Giga bytes):->
+Enter the size of Main Memory (in Mega bytes):->
+Choose one for the size of Page (in Kilo bytes):1,2,4,8,16,32,64:->
+------------------------------------------------------
+            Virtual-Main Memory System                
+------------------------------------------------------
+    Virtual Memory Size in Giga bytes = 4G = 2**32
+    Largest Address in Virtual Memory = FFFFFFFF
+                   Page Size in bytes = 16K = 2**14
+        Virtual Memory Size/Page Size = 40000 = 2**18
+Largest Page Number in Virtual Memory = 3FFFF
+------------------------------------------------------
+ Virtual Memory Size/Main Memory Size = 128
+------------------------------------------------------
+       Main Memory Size in Mega bytes = 32M = 2**25
+       Largest Address in Main Memory = 1FFFFFF
+                  Frame Size in bytes = 16K = 2**14
+          Main Memory Size/Frame Size = 800 = 2**11
+  Largest Frame Number in Main Memory = 7FF
+------------------------------------------------------
+About a Program in Virtual Memory:
+Enter the address of its First Byte <= FFFFFFFF:-> 
+--------------------------------------------------------------
+      Address of First Byte of Program = virtAdr[0] = 12345678
+    Page # to which virtAdr[0] belongs = pageNum[0] = 48D1
+    Position of virtAdr[0] in the Page = bytePos[0] = 1678
+ Frame # to which pageNum[0] is mapped = framNum[0] = D1
+Position of pageNum[0] among the pages = pagePos[0] = 9
+--------------------------------------------------------------
+Enter the size of the program in K bytes:->
+Size of the program in K bytes = 16K
+Address of First Byte = 12345678
+Address of Last Byte  = 12349677
+--------------------------------------------------------------
+    Address of First Byte in Next Page = virtAdr[1] = 12348000
+    Page # to which virtAdr[1] belongs = pageNum[1] = 48D2
+ Frame # to which pageNum[1] is mapped = framNum[1] = D2
+--------------------------------------------------------------
+Number of Pages occupied by Program = 2
+
+Type '1' to continue, '0' to exit:->
+Bye for Now!

@@ -1,0 +1,87 @@
+
+j:\c463\fa02\prog03a.sjc
+
+This Program simulates Floating-point Division.
+
+Enter Dividend in the range of -255 thru 255, now!
+To Exit, press <Enter> key only.
+235
+
+Enter Divisor in the range of 1 thru 255, now!
+To Exit, press <Enter> key only.
+10
+
+When the Dividend is 235  and the Divisor is 10 
+the Result is   23.50
+
+
+Enter Dividend in the range of -255 thru 255, now!
+To Exit, press <Enter> key only.
+123
+
+Enter Divisor in the range of 1 thru 255, now!
+To Exit, press <Enter> key only.
+5
+
+When the Dividend is 123  and the Divisor is 5  
+the Result is   24.60
+
+
+Enter Dividend in the range of -255 thru 255, now!
+To Exit, press <Enter> key only.
+3a
+An Invalid Number was entered for Dividend!
+
+
+Enter Dividend in the range of -255 thru 255, now!
+To Exit, press <Enter> key only.
+39
+
+Enter Divisor in the range of 1 thru 255, now!
+To Exit, press <Enter> key only.
+6
+
+When the Dividend is 39   and the Divisor is 6  
+the Result is    6.50
+
+
+Enter Dividend in the range of -255 thru 255, now!
+To Exit, press <Enter> key only.
+p7
+An Invalid Number was entered for Dividend!
+
+
+Enter Dividend in the range of -255 thru 255, now!
+To Exit, press <Enter> key only.
+17
+
+Enter Divisor in the range of 1 thru 255, now!
+To Exit, press <Enter> key only.
+4
+
+When the Dividend is 17   and the Divisor is 4  
+the Result is    4.25
+
+
+Enter Dividend in the range of -255 thru 255, now!
+To Exit, press <Enter> key only.
+251
+
+Enter Divisor in the range of 1 thru 255, now!
+To Exit, press <Enter> key only.
+0
+The Zero was entered for Divisor!
+
+
+Enter Divisor in the range of 1 thru 255, now!
+To Exit, press <Enter> key only.
+6
+
+When the Dividend is 251  and the Divisor is 6  
+the Result is   41.83
+
+
+Enter Dividend in the range of -255 thru 255, now!
+To Exit, press <Enter> key only.
+
+Bye for Now!

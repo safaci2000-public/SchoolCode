@@ -1,0 +1,22 @@
+this config files assumes the input of 4 variables to produce its output.
+
+taking as input a, b, c, d and giving the result as e, f and g.
+
+   a  b
+   c  d
+________
+e  f  g
+
+
+because of that, this config files uses 3 outputs each for each of the binary variables.
+
+e = ab`c + acd` + a`bcd + abd + acd`
+f = a`b`c + a`cd` + abc` + ac`d` + a`bc`d + abcd
+g = b`d + bd`
+
+lines 1 is the config line.
+2-5 corresponds to e.
+6-11 corresponds to f
+12-13 corresponds to g
+last 3 lines deal with how the output is handeled.
+

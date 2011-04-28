@@ -1,0 +1,248 @@
+
+Enter a message word in bits no longer than 26 bits.
+To Exit, press 'Ctrl+c' in DOS; 'Ctrl+z' in Windows:->
+Message Word received       = 11
+m = Length of the Message   = 2
+r = Number of Check Bits    = 3
+n = Length of the Code Word = 5
+
+ b[][] =   1  0  0
+           0  1  0
+           1  1  0
+           0  0  1
+           1  0  1
+         
+   p[] =   3  2  2
+
+c[0][] =   1  3  5
+c[1][] =   2  3
+c[2][] =   4  5
+
+sum[0] = 2 -> Check Bit 1 = 0
+sum[1] = 1 -> Check Bit 2 = 1
+sum[2] = 1 -> Check Bit 4 = 1
+
+Code Word built =  0 1 1 1 1
+
+Enter a message word in bits no longer than 26 bits.
+To Exit, press 'Ctrl+c' in DOS; 'Ctrl+z' in Windows:->
+Message Word received       = 101
+m = Length of the Message   = 3
+r = Number of Check Bits    = 3
+n = Length of the Code Word = 6
+
+ b[][] =   1  0  0
+           0  1  0
+           1  1  0
+           0  0  1
+           1  0  1
+           0  1  1
+         
+   p[] =   3  3  3
+
+c[0][] =   1  3  5
+c[1][] =   2  3  6
+c[2][] =   4  5  6
+
+sum[0] = 1 -> Check Bit 1 = 1
+sum[1] = 2 -> Check Bit 2 = 0
+sum[2] = 1 -> Check Bit 4 = 1
+
+Code Word built =  1 0 1 1 0 1
+
+Enter a message word in bits no longer than 26 bits.
+To Exit, press 'Ctrl+c' in DOS; 'Ctrl+z' in Windows:->
+Message Word received       = 1010
+m = Length of the Message   = 4
+r = Number of Check Bits    = 3
+n = Length of the Code Word = 7
+
+ b[][] =   1  0  0
+           0  1  0
+           1  1  0
+           0  0  1
+           1  0  1
+           0  1  1
+           1  1  1
+         
+   p[] =   4  4  4
+
+c[0][] =   1  3  5  7
+c[1][] =   2  3  6  7
+c[2][] =   4  5  6  7
+
+sum[0] = 1 -> Check Bit 1 = 1
+sum[1] = 2 -> Check Bit 2 = 0
+sum[2] = 1 -> Check Bit 4 = 1
+
+Code Word built =  1 0 1 1 0 1 0
+
+Enter a message word in bits no longer than 26 bits.
+To Exit, press 'Ctrl+c' in DOS; 'Ctrl+z' in Windows:->
+Message Word received       = 10101
+m = Length of the Message   = 5
+r = Number of Check Bits    = 4
+n = Length of the Code Word = 9
+
+ b[][] =   1  0  0  0
+           0  1  0  0
+           1  1  0  0
+           0  0  1  0
+           1  0  1  0
+           0  1  1  0
+           1  1  1  0
+           0  0  0  1
+           1  0  0  1
+         
+   p[] =   5  4  4  2
+
+c[0][] =   1  3  5  7  9
+c[1][] =   2  3  6  7
+c[2][] =   4  5  6  7
+c[3][] =   8  9
+
+sum[0] = 2 -> Check Bit 1 = 0
+sum[1] = 2 -> Check Bit 2 = 0
+sum[2] = 1 -> Check Bit 4 = 1
+sum[3] = 1 -> Check Bit 8 = 1
+
+Code Word built =  0 0 1 1 0 1 0 1 1
+
+Enter a message word in bits no longer than 26 bits.
+To Exit, press 'Ctrl+c' in DOS; 'Ctrl+z' in Windows:->
+Message Word received       = 101010
+m = Length of the Message   = 6
+r = Number of Check Bits    = 4
+n = Length of the Code Word = 10
+
+ b[][] =   1  0  0  0
+           0  1  0  0
+           1  1  0  0
+           0  0  1  0
+           1  0  1  0
+           0  1  1  0
+           1  1  1  0
+           0  0  0  1
+           1  0  0  1
+           0  1  0  1
+         
+   p[] =   5  5  4  3
+
+c[0][] =   1  3  5  7  9
+c[1][] =   2  3  6  7 10
+c[2][] =   4  5  6  7
+c[3][] =   8  9 10
+
+sum[0] = 2 -> Check Bit 1 = 0
+sum[1] = 2 -> Check Bit 2 = 0
+sum[2] = 1 -> Check Bit 4 = 1
+sum[3] = 1 -> Check Bit 8 = 1
+
+Code Word built =  0 0 1 1 0 1 0 1 1 0
+
+Enter a message word in bits no longer than 26 bits.
+To Exit, press 'Ctrl+c' in DOS; 'Ctrl+z' in Windows:->
+Message Word received       = 1010101
+m = Length of the Message   = 7
+r = Number of Check Bits    = 4
+n = Length of the Code Word = 11
+
+ b[][] =   1  0  0  0
+           0  1  0  0
+           1  1  0  0
+           0  0  1  0
+           1  0  1  0
+           0  1  1  0
+           1  1  1  0
+           0  0  0  1
+           1  0  0  1
+           0  1  0  1
+           1  1  0  1
+         
+   p[] =   6  6  4  4
+
+c[0][] =   1  3  5  7  9 11
+c[1][] =   2  3  6  7 10 11
+c[2][] =   4  5  6  7
+c[3][] =   8  9 10 11
+
+sum[0] = 3 -> Check Bit 1 = 1
+sum[1] = 3 -> Check Bit 2 = 1
+sum[2] = 1 -> Check Bit 4 = 1
+sum[3] = 2 -> Check Bit 8 = 0
+
+Code Word built =  1 1 1 1 0 1 0 0 1 0 1
+
+Enter a message word in bits no longer than 26 bits.
+To Exit, press 'Ctrl+c' in DOS; 'Ctrl+z' in Windows:->
+Message Word received       = 10101010
+m = Length of the Message   = 8
+r = Number of Check Bits    = 4
+n = Length of the Code Word = 12
+
+ b[][] =   1  0  0  0
+           0  1  0  0
+           1  1  0  0
+           0  0  1  0
+           1  0  1  0
+           0  1  1  0
+           1  1  1  0
+           0  0  0  1
+           1  0  0  1
+           0  1  0  1
+           1  1  0  1
+           0  0  1  1
+         
+   p[] =   6  6  5  5
+
+c[0][] =   1  3  5  7  9 11
+c[1][] =   2  3  6  7 10 11
+c[2][] =   4  5  6  7 12
+c[3][] =   8  9 10 11 12
+
+sum[0] = 3 -> Check Bit 1 = 1
+sum[1] = 3 -> Check Bit 2 = 1
+sum[2] = 1 -> Check Bit 4 = 1
+sum[3] = 2 -> Check Bit 8 = 0
+
+Code Word built =  1 1 1 1 0 1 0 0 1 0 1 0
+
+Enter a message word in bits no longer than 26 bits.
+To Exit, press 'Ctrl+c' in DOS; 'Ctrl+z' in Windows:->
+Message Word received       = 101010101
+m = Length of the Message   = 9
+r = Number of Check Bits    = 4
+n = Length of the Code Word = 13
+
+ b[][] =   1  0  0  0
+           0  1  0  0
+           1  1  0  0
+           0  0  1  0
+           1  0  1  0
+           0  1  1  0
+           1  1  1  0
+           0  0  0  1
+           1  0  0  1
+           0  1  0  1
+           1  1  0  1
+           0  0  1  1
+           1  0  1  1
+         
+   p[] =   7  6  6  6
+
+c[0][] =   1  3  5  7  9 11 13
+c[1][] =   2  3  6  7 10 11
+c[2][] =   4  5  6  7 12 13
+c[3][] =   8  9 10 11 12 13
+
+sum[0] = 4 -> Check Bit 1 = 0
+sum[1] = 3 -> Check Bit 2 = 1
+sum[2] = 2 -> Check Bit 4 = 0
+sum[3] = 3 -> Check Bit 8 = 1
+
+Code Word built =  0 1 1 0 0 1 0 1 1 0 1 0 1
+
+Enter a message word in bits no longer than 26 bits.
+To Exit, press 'Ctrl+c' in DOS; 'Ctrl+z' in Windows:->
+
+Bye for Now!

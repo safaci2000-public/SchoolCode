@@ -1,0 +1,147 @@
+
+c463.fa2\asmts\prog08.hlp
+
+#include<stdio.h>
+#include<float.h>
+#include<stdlib.h>
+#include<conio.h>
+#include<math.h>
+
+int main()
+{   int m,n,Repeat;
+  float p,q1,q2,r1,r2,x[6],y[6],z[6];
+
+  system("cls");
+  printf("\nInformation for the CPU and I/O System\n");
+
+  Repeat = 1;
+  while (Repeat == 1)
+  { flushall();
+    printf("\nEnter # of bytes that I/O command has to process:->");
+    scanf("%d",&m);
+
+    flushall();
+    printf("\nEnter # of non-I/O instructions following the I/O command:->");
+    scanf("%d",&n);
+
+    flushall();
+    printf("\nEnter the speed of the CPU (in MIPS):->");
+    scanf("%f",&p);          						 /* set memory size to immpropor responce */
+
+    flushall();
+    printf("\nEnter the I/O speed for Programmed & Interrupt-Driven (in bytes/second):->");
+    scanf("%f",&q1);
+
+    flushall();
+    printf("\nEnter # of instructions/byte for Programmed & Interrupt-Driven:->");
+    scanf("%f",&r1);
+
+    flushall();
+    printf("\nEnter the DMA speed (in bytes/second):->");
+    scanf("%f",&q2);
+
+    flushall();
+    printf("\nEnter # of instructions/byte for DMA:->");
+    scanf("%f",&r2);
+
+    system("cls");
+    printf("\n-------------------------------------------------------");
+    printf("\n# of bytes that the I/O command has to process = %6d",m);
+    printf("\n# of instructions that follow the I/O command  = %6d",n);
+    printf("\n-------------------------------------------------------------------------");
+    printf("\n                                                     Interrupt           ");
+    printf("\n                                       Programmed     -Driven       DMA  ");
+    printf("\n-------------------------------------------------------------------------");
+    printf("\n                 CPU speed (in MIPS):   %9.4f   %9.4f   %9.4f ",p,p,p);
+    printf("\n            I/O speed (in bytes/sec):   %9.4f   %9.4f   %9.4f ",q1,q1,q2);
+    printf("\n# of instructions CPU has to execute:   %9.4f   %9.4f   %9.4f ",r1,r1,r2);
+    printf("\n-------------------------------------------------------------------------");
+
+//  m = # bytes for I/O command to tansfer (Read/Write)
+//  n = # non-I/O instructions for CPU to execute
+
+//  p = CPU speed
+// q1 = I/O speed
+// q2 = DMA speed
+
+// Under Programmed I/O:
+// x[1] = CPU time for I/O command = m bytes * r1 inst/byte * CPU speed
+//        = (m*r1)/p msec
+// x[2] = I/O time for I/O command = m bytes * I/O speed
+//        = m bytes * 1000/q1 msec/byte
+//        = 1000m/q1 msec
+// x[3] = Time for I/O command = x[1] + x[2]
+// x[4] = Time for non-I/O instructions = n/p
+// x[5] = Total Time = x[3] + x[4]
+// x[6] = % of times CPU idles = x[3]*100/x[5]
+
+   x[1] = (m*r1)/p;
+   x[2] = 1000.0*m/q1;
+   x[3] = x[1] + x[2];
+   x[4] = n/p;
+   x[5] = x[3] + x[4];
+   x[6] = x[2]*100.0/x[5];
+
+// Under Interrupt-Driven:
+// y[1] = CPU time for I/O command
+// y[2] = I/O time for I/O command
+// y[3] = Time for I/O command
+// y[4] = Time for non-I/O instructions
+// if (y[2] >= y[4])
+//    {y[5] = _____;       y[6] = ____________________;
+// else
+//    {y[5] = ___________; y[6] = ____;
+
+   y[1] = ____;
+   y[2] = ____;
+   y[3] = ____;
+   y[4] = ____;
+   if (y[2] >=  y[4])
+      {y[5] = ____;
+       y[6] = ____________________;}
+   else
+      {y[5] = ___________;
+       y[6] = ___;}
+
+// Under DMA:
+// z[1] = CPU time for I/O command
+// z[2] = DMA time for I/O command
+// z[3] = Time for I/O command
+// z[4] = Time for non-I/O instructions
+// if (z[2] >= z[4])
+//    {z[5] = ____;        z[6] = ____________________;
+// else
+//    {z[5] = ___________; z[6] = ___;
+
+   z[1] = ____;
+   z[2] = ___________;
+   z[3] = ___________;
+   z[4] = ____;
+   if (z[2] >= z[4])
+      {z[5] = ____;
+       z[6] = ____________________;}
+   else
+      {z[5] = ___________;
+       z[6] = ___;}
+
+   printf("\n-------------------------------------------------------------------------");
+   printf("\nFor the I/O command, CPU time (msec):   %9.4f   %9.4f   %9.4f",x[1],y[1],z[1]);
+   printf("\n                     I/O time (msec):   %9.4f   %9.4f   %9.4f",x[2],y[2],z[2]);
+   printf("\n                   Total time (msec):   %9.4f   %9.4f   %9.4f",x[3],y[3],z[3]);
+   printf("\n-------------------------------------------------------------------------");
+   printf("\nFor non-I/O instructions,                                                    ");
+   printf("\n                   Total time (msec):   %9.4f   %9.4f   %9.4f",x[4],y[4],z[4]);
+   printf("\n-------------------------------------------------------------------------");
+   printf("\nFor both (I/O & Instructions),                                             ");
+   printf("\n                   Total time (msec):   %9.4f   %9.4f   %9.4f",x[5],y[5],z[5]);
+   printf("\n-------------------------------------------------------------------------");
+   printf("\n   Percentage of times the CPU idles:   %9.4f   %9.4f   %9.4f",x[6],y[6],z[6]);
+   printf("\n-------------------------------------------------------------------------");
+
+   flushall();
+   printf("\n\nType '1' to continue, '0' to exit:->");
+   scanf("%d",&Repeat);
+  }
+  printf("\nBye for Now!\n");
+  return 0;
+}

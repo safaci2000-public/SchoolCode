@@ -1,0 +1,304 @@
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 65535.000000
+
+Integral Part of input            = 65535
+Integral Part in Binary           = 1111111111111111
+
+Sign Bit: 0
+Exponent: 1010000
+Mantissa: 111111111111111100000000
+
+Value if retrieved = 65535.000000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = -65535.000000
+
+Integral Part of input            = 65535
+Integral Part in Binary           = 1111111111111111
+
+Sign Bit: 1
+Exponent: 1010000
+Mantissa: 111111111111111100000000
+
+Value if retrieved = -65535.000000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 0.125000
+
+Integral Part of input            = 0
+Integral Part in Binary           = 0
+
+Fractional Part of input          = 0.125000
+Fractional Part in Binary         = 001000000000000000000000
+
+Sign Bit: 0
+Exponent: 0111110
+Mantissa: 100000000000000000000000
+
+Value if retrieved = 0.125000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 0.126000
+
+Integral Part of input            = 0
+Integral Part in Binary           = 0
+
+Fractional Part of input          = 0.126000
+Fractional Part in Binary         = 001000000100000110001001
+
+Sign Bit: 0
+Exponent: 0111110
+Mantissa: 100000010000011000100100
+
+Value if retrieved = 0.126000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 0.249000
+
+Integral Part of input            = 0
+Integral Part in Binary           = 0
+
+Fractional Part of input          = 0.249000
+Fractional Part in Binary         = 001111111011111001110110
+
+Sign Bit: 0
+Exponent: 0111110
+Mantissa: 111111101111100111011000
+
+Value if retrieved = 0.249000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 0.250000
+
+Integral Part of input            = 0
+Integral Part in Binary           = 0
+
+Fractional Part of input          = 0.250000
+Fractional Part in Binary         = 010000000000000000000000
+
+Sign Bit: 0
+Exponent: 0111111
+Mantissa: 100000000000000000000000
+
+Value if retrieved = 0.250000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 0.499000
+
+Integral Part of input            = 0
+Integral Part in Binary           = 0
+
+Fractional Part of input          = 0.499000
+Fractional Part in Binary         = 011111111011111001110111
+
+Sign Bit: 0
+Exponent: 0111111
+Mantissa: 111111110111110011101110
+
+Value if retrieved = 0.499000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 0.500000
+
+Integral Part of input            = 0
+Integral Part in Binary           = 0
+
+Fractional Part of input          = 0.500000
+Fractional Part in Binary         = 100000000000000000000000
+
+Sign Bit: 0
+Exponent: 1000000
+Mantissa: 100000000000000000000000
+
+Value if retrieved = 0.500000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 0.750000
+
+Integral Part of input            = 0
+Integral Part in Binary           = 0
+
+Fractional Part of input          = 0.750000
+Fractional Part in Binary         = 110000000000000000000000
+
+Sign Bit: 0
+Exponent: 1000000
+Mantissa: 110000000000000000000000
+
+Value if retrieved = 0.750000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 0.751000
+
+Integral Part of input            = 0
+Integral Part in Binary           = 0
+
+Fractional Part of input          = 0.751000
+Fractional Part in Binary         = 110000000100000110001001
+
+Sign Bit: 0
+Exponent: 1000000
+Mantissa: 110000000100000110001001
+
+Value if retrieved = 0.751000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 15.140000
+
+Integral Part of input            = 15
+Integral Part in Binary           = 1111
+
+Fractional Part of input          = 0.140000
+Fractional Part in Binary         = 001000111101011100010000
+
+Sign Bit: 0
+Exponent: 1000100
+Mantissa: 111100100011110101110001
+
+Value if retrieved = 15.140000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 15.150000
+
+Integral Part of input            = 15
+Integral Part in Binary           = 1111
+
+Fractional Part of input          = 0.150000
+Fractional Part in Binary         = 001001100110011001100000
+
+Sign Bit: 0
+Exponent: 1000100
+Mantissa: 111100100110011001100110
+
+Value if retrieved = 15.150000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 15.160000
+
+Integral Part of input            = 15
+Integral Part in Binary           = 1111
+
+Fractional Part of input          = 0.160000
+Fractional Part in Binary         = 001010001111010111000000
+
+Sign Bit: 0
+Exponent: 1000100
+Mantissa: 111100101000111101011100
+
+Value if retrieved = 15.160000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 35.125000
+
+Integral Part of input            = 35
+Integral Part in Binary           = 100011
+
+Fractional Part of input          = 0.125000
+Fractional Part in Binary         = 001000000000000000000000
+
+Sign Bit: 0
+Exponent: 1000110
+Mantissa: 100011001000000000000000
+
+Value if retrieved = 35.125000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 64.624001
+
+Integral Part of input            = 64
+Integral Part in Binary           = 1000000
+
+Fractional Part of input          = 0.624001
+Fractional Part in Binary         = 100111111011111010000000
+
+Sign Bit: 0
+Exponent: 1000111
+Mantissa: 100000010011111101111101
+
+Value if retrieved = 64.624001
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 64.625000
+
+Integral Part of input            = 64
+Integral Part in Binary           = 1000000
+
+Fractional Part of input          = 0.625000
+Fractional Part in Binary         = 101000000000000000000000
+
+Sign Bit: 0
+Exponent: 1000111
+Mantissa: 100000010100000000000000
+
+Value if retrieved = 64.625000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 64.625999
+
+Integral Part of input            = 64
+Integral Part in Binary           = 1000000
+
+Fractional Part of input          = 0.625999
+Fractional Part in Binary         = 101000000100000110000000
+
+Sign Bit: 0
+Exponent: 1000111
+Mantissa: 100000010100000010000011
+
+Value if retrieved = 64.625999
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 514.750000
+
+Integral Part of input            = 514
+Integral Part in Binary           = 1000000010
+
+Fractional Part of input          = 0.750000
+Fractional Part in Binary         = 110000000000000000000000
+
+Sign Bit: 0
+Exponent: 1001010
+Mantissa: 100000001011000000000000
+
+Value if retrieved = 514.750000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 1024.875000
+
+Integral Part of input            = 1024
+Integral Part in Binary           = 10000000000
+
+Fractional Part of input          = 0.875000
+Fractional Part in Binary         = 111000000000000000000000
+
+Sign Bit: 0
+Exponent: 1001011
+Mantissa: 100000000001110000000000
+
+Value if retrieved = 1024.875000
+
+
+Enter a non-zero value from -65535.0 thru 65535.0.
+To Exit, enter the zero, 0.0:-> Value entered = 0.000000
+
+Bye for Now!

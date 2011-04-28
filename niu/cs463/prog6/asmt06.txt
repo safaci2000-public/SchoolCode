@@ -1,0 +1,110 @@
+
+CSCI 463                                              Assignment 6                                  Due: 10/11/02 (Fri) 
+Fall-2002                                                   (100 pts)                
+
+                                     Digital Logic and Programmable Logic Array (PLA)
+                 Chapter 3: The Digital Logic Level (pp.117-141) of the text by Tanenbaum.
+
+For this assignment, a programmable Logic Array simulator called PLAsim is provided to implement Boolean functions.  For a given IC (integrated circuit), this PLAsim connects inputs (and negated inputs)  to AND gates and connects the outputs of AND gates to OR gates, (see Figure 3-15, p.135: Tanenbaum).
+
+To use this PLA simulator, therefore, the Boolean functions of an IC must be in the form of  "Sum-of-the-roducts", resulting in a "configuration file". For an IC, there can be many different configuration files that gives the same result. You are expected to use the configuration file with a minimum number of gates for a given IC.
+
+Part I (80 points)
+
+1. From http://www.cs.niu.edu/~sjchung (or from j:\c463\sp02), copy PLAsim.c to your home directory(e.g., f:\ directory).  
+   Compile (& Link/Edit) it on the platform of your choice.
+
+2. Copy the files Test2.in, Test3.in, Test4.in, and Test5.in to your home
+   directory. These files contain all the possible binary patterns for 2,
+   3, 4, and 5-bit inputs. They are provided for your convenience.
+
+3. Copy the files XOR2.cfg, NOR2.cfg, Add1.cfg, and Major3 to your directory.  
+   These are the PLAsim configuration files for 2-input XOR gate, 2-input NOR
+   (not OR) gate, Add1 (adding two 1-bit values) gate, and 3-input Major gate
+   (output = 1 if 2 or 3 bits are 1).
+
+4. Run the simulator three times by:   
+   1) PLAsim XOR2.cfg test2.in > XOR2.out
+   2) PLAsim NOR2.cfg test2.in > NOR2.out
+   3) PLAsim Add1.cfg test2.in > Add1.out 
+   4) PLAsim Major3.cfg test3.in > Major3.out
+
+   Study the results along with the .txt and .cfg files to understand how 
+   the configuration file produces a function that gives the desired results.
+
+5. Now you should be ready to make your own. 
+   1) Construct XOR3.cfg, a configuration file for a 3-bit XOR gate.
+   2) Construct NOR3.cfg, a configuration file for a 3-bit NOR gate.
+   3) Construct Add2.cfg, a configuration file for adding two 2-bit values.
+   4) Construct Major5.cfg, a configuration file for a function that returns
+      1 if the majority (3 or more) of the 5-bit input is 1.
+
+   a) For each of XOR3.cfg, NOR3.cfg, Add2.cfg, and Major5.cfg, 
+      write a .txt (e.g., XOR3.txt) file describing how you designed its .cfg
+      file.
+   b) Create .out files for each of the four preceding steps by redirecting
+      the output from PLAsim run with the .cfg file. Use the same filename 
+      prefix for the .out file as for the .cfg file.
+
+Hand in:
+1. Printed copies of all of your .txt, .cfg, and .out files 
+   for XOR2, NOR2, Add2, and Major5 gates.
+2. Your 3.5" diskette containing all of the above files.
+3. Your solution to Part II (on the next page).
+
+
+
+                   Due: 10/11/02 (Fri)
+CSCI 463/__           Assignment 6              Name:_____________,_________
+Fall-2002            (100 pts)                     (Last:spell)  (First)
+
+           Digital Logic and Programmable Logic Array (PLA)
+   Chapter 3 (The Digital Logic Level, pp.117-141) of the text by Tanenbaum.
+
+
+Part II (20 pts)
+
+The following problem uses multiplication (usually juxtaposition) to represent
+logical AND, + to represent logical OR, and ' to represent logical negation.
+
+1. Show that a + bc = (a + b) * (a + c) by Tautology.   (5 points)
+
+    a  b  c  |  a  +  bc  |  (a+b)  *  (a+c)
+   -----------------------------------------
+    0  0  0  |            |                
+    0  0  1  |            |               
+    0  1  0  |            |               
+    0  1  1  |            |               
+    1  0  0  |            |               
+    1  0  1  |            |                
+    1  1  0  |            |               
+    1  1  1  |            |               
+   -----------------------------------------
+
+
+2. Prove that (ab' + a'b) + (ab + a'b') = 1,
+   showing the justification of each identity used on each step
+   (See Figure 3-6, p.126: Tanenbaum). (5 points) 
+
+    (ab' + a'b) + (ab + a'b')
+   = ab'+ ab + a'b + a'b'     ______________________
+   = a(b' + b) + a'(b + b')   ______________________
+   = a1 + a'1                 ______________________
+   = a + a'                   ______________________
+   = 1                        ______________________
+
+
+
+3. Prove that abc'd' + abc'd + abce + abce' + abcf' + abcf = ab,
+   showing the justification of each identity on each step. (10 points)
+
+     abc'd' + abc'd + abce + abce' + abcf' + abcf
+   = abc'(d'+ d)+ abc(e + e') + abc(f'+ f) ___________________
+   = abc'1 + abc1 + abc1                   ___________________
+   = abc' + abc + abc                      ___________________
+   = abc' + abc                            ___________________
+   = ab(c'+ c)                             ___________________
+   = ab1                                   ___________________
+   = ab                                    ___________________
+
+

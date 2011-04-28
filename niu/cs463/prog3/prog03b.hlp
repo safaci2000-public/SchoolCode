@@ -1,0 +1,254 @@
+
+; j:\c463\fa02\prog03b.hlp
+; Prog03b.asm is the main Procedure (routine)
+; to which compuSum.asm is an external Procedure (subroutine)
+
+clear      MACRO  Field, size
+	   xor    cx,cx
+           mov    cl,size
+	   mov    al,20h
+           lea    di,Field
+	   rep    stosb
+           ENDM
+
+Extrn      compuSum:Far
+Public     Len1,Num1,Len2,Num2,Bin1,Bin2,AnsMsg,Integer,Float
+Public     Integral,Fraction
+
+           TITLE  prog03b                  
+	  .MODEL  SMALL
+	  .STACK  100h
+
+	  .DATA
+PgmMsg     db  0dh,0ah
+           db  0dh,0ah,"This Program reads an integer constant and a floating-point,"
+           db  0dh,0ah,"and computes their sum, then displays the sum.", "$"
+
+EnterMsg1  db  0dh,0ah,0dh,0ah
+           db  "Enter an integer constant in the range of 0 thru 256",0dh,0ah
+	   db  "To Exit, press <Enter> key only.", 0dh,0ah, "$"
+
+EnterMsg2  db  0dh,0ah,0dh,0ah
+           db  "Enter a floating-point in the range of 0.00 thru 256.00",0dh,0ah
+	   db  "To Exit, press <Enter> key only.", 0dh,0ah, "$"
+
+InBuff1    db  04
+Len1       db  00
+Num1       db  20h,20h,20h,0dh
+
+InBuff2    db  07
+Len2       db  00
+Num2       db  20h,20h,20h,20h,20h,20h,0dh
+
+InvalMsg1  db  0dh,0ah
+           db  "An Invalid integer constant was entered!","$"
+InvalMsg2  db  0dh,0ah
+           db  "An Invalid float-point was entered!","$"
+
+Factor     db  1,10,100
+
+Bin1       dw  0000
+Bin2       dw  0000
+
+AnsMsg     db  0dh,0ah,0dh,0ah, "When the integer constant is "
+Integer    db  20h,20h,20h
+           db  0dh,0ah,"and the floating-point constant is "
+Float      db  20h,20h,20h,20h,20h,20h
+           db  0dh,0ah,"their sum is "
+Integral   db  20h,20h,20h
+Fraction   db  2eh,20h,20h,20h,20h,20h,0dh,0ah,"$"
+
+ByeMsg     db  0dh,0ah, "Bye for Now!", 0dh,0ah, "$"
+
+	  .CODE
+MAIN       PROC
+           mov   ax,@data
+	   mov   ds,ax
+	   mov   es,ax
+
+	   lea   dx,PgmMsg
+	   mov   ah,09h
+	   int   21h
+
+Start:     call  ClrStorage
+
+           call  GetInteger
+           call  ChkInteger
+
+           call  GetFloat
+           call  ChkFloat
+
+           call  CompuSum
+
+           jmp   Start
+MAIN       ENDP
+
+ClrStorage PROC
+           clear Integer,03          ; Clear Integer field
+           clear Float,06            ; Clear Float field
+           clear Fraction+1,05       ; Clear Fraction field 
+           ret
+ClrStorage ENDP
+
+
+GetInteger PROC
+	   lea   dx,EnterMsg1
+	   mov   ah,09h
+	   int   21h
+
+	   lea   dx,InBuff1
+	   mov   ah,0ah
+	   int   21h
+
+	   xor   ch,ch
+	   mov   cl,Len1
+
+	   cmp   cl,00
+	   je    Exit1
+	   ret
+	   
+Exit1:     lea   dx,ByeMsg
+	   mov   ah,09h
+	   int   21h
+
+	   mov   ah,4ch
+	   int   21h
+GetInteger ENDP
+
+
+ChkInteger PROC
+Again1:    lea   di,Factor
+
+	   xor   dx,dx
+	   xor   ax,ax
+	   xor   ch,ch
+	   mov   cl,Len1
+
+	   lea   si,Num1
+	   mov   al,[si]
+
+Rest1:     cmp   al,30h
+	   jl    Inval1
+	   cmp   al,39h
+	   ja    Inval1
+
+	   and   al,0Fh
+	   push  di
+	   add   di,cx
+           dec   di   
+           mov   bl,[di]
+	   mul   bl
+	   add   dx,ax
+  
+	   inc   si
+	   pop   di
+	   mov   al,[si]
+	   loop  Rest1
+	   
+	   mov   Bin1,dx      
+	   ret   
+
+Inval1:    lea   dx,InvalMsg1
+	   mov   ah,09h
+	   int   21h
+
+           call  GetInteger
+	   jmp   Again1
+ChkInteger ENDP
+
+
+GetFloat   PROC
+	   lea   dx,EnterMsg2
+	   mov   ah,09h
+	   int   21h
+
+	   lea   dx,InBuff2
+	   mov   ah,0ah
+	   int   21h
+
+	   xor   ch,ch
+	   mov   cl,Len2
+
+	   cmp   cl,00
+	   je    Exit2
+	   ret
+	   
+Exit2:     lea   dx,ByeMsg
+	   mov   ah,09h
+	   int   21h
+
+	   mov   ah,4ch
+	   int   21h
+GetFloat   ENDP
+
+
+ChkFloat  PROC
+
+; Assume the input for Floating-point constant is 48.25
+; Then, 1) the memory contents of Num2 is: 34 38 2e 32 35 0D (in ASCII)
+;       2) the memory contents of Len2 is: 5
+
+; This PROCedure will compute the integral
+; part of the Floating-point constant.
+; 1. Compute the number of digits in the integral part is 2
+; 2. Convert 34 38 to 04 08
+; 3. From 04 08, compute and store 04 x 10 + 8 = 48 into Bin2 in binary   
+; 4. Check if the input value is valid
+
+Again2:    xor   cx,cx      ; First, find # of digits in Integral part
+           lea   si,Num2    ; si points to  34 38 . 32 35 0D
+           mov   al,[si]    ; al = 34
+
+intLen:    cmp   al,'.'     ; If (al == '.') then Branch to EndInt
+           je    EndInt     ; Else if (al < '0') OR (al > '9') then
+                            ;         Branch to Inval2
+           cmp   al,'0'     ; Else  
+           jl    Inval2     ;   cx = cx + 1
+                            ;   si points to Next digit
+           cmp   al,39h     ;   al contains Next digit
+           ja    Inval2     ; EndIf
+                            ; Branch back to intLen
+           inc   cx
+           inc   si
+           mov   al,[si]
+           jmp   intLen
+
+EndInt:    inc   si         ; si points to Digit following '.'
+           mov   al,[si]    ; al contains that Digit
+
+           cmp   al,0Dh     ; If (al == '\0') then Branch to IntInBin
+           je    IntInBin   ; Else if (al < '0') OR (al > '9') then
+                            ;      Branch to Inval2
+           cmp   al,30h     ; Else
+           jl    Inval2     ;      Branch back to EndInt 
+                            ; EndIf
+           cmp   al,39h
+           ja    Inval2
+           jmp   EndInt
+
+IntInBin:  lea   di,Factor  ; If input for float-point constant is valid
+           xor   dx,dx      ; then convert its integral part to binary 
+           xor   ax,ax      ; and save the value into Bin2 
+        
+;
+;
+;
+;
+;
+;
+;
+;
+;
+
+           mov   Bin2,dx
+           ret
+
+Inval2:    lea   dx,InvalMsg2
+	   mov   ah,09h
+	   int   21h
+
+           call  GetFloat  
+	   jmp   Again2
+
+ChkFloat   ENDP
+           END   Main

@@ -1,0 +1,77 @@
+
+CSCI 463                    Assignment 8                                      
+Fall-2002                    (100 pts)                     Due: 11/01/2002 (F)
+
+                     Section 5.5.7 Input/Output
+                  Programmed, Interrupt-Driven, DMA 
+
+
+For this assignment, review the three different methods of I/O processing:
+Programmed I/O, Interrupt-Driven I/O, and DMA (the topics of Section 5.5.7).
+
+
+Step 1. Complete the questions on Page 2 of this assignment.
+
+Step 2. From the course web page, copy Prog08.in, Prog08.sjc, and Prog08.hlp. 
+
+Step 3. Copy your Prog08.hlp as Prog08.c.
+
+Step 4. Complete Prog08.c after you have understood what is provided for you 
+        and what is to be done (completed) by you.
+
+Step 5. After you complete Prog08.c, 
+        "Build" (Compile & Link/Edit) your prog08.c to get prog08.exe.
+
+Step 6. When completed, run it by: Prog08 < Prog08.in > Prog08.out.
+        Your Prog08.out should compare correctly to Prog08.sjc.
+
+Step 7. Hand in:
+        1) Page 2 of this assignment 
+        2) Your 3.5" diskette, containing the files: 
+           Prog08.c, Prog08.exe, Prog08.in, Prog08.sjc, and Prog08.out
+        3) Printed Copies of Prog08.c, Prog08.in, Prog08.out and Prog08.sjc 
+
+
+
+
+                Due: 11/01(M)
+CSCI 463        Assignment 8           Name:______________,_______________
+Fall-2002        (100 pts)                  (Last:spell)   (First)
+
+
+
+Given the following information for the CPU and I/O Systems:
+-----------------------------------------------------------
+# of bytes that the I/O command has to process =    1000
+# of instructions that follow the I/O command  =    2000
+-------------------------------------------------------------------------
+                                                     Interrupt           
+                                       Programmed     -Driven       DMA  
+-------------------------------------------------------------------------
+                 CPU speed (in MIPS):      0.0100      0.0100      0.0100 
+            I/O speed (in bytes/sec):     50.0000     50.0000    100.0000 
+# of instructions CPU has to execute:     50.0000     50.0000    100.0000 
+-------------------------------------------------------------------------
+
+Compute & fill in the blanks in the following table:
+----------------------------------------------------------------------------
+                                          Programmed    Interrupt           
+                                              I/O        -Driven       DMA  
+----------------------------------------------------------------------------
+
+1. For the I/O command, CPU time (msec):   _________   _________    ________
+
+                        I/O time (msec):   _________   _________    ________
+
+                      Total time (msec):   _________   _________    ________
+
+2. For non-I/O instructions,                                             
+                      Total time (msec):   _________   _________    ________
+
+3. For both (I/O & Instructions),                                             
+                      Total time (msec):   _________   _________    ________
+
+4. Percentage of times the CPU idles:      _________   _________    ________
+
+
+Show your work (use the back if more space is needed):

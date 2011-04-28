@@ -1,0 +1,5 @@
+Major5.cfg is a simple file, with 16 possibilites, 1 ouput line, and 5 binary varialbls.
+
+based on the truth table, the logical lines were extrapolated.
+
+output uses each and everyone of those lines to ensure proper output

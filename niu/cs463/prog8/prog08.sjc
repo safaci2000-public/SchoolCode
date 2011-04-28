@@ -1,0 +1,73 @@
+
+c463.fa2\asmts\prog08.sjc
+
+
+Information for the CPU and I/O System
+
+Enter # of bytes that I/O command has to process:->
+Enter # of non-I/O instructions following the I/O command:->
+Enter the speed of the CPU (in MIPS):->
+Enter the I/O speed for Programmed & Interrupt-Driven (in bytes/second):->
+Enter # of instructions/byte for Programmed & Interrupt-Driven:->
+Enter the DMA speed (in bytes/second):->
+Enter # of instructions/byte for DMA:->
+-------------------------------------------------------
+# of bytes that the I/O command has to process =    400
+# of instructions that follow the I/O command  =    600
+-------------------------------------------------------------------------
+                                                     Interrupt           
+                                       Programmed     -Driven       DMA  
+-------------------------------------------------------------------------
+                 CPU speed (in MIPS):      0.0500      0.0500      0.0500 
+            I/O speed (in bytes/sec):     50.0000     50.0000    100.0000 
+# of instructions CPU has to execute:     50.0000     50.0000    100.0000 
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+For the I/O command, CPU time (msec):    400.0000    400.0000      2.0000
+                     I/O time (msec):   8000.0000   8000.0000   4000.0000
+                   Total time (msec):   8400.0000   8400.0000   4002.0000
+-------------------------------------------------------------------------
+For non-I/O instructions,                                                    
+                   Total time (msec):     12.0000     12.0000     12.0000
+-------------------------------------------------------------------------
+For both (I/O & Instructions),                                             
+                   Total time (msec):   8412.0000   8400.0000   4002.0000
+-------------------------------------------------------------------------
+   Percentage of times the CPU idles:     95.1022     95.0952     99.6502
+-------------------------------------------------------------------------
+Type '1' to continue, '0' to exit:->
+
+Enter # of bytes that I/O command has to process:->
+Enter # of non-I/O instructions following the I/O command:->
+Enter the speed of the CPU (in MIPS):->
+Enter the I/O speed for Programmed & Interrupt-Driven (in bytes/second):->
+Enter # of instructions/byte for Programmed & Interrupt-Driven:->
+Enter the DMA speed (in bytes/second):->
+Enter # of instructions/byte for DMA:->
+-------------------------------------------------------
+# of bytes that the I/O command has to process =    400
+# of instructions that follow the I/O command  =   1200
+-------------------------------------------------------------------------
+                                                     Interrupt           
+                                       Programmed     -Driven       DMA  
+-------------------------------------------------------------------------
+                 CPU speed (in MIPS):      0.0500      0.0500      0.0500 
+            I/O speed (in bytes/sec):     50.0000     50.0000    100.0000 
+# of instructions CPU has to execute:     50.0000     50.0000    100.0000 
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+For the I/O command, CPU time (msec):    400.0000    400.0000      2.0000
+                     I/O time (msec):   8000.0000   8000.0000   4000.0000
+                   Total time (msec):   8400.0000   8400.0000   4002.0000
+-------------------------------------------------------------------------
+For non-I/O instructions,                                                    
+                   Total time (msec):     24.0000     24.0000     24.0000
+-------------------------------------------------------------------------
+For both (I/O & Instructions),                                             
+                   Total time (msec):   8424.0000   8400.0000   4002.0000
+-------------------------------------------------------------------------
+   Percentage of times the CPU idles:     94.9668     94.9524     99.3503
+-------------------------------------------------------------------------
+
+Type '1' to continue, '0' to exit:->
+Bye for Now!

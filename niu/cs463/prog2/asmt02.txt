@@ -1,0 +1,109 @@
+
+CSCI 463                 Assignment 2                    Due: Week of 09/02/02
+Fall-2002                 (100 pts)                
+
+  How floating-point numbers are processed and stored in Memory?
+                    C (or C++) Program for 
+              8-bit & 32-bit Floating-Point Formats              
+
+Review the material in Appendix A (Binary Numbers: pp.631-642) of the text.
+And, Read again Appendix B (Floating-Point Numbers: pp.643-651): 
+Appendix B.1 (Principles of Floating Point) in particular.
+
+Part I (20 points)
+1. From the course web page, copy Float8.c, Float8.in and Float8.sjc.
+2. The format used in Float8.c & Float32.c is not the IEEE 754 (Appendix B.2).
+   It is much simpler than the IEEE 754. Instead, the " Biased-Exponent" are
+   used for the Exponent field. See below for "Biased-Exponent."
+3. Float8.c assumes the Floating-Point Format: 1-bit Sign,
+   4-bit Biased-Exponent (Characteristic), and 3-bit Mantissa (Fraction).
+4. For example, consider the decimal 2.75.   
+   1) Converting it to binary, we have: 10.11
+   2) Normalizing it, we get: 0.1011 x 2**2
+   3) 0 is stored as Sign (1 if the value were negative)
+   4) 101 is stored as Mantissa (losing the last digit for lack of space)
+   5) The exponent 2 is:
+      a) Converted to binary 10, then
+      b) Exponent 10 (in binary) stored as 1010 ("Biased-8 Exponent") 
+
+   6) Note:  -----------------------------------------------------
+             Biased-Exponent    1111  1110  1001  1000  0111  0000
+             -----------------------------------------------------
+             "True" Exponent      7     6     1     0    -1    -8   
+             -----------------------------------------------------     
+
+5. Using the Turbo C++ (or any other similar C compiler),
+   compile & link/edit ("Build") Float8.c to get Float8.obj & Float8.exe.
+
+6. Run Float8.exe by: Float8 < Float8.in > Float8.out
+   Your Float8.out should compare correctly to Float8.sjc.
+
+
+Part II (50 points) 
+1. Write Float32.c, a program in C, that uses the Floating-Point Format:
+   1-bit Sign, 7-bit Characteristic, and 24-bit Mantissa.
+2. Compile, link/edit, and run by: Float32 < Float32.in > Float32.out.
+   Your Float32.out should compare correctly to Float32.sjc.
+3. Make sure that your Float32.c is well-documented.
+
+
+Hand in: 
+1. Page 2 (Part III) of this assignment (check your answers again).
+2. Printed copies of your Float32.c and Float32.out.
+3. Your 3.5" diskette containing your Float32.c, Float32.obj, Float32.exe,
+   Float32.in, and Float32.out.
+ 
+Section ___
+CSCI 463                  Assignment 2              Name:_______________,_________
+Fall-2002           Due: Week of 09/02/02                (Last:spell)    (First)
+
+
+                       Part III (30 points)
+
+
+1. Convert the decimal 5.875 to binary: ___________________
+   Show your work. 
+  
+                   
+
+
+
+2. Normalize the binary value in Question 1: ________________
+   Show your work:
+
+
+
+
+
+3. How will the decimal value 5.875 be stored in the Floating-Point Format 
+   used by Float8.c? 
+   Show your work:             Sign-Bit     Characteristic       Mantissa
+                               --------     --------------       --------
+    
+
+
+      
+
+
+
+4. When the value in Question 3 is retrieved, 
+   what decimal value will it represent?    ____________ 
+   Show your work:
+
+
+
+
+
+
+
+5. Now, consider the Floating-Point Format to be used by Float32.c:
+   1-bit Sign, 7-bit Characteristic and 24-bit Mantissa.
+
+   The Largest Decimal Value this Format can accommodate? __________
+   Show your work:
+    
+
+
+
+
+  

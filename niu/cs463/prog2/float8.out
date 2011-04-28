@@ -1,0 +1,176 @@
+
+
+Enter a value in the range of from -112.0 thru 112.0.
+To Exit, Enter a value outside the range:->Value entered = 112.000000
+
+Integral Part of input            = 112
+Integral Part in Binary           = 1110000
+
+Sign Bit: 0
+Exponent: 1111
+Mantissa: 111
+
+Value if retrieved = 112.000000
+
+
+Enter a value in the range of from -112.0 thru 112.0.
+To Exit, Enter a value outside the range:->Value entered = 64.000000
+
+Integral Part of input            = 64
+Integral Part in Binary           = 1000000
+
+Sign Bit: 0
+Exponent: 1111
+Mantissa: 100
+
+Value if retrieved = 64.000000
+
+
+Enter a value in the range of from -112.0 thru 112.0.
+To Exit, Enter a value outside the range:->Value entered = 1.500000
+
+Integral Part of input            = 1
+Integral Part in Binary           = 1
+
+Fractional Part of input          = 0.500000
+Fractional Part in Binary         = 100
+
+Sign Bit: 0
+Exponent: 1001
+Mantissa: 110
+
+Value if retrieved = 1.500000
+
+
+Enter a value in the range of from -112.0 thru 112.0.
+To Exit, Enter a value outside the range:->Value entered = 2.750000
+
+Integral Part of input            = 2
+Integral Part in Binary           = 10
+
+Fractional Part of input          = 0.750000
+Fractional Part in Binary         = 110
+
+Sign Bit: 0
+Exponent: 1010
+Mantissa: 101
+
+Value if retrieved = 2.500000
+
+
+Enter a value in the range of from -112.0 thru 112.0.
+To Exit, Enter a value outside the range:->Value entered = -2.750000
+
+Integral Part of input            = 2
+Integral Part in Binary           = 10
+
+Fractional Part of input          = 0.750000
+Fractional Part in Binary         = 110
+
+Sign Bit: 1
+Exponent: 1010
+Mantissa: 101
+
+Value if retrieved = -2.500000
+
+
+Enter a value in the range of from -112.0 thru 112.0.
+To Exit, Enter a value outside the range:->Value entered = -7.500000
+
+Integral Part of input            = 7
+Integral Part in Binary           = 111
+
+Fractional Part of input          = 0.500000
+Fractional Part in Binary         = 100
+
+Sign Bit: 1
+Exponent: 1011
+Mantissa: 111
+
+Value if retrieved = -7.000000
+
+
+Enter a value in the range of from -112.0 thru 112.0.
+To Exit, Enter a value outside the range:->Value entered = 15.150000
+
+Integral Part of input            = 15
+Integral Part in Binary           = 1111
+
+Fractional Part of input          = 0.150000
+Fractional Part in Binary         = 001
+
+Sign Bit: 0
+Exponent: 1100
+Mantissa: 111
+
+Value if retrieved = 14.000000
+
+
+Enter a value in the range of from -112.0 thru 112.0.
+To Exit, Enter a value outside the range:->Value entered = -15.150000
+
+Integral Part of input            = 15
+Integral Part in Binary           = 1111
+
+Fractional Part of input          = 0.150000
+Fractional Part in Binary         = 001
+
+Sign Bit: 1
+Exponent: 1100
+Mantissa: 111
+
+Value if retrieved = -14.000000
+
+
+Enter a value in the range of from -112.0 thru 112.0.
+To Exit, Enter a value outside the range:->Value entered = 0.250000
+
+Integral Part of input            = 0
+Integral Part in Binary           = 0
+
+Fractional Part of input          = 0.250000
+Fractional Part in Binary         = 010
+
+Sign Bit: 0
+Exponent: 0111
+Mantissa: 100
+
+Value if retrieved = 0.250000
+
+
+Enter a value in the range of from -112.0 thru 112.0.
+To Exit, Enter a value outside the range:->Value entered = -0.500000
+
+Integral Part of input            = 0
+Integral Part in Binary           = 0
+
+Fractional Part of input          = 0.500000
+Fractional Part in Binary         = 100
+
+Sign Bit: 1
+Exponent: 1000
+Mantissa: 100
+
+Value if retrieved = -0.500000
+
+
+Enter a value in the range of from -112.0 thru 112.0.
+To Exit, Enter a value outside the range:->Value entered = 0.750000
+
+Integral Part of input            = 0
+Integral Part in Binary           = 0
+
+Fractional Part of input          = 0.750000
+Fractional Part in Binary         = 110
+
+Sign Bit: 0
+Exponent: 1000
+Mantissa: 110
+
+Value if retrieved = 0.750000
+
+
+Enter a value in the range of from -112.0 thru 112.0.
+To Exit, Enter a value outside the range:->Value entered = 125.750000
+
+Bye for Now!

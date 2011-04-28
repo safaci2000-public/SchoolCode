@@ -1,0 +1,13 @@
+
+c463.sp2\asmts\xor3.sjc
+
+Created by: PLAsim xor3.cfg test3.in > xor3.sjc
+
+0 0 0 : 0
+0 0 1 : 1 
+0 1 0 : 1 
+0 1 1 : 0 
+1 0 0 : 1 
+1 0 1 : 0 
+1 1 0 : 0 
+1 1 1 : 1 

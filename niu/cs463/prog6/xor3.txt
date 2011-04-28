@@ -1,0 +1,12 @@
+the config files is based on the assumption that it takes 3 binary vars.
+
+based on the truth table the following cases are the only ones that will produce a true result:
+
+  abc
+  a`b`c
+  a`bc`
+  ab`c`
+
+hence the config files checks for these occurances, if they are not found, the output is assumed to be 0.
+
+config files uses each of these statements.
