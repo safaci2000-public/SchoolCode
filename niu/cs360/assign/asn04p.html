@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>CSCI 360 Program 3</title>
+</head>
+<body Bgcolor="White">
+
+<table Cellspacing="1" width=100%>
+<tr>
+	<td align=left valign=top><b>CSCI 360</b></td>
+	<td align=right valign=top><b>Fall 2001</b></td>
+	</tr>
+</table>
+
+<H1><center>Program 4A -- Table Processing<BR>and Internal Subroutines<BR>(100 points)</center></H1>
+
+<hr>
+
+<h2>Overview</h2>
+
+<P>DeKalb Discs keeps information about the CDs it currently has in stock. For each CD, a stock number is assigned and a record that contains information about the CD is created. The records are entered into the database as new CDs arrive. The owner of DeKalb Discs wants to build a database of the CDs currently in stock.<br>
+<br>
+The owner has hired you, a reputable assembler programmer, to accomplish this task. You will build a table of stock information. Each table entry will consist of the stock number for the CD, the artist ID number, the number of copies currently in stock, and the selling price (in cents) of the CD. Each table element will be 4 fullwords in length. Each item will be stored in a fullword as a binary number.<br>
+<br>
+<b>INPUT:<br>
+<br>
+</b>The input for this program is an unknown number of records (maximum of 20) that will be used to build the table. Each record has the following format: a stock number, an artist ID number, the number of copies currently in stock, and the selling price (in cents) of the CD.<br>
+<br>
+<b>OUTPUT:<br>
+<br>
+</b>The output for the program will be a report that lists the current stock information. Use the following report as a model for your report.<br>
+<br>
+<pre><font face="Courier New, Courier">
+<dir>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEKALB DISCS STOCK INFORMATION
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STOCK NUMBER&nbsp;&nbsp;&nbsp;&nbsp; ARTIST ID&nbsp;&nbsp;&nbsp;&nbsp; # IN STOCK&nbsp;&nbsp;&nbsp;&nbsp; CD PRICE
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ------------&nbsp;&nbsp;&nbsp;&nbsp; ---------&nbsp;&nbsp;&nbsp;&nbsp; ----------&nbsp;&nbsp;&nbsp;&nbsp; --------
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 123523&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1234&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1299
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 511523&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8469&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1599
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 610543&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1794&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1399
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 319854&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1794&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 25&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 999
+
+</font></pre><b>
+</dir>PROCESSING REQUIREMENTS:</b>
+<ol>
+<li>You should use at least 3 internal subroutines: MAIN, BUILD, and PRINT.
+<ul><b>
+<li>MAIN</b> will call the other subroutines, passing the appropriate parameters to each. It should print the page and column headings for the report BEFORE calling the PRINT routine. The table should be defined in the storage area for the MAIN routine and it should hold a maximum of 20 elements, each of which is 4 fullwords in length.<br>
+<br>
+<b>
+<li>BUILD</b> will read records from the input file and put the information into the table.
+INPUT PARAMETERS: 
+<ul>
+<li>Address of the beginning of the table 
+<li>Address of a fullword in which to store the address of the end of the table
+</ul><b>
+PRINT</b> will print the contents of the table after it has been built<br>
+<br>
+
+INPUT PARAMETERS: 
+<ul>
+<li>Address of the beginning of the table 
+<li>Address of the fullword that contains the address of the end of the table
+</ul>
+</ul>
+<li>Before exiting the program, use XDUMP to dump the entire table.<br>
+<br>
+
+<li>The report should begin on a new page and should be double spaced.<br>
+<br>
+
+<li>Test the program with your own instream data. For the final run, replace your instream data with the following JCL:<BR>
+<a href="../data/data4.txt">//FT05F001 DD DSN=T90MES1.C360(DATA4),DISP=SHR</a>
+</ul>
+</OL></FONT>
+
+
+<hr noshade size=4>
+This page was last modified by <a href="mailto:mstack@niu.edu">Michael Stack</a> on Thursday, September 27, 2001, at 03:31:44 PM CDT
+
+</body>
+</html>

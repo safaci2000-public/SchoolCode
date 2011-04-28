@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>CSCI 360 Assignment 2</title>
+<!-- <base href="http://www.cs.niu.edu/~t90mes1/csci/360/"> -->
+</head>
+<body Bgcolor=FFFFFF>
+
+<table Cellspacing="1" width=100%>
+<tr>
+	<td align=left valign=top><b>CSCI 360</b></td>
+	<td align=right valign=top><b>Fall 2001</b></td>
+	</tr>
+</table>
+
+<H2><center>Program 1 - Explicit Addressing & Decoding<BR>(100 points)</center></H2>
+<!-- <center><img src="../../../imgs/construc.gif"></center> -->
+
+<HR NOSHADE SIZE="4">
+
+<h2>PART A (50 points)</h2>
+  
+ Type in the following JCL, submit the job to MVS, and print the resulting output. 
+ Blank spaces in the JCL (that is, <tt>'&nbsp;'</tt>) must be as shown!
+<pre>
+//ZnnnnnnA JOB ,'your name',MSGLEVEL=(1,0)
+/*JOBPARM ROOM=bbb
+//STEP1 EXEC ASSIST
+//SYSIN DD DSN=T90MES1.C360(PGM1),DISP=SHR
+//
+</pre>
+ Substitute the following:<p>
+
+ <tt>Znnnnnn</tt> = your Z-id<br>
+ <tt>your name</tt> = your name<br>
+ <tt>bbb</tt> = your bin number (last 3 digits of your Z-number)<p>
+
+This will execute a <A HREF="../data/pgm1.txt">prewritten assembler program</A>.  Your output will consist of diagnostics, a source listing, a dump of the register contents, and a dump of the memory occupied by the executable part of the computer program as well as the memory occupied by the working storage area of the program.<p>
+
+ Use this printout/dump to answer the questions and problems on the<p>
+ <a href="asn01pw1.shtml">Part A Worksheet, Part 1</a> <br>and<br> 
+ <a href="asn01pw2.shtml">Part A Worksheet, Part 2</a>.  
+<p>
+ Hand in the printout/dump and the two parts of the worksheet.
+
+<HR NOSHADE SIZE='4'>
+
+
+
+<h2>PART B (50 points)</h2>
+
+You are to write and execute an assembler program to calculate the profit a contractor makes on the sale of a new house.  Use the JCL in the Notes and Examples book for programs with no input file.  Note that this is slightly (but only slightly!) different from the JCL used in PART A.<p>
+
+In your program, define storage for the following fullword fields and assign the following decimal values.
+<pre>
+            Initial
+Field       Value         Description
+
+PRICE       329995        List price of a new house
+PROPTAX     2640          First year property tax on the house
+ERLYDISC    3300          Early Buyer discount  
+LANDSCAP    13450         Cost for landscaping
+BUYCOST                   Total cost to the home buyer
+BLDCOST     308726        Cost to the contractor for the new house   
+LNDSCOST    9558          Cost to the contractor for landscaping
+PROFIT                    Amount of profit to the contractor
+CONTCOST                  Total cost of a new house to the contractor  
+</pre>
+ In your program calculate the following:
+<ol type="1"><p>
+ <li><tt>BUYCOST = PRICE + PROPTAX - ERLYDISC + LANDSCAP</tt></li><p>
+
+ <li><tt>CONTCOST = BLDCOST + LNDSCOST</tt></li><p>
+
+ <li><tt>PROFIT = BUYCOST - CONTCOST</tt></li><p>
+</ol><P>
+
+ For calculated fields, e.g. <tt>PROFIT</tt>, save the value in the
+ storage location.  DO NOT simply leave the value in a register. You
+ will need the value in the printed storage output for step 5.<P>
+Then, at the end of your program:
+<OL TYPE="1"><P>
+
+ <li><tt>XDUMP</tt> the registers.  (<tt>XDUMP</tt> with no operands)</li><p>
+
+ <li><tt>XDUMP</tt> all of the working storage.  Highlight and label, in the dump, the fields <tt>BUYCOST, CONTCOST</tt>, and <tt>PROFIT</tt>.<P>  Also, perform (manually) a hexadecimal to decimal conversion on the values in these three fields and write down (on the dump) the decimal values (appropriately labeled.)<p>
+</li>
+</ol><p>
+
+ 
+<B>Note:</B>  Aside from the instructions necessary to enter and exit the program, you may use only the following instructions to accomplish the code for this program: <TT>L, LR, A, AR, S, SR, ST</TT><P>
+
+<B>Remember:</B> in order to use labels in your program you must establish addressability through the <TT>USING</TT> instruction.
+<P>
+
+<hr noshade size=4>
+This page was last modified by <a href="mailto:mstack@niu.edu">Michael Stack</a> on Tuesday, September  4, 2001, at 01:52:35 PM CDT
+
+</body>
+</html>

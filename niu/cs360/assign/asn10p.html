@@ -1,0 +1,207 @@
+<html>
+<head>
+<title>CSCI 360 Program 10</title>
+</head>
+<body Bgcolor=FFFFFF>
+
+<table Cellspacing="1" width=100%>
+<tr>
+	<td align=left valign=top><b>CSCI 360</b></td>
+	<td align=right valign=top><b>Fall 2001</b></td>
+	</tr>
+</table>
+
+<H1><center>Program 10 - Bit Manipulation <BR>(200 points)</center></H1>
+<hr size=4 noshade>
+<!-- <center><img src="../imgs/construc.gif" align=bottom width=413 height=25></center> -->
+
+<h2>Overview</h2>
+
+     As increasingly important and sensitive information is being entrusted
+to computerized systems, various encryption techniques are coming into use as
+a way to ensure the privacy of that data.  The basic process of encrypting
+data is as follows:<p>
+
+          <blockquote>The data that is to be encrypted (called the plaintext) is
+     transformed using a special process called the encryption function and
+     a piece of information called the key.  The output of this
+     transformation in conjunction with the key is the original data in
+     encrypted form, called the ciphertext.  If the encryption function is
+     well-chosen and the key is kept secret, the ciphertext is unreadable and
+     cannot be easily converted back into the original plaintext.  In order
+     to change the ciphertext back into plaintext, someone must know both the
+     correct decryption function (which reverses the transformation of the
+     encryption function) as well as the key that was originally used during
+     decryption.</blockquote><p>
+
+     In this assignment, you are going to build some tables, including one of keys and another of ciphertext messages.  You will then decrypt those messages using one or more keys and a decryption function based on the logical XOR operation.  Also, every input record has been encoded using a method which allows binary data to be transported without corruption (Base64), so each record must first be decoded before it can be processed.  See the Processing section below for a description of Base64 encoding.
+
+<h2>Input</h2>
+
+There are three types of record in the input data file.  All of them are Base64-encoded and have the following format:
+<pre>
+ <U>Records</U>   <U>Cols</U>    <U>Contents</U>
+ 1         1-60    Test message - 45 bytes of data, encoded as 60 bytes of Base64 text
+ 2 - 25    1-60    Encryption keys  - 45 bytes of data, encoded as 60 bytes 
+ 26 - n    1-64    Encrypted messages (45 bytes) & Flags (3) - 48 bytes of data, 
+                   encoded as 64 bytes
+</pre>
+Each input record must therefore be decoded (by the DECODE subroutine) before its 45 or 48 bytes of data may be used.<p>
+
+The first input record contains a test message (not encrypted) which should be used to verify that your DECODE subroutine is working correctly.  Print the decoded text, but do not save it. (If the message isn't readable, your DECODE subroutine isn't working correctly.)<p>
+
+The next twenty-four records in the file contain the twenty-four encryption keys which will be used in the XOR part of the decryption function.  You will DECODE these records, then use them to build the KEYTABLE of 45-byte keys.<p>
+
+After the above twenty-five records are an unknown number of message records (maximum of 100).  Each message record contains an encrypted (i.e. ciphertext) message and twenty-four key flag bits, with each flag bit associated with the corresponding encryption key (encryption key one with key flag bit one, etc.). Thus, after DECODing each message record is 45 bytes of message text followed by three bytes of key flags (thus, 48 bytes of data). <p>
+
+     The JCL for the input file is:
+<pre>
+<A HREF="../data/data10.txt">//FT05F001 DD   DSN=T90MES1.C360(DATA10),DISP=SHR</A>
+</pre>
+<h2>Processing</h2>
+
+<ol type="1">
+
+<li>The main difficulty in conveying binary data via email (or transmitting EBCDIC data via a path that translates to ASCII, then back to EBCDIC) is that certain non-text characters and strings may be interpreted as directives.  The easiest circumvention for this problem is to first translate the binary data into ordinary characters, which the mailer programs will then leave untouched.  Popular methods are uuencode/uudecode and binhex.  The primary method used by MIME (Multipurpose Internet Mail Extensions) is called Base64.  All input records in this assignment have been encoded using a variation of the Base64 encoding method, and each must be decoded before use, immediately after being read.  See the DECODE information below for instructions.</li><p>
+
+<li>You should define the following three tables in the storage area of your MAIN routine (KEYTABLE and MSGTABLE are to contain <B>decoded</B> information):<p>
+
+<ul>
+<li>KEYTABLE - This table should have twenty-four entries, each of which will be a 45
+byte encryption key.</li><p>
+
+<li>MSGTABLE - This table should have 100 entries, each of which will be a 45 byte message and three bytes of key flags.</li><P>
+
+<li>KCNTABLE - This table should have 24 entries, each one halfword long; each table entry will be used to keep a binary count of the uses of the corresponding key (should be set to zero initially; DECRYPT will update the count).</li><p>
+</ul>
+</li><p>
+
+<li>You must use at least six external subroutines (all following standard linkage conventions) in your program.<p>
+
+<ol type="i"> 
+
+<li>MAIN - Controls the overall flow of logic.  XREADs and XPRNTs the test message record (after calling DECODE to decode that record); calls BUILDKEY to build KEYTABLE; calls BUILDMSG to build the MSGTABLE (with messages still encrypted); calls DECRYPT to decrypt the messages and print them out;  calls PRINTRPT to print the key usage report.</li><p>
+
+<li>DECODE - Decodes the Base64-encoded text passed to it and returns binary data.  Parameter list: Address of 64 bytes of encoded text; address of 48-byte buffer for returning decoded binary data.  <B>N.B. - Even when decoding 60 bytes to 45, you will find it much simpler to pass 64 bytes to DECODE and allow it to return 48;</B> you can then ignore the unneeded bytes.</li><p>
+
+<li>BUILDKEY - Builds the key table from records 2 - 25 in the input data file.  XREADs those records and calls DECODE to decode each one. Parameter list: Address of KEYTABLE.</li><p>
+
+<li>BUILDMSG - Builds the message table (of encrypted messages and key flags) from the remaining records.  XREADs those records (until end-of-file) and calls DECODE to decode each one. After decoding, DO NOT decrypt the messages before placing them in the table - that is the job of the DECRYPT routine (see below).  BUILDMSG should return the count of messages.  Parameter list: Address of MSGTABLE; address of a fullword in which to store the message count.</li><p>
+
+<li>DECRYPT - Using the Key Table and the key flag byte from the Key Flag-Byte Table, decrypts the ciphertext messages and prints the associated plaintext.  Parameter list: Address of MSGTABLE; Address of fullword that contains message count; Address of KEYTABLE; Address of KCNTABLE.</li><P>
+
+<li>PRINTRPT - Prints a summary report listing how many times each key was used in the XOR part of message decryption.  Parameter list: Address of KCNTABLE.</li>
+
+</ol>
+
+<P>Code a USING instruction for each parameter list to allow implicit addresses to be used.  Your USING may reference an area of storage or a DSECT (your choice). Be sure to DROP any such registers when you are done with them.
+
+</li><p>
+
+<li>Base64 encoding is a way of representing three binary bytes as four bytes of ordinary text.<br>The <i><B>encoding</B></i> process encodes three bytes at a time as follows:
+
+<ol type="i"><p>
+
+<li>Each three bytes of data (shown here as 24 bits)
+<pre>
+        aaaaaabb bbbbcccc ccdddddd
+</pre>
+is changed to four bytes, each having a decimal value from 0 to 63, as:
+<pre>
+        00aaaaaa 00bbbbbb 00cccccc 00dddddd
+</pre></li>
+<li>Then these four bytes are translated using the following correspondence:<p>
+
+<ul>
+<li>0 maps to /</li>
+<li>1 maps to +</li>
+<li>2 to 11 map to 0-9</li>
+<li>12 to 37 map to a-z</li>
+<li>38 to 63 map to A-Z</li>
+</ul></li>
+
+</ol><p>
+
+Your DECODE subroutine will reverse this process, converting the 64 characters of encoded text back to 48 data bytes, with four bytes of encoded text decoding to three bytes of data.<p>
+
+First, translate the Base64-encoded text back to 0-63, using a translate table which reverses the correspondence in ii) above: so <TT>/ -> 0, + -> 1, 0 -> 2, ..., Z -> 63,</TT> etc. <b>Important:</b> Be very careful setting up the translate table.<p>
+
+<P>Then convert each four bytes of encoded data to the original three bytes in a outer/inner loop pair. 
+<UL>
+<LI>
+Use an ICM instruction to pick up four bytes of encoded text;
+</LI>
+
+<UL>
+ <LI>In an inner loop iterated four times, use logical shifts to remove the unneeded zero bits in each byte, converting back to the original three data bytes
+</LI> </UL>
+
+
+<LI>
+Save those three bytes in the return buffer using STCM;
+</LI><LI>
+Iterate the outer loop sixteen times until all 64 bytes of encoded text are decoded to 48 bytes of data.
+</LI></UL>
+Performance note:  The inner loop described above should be written with just three instructions, including the BCT. 
+
+<P></li>
+
+<P><li><U>DECRYPTing a ciphertext message:</U> After DECODing all the keys and message records, you will DECRYPT the message records.  You will eXclusive-OR the 45 bytes of ciphertext message, in turn, with each of the keys from the key table that are indicated in the key flags bytes.  Use a loop with an EXecuted TM instruction to determine which keys will need to be used in the decryption - do not code multiple TMs.  A message may require 0-24 XCs to be done in order to complete this stage of the decryption, depending on the value in the key flags bytes.  You may decrypt a message by  XORing it with the necessary keys in any order because the XOR operation is both commutative and associative.  Do <U>not</U> code a separate XC for each of the twenty-four keys.</li><p>
+
+</ol>
+
+<p>(For more information on Base64 Content-Transfer-Encoding, see <a href="http://www.wu-wien.ac.at:8082/rfc/rfc1521.hyx/rfc1521.9_b5.2._bBase64_bContent-Transfer-Encoding">here</a>.  Note the difference in the translate table required for "real" Base64.)
+
+<h2>Output</h2>
+
+     After the test message print line (to verify that DECODE works), the output for this program will consist of two reports, each with an appropriate page header.<p>
+<OL>
+<LI>
+<P>The first report will be the decrypted plaintext of all of the messages
+in the message table, single-spaced.  Your output should be roughly centered
+on the page, but no other formatting is required for this report.
+</LI>
+<P><LI>
+The second report will display how may times each of the twenty-four keys in
+KEYTABLE was used in the decryption of the ciphertext messages in MSGTABLE.  Get this info from the key count table, KCNTABLE.  In addition to printing the numeric values, you should also print a bar graph of asterisks next to each number.  The length of the bar graph (in 'asterisks') should equal the number of times a given key was used (maximum of 100).  Your second report should be similar to the following:
+</LI>
+</OL>
+<pre>
+                 Decryption Key Usage Frequency Report
+
+   Key    Times
+  Number  Used   Bar Graph
+---------------------------------------------------------------------------------------
+    1       4    ****
+    2       0
+    3      10    **********
+    4       1    *
+    5       6    ******
+    6       3    ***
+    7      14    **************
+    8       5    *****
+    9       4    ****
+   10       0
+   11      10    **********
+   12       1    *
+   13       6    ******
+   14       3    ***
+   15      14    **************
+   16       5    *****
+   17       4    ****
+   18       0
+   19      10    **********
+   20       1    *
+   21       6    ******
+   22       3    ***
+   23      14    **************
+   24       5    *****
+</pre>
+
+
+<hr size=4 noshade>
+
+This page was last modified by <a href="mailto:mstack@niu.edu">Michael Stack</a> on Sunday, November 18, 2001, at 05:35:16 PM CST
+
+</body>
+</html>

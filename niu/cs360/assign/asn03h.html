@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>CSCI 360 Homework 3</title>
+</head>
+<body Bgcolor="White">
+
+<table Cellspacing="1" width=100%>
+<tr>
+	<td align=left valign=top><b>CSCI 360</b></td>
+	<td align=right valign=top><b>Fall 2001</b></td>
+	</tr>
+</table>
+
+<H2><center>Homework 3 - Dump Reading Assignment 2<BR>(50 points)</center></H2>
+<!-- <center><img src="../../../imgs/construc.gif"></center> -->
+
+<hr noshade size='4'>
+
+<A HREF="../data/dump2.txt">This program</A> creates a table, then attempts to process it.  You are to run the program (after adding the necessary JCL), then answer the questions below <I>on a separate sheet of paper</I> (<B>not</B> the output from the job).
+<PRE>
+DUMP2    CSECT 
+         USING DUMP2,15 
+         LA    2,TABLE 
+         SR    3,3 
+         XREAD DATA,80 
+*
+LOOP1    BM    ENDLOOP1 
+         XDECI 4,DATA 
+         ST    4,0(2,3) 
+         LA    3,4(,3) 
+         XREAD DATA,80 
+         B     LOOP1
+*
+ENDLOOP1 SR    3,3 
+         LA    7,TABLE 
+         LA    5,TABEND
+*
+LOOP2    CR    2,5 
+         BE    ENDLOOP2 
+         L     6,0(,2) 
+         ST    6,0(,7) 
+         L     7,4(,7) 
+         LA    2,4(,2) 
+         B     LOOP2
+*
+ENDLOOP2 BR    14 
+         LTORG 
+DATA     DS    CL80 
+TABLE    DC    30F'-1' 
+TABEND   DS    0X 
+         END    DUMP2 
+0 
+1 2 
+50 
+32 24 19 62 
+123 456 789 
+987 654 321
+</PRE>	 
+Use the resulting output to answer the following questions:
+<OL>
+<P><LI>What was the interruption code?</LI>
+<P><LI>What instruction caused the program to abend? <BR>Why?</LI>
+<P><LI>What was the condition code at the time of the ABEND?</LI>
+<P><LI>How many table entries were built? <BR>How did you figure this?</LI>
+<P><LI>What is the return address to the calling routine? <BR>Where did you find this? <BR>Does your answer really make any sense?</LI>
+<P><LI>What are the contents of register 7?</LI>
+<P><LI>Was any object code changed by this program? <BR>If so, for which instructions?</LI>
+<P><LI>Explain why the program ABENDed.</LI>
+
+</OL>
+
+<P>Documentation was omitted - how much difficulty did that add to this assignment?
+
+<P><hr noshade size=4>
+This page was last modified by <a href="mailto:mstack@niu.edu">Michael Stack</a> on Monday, September 24, 2001, at 09:31:47 AM CDT
+
+</body>
+</html>

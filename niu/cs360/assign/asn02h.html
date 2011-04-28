@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>CSCI 360 Homework 2</title>
+</head>
+<body Bgcolor="White">
+
+<table Cellspacing="1" width=100%>
+<tr>
+	<td align=left valign=top><b>CSCI 360</b></td>
+	<td align=right valign=top><b>Fall 2001</b></td>
+	</tr>
+</table>
+
+<H2><center>Homework 2 - Dump Reading Assignment 1<BR>(50 points)</center></H2>
+<!-- <center><img src="../../../imgs/construc.gif"></center> -->
+
+<hr noshade size='4'>
+
+Run the following program:
+<PRE>
+DUMP1    CSECT 
+         USING DUMP1,15             ESTABLISH A BASE REGISTER 
+         L     1,ONE                LOAD THE FIRST NUMBER INTO R1 
+         L     2,TWO                LOAD THE SECOND INTO R2 
+         AR    1,2                  ADD THE TWO NUMBERS 
+         ST    1,THREE              STORE THE RESULT 
+         XDUMP THREE,4              DUMP THE RESULT 
+         BCR   B'1111',14           RETURN TO CALLER 
+* 
+ONE      DC    F'64'                FIRST NUMBER 
+TWO      DC    F'32'                SECOND NUMBER 
+EOFFLAG  DC    C'0' A               FLAG SAVE AREA 
+THREE    DS    CL4' '               SUM OF THE TWO NUMBERS 
+         END   DUMP1
+</PRE>	 
+Use the resulting output to answer the following questions:
+<OL>
+<P><LI>What is the address of the next instruction which will be executed?</LI>
+<P><LI>What is the address of the instruction that caused the abend?</LI>
+<P><LI>What type of error occurred?</LI>
+<P><LI>What actually causes this error?</LI>
+<P><LI>Correct the error by rewriting the section of code that caused it.</LI>
+<P><LI>What is the contents of register 1 in decimal?</LI>
+<P><LI>What does the value in reg 1 represent at the time of ABEND?</LI>
+<P><LI>Why is the LOC address of the storage area with the label ONE on it 000018 when the branch statement before it whose LOC address is 000014 only takes up 2 bytes?</LI>
+<P><LI>What are the contents of the two bytes of user storage starting at address 000016? <BR>What do they represent?</LI>
+<P><LI>What are the contents of the byte saved at address 00001B? <BR>Does this byte represent the first byte of a full word?</LI>
+
+<P><LI>Which of the following are synonyms for the same length? [There may be more than one group of synonyms.]
+<OL TYPE="a"><LI>6 hex digits</LI>
+<LI>4 bytes</LI> 
+<LI>8 hex digits </LI>
+<LI>32 bytes </LI>
+<LI>32 bits </LI>
+<LI>1 doubleword </LI>
+<LI>1 fullword </LI>
+<LI>1 byte</LI> 
+<LI>1 foot </LI>
+<LI>64 bits</LI>
+<LI>1 halfword</LI>
+<LI>1 meter</LI></OL></LI>
+<P><LI>If the dump program error were corrected, what value would the storage area at label THREE contain?</LI>
+<P><LI>What two instructions have you worked with which cause data conversion to take
+place?</LI>
+<P><LI>What is the decimal equivalent of hex 0002BA14 ?</LI>
+</OL>
+
+<hr noshade size=4>
+This page was last modified by <a href="mailto:mstack@niu.edu">Michael Stack</a> on Sunday, September  9, 2001, at 08:29:03 PM CDT
+
+</body>
+</html>

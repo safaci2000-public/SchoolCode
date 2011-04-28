@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>CSCI 360 Program 2</title>
+</head>
+<body Bgcolor=FFFFFF>
+
+<table Cellspacing="1" width=100%>
+<tr>
+	<td align=left valign=top><b>CSCI 360</b></td>
+	<td align=right valign=top><b>Fall 2001</b></td>
+	</tr>
+</table>
+
+<H1><center>Program 2 - Loops, X-Instructions</center></H1>
+<h2><center>(100 Points)</center></h2>
+<!-- <DIV ALIGN="center"><img src="../imgs/construc.gif"></DIV> -->
+<hr noshade size=4>
+
+ <h3>Overview</h3>
+
+<P>In this assignment you will read in an unknown number of records from a file.  Each input record will contain three numbers.  Using XDECI, place each of the three numbers in a separate register.  The contents of these three registers will be referred to as <B>num1</B>, <B>num2</B>, and <B>num3</B>.
+
+<P>Calculate (in another register) the sum <B>num1+num2+num3</B>, and in a fifth register calculate the value <B>num1-num2-num3</B>.  Then print a line which contains five numbers:  <B>num1</B>, <B>num2</B>, <B>num3</B>, <B>num1+num2+num3</B>, and <B>num1-num2-num3</B>.
+
+<P>In fullword storage locations labeled NUM1SUM, NUM2SUM, NUM3SUM, SUMSUM, SUMDIF, and TRANCNT you will accumulate the sums of each of these five values from each new input record, as well as a count (in TRANCNT) of the number of records that have been processed.
+
+<P>When you have finished processing the entire transaction file, you should then print out three summary lines.  The first line should give the number of records processed (TRANCNT).  The second (a pair of lines) should give the value of the numbers contained in the storage locations labeled NUM1SUM, NUM2SUM, NUM3SUM, SUMSUM, and SUMDIF, all under an appropriate header line.
+
+<P>Use XREAD, XDECI, XDECO, and XPRNT.  You will test the Condition Code set by XREAD to determine when you have encountered End of File (EOF).
+
+<P>Include the following JCL statement:
+
+<P><tt><A HREF="http://www.cs.niu.edu/csci/360/data/data2.txt">//FT05F001 DD DSN=T90MES1.C360(DATA2),DISP=SHR</A></tt><p>
+
+<h3>Requirements</h3>
+
+<ol type="1">
+
+<P><li>Use TITLE 'Your Name, Class, Section, Assignment Number'  .</li>
+
+<P><li>Use SPACE n and EJECT (but very few and not in concert with a TITLE instruction).</li>
+
+<P><li>Include line documentation (known as 'line doc') following the operands on at least 80% of all machine instruction lines.  This is in addition to the prescribed document box (known as 'doc box') that you must provide at the start of every program.</li>
+
+<P><li>Write (XPRNT) a "top of page header" which says 'Addition, Subtraction, and Summation'.  Use a Carriage Control (CC) character of <tt>C'1'</tt> to position your header at the top of the page.
+
+<P>Note:  Other CCs are as follows:
+ <ol type="a">
+ <P><li><tt>C' '</tt> (blank) Single Space</li>
+ <li><tt>C'0'</tt> (zero)  Double Space</li>
+ <li><tt>C'-'</tt> (minus) Triple Space</li>
+ </ol>
+ </li>
+
+<P><li>Write a "column header" that is triple spaced from the top of page header (see sample output).  You must have appropriate column headings and your numbers must be evenly spaced. Write a single spaced blank line after this column header.</li>
+
+<P><li>Use a read loop to read in transaction records, perform the prescribed processing, build and write out (double spaced) a line for each input record.
+
+<P>When you have read and processed all of the input records (indicated by the XREAD encountering End of File (EOF) ), you should print out (double spaced) the three summary lines.</li>
+
+<P><li>End your program normally by returning to the operating system, using:
+<pre>
+         BCR   B'1111',14          Normal return
+</pre>
+[Please note that your instructor may direct you to end your program in a manner diferent from a normal return to the caller.]</li>
+
+<P><li>The following is a sample output.  It is provided to give you an approximate format for your output.
+
+<pre>
+                   Addition, Subtraction, and Summation
+				   
+				   
+     Num1          Num2          Num3           Sum    Difference
+	 
+       21             3          5959          5983         -5941
+	   
+      543           101         23456         24100        -23014
+	  
+      ...
+	  
+   Number of records processed =          11
+   
+     Sum1          Sum2          Sum3        Sumsum       Sumdiff
+	 
+     9730          2472      51544261      51556463     -51537003
+
+</pre></li>
+
+<p>
+
+</ol>
+<hr noshade size=4>
+This page was last modified by <a href="mailto:mstack@niu.edu">Michael Stack</a> on Tuesday, September 11, 2001, at 01:46:11 PM CDT
+
+</body>
+</html>

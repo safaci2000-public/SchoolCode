@@ -1,0 +1,266 @@
+<html>
+<head>
+<title>CSCI 360 Program 6</title>
+</head>
+<body Bgcolor="White">
+
+<table Cellspacing="1" width=100%>
+<tr>
+	<td align=left valign=top><b>CSCI 360</b></td>
+	<td align=right valign=top><b>Fall 2001</b></td>
+	</tr>
+</table>
+
+<DIV ALIGN="center"><H1>Program 6 - Table Merging<BR>(100 Points)</H1></DIV>
+
+<!-- <DIV ALIGN="center"><img src="../imgs/construc.gif"></DIV> -->
+<hr noshade size=4>
+<PRE>
+     "CD Empire" is a chain of music outlets in the Dallas/Ft.Worth 
+area.  Due to the recent success of mp3 online music, sales have declined
+and Empire has decided to close a number of stores and consolidate 
+inventory.  You have been asked to write an assembler program to merge
+the inventory databases for two of the stores into a single database.  
+In addition, your program should be able to update the weekely transactions.
+
+	Your program must sort and print the current stock information from 
+each store.  Then is should merge the two databases into one and print another 
+listing.  Finally it will apply a number of transactions to the database for 
+updating.  A listing of the updated stock must be printed, and lastly a full 
+listing of of the updated database should be printed.
+
+INPUT:
+------
+
+     There are three sets of input data, all contained in a single
+file:
+
+1)   The first two sets of data each contain an unknown number of 
+     records (less than 20).  The records have the same format as 
+     the records from Assignment 5, as follows:
+
+               Columns          Description
+               -------          -----------
+                 1-6            Stock Number (numeric data)
+                 7              Blanks
+                8-31            Artist       (character data)
+                32              Blank
+                33-56           CD Title     (character data)
+                57              Blank
+                58-60           Number of Copies in Stock 
+                                             (numeric data)
+                61              Blank
+                62-66           Price        (numeric data)
+                67-80           Unused
+
+     The end of each of the first two sets of data is marked by a
+record with a stock number of 000000.  Do not put this record into the
+table.  These data sets will be used to build two tables which will
+eventually be merged.
+
+2)   The third set of data contains an unknown number of transaction
+     records.  Each contains a CD title in columns 1-24.  These 
+     titles are used in the search portion of your program to
+     update the newly merged table.  The format of the transaction 
+     report is as follows: 
+
+               Columns          Description
+               -------          -----------
+                1-24            CD Title
+               28-30            Number of CDs sold that week
+     
+
+     For each record in the transaction file, look up the corresponding 
+     title in the merged table and update the quantity of CDs by 
+     subtracting the quantity sold from the quantity in stock. Then 
+     print the entire updated entry for that CD.  Finally, print the full 
+     updated databse.
+
+OUTPUT:
+-------
+
+     The output from this program will consist of five reports:
+
+     The first two reports will be sorted listings of the two tables
+that were built from the first two input data sets.  These reports
+should list CD stock information in ASCENDING order by STOCK NUMBER.  
+
+     The third report will be a listing of the table containing 
+the merged stock information from both music stores.
+
+     The fourth report will be a transaction report which will contain
+a listing of CD information.  For each CD TITLE in the transaction data, 
+there should be a detail line in the transaction report.  
+
+
+     The fifth report will be a print out of the entire updated 
+merged table.
+
+
+     The following is a sample report.  USE THE SAME FORMAT FOR 
+ALL FIVE REPORTS.
+
+                              
+             COMBINED CD STOCK FOR DALLA/FT. WORTH AREA
+
+STOCK NUMBER      ARTIST                TITLE        QUANTITY        PRICE
+--------------------------------------------------------------------------
+   111822       SCOTT, JILL       WHO IS JILL SCOTT?    26            1489
+
+
+PROCESSING REQUIREMENTS:
+------------------------
+
+1)  You should use at least 6 internal subroutines:  MAIN, BUILD, 
+SORT, PRINT, MERGE, and UPDATE.
+
+MAIN: Calls the other routines as needed, passing the appropriate
+parameters to each one.  All three tables should be defined in MAIN. 
+MAIN should have the following logic:
+
+     - call BUILD to build the first table
+     - call SORT to sort the first table
+     - print page headings for the first report
+     - call PRINT to print the first report
+     - call BUILD to build the second table
+     - call SORT to sort the second table
+     - print page headings for the second report
+     - call PRINT to print the second report
+     - call MERGE to merge the two sorted tables
+     - print page headings for the third report
+     - call PRINT to print the third report
+     - print page headings for the fourth report
+     - call UPDATE to apply the weekly transactions 
+       data to the table and then, after the table 
+       entry has been updated, print a detail line 
+       containg all data for that CD contained in 
+       the table entry
+     - print page headings for the fifth report
+     - call PRINT to print the fifth report
+
+BUILD: Reads from the input file and puts the information into a table
+as it is read.
+
+     INPUT PARAMETERS:  
+     - beginning of table address 
+     - address of a fullword in which to store the address of 
+       the next available entry in the table, ANA
+     - address of an 80 byte input area
+
+SORT: Uses the selection sort algorithm to sort the contents of a
+table in ascending order by STOCK NUMBER.
+
+     INPUT PARAMETERS:  
+     - beginning of table address
+     - address of the FW that contains the address of the next 
+       available table entry, ANA
+
+PRINT: Prints the contents of a table.
+
+     INPUT PARAMETERS:  
+     - beginning of table address
+     - address of the FW that contains the table address of the 
+       next available entry, ANA
+
+MERGE: Merges two sorted tables of CD stock information.  The resulting
+table will also be in ASCENDING order by STOCK NUMBER.  A number of the CDs 
+have duplicate stock numbers which should be appropriately handled by the 
+merge routine as follows:  
+
+     The quantity of stock should be aded 
+     and the sum entered in the merged table.
+
+     The two prices should be compared and 
+     the larger of the two values should be 
+     entered into the merged table.
+
+The merge algorithm to use can be found on page 153 of the 
+Course Notes.
+
+     INPUT PARAMETERS:  
+     - beginning of table1 address
+     - address of the FW that contains ANA    
+     - beginning of table2 address
+     - address of the FW that contains ANA    
+     - beginning of merged table address
+     - address of a FW that will hold ANA for the merged table       
+       address
+
+UPDATE: Reads records from a transaction file and prints a
+transaction report.  Each transaction record contains a single CD TITLE.  
+You should do a sequential search on the merged table for each
+CD TITLE read from a record.  If a match is found, you should do 
+the following: 
+
+Update the merged table by subtracting the number of CDs sold 
+that week, found on the transaction record, from the amount in stock, 
+found in the table entry. Print a detail line containing ALL information 
+about the CD, otherwise print the TITLE and an appropriate "NOT FOUND" 
+message.  The transaction report format should otherwise be the same as 
+for the other four reports.
+
+     INPUT PARAMETERS:  
+     - beginning of merged table address 
+     - address of a FW that holds ANA   
+     - address of an 80 byte input area
+     
+2)   Start each report at the top of a new page, single space your  
+     detail lines, and make sure that the report is neatly centered
+     on the page.
+
+3)   Declare the two tables to be merged so that they will each hold
+     a maximum of 20 elements.  Declare the merged table so that it
+     will hold 40 elements.  The format of each table element should
+     be the same as it was for Assignment 5.  Define the tables as
+     follows:
+
+      Each entry in the table should have the following format:
+
+         SIZE                  STORED
+       ---------             ----------
+       FULLWORD              Stock Number
+       24 bytes              Artist Name
+       24 bytes              CD Title
+       FULLWORD              Quantity in Stock
+       FULLWORD              Price
+       FULLWORD              Unused
+
+
+
+ 	  Declare your three tables in your MAIN CSECT.  In the line 
+      immediately before each of the three tables you should you 
+      should include this set of instructions:
+                                        
+                   ORG   MAIN+((*-MAIN+31)/32*32)      
+                   DC    CL32'           TABLE 1 STARTS HERE'            
+ 
+     You should have similar code before table 2 and again before 
+     table 3.  This code will help you locate your tables in a dump. 
+     You should check that your tables are correctly built and sorted
+     BEFORE proceeding to write the the merge routine.
+       
+4)   The length of your program will likely exceed 4096 bytes and you 
+     will get addressability errors UNLESS YOU ESTABLISH ADDRESSABILITY 
+     WITH TWO BASE REGISTERS.  Use the following code to establish
+     addressability:
+
+          MAIN    CSECT
+                  LA    R12,4095(,R15)
+                  LA    R12,1(,R12)
+                  USING MAIN,R15,R12
+
+     DO NOT alter the contents of register 12 beyond this point!
+
+5)   Test the program with your own data.  Replace your data with the
+     following JCL for the final run:
+
+     <A HREF="../data/data6.txt">//FT05F001 DD DSN=T90MES1.C360(DATA6),DISP=SHR</A>
+
+ 6)  A copy of all 5 reports can be seen outside Rm. 559 in the 
+     Computer Science Building. 
+</PRE>
+<hr noshade size=4>
+This page was last modified on Wednesday, October 17, 2001, at 01:42:07 PM CDT
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>CSCI 360 Program 3</title>
+</head>
+<body Bgcolor="White">
+
+<table Cellspacing="1" width=100%>
+<tr>
+	<td align=left valign=top><b>CSCI 360</b></td>
+	<td align=right valign=top><b>Fall 2001</b></td>
+	</tr>
+</table>
+
+<h1><font size=6><div align="center">
+Program 5 -- Table Sorting<br>
+(100 points)</font></b></h1><hr>
+</div>
+</b></h1><br>
+</b></h1><h2><font size=5>Overview</font></b></h2>DeKalb Discs keeps information about its current stock of CDs and would like to be able to update that information at the end of each week. The first thing that you will do is build a table of the current stock information. Each table entry will consist of the stock number for the CD, the artist name, the CD title, the number of copies currently in stock, and the selling price (in cents) of the CD. Each table element will be 15 fullwords in length. The stock number, number of copies currently in stock, and the selling price will each be stored in a fullword as a binary number. The artist name and CD title will both be stored as 24 characters.<br>
+<br>
+After the table has been built, it will be sorted and then printed. A second set of input records (see INPUT below) will then be used to update the current stock information. After the table has been updated, it will be printed one final time.<br>
+<P>
+<b>INPUT:<br>
+<br>
+</b>There are two sets of input data, all contained in a single file. The first set of input data is an unknown number of records (maximum of 20) that will be used to build the table. Each record has the following format:<br>
+<pre><font face="Courier New, Courier">
+<dir>
+columns&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; description
+-------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -----------
+&nbsp;1 - 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; stock number (EBCDIC integer)
+&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blank
+&nbsp;8 - 31&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; artist name (character)
+32&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blank
+33 - 56&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CD title (character)
+57&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blank
+58 - 60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number of copies in stock (EBCDIC integer)
+61&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blank
+62 - 66&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; price (EBCDIC integer)
+67 - 80&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unused
+</font></pre>
+</dir>The end of the first set of input data is marked by a record with a stock number of 000000. Do not put this record into the table!<br>
+<br>
+The second set of input data is a set of transaction records for one weeks worth of sales. Each record contains an artist name and the number of copies of their CD that were sold. The number of copies sold should be used to update the number of copies of the CD currently in stock if the transaction is valid. This set of input data contains an unknown number of records, each of which has the following format:<br>
+<pre><font face="Courier New, Courier">
+<dir>
+columns&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; description
+-------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -----------
+&nbsp;1 - 24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; artist name (character)
+&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blank
+&nbsp;8 - 10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number of copies sold (EBCDIC integer)
+11 - 80&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; unused
+</font></pre>
+</dir>&nbsp;<b>OUTPUT:<br>
+<br>
+</b>The output for the program will consist of three reports.
+<ul>
+<li>The first report lists the sorted stock information before it has been updated with the transaction records. 
+<li>The second report will be a transaction report that lists the results of each transaction. 
+<li>The third report lists the updated stock information after all of the transactions have been processed. 
+</ul><b>SAMPLE REPORT FORMATS:<br>
+<br>
+</b>Use the following report as a model for the first and third report. However, the page header should reflect which type of stock records (sorted or updated) are being printed.<br>
+<br>
+<pre><font face="Courier New, Courier">
+<dir>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEKALB DISCS SORTED STOCK INFORMATION
+
+
+STOCK NUMBER&nbsp;&nbsp;&nbsp; ARTIST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CD TITLE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # IN STOCK&nbsp;&nbsp;&nbsp;&nbsp; CD PRICE
+------------&nbsp;&nbsp;&nbsp; ------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ----------&nbsp;&nbsp;&nbsp;&nbsp; --------
+&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp; 511523&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; LINKIN PARK&nbsp;&nbsp; HYBRID THEORY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1599
+
+&nbsp;&nbsp; 123523&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; METALLICA&nbsp;&nbsp;&nbsp;&nbsp; THE BLACK ALBUM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1299
+</font></pre>
+</dir>Use the following report as a model for the second report that lists the results of the transactions.<br>
+<br>
+<br>
+<pre><font face="Courier New, Courier">
+<dir>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEKALB DISCS TRANSACTION REPORT
+
+ARTIST&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CD TITLE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STOCK NUMBER&nbsp;&nbsp;&nbsp; # IN STOCK&nbsp;&nbsp;&nbsp;&nbsp; CD PRICE
+------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ------------&nbsp;&nbsp;&nbsp; ----------&nbsp;&nbsp;&nbsp;&nbsp; --------
+
+LINKIN PARK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HYBRID THEORY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 511523&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1599
+
+SPEARS, BRITNEY&nbsp; *** ARTIST NOT FOUND ***
+&nbsp;&nbsp;&nbsp;&nbsp; 
+METALLICA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; THE BLACK ALBUM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 123523&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1299
+</font></pre>
+</dir>&nbsp;<b>PROCESSING REQUIREMENTS:</b>
+<ol>
+<li>You should use at least 5 internal subroutines: MAIN, BUILD, PRINT, SORT, and UPDATE.
+<ul><b>
+<li>MAIN</b> will call the other subroutines, passing the appropriate parameters to each. It should print the page and column headings for the reports BEFORE calling the PRINT routine, and also before calling the UPDATE routine. The table should be defined in the storage area for the MAIN routine and it should hold a maximum of 20 elements, each of which is 15 fullwords in length.<br>
+<br>
+<b>
+<li>BUILD</b> will read the first set of input records from the input file and put the information into the table.
+INPUT PARAMETERS:
+<ul>
+<li>Address of the beginning of the table 
+<li>Address of a fullword in which to store the address of the next available entry 
+<li>Address of an input buffer to be used for reading 
+</ul>
+<P>Each entry in the table should have the following format:<br>
+<pre><font face="Courier New, Courier">
+&nbsp;&nbsp;&nbsp; SIZE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STORED
+&nbsp;&nbsp;&nbsp; --------&nbsp;&nbsp;&nbsp;&nbsp; ----------
+&nbsp;&nbsp;&nbsp; Fullword&nbsp;&nbsp;&nbsp;&nbsp; Stock Number
+&nbsp;&nbsp;&nbsp; 24 bytes&nbsp;&nbsp;&nbsp;&nbsp; Artist Name
+&nbsp;&nbsp;&nbsp; 24 bytes&nbsp;&nbsp;&nbsp;&nbsp; CD Title
+&nbsp;&nbsp;&nbsp; Fullword&nbsp;&nbsp;&nbsp;&nbsp; Number of Copies in Stock
+&nbsp;&nbsp;&nbsp; Fullword&nbsp;&nbsp;&nbsp;&nbsp; Price
+&nbsp;&nbsp;&nbsp; 
+</font></pre><b>
+<li>PRINT</b> will print the contents of the table after it has been sorted and updated.
+INPUT PARAMETERS:
+<ul>
+<li>Address of the beginning of the table 
+<li>Address of a fullword in which the address of the next available entry is stored 
+</ul><b>
+<P><li>SORT</b> will use the SELECTION SORT found in the course notes to sort the table in ASCENDING order on the ARTIST NAME.
+INPUT PARAMETERS:
+<ul>
+<li>Address of the beginning of the table 
+<li>Address of a fullword in which the address of the next available entry is stored 
+</ul><P><b>
+<li>UPDATE</b> will use the second set of input records to update the stock information for the artists. If the artist name is found in the table, the number of copies in stock should be updated to reflect that CDs have been sold and a print line containing the updated stock information should be printed. If the artist name is not found, print an error message that includes the name read from the input file.
+INPUT PARAMETERS:
+<ul>
+<li>Address of the beginning of the table 
+<li>Address of a fullword in which the address of the next available entry is stored 
+<li>Address of an input buffer to be used for reading 
+</ul>
+</ul>
+<P><li>The input buffer that will be used for reading is to be declared in MAIN. Its address will be the third parameter to BUILD and UPDATE<br>
+<br>
+
+<li>Before exiting the program, use XDUMP to dump the entire table. Highlight the COMPLETE table entry for the artist named &quot;SCOTT, JILL&quot;.<P><b>
+NOTE:</b> Your instructor may require you to end the program in a manner other than a XDUMP and normal return to caller<br>
+<br>
+
+<li>Each report should begin on a new page and be double spaced.<br>
+<br>
+
+<li>Test the program with your own instream data. For the final run, replace your instream data with the following JCL: 
+<P><a href="http://www.cs.niu.edu/csci/360/data/data5.txt">//FT05F001 DD DSN=T90MES1.C360(DATA5),DISP=SHR</a>
+</ul>
+
+<P><hr noshade size=4>
+
+This page was last modified on Monday, October  8, 2001, at 04:05:13 PM CDT
+
+</body>
+</html>
