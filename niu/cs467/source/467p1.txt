@@ -1,0 +1,41 @@
+                                                                        Samir Faci
+                                                                           CSCI467
+                                                               Prof.  Dr. Kai Rush
+                                                                      Assignment 1
+
+
+SOCIAL-SECURITY	                range 000-00-0000 through 999-99-9999
+
+NAME	                        alias: none
+
+GRADE-LEVEL	                    range 1 through 4
+                                alias:  INVALID-GRADE-LEVEL
+                                        VALID-GRADE-LEVEL
+	                            [ 1 = Freshman    ] 
+                    	        [ 2= Sophomore    ] 
+                    	        [ 3=Junior        ]
+                    	        [ 4= Senior       ]
+
+PHONE-NUMBER	                alias:  VALID-PHONE-NUMBER
+                                        INVALID-PHONE-NUMBER
+                                range 000-000-0000 through 999-999-9999
+
+0 {ASSIGNMENT-GRADES} 8	        alias:  VALID-ASSN-GRADE
+                                        INVALID-ASSN-GRADE
+                                range 0 through 100
+
+0 {QUIZ-GRADES} 4	            alias:  VALID-QUIZ-GRADE
+                                        INVALID-QUIZ-GRADE
+                                range 0 through 50
+
+TERM-PAPER	                    alias:  VALID-TERM-PAPER-GRADE
+                                        INVALID-TERM-PAPER-GRADE
+                                range 0 through 200
+
+0 {EXAM-GRADES} 2	            alias:  VALID-EXAM-GRADE
+                                        INVALID-EXAM-GRADE
+                                range 0 through 400
+
+TOTAL-POINTS	                alias:  VALID-TOT-POINTS
+                                        INVALID-TOT-POINTS
+                                range 0 through 100

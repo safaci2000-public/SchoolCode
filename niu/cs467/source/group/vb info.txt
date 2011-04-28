@@ -1,0 +1,9 @@
+Installation Instructions.
+
+1.)  Open the Exe Folder
+2.)  Install dotnetfx.exe (.NET Framework)
+3.)  install mdac_typ.exe (MSFT Data Access Component)
+4.)  reboot
+5.)  copy cs467.exe && groupdb.mdb to harddrive
+6.)  change permissions on database to make writable.
+7.)  run cs467.exe
