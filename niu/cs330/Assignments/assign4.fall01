@@ -1,0 +1,107 @@
+CSCI330                        Assignment #4                        Fall 2001
+Due Date:               The commands: 'find' and 'tr'
+Thursday, 9/27/01		(50 points)
+
+
+When using the 'find' command, use your $HOME directory as the first
+argument (i.e. begin searching at your $HOME directory).  
+
+For information on the 'find' command, you may use the manual pages
+or refer to page 12-9 in the CSCI 330 Course Notes.  For information
+on the 'tr' command, refer to the manual pages.
+
+Give the full commands to accomplish the following tasks.  To receive
+full credit, you must show the output of the commands.  This means you
+will need to create test files so that the 'find' and the 'tr' commands
+that you use will produce output. Record your work in a typescript file
+that is to be submitted for grading; therefore, do you work carefully.
+(5 points each; 50 points total)
+
+1.	Give the full UNIX command to find all directory names in your 
+	directory hierarchy.  You must create (or already have) at 
+	least one directory under your home/login directory.  Send the 
+	output to the terminal. 
+
+
+2.	First use the 'touch' command to create a few zero-byte files in
+	your home directory or in a directory under your home directory.
+	Then give the full UNIX command to find and remove all zero-byte files 
+	in your directory hierarchy.  Send the output to the terminal.
+
+
+3.	Give the full UNIX command to find all file names that begin 
+	with "link.", in your directory hierarchy (tell 'find' to start 
+	searching at your home/login directory).  This command should pick 
+	up some of the link files that you created for the previous assignments.
+	If you do not have any of these files, use the 'touch' command to 
+	create a few so that you can accomplish/demonstrate this task. 
+	Send the output to the terminal.
+
+
+4.	For this question, make sure you have files that were modified within
+	the last 3 days under your home/login directory.  Give the full UNIX 
+	command to find all files that have been modified during the last 
+	3 days.  Send the output to the terminal.
+
+
+5.	First, create a few files with names ending in ".temp".  Then give
+	the full UNIX command to list and remove all files that 
+	end with ".temp".  Send the output to the terminal.
+
+
+6.	First, create a few files with names ending in ".c" or ".f".  Then give
+	the full UNIX command to list the names of all files that end in ".c" 
+	or ".f"  Send the output to the terminal.
+
+
+7.	Create a text file called 'upper-case' which contains lines of text
+	with all uppercase characters.  Then, display the contents of the
+	'upper-case' file.  Next, translate all uppercase characters in the 
+	'upper-case' file to lowercase and store the output in a file 
+	called 'lower-case'.  Finally, display the contents of the 
+	'lower-case' file.
+
+
+For questions 8 through 10, first create a text file called 'test-data' that 
+contains the following lines of text.  Use a single tab to separate the 
+data elements/fields.  Also, insert two blank lines between each record 
+in this file.
+	SO00001	+90	-10
+
+
+	SO00002	-90	+10
+
+
+	SO00003	+80	-20
+
+
+	SO00004	-80	+20
+
+
+	SO00005	+100	-0
+
+
+	SO00006	-100	+0
+
+
+8.	Give the full UNIX command to remove all plus (+) signs and minus (-) 
+	signs from the 'test-data' file and store the output in the file 
+	called 'nosign-data'.  Also, display the contents of the 'nosign-data'
+	file.
+
+
+9.	Give the full UNIX command to remove all tabs (octal value \011) from 
+	the 'test-data' file and store the output in a file called 'notab-data'.
+	Also, display the contents of the 'notab-data' file.
+
+
+10.	Give the full UNIX command to create a version of the 'test-data' file
+	so that it is single spaced, sending the output to the terminal. 
+
+
+
+Submit for grading:
+   - One hard/printed copy of your typescript file (highlight the 
+     commands used).
+   - One e-mail copy of your typescript file (send to your instructor and
+     T.A. prior to the due date and time).

@@ -1,0 +1,139 @@
+<html>
+<body>
+<h4>
+<center>
+CSCI330 Fall 2001<br>
+Assignment #6<br>  
+C Shell - Getting Started<br>
+(50 points)<br>
+Due Tuesday 16 October 2001<p> 
+</h4>
+</center>
+
+This assignment covers these topics: C shell variables, wildcard characters,
+redirections, and history.<p>
+
+PART A. C SHELL VARIABLE AND WILDCARD CHARACTERS (2 pts each, 10 pts total)<p>
+
+Give the full UNIX commands to accomplish the following tasks.
+You should record your commands in a typescript file to be submitted.<p>
+
+a1. create/define a shell variable called 'linkdir' and initialize it to
+the directory pathname: /home/mp/z036473/Assign/csci330<p>
+
+For questions a2 through a10, use the defined variable 'linkdir' and perform  
+the following tasks.<p>
+
+a2. List the contents of the 'linkdir' directory.<p>
+
+a3. List all file names starting with a.<p>
+
+a4. List all file names that end with at least one number digit.<p>
+
+a5. List all file names starting with an a or A.<p>
+
+a6. List all file names ending in a period, followed by a number digit.<p>
+
+a7. List all three character file names that begin with an uppercase
+ letter.<p>
+
+a8. List all file names ending in 11 or 12.<p>
+
+a9. List all file names ending in x or y.<p>
+
+a10. List all file names containing lowercase ab.<p>
+
+
+PART B. REDIRECTIONS (2 points each; 10 points total)<p>
+
+For questions b1 through b5, assume the command 'set noclobber' has not
+been set.  Give the full UNIX commands to perform the following tasks.
+Record your work in a typescript file to be submitted.<p>
+
+b1. Redirect the output of the 'ps' command to a file called 'psfile'.
+ Assume 'psfile' does not already exist.<p>
+
+ Display the contents of the 'psfile' file.<p>
+ 
+b2. Append the output of the 'date' command to the file, 'psfile'.<p>
+ Assume 'psfile' already exists.<p>
+
+ Display the contents of the 'psfile' file.<p>
+
+b3. Redirect the output and standard error of the the command 
+ 'cat psfile myfile' to a new file called 'catfile'.
+ Assume 'psfile' already exists and 'myfile' does not exist.<p>
+
+ Display the contents of the 'catfile' file.<p>
+
+b4. On a single command line, using command sequences, append all the 
+ output of the commands:<p>
+ 'date', 'quota -v', 'pwd', and  'du' to a new file called 'disk-usage'.<p>
+
+ Display the contents of the 'disk-usage' file.<p>
+
+b5.  Create a symbolic link, called 'link.sample1.c' to a C program 
+ named 'sample1.c'located in: /home/mp/z036473/Cprograms
+ Using the 'gcc' command, compile the file 'link.sample1.c' and 
+ send the standard output and diagnostic/error output to a file 
+ called 'error.out'.<p>
+
+ Display the contents of the 'error.out' file.<p>
+
+
+PART C. C SHELL HISTORY (2 points each; 20 points total)<p>
+
+During login, the login process checks to see if the file ~/.history exists.  
+If it does, the commands in that file become the first commands in the 
+history list.<p>
+
+Execute the following commands.  Note that you should not create the following
+three commands in a typescript file yet.<p>
+
+ cp /home/mp/z036473/dot.history ~/.history<br>
+ unset savehist<br>
+ login<p>
+
+Now you can execute/record all of the commands listed below in a typescript 
+file to be submitted.<p>
+After you are logged in again, type the command:<p>
+ history<p>
+
+You should see:<p>
+<ul>
+     1  echo First Second Third Fourth Fifth Sixth Seventh Eighth<br>
+     2  echo AAA BBB CCC DDD EEE AAA BBB CCC DDD EEE<br>
+     3  echo 111 222 111 222 111 222 111 222<br>
+     4  echo hello goodbye here there where goodbye hello<br>
+     5  history<p>
+
+Now, execute the following commands, and explain what the labeled ones do
+(c1 - 10). <p>
+
+set prompt = '\!mp% '<br>
+set history = 22<br>
+echo $history $prompt<p>
+
+c1. history -r<br>
+c2. history -h<br>
+c3. !4<br>
+c4. !!<br>
+c5. !?Six<br>
+c6. eko hello Sam<br>
+c7. ^k^ch<br>
+c8. ^Sam^Mary and Joe^<br>
+c9. !3:s/1/7/<br>
+c10. !3:gs/222/7777/<br>
+EXIT YOUR SCRIPT NOW<p>
+
+SUBMIT THE FOLLOWING FOR GRADING:<p>
+Part A: Printed copy and e-mail (to your instructor and T.A.) copy of your 
+typescript file. <p>
+
+Part B: Printed copy and e-mail (to your instructor and T.A.) copy of your 
+typescript file.<p>
+
+Part C: Printed copy and e-mail (to your instructor and T.A.) copy of your 
+typescript file.<p>
+</body>
+</html>

@@ -1,0 +1,143 @@
+CSCI330                        Assignment #3                        Fall 2001
+                      File System - File Permissions
+Due Date: Thursday, 9/20/01	(60 points)
+
+				
+				 HOME DIRECTORY
+					| 
+					|
+			--------------------------------
+			|		|		|
+		     file-a	       Dir1	       Dir2
+					|
+				      file-b
+					
+
+SETTING UP
+Under your home directory, create the directory structure as shown above.
+I.e. Under your home directory:
+	* Create two directories: Dir1 and Dir2
+	* Create a zero-byte file called 'file-a' by executing this command:
+	  	touch file-a
+	* Under Dir1, create a zero-byte file called 'file-b'
+	* Make sure 'file-a' and 'file-b' have the read and write 
+	  permissions (rw-) for the owner
+
+NOTE: THE COMMANDS FOR PARTS A, B, AND C ARE INDEPENDENT OF EACH OTHER.
+      MAKE SURE Dir1, Dir2, file-a, and file-b EXIST BEFORE YOU BEGIN
+      EACH PART OF THE ASSIGNMENT.
+
+PART A.  READ AND WRITE PERMISSIONS (2 points each; 20 points total)
+	* First, change the permissions on Dir1 and Dir2 so that the owner can 
+  	  read and write (rw-) to it.
+	* Now refer to the table below and perform the following tasks:
+		- From your home directory, execute the commands in column one 
+		- Indicate Yes in column two if the command in column one ended
+		  successfully (i.e. permission permitted)
+		- Indicate No in column two if the command in column one failed
+		  and in column three, explain the reason that the command was
+		  denied permission to execute.  BE SPECIFIC, do not simply 
+		  indicate 'permission denied'.
+
+
+	Command		Indicate Yes' or 'No'	Reason for 'No'
+	_______		_____________________	_______________________________
+	
+	cd Dir1
+
+	ls Dir1
+
+	more Dir1/file-b
+
+	cp Dir1/file-b c
+
+	mv file-a Dir1/c
+
+	rm Dir1/file-b
+
+	rmdir Dir1
+
+	rm -r Dir1
+
+	rmdir Dir2
+
+	rm -r Dir2
+
+
+
+Part B.  WRITE AND EXECUTE PERMISSIONS (2 points each; 20 points total)
+	* First, change the permissions on Dir1 and Dir2 so that the owner can 
+  	  write to it and execute it (-wx).
+	* Now refer to the table below and perform the following tasks:
+		- From your home directory, execute the commands in column one 
+		- Indicate Yes in column two if the command in column one ended
+		  successfully (i.e. permission permitted)
+		- Indicate No in column two if the command in column one failed
+		  and in column three, explain the reason that the command was
+		  denied permission to execute.  BE SPECIFIC, do not simply 
+		  indicate 'permission denied'.
+
+	Command		Indicate Yes' or 'No'	Reason for 'No'
+	_______		_____________________	_______________________________
+	
+	cd Dir1
+
+	ls Dir1
+
+	more Dir1/file-b
+
+	cp Dir1/file-b c
+
+	mv file-a Dir1/c
+
+	rm Dir1/file-b
+
+	rmdir Dir1
+
+	rm -r Dir1
+
+	rmdir Dir2
+
+	rm -r Dir2
+
+
+Part C.  READ AND EXECUTE PERMISSIONS (2 points each; 20 points total)
+	* First, change the permissions on Dir1 and Dir2 so that the owner can 
+  	  read it and execute it (r-x).
+	* Now refer to the table below and perform the following tasks:
+		- From your home directory, execute the commands in column one 
+		- Indicate Yes in column two if the command in column one ended
+		  successfully (i.e. permission permitted)
+		- Indicate No in column two if the command in column one failed
+		  and in column three, explain the reason that the command was
+		  denied permission to execute.  BE SPECIFIC, do not simply 
+		  indicate 'permission denied'.
+
+	Command		Indicate Yes' or 'No'	Reason for 'No'
+	_______		_____________________	_______________________________
+	
+	cd Dir1
+
+	ls Dir1
+
+	more Dir1/file-b
+
+	cp Dir1/file-b c
+
+	mv file-a Dir1/c
+
+	rm Dir1/file-b
+
+	rmdir Dir1
+
+	rm -r Dir1
+
+	rmdir Dir2
+
+	rm -r Dir2
+
+
+Submit following for grading:
+	Part A: Hand-written (or typed) copy only.
+	Part B: Hand-written (or typed) copy only.
+	Part C: Hand-written (or typed) copy only.

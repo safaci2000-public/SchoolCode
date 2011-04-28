@@ -1,0 +1,96 @@
+<html>
+<body>
+Bourne shell programming - tentative<br>
+Part 2 40 points<br>
+
+Update: The following is a program and like all programs in CSCI, you
+must include documentation with the code.<p>
+
+Overview:<p>
+
+Modify the program created for part 1, so that if no options are specified, 
+a menu of the actions available is displayed. The menu is to be generated 
+via a function with handles the display and also proper choice proofing.<p>
+
+Specification of chosen start directory from the command line is to remain 
+the same.<p>
+
+Also add a loop mechanism, so that once the initial action request is 
+processed, display the menu again to allow additional requests to be 
+processed. To simplify program design, this will also occur in the action
+request was initially done via the command line arguments.<p>
+ 
+Basic structure of menu function. <p>
+
+Display a menu.<p>
+
+<pre>
+1. Remove core files.
+
+2. Remove selected object modules.
+
+3. Remove all object modules.
+
+4. Remove selected files of a size to be specified.
+
+5. Remove selected files of a name to be specified.
+
+E. Exit program.
+
+Enter choice
+
+</pre>
+
+Test for valid choices and loop through menu until valid choice specified. 
+Assign a return code for each menu choice. When the menu is invoked from 
+the body of the program, it will return the menu selection via the return
+code.<p>
+
+In the body of the progam, capture the returned code from the menu call and
+test the code returned.<p>
+
+Request any appropriate additional information for the appropriate option
+(menu choices 4 - file size or 5 - filename) from the user. Don't worry about
+valid data at this point, it will be handled later.<p>
+
+Then use set to set the command line arguments to the appropriate options 
+and arguments. By doing this, your main program block will work for either 
+command line or menu selected options.<p>
+
+The main body of the program<p>
+
+Use a loop with an always true condition, "while true", as the program loop
+driver.
+
+<ul>
+For the assignment, replace the rm command with an echo of the rm command 
+and any arguments. This will protect against accidentally deleting something
+important and also allow to repeatedly test the program without having to
+constantly recreate the files being deleted. Hand the program in in this form.
+<p>
+
+Handle the directory start argument as in part 1.<p>
+
+Once the directory choice has been handled, check the number of command 
+line arguments and if there are none or the 1st argument does not start 
+with a -, then:
+
+<ul>
+  Call the function to display the menu and process input as described 
+  above.<p>
+
+  Copy the return code to a user variable<p>
+
+  If the return code indicates termination, then break out of loop and allow
+  the program to terminate normally<p>
+
+  Otherwise test the return code and set the command line arguments.<p>
+</ul>
+
+Whether there are real command line arguments or internally generated, use a
+case to test the 1st argument in the command line argument list.<p>
+
+See part one for the test sequence.<p>
+
+</ul>
+</body> </html>

@@ -1,0 +1,110 @@
+#!/bin/csh
+clear
+while (1)
+		echo "Please enter the Assignment Number "
+		set assign=$<
+		echo $assign | grep "^[0-9]" > /tmp/junk.txt 
+		set assign=`cat /tmp/junk.txt`
+		set stat
+		while ($assign == "")
+			set stat="1"
+			break
+		end
+
+		switch ($assign)
+			case "[12345678]":
+				set stat=0
+				breaksw
+			default:
+				set stat=1
+		endsw
+
+
+		if ($stat == 0) then
+			break
+		endif
+			
+		echo "err: invalid value entered, try again"
+
+end
+		echo "Please enter your section number "
+		echo "Remind: Greg has sec. 1 & 5; Olga has 3 & 7"
+		set section=$<
+		echo $section | grep "^[1537]" > /tmp/section.txt 
+		set section=`cat /tmp/section.txt`
+		while ($section == "")
+			echo "Sorry, i've deteced invalid input.  "
+			echo "Please re-enter the section Number (1,3,5,7 only)"
+			set section=$<
+			echo $section | grep "^[0-9]" > /tmp/section.txt 
+			set section=`cat /tmp/section.txt`
+		end
+		switch ($section)
+			case "[15]":
+				set email="z018079cs.niu.edu"
+				breaksw
+			case "[37]"
+				set email="z987658@cs.niu.edu"
+				breaksw
+		endsw
+       echo "Please enter all files associated with assignment num.  $assign"
+       set files=($<)
+		set status=0
+		set temp=""
+
+		ps > /tmp/pid
+		grep "assign8" /tmp/pid | cut -b 1-6 > /tmp/newpid
+		set newpid=`cat /tmp/newpid`
+		set location="save_files"$newpid" "
+
+		foreach temp (`echo $files`)
+			if (-e $temp ) then
+				set stat=0	
+			else
+				echo "err: file doesn't exist"
+				set stat=2
+				break
+			endif
+			
+			if (-d $temp) then
+				echo "err: file is a directory"
+				set stat=3
+				break
+			endif
+
+			if (-f $temp) then
+				if (-r $temp) then
+					echo $temp >> "$location"
+				else
+					echo "sorry. u dont have read access"
+					set stat=4
+					break
+				endif
+			endif
+		end
+	    set valid=(`more ~/"$location" `)	
+		set person="$email krush@cs.niu.edu"
+		set email="$person"
+
+	
+
+		if ($stat == 0) then
+			echo "valid files are: $valid"
+			echo "do you still wish to email the files (yes/no)?"
+			set answer=$<
+			if ($answer == "yes" ) then
+				set subj="CSCI 330, assign $assign"
+				echo $valid $email
+				echo "assign $assign;  $valid; `date` ; $email" > log_file
+				foreach person(`echo $email`)
+				    foreach attach(`echo $valid`)
+					   mutt -s "$subj" -a ~/"$attach" $person 
+					end	  
+				end					
+				echo "emails were sent, log_file created"
+			else
+				set status=0
+				echo "program done w/ status code of $status"
+			endif
+			set status=0
+		endif

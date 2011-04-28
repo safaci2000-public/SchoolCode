@@ -1,0 +1,180 @@
+CSCI 330			Assignment #2			Fall 2001
+		      File System - Directory Structure
+Due: Thursday, 9/13/01 		 (70 points)
+
+
+
+This assignment covers these topics: Directory Structure, UNIX Commands, and
+Links.  
+		      
+
+PART A. DIRECTORY STRUCTURE (2 points for each correct answer; 26 points total)
+For this part of the assignment, refer to Diagram-F1 posted on the web page:
+    http://www.cs.niu.edu/~krush/diagram-f1.htm
+
+For all questions (a1 - a10), unless otherwise indicated, your current working
+directory is the home directory: /home/mp/z012345.
+
+The questions (a1-a10) below are comprehensive and dependent on each other.  
+For example, in order to answer question a2, question a1 must be 
+completed first. 
+
+Give the full UNIX command to accomplish the following tasks.  If your T.A. 
+cannot read your written answers, you will not receive credit for them.  
+Submit hard (printed) copy only.
+
+
+a1.	Create a subdirectory called 'csci330' under the home directory. 
+
+	Using absolute path:  
+	_____________________________________________________________________
+	_____________________________________________________________________
+
+	Using relative path:  
+	_____________________________________________________________________
+
+ 
+a2.	Create a subdirectory called 'temp' under the new 'csci330' directory
+	which you created in question a1 above.
+
+	Using relative path:  
+	_____________________________________________________________________
+
+
+a3. 	Use the 'touch' command to create two zero-byte text files called
+	'test1' and 'test2' under the 'temp' directory you created in question
+	a2 above.
+
+	Using absolute path:  
+	_____________________________________________________________________
+	_____________________________________________________________________
+
+
+a4. 	Create a symbolic link to the 'customer' file under the user z036473
+	directory structure.  Assume that you have the correct file access
+	permissions to the 'customer' file.  Call your link 'link.customer'.
+
+	Using absolute path:  
+	_____________________________________________________________________
+	_____________________________________________________________________
+
+	Using relative path:  
+	_____________________________________________________________________
+
+
+a5. 	Display the contents of the linked file 'link.customer'.
+
+	Using relative path:  
+	_____________________________________________________________________
+
+
+a6. 	Create a hard link to the 'share.c' file under the user z036473
+	directory structure.  Assume that you have the correct file access
+	permissions to the 'share.c' file.  Call your link 'link.share.c'.
+
+	Using relative path:  
+	_____________________________________________________________________
+
+
+a7. 	Display the first 15 lines of the file 'link.share.c'.
+
+	Using relative path:  
+	_____________________________________________________________________
+
+
+a8. 	Display a count of the number of lines in the file 'link.share.c'
+
+	Using absolute path:  
+	_____________________________________________________________________
+	_____________________________________________________________________
+
+
+a9.     List the contents the 'temp' directory in long format.	
+
+	Using relative path:  
+	_____________________________________________________________________
+
+
+a10. 	Make 'temp' your current working directory (i.e. change directory
+	to the 'temp' directory).
+
+	Using absolute path:  
+	_____________________________________________________________________
+	_____________________________________________________________________
+
+	Using relative path:  
+	_____________________________________________________________________
+
+
+
+PART B. UNIX COMMANDS / RESEARCH (29 points total)
+For this part of the assignment, record/type your answer to each question
+in a word file or a text file.  Submit both hard (printed) copy and e-mail copy
+for grading.
+
+b1.	(5 points) The 'nismatch' command can be used to examine your password 
+	file entry.  Type the following command, replacing z036473 with your 
+	own UID.
+
+	nismatch z036473 passwd.org_dir
+
+	Describe all fields in a password file entry.  You may use man pages or
+	your textbook as reference.
+
+b2.	(10 points) Assume the 8th field of the password file entry is 11249,
+	which is the number of days from January 1, 1970 to the day the 
+	password was last changed.  If today is August 21, 2001, how many
+	days has it been since the password has been changed.
+
+b3.	(4 points) Explaine the differences between the 'niscat' and the 
+	'nismatch' commands.  
+
+	
+b4.	(8 points) Assume that 'inventory' is a text file, and 'Data' is a 
+	directory.  Explain the actions of the following commands.
+
+	a)	cp inventory ..
+	b)	cp ../inventory .
+	c)	cp -r . ../Data
+	d)	mv ../* .
+
+b5.	(2 points) What is the difference between the following two commands?
+	
+	rmdir dir1
+	rm -r dir2
+
+
+PART C. LINKS AND I-NODES (2 points each, unless indicated;  15 points total)
+For this part of the assignment, record your commands in a typescript file
+called 'a2-part-c'.  You also need to include your written answers to questions
+c3 and c4 on the printed copy of the typescript.  Submit both printed copy and 
+e-mail copy.
+
+START YOUR TYPESCRIPT
+
+c1.	Create a symbolic link, called 'linkstdio.h', to the file called 
+	'stdio.h', which is located in the directory /usr/include
+  	
+c2.	Once you create the link in question c1, display the first 10 lines 
+	of the linked file, 'linkstdio.h'.
+
+c3.	Compare the i-node number of your linked file 'linkstdio.h', and the
+	file you linked to (/usr/include/stdio.h).  Are their i-node numbers
+	the same or different? Explain why the i-node numbers are the same
+	or different.
+
+EXIT YOUR TYPESCRIPT
+
+c4.	(9 points) Explain the differences between a hard link and a
+	symbolically link.  When is it appropriate to use each of the link 
+	types?
+
+
+Submit the following for grading:
+	Part A: Printed copy only.
+	Part B: Printed copy and e-mail (to your instructor and TA) copy.
+	Part C: Printed copy and e-mail (to your instructor and TA) copy.
+
+To help your T.A. grade your assignment, on the printed copy of your 
+assignment, highlight the commands you used to accomplish the tasks.
+If you have any questions, contact your T.A.

@@ -1,0 +1,244 @@
+#!/bin/sh
+
+########################################################################
+# Function: checks to see if dir exists and if correct permissions are
+#           set.
+# Notes:   none
+########################################################################
+check_dir()
+{
+if [ ! -d "$dirname" ]
+  then
+	echo "directory is not readable"
+	exit 1
+elif [ ! -r "$dirname" ]
+   then
+	echo "directory is not readable"
+	exit 1
+elif [ ! -w "$dirname" ]
+  then
+	echo "directory is not writable"
+	exit 1
+elif [ ! -x "$dirname" ]
+  then
+	echo "directory must be executable, if you wish to delete files"
+	exit 1
+fi
+
+}
+########################################################################
+# Function: deletes all core files if correct option is specified
+#
+# Notes:   none
+########################################################################
+option_core()
+{
+	echo "deleting core files"
+	find $dirname -name "core*" -exec rm {} \;
+}
+
+########################################################################
+# Function: deletes all object files with user input to comfirm deletion
+#
+# Notes:   none
+########################################################################
+option_object_confirm()
+{
+
+	echo "deleting object files with user input "
+	find $dirname -name "*.o" -ok rm {} \;
+}
+
+
+########################################################################
+# Function: deletes all object files without user input to comfirm 
+#	    deletion.
+#
+# Notes:   none
+########################################################################
+option_object_noconf()
+{
+	echo "deleting object files without user input"
+	find $dirname -name "*.o" -exec rm {} \;
+}
+
+########################################################################
+# Function: deletes all object files that are the size specified, 
+#           less then the size specified, or greater then size specified.
+#
+# Notes:   none
+########################################################################
+option_size()
+{
+    echo "$siznam" | grep "[0-9]" > /dev/null
+    status="$?"
+     if [ "$status" = "1" ]
+      then
+	echo "parameter passed in is not numeric, plz try again"
+        if [ "$flag" = "0" ]
+	 then
+	     exit 2
+        fi
+     else 
+        echo "searching and deleting files of size specified"
+        find $dirname -size "$siznam"c > /tmp/size.txt
+        grep -v "$dirname\$" /tmp/size.txt > /tmp/size2.txt
+ 
+	for item in `cat /tmp/size2.txt`
+	   do
+		ls -l $item
+	        echo "do you wish to delete the file listed above (y/n)"
+	        read answer
+	        if [ "$answer" = "y" ]
+		  then
+                     rm $item
+	        fi 
+           done
+     fi
+}
+########################################################################
+# Function: deletes all object files that meet the name requirement 
+#           specified by the options passed in.                          
+#
+# Notes:   none
+########################################################################
+option_name()
+{
+	find "$dirname" -name "$siznam" > /tmp/name.txt
+	for item in `cat /tmp/name.txt`
+	  do
+	      ls -l "$item"
+	      echo "do you wish to delete the file listed above (y/n)"
+	      read answer
+	      if [ "$answer" = "y" ]
+		  then
+                     rm $item
+	      fi 
+
+          done
+        
+}
+
+
+########################################################################
+# Function: deletes all object files that meet the name requirement 
+#           specified by the options passed in.                          
+#
+# Notes:   none
+########################################################################
+menu()
+{
+  while [ "$choice" != "E" ]
+     do 
+       echo "Warning, options are case-sensitive!!!!"
+       echo
+       echo
+       echo "1. Remove core files."
+       echo
+       echo "2. Remove selected object modules."
+       echo 
+       echo "3. Remove all object modules."
+       echo 
+       echo "4. Remove selected files of a size to be specified."
+       echo
+       echo "5. Remove selected files of a name to be specified."
+       echo
+       echo "6. Clears the screen "   
+       echo
+       echo "E. Exit Program"
+       echo
+       echo 
+       read choice
+
+	if [ "$choice" = "1" ]
+	  then
+	    option_core
+	elif [ "$choice" = "2" ]
+   	  then
+	    option_object_confirm
+	elif [ "$choice" = "3" ]
+	  then
+	    option_object_noconf
+	elif [ "$choice" = "4" ]
+	  then
+	    echo "Enter size of file to be specified"
+	    echo "if you wish to delete any file greater or less then the size specified"
+	    echo "then please include a + or - in front of the size accordingly"
+	    echo
+	    echo "size please:  "
+	    read size
+	    siznam=$size
+	    option_size
+	elif [ "$choice" = "5" ]
+	  then
+	    echo "Enter the name of the file to be deleted"
+	    echo "Wild card are allowed, if desired"
+	    echo
+	    echo "Enter file name: " 
+	    read file
+            siznam=$file
+            option_name
+	elif [ "$choice" = "6" ]
+	  then
+	    clear
+	fi
+    done
+
+}
+
+
+# 3 lines below give better names to parameters passed in.
+# 3d parm is either the file size of the name of the file
+# depending on what the 2nd parm is (-s or -n)
+
+dirname=$1
+parm=$2
+siznam="$3" 
+
+
+
+# check to see if no parms have been passed in.
+if [ "$dirname" = "" ]
+   then
+	echo "type Clean [dirname][-c-o-O{-s ####}{-n name}] to run"
+	echo "the program"
+	exit 1
+elif [ "$parm" = "" ]
+  then
+        check_dir
+	clear
+	flag="1"
+	menu
+	exit 1
+fi
+
+# flag below and above used to control flow of program
+
+flag="0"
+
+
+# statement below checks if directory passed in is indeed valid.
+
+check_dir
+
+# if conditions below checks to see what parameter was passed in.
+# if -c it deletes core files
+# if -o it deletes object files with user input.
+# if -O it deletes object files without user input.
+
+if [ "$parm" = "-c" ]
+  then
+	option_core
+elif [ "$parm" = "-o" ]
+  then
+        option_object_confirm
+elif [ "$parm" = "-O" ]
+  then
+        option_object_noconf
+elif [ "$parm" = "-s" ]
+  then
+     option_size
+elif [ "$parm" = "-n" ]
+  then
+     option_name
+fi

@@ -1,0 +1,104 @@
+<html>
+<body>
+Bourne shell programming - tentative<br>
+Part 1 60 points<br>
+<p>
+Update: The following is a program and like all programs in CSCI, you
+must include documentation with the code.<p>
+
+Syntax: Clean [directory_name] [-c-o-O{-s ####}{-n name}]<p>
+
+Using find and various other Unix commands in a Bourne shell script, 
+you are to create a program that will remove various files found in 
+you directories. You can call the program Clean.<p>
+
+Clean will take either command line arguments (part 1) or provide user 
+with a menu of actions (part 2) indicating the desired actions. Choices 
+are to delete core files (generated when a program crashes), delete 
+files with obj extensions (created when a program is compiled from 
+source code), delete files of a specified size, or delete files of a 
+name specified by the user.<p>
+
+Clean will use find to generate a list of files of interest. In some 
+case, find may be able to both find and remove the files. In other 
+cases, find must be used with other commands to allow better control 
+by the user.<p>
+
+If an option/arguments are specified when Clean is invoked, the 
+following option/argument action relationship will be implemented.<p>
+
+dname - start search/delete in the directory indicated otherwise assume
+the current working directory as the starting point.<p>
+
+-c - remove all core files without any further interaction by user.<p>
+
+-o - remove all files with obj extensions. However, prompt user before 
+deleting each found file. Use the conditional option of find to prompt.<p>
+
+-O - remove all files with obj extensions without any further 
+interaction by user.<p>
+
+-s #### - selectively remove files that are of the number of bytes 
+specified by ####. #### may be signed. Use find to get the list of
+files. If numer is signed, then - indicates files of interest will be 
+smaller than specified, if +, then larger, and if no sign, then 
+of an exact size.  Use the ls command on each element of the list created
+by find and show long listing for the located file and prompt user 
+before deleting found file. Use the for loop to parse though 
+this list, displaying the retrieved data and invoke a separate rm 
+command on the files the user approves for deleting.<p>
+
+-n name - selectively remove all files that match the name specified 
+by name. Use the long listing and for loop as with the size option.<p>
+
+The main body of the program<p>
+
+For the assignment, replace the rm command with an echo of the rm command
+and any arguments. This will protect against accidentally deleting something
+important and also allow to repeatedly test the program without having to
+constantly recreate the files being deleted. Hand the program in in this form.
+<p>
+
+Test to see if the 1st argument does not start with a - indicating that 
+it is not an option. If 1st argument is not an option, test that the 1st 
+argument is a valid directory name. If it is valid, save in a variable 
+and discard the 1st command line argument (shift). This will move the 
+second argument, if it exists, into the 1st argument position. Otherwise 
+if it is not an option and not a valid directory, indicate that 1st argument 
+is problematic and terminate.<p>
+
+Use a case to test the 1st argument in the command line argument list.<p>
+
+If the option is -c, then delete all core files. Use find to generate the
+list of files to delete and to issue the delete command. Use the
+non-interactive option (-exec).<p>
+
+If the option is -o, then use find to delete all files with a .obj extension.
+Use finds interactive option (-ok) or use rm -i to invoke an interactive form
+of the rm command. Remember to only echo the rm command.<p>
+
+If the option is -O, then use find to delete all files with a .obj extension.
+Use finds non-interactive option (-exec).<p>
+
+If the option is -s, then test (use grep) the second argument on the command
+line for a valid numeric syntax. A single sign of + or - is acceptable at the
+beginning of the argument. If second argument is missing or non-numeric
+argument, if part A, terminate the program with a message explaining 
+the problem, else if part b, print the message explaining the problem and 
+continue at the top of the main driver loop. If opions are valid, then use 
+find with the size listing option in a for statement to generate and parse 
+the list of identified files. Then use ls on individual filenames and show 
+the statistic found for each file, prompt the user to confirm deletion and 
+proceed accordingly.<p>
+
+If the option is -n, then treat the second argument as the filename to 
+search for. If the filename was quoted when specified on the command line, 
+wild cards may be included and should be honored. If second argument is 
+missing or invalid file, for part 1, print an error message describing 
+problem and terminate. For part 2, you will print a message and return to 
+the top of the driver loop.<p>
+
+Else if the option is un-identifyable, indicate problem, set a return code of
+non-zero and terminate.<p>
+
+</body> </html>

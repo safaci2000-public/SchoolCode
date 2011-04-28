@@ -1,0 +1,155 @@
+<html>
+<body>
+<center>
+CSCI330 Assignment #9 Fall 2001<br>
+File Manipulation Commands Using the Stream Editor (SED)<br>
+Due: Monday, 11/12/2001 (60 points)<p>
+</center>
+
+For this assignment, you will be using sed and regular expressions discussed 
+in class to perform the following tasks.  You will be using an input file 
+called 'inventory-movements' which is located in:<p> 
+/home/ux/krush/unix-assignments/inventory-movements<p>
+
+Therefore, create a symbolic to the 'inventory-movements' file before you
+begin working on the following tasks. This file contains inventory movement 
+data. Each record contains the following fields. A colon is used as a field 
+separator.<p>
+
+<ul>
+    Item Number/ID<br>
+    Move Date<br>
+    Move Time (HHMM, where HH represents hours - 24 hour clock 
+                   and MM represents minutes)<br>
+    From Location<br>
+    To Location<br>
+    Person/Company who moved the inventory<p>
+</ul>
+    
+Below are sample records from the 'inventory-movements' file:<p>
+1A1200:jul-06-2001:1007:WB2C201:SCRAP:RIGO SALGADO<br>
+1D1278:may-04-2001:0931:RECEIVED:DRILEY:DENNIS RILEY<br>
+1D1278:may-04-2001:1046:DRILEY:WCART17:QC RECEIVING<p>
+
+Important Note:<br> 
+From Location = RECEIVED indicates the original receipt of the item.<br>
+To Location = SOLD indicates the sale of the item.<br>
+To Location = SCRAP indicates the disposal of the item.<p>
+
+You may assume:<p>
+
+Item Number is a 6 digit alpha-numeric<br>
+Date is in 2 digit, three letter, 4 digit format  99-xxx-9999<br>
+Move Time is a 4 digit numeric value representing a 24 hour clock<br>
+From and To fields contain a single word.<br>
+Person field may contain a single word or multiple space delimited words.<br>
+The reserved words RECEIVED, SOLD, and SCRAP when used as reserved words
+will be the only word in the appropriate field.  These words, if they 
+appear as part of a company's name will be combined with other words<p>
+
+Answers may require both options and sed commands to complete the task.<br>
+Answers may require that the output of one sed command be filtered
+through a second sed command.<p>
+
+To receive full credit, the following requirements must be met:<p>
+
+1) For part I, provide a file that contains each sed command used to 
+accomplish the below tasks. The file should contain comments (start comment
+line with a #) describing the function of the sed statement. The file
+is made executable by your TA and it must successfully run all of the sed 
+commands. You may use either C-shell (#!/bin/csh) or Bourne (#!/bin/sh) as
+the command interpreter.<p>
+
+For parts II and III, you will write sed script files that will be run with
+sed's -f option. Remember that the # can be used to imbed comments in the
+script file, so comment the script.  Also, include in comments at the top 
+exactly which option besides the -f are needed to run the appropriate 
+script.<p>
+    
+3) E-mail the files created to your T.A. and instructor PRIOR to the due 
+date/time. DO NOT Mail the output files.<p>
+
+NOTE: Do the assignment on your own before you seek help from your 
+instructor and T.A.s<p>
+
+PART I. (5 points each)
+
+Unless otherwise stated, treate each problem independently and build your
+commands based on the original file.<p>
+
+Question 1<br>
+Suppress all default output. Display only records that are classified as
+received, sold, or scrapped.
+Redirect the output to the file to sout.a1<p>
+
+Question 2<br>
+Display all records that are NOT classified as received, sold, or scrapped.
+Redirect the output to the file to sout.a2<p>
+
+Question 3<br>
+It has been decided that the six digit item number needs to be an 8 digit 
+number. Prepend 2 zeros to the beginning of the item number field.
+Redirect the output to the file to sout.a3<p>
+
+Question 4<br>
+It has been decided that the format of each record in the data file needs to 
+be a standard length of 60 characters. Pad the end of each line so that all 
+lines are of the same length. Hint: pad the lines with several extra spaces, 
+then truncate the line to a standard length. Make sure you do not truncate 
+any original characters. Pipe the output to cat -vet (this will display a $
+at the end of each line).
+Redirect the output to the file to sout.a4<p>
+ 
+Question 5<br>
+Change the arrangement of the date field so that it is in the form 
+year-month-date.
+Redirect the output to the file to sout.a5<p>
+  
+Question 6<br>
+In the last field, QC represents quality control. Change it to QA (quality
+assurance). Make sure you are only working with the last field of the 
+record.
+Redirect the output to the file to sout.a6<p>
+
+PART II. WRITE A SED SCRIPT (CALLED sed1.script) THAT WILL PERFORM THE
+FOLLOWING TASKS:<p>
+
+7)(2)  Insert above the first line the title "INVENTORY MASTER".<p>
+
+8)(6)  Break the line after the time field, and put the remaining portion of 
+the record on the next line indented. Also remove the colon from the end of 
+the time field.<p>
+
+The record will look like something like this:<br>
+
+1D1278:04-may-2001:1046<br>
+&nbsp;&nbsp;&nbsp;DRILEY:WCART17:QC RECEIVING<p>
+
+9)(2)  Append at the end of the file, the string: *** THE END ***.
+<p>
+
+Redirect the output to the file to sout.a7<p>
+
+PART III. WRITE A SED SCRIPT (CALLED sed2.script) THAT WILL PERFORM THE
+FOLLOWING TASKS:
+
+(20 POINTS FOR QUESTION)<p>
+
+10) The inventory file is arranged by item number and lists one or more 
+activities involved with it.  Seperate each item (not line) by a blank
+line.<p> 
+
+The output will look something like this:<p>
+1A1200:06-jul-2001:1007:WB2C201:SCRAP:RIGO SALGADO<p>
+
+1D1278:04-may-2001:0931:RECEIVED:DRILEY:DENNIS RILEY<br>
+1D1278:04-may-2001:1046:DRILEY:WCART17:QC RECEIVING<p>
+
+Because the number of lines dedicated to each item number varies, you will
+have to internally drive the reading of the data records.  Check ch 5-6 in
+the sed awk book and review the b - branching, N - Next, D - delete, and 
+P - print commands.<p>
+
+Redirect the output to the file to sout.a10<p>
+</body>
+</html>

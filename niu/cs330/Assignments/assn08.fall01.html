@@ -1,0 +1,133 @@
+<html>
+<body>
+<h4>
+CSCI 330 Fall 2001<br>
+C-Shell Programming Assignment<br>
+Due 1 November 2001 Thursday<p>
+</h4>
+
+<h4>General purpose <p></h4>
+
+Write a c-shell script that will mail the assignment[s] specified to your
+professor and TA. The program will ask for the assignment number and 
+check it for valid value. It will then ask for your section number and 
+check for valid value. Next it will ask for a list of files to email the
+appropriate people. It will check for the existence of those files before
+proceeding. Then mail each file specified, include on subject line the
+assignment id.<p>
+
+<h4>Pseudo-code with hints and requirements</h4>
+
+Create an endless while loop 
+<ul>
+  Prompt the user for the assignment number, descibe the range 
+  of valid values.<p>
+  Get the value from the user.<p>  
+  Use grep to test for only numeric input.<br>
+  If non-numeric
+  <ul>
+    Print message and go back to top of this input loop<p>
+  </ul>
+
+  Check for valid numeric value using the switch structure<p>
+  If value is one of the valid values
+  <ul>
+    break out of loop (continue after end of loop)<p>
+  </ul>
+
+  Else if value is out of range
+  <ul>
+    Print message and go to top of input loop<br>
+  </ul>
+</ul>
+End of while<p>
+
+
+Prompt the user for the section number they are in. Remind them of which 
+TA is assigned to which sections. Greg Noth (z018079) Sections 1 & 5, 
+Olga Urban (z987658) Sections 3 & 7.  You must code the program to allow
+any of the sections (and thus either of the TAs) to be selected.<p>  
+
+Get input (Section number) from user and test for valid value using grep.<br>
+While input not valid
+<ul>
+  Re-ask and test.<p>
+</ul>
+
+Prompt user for the name of all files related to current assignment. 
+The user will issue all names on a single input line which will be 
+assigned to an array.<p>
+
+Set an error code variable to 0<p>
+
+Using the appropriate for loop to retrieve each filename one at a time, 
+test each file for the following conditions and report on any problems.
+Follow the general structure describe below.
+<ul>
+  If file does not exist
+  <ul>
+    Print appropriate message<br>
+    Set the error code variable to 2<br>
+    Break out of loop<p>
+  </ul>
+
+  Else if file is a directory
+  <ul> 
+    Print appropriate message<br>
+    Set the error code variable to 3<br>
+    Break out of loop<p>
+  </ul>
+
+  Else if file is a regular file
+  <ul>
+    If the file is readable
+    <ul> 
+      Add the filename to a file of valid filenames<br>
+      Use the filename <i>save_files."pid"</i> where pid is the current
+      process id.<p>
+    </ul>
+
+    Else
+    <ul>
+      Print appropriate message ( no read access )<br>
+      Set the error code variable to 4<br>
+      Break out of loop<p>
+    </ul>   
+  </ul>   
+
+  Else  
+  <ul>
+    Print appropriate message( unrecognized filetype )<br>
+    Set the error code variable to 5<br>
+    Break out of loop<p>
+  </ul>
+</ul>    
+ 
+If the return code is greater than zero
+<ul>
+  Terminate the program with the return code set by test<p>
+</ul>
+     
+Show the user the list of checked file names<br>
+Ask the user if she/he wishes to mail the files<p>
+
+If the user wishes to continue
+<ul>
+  Use the for command to separately mail each file in the file list.<P>
+
+  In the mail command sequence (use mutt or mailx) include a subject
+  line with the Course id (csci330) and the assignment id.<br>
+  Mail the assignment to both the teacher and the appropriate TA<br>
+  Also record in the file "log_file", the name of the assignment, the
+  names of the files mailed, the date of mailing and the recipients<p>
+
+  Terminate the program with an error code of 0<p>
+</ul>
+  
+Else
+<ul>
+  Terminate the program with an error code of 1<p>
+</ul>
+
+</body>
+</html>

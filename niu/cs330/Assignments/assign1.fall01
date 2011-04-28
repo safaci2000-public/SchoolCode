@@ -1,0 +1,129 @@
+CSCI330                         Assignment #1                        Fall 2001
+                               Getting Started
+Due: Thursday, 9/6/2001	 	(55 points)
+
+
+For this assignment you will use the UNIX e-mail utility (mail), execute simple
+UNIX commands to perform tasks, and use on-line manual (man) pages to find
+information on UNIX commands.
+
+PART A.	E-MAIL (10 points)
+Once your account has been activated, logon to the mp UNIX system and invoke 
+the 'mail' utility (command) to e-mail a message to your instructor and 
+your T.A.  
+
+The subject of the e-mail should be: csci330 assign 1, part A 
+The contents of your e-mail must contain the following information:
+
+  - Your Name, followed by your student UNIX account (your login id).
+  - CSCI 330 Section Number:
+  - Expected Graduation Date (Mon/Year):
+  - State your experience using UNIX (if any):
+  - State your expectations of this class:
+  - (Optional) Provide any information that you want your instructor to know
+    about you.  For example, if your instructor was to place you in a group
+    project, indicate any preference that you might have for working in a 
+    group.   
+
+Your e-mail message should not contain more than 15 lines of information
+about yourself. 
+
+Note: To end your message, press Ctlr-d.
+
+
+PART B.	SIMPLE COMMANDS (2 point each; 20 points total)
+On the command line, type the following command:
+	script a1-part-b	
+
+This will record in a typescript file called 'a1-part-b' everything you 
+type from questions b1 through b10.  Therefore, do your work carefully.
+
+b1.	Find out who the system thinks you are.
+
+b2.	Find out how many people are logged in.
+
+b3.	Find out the time of day.
+
+b4.	Find out on which day of the week you were born.  You will not see the
+	exact day/date. You will see the entire month of the year you were born.
+
+b5.	Find out which day of the week June 20, 1980 was.
+
+b6.	Find out information about the UNIX machine you are using.
+
+b7.	On the command line, type the following commands and explain their 
+	output:
+
+	echo user
+	echo $user
+	echo $USER
+	echo $LOGNAME
+
+b8.	On the command line, type the following commands and explain their
+	output:
+	echo home
+	echo $home
+	echo $HOME
+	echo $Home
+
+b9.	Type a command (do not press the enter key) and then one of the control
+	characters (discussed in class) to terminate/cancel the command. On the
+        hard copy to be handed in, indicate the control character you used to
+        perform this task.
+
+b10.	Type a command (do not press the enter key) and then one of the control
+	characters (discussed in class) to erase the entire command line, 
+        without canceling the command.  On the hard copy to be handed in, 
+        indicate the control character you used to perform this task.
+
+On the command line, type 'exit'  This will end your typescript session.
+
+
+PART C.	ON-LINE MANUAL PAGES (3 points each; neatness and readability 5 points;
+35 points total)
+
+Use the man pages to find information on the following commands.  
+In a Word file or a text file, explain in your own words:
+	- What each command does (function).
+	- Explain the meaning of the command options or sub-commands.
+	- For each command, give an example on how to use the command.
+	  (You may give an example using an option or without using an option)
+
+	Command Name	Options / Sub-commands
+	------------	----------------------
+c1.	comm		-1, -2, -3
+c2.	diff	 	-l, -r, -s	
+c3.	more		-c, +n (n is an integer), /pattern
+c4.	cat		-b, -n, -e 
+c5.	less		b, f, q, /pattern
+c6.	sort		-t, -M, -n, -r
+c7.	cut		-d, -f, -c
+c8.	uniq		-c, -d, -u
+c9.	join		-t, -j, -a
+c10.	ps		-a, -e, -f
+
+
+Submit for grading the following:
+	Part A - e-mail (to your instructor and TA) copy only.
+	Part B - printed copy and e-mail (to your instructor and TA) copy.
+	Part C - printed copy and e-mail (to your instructor and TA) copy.
+
+To print your typescript file, use the 'enscript' command: 
+	enscript -Plpxxx a1-part-b
+
+Substitute the lab location code (csl, ucl, or frl) for the xxx.
+a1-part-b is the name of your typescript file.
+ 
+Review the hard copy of your typescript file and make sure you answered all
+the questions, including writing by hand the answers to questions
+b7 through b10.
+
+E-mail your typescript file to your instructor and T.A.
+
+On the first page of your printed typescript file, print the following
+information:
+
+	Your name and Login Id
+	CSCI 330, Section #  
+	The assignment # and assignment due date   
+	The name of the T.A. for your section

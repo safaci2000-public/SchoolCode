@@ -1,0 +1,92 @@
+CSCI330                         Assignment #5                        Fall 2001
+                 File Manipulation Commands with Regular Expressions
+Due: Thursday, 10/2/2001	(50 points)
+
+
+For this assignment, you will be using the file manipulation commands and 
+regular expressions discussed in class to perform the following tasks.  You 
+will be using an input file called 'inventory-movements' which is located in:
+/home/ux/krush/unix-assignments/inventory-movements
+
+Therefore, create a symbolic to the 'inventory-movements' file before you
+begin working on the following tasks.  This file contains inventory movement 
+data.  Each record contains the following fields.  A colon is used as a field 
+separator.
+
+	Item Number/ID
+	Move Date
+	Move Time (HHMM, where HH represents hours - 24 hour clock 
+                   and MM represents minutes)
+	From Location
+	To Location
+	Person who moved the inventory
+	
+Important Note: From Location = 'RECEIVED' is the original receipt of the item.
+                To Location = 'SOLD' is the sale of the item.
+
+Below are sample records from the 'inventory-movements' file:
+1A1200:06-jul-2001:1007:WB2C201:SCRAP:RIGO SALGADO
+1D1278:04-may-2001:0931:RECEIVED:DRILEY:DENNIS RILEY
+1D1278:04-may-2001:1046:DRILEY:WCART17:QC RECEIVING
+
+Give the full UNIX command(s) to perform the following tasks.  Record your 
+commands and output in a typescript file, which you will submit for grading.
+(5 points for each correct question, 50 points total)
+
+Question 1.
+Display on the screen only the person's name (first and last) who did the 
+MOST inventory moves, and the number of times this person performed the 
+inventory movements.
+
+
+Question 2. 
+Display on the screen (the entire record) the initial/original receipt of 
+all items (see Important Note above).
+
+
+Question 3.
+Display on the screen (the entire record) all sold items (See Important 
+Note above). 
+
+
+Question 4.
+Display on the screen (the entire record) all inventory moves performed between
+10pm and 11pm at night.
+
+
+Question 5. 
+Display on the screen (the entire record) the movement history for item 7C0821.
+
+
+Question 6. 
+Display on the screen (the entire record) the movement history by employee named
+JOSE CAMPOS during the month of August 2001.
+
+
+Question 7. 
+What is the latest inventory move recorded in the file?  Display your final 
+results on the screen only the item number, the move date, and the move time.
+
+
+Question 8.
+What is the earliest inventory move recorded in the file?  Display on the 
+screen only the item number, the move date, and the move time.
+
+
+Question 9.
+Display on the screen (the entire record) the movement history performed by  
+employee named SAM KASTER.
+
+
+Question 10.
+What is the current (lastest) location of item AW0494 ? Display on the screen 
+only the current location name.
+
+
+Submit the following for grading:
+	- One e-mail copy sent to your instructors (krush), John Berezinski (berezin) 
+	  and T.A. prior to the due date and time.
+	- One hard/printed copy due at the beginning of the lecture on the due date.
+	  Make sure to highlight the commands used.
+
+

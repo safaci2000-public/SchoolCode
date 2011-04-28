@@ -1,0 +1,99 @@
+#!/bin/sh
+
+# 3 lines below give better names to parameters passed in.
+# 3d parm is either the file size of the name of the file
+# depending on what the 2nd parm is (-s or -n)
+
+dirname=$1
+parm=$2
+siznam="$3" 
+
+
+# check to see if no parms have been passed in.
+if [ "$dirname" = "" ]
+   then
+	echo "type Clean [dirname][-c-o-O{-s ####}{-n name}] to run"
+	echo "the program"
+	exit 1
+#elif [ "$parm" = "" ]
+#  then
+#	echo "type Clean [dirname][-c-o-O{-s ####}{-n name}] to run"
+#	echo "the program"
+#	exit 1
+fi
+
+# if condition below checks to see if dir is indeed a directory
+# if it's readable, writable, and executable for the user.
+# if files are to be deleted all permissions are needed. 
+
+if [ ! -d "$dirname" ]
+  then
+	echo "directory is not readable"
+	exit 1
+elif [ ! -r "$dirname" ]
+   then
+	echo "directory is not readable"
+	exit 1
+elif [ ! -w "$dirname" ]
+  then
+	echo "directory is not writable"
+	exit 1
+elif [ ! -x "$dirname" ]
+  then
+	echo "directory must be executable, if you wish to delete files"
+	exit 1
+fi
+
+# if conditions below checks to see what parameter was passed in.
+# if -c it deletes core files
+# if -o it deletes object files with user input.
+# if -O it deletes object files without user input.
+
+if [ "$parm" = "-c" ]
+  then
+	echo "deleting core files"
+	find $dirname -name "core*" -exec rm {} \;
+elif [ "$parm" = "-o" ]
+  then
+	echo "deleting object files with user input "
+	find $dirname -name "*.o" -ok rm {} \;
+elif [ "$parm" = "-O" ]
+  then
+	echo "deleting object files without user input"
+	find $dirname -name "*.o" -exec rm {} \;
+elif [ "$parm" = "-s" ]
+  then
+     echo "$siznam" | grep "[0-9]" > /dev/null
+     if [ "$?" = "1" ]
+      then
+	echo "parameter passed in is not numeric, plz try again"
+	exit 2
+     else 
+        echo "searching and deleting files of size specified"
+        find $dirname -size "$siznam"c > /tmp/size.txt
+         
+	for item in `cat /tmp/size.txt`
+	   do
+		ls -l $item
+	        echo "do you wish to delete the file listed above (y/n)"
+	        read answer
+	        if [ "$answer" = "y" ]
+		  then
+                     rm $item
+	        fi 
+           done
+     fi
+elif [ "$parm" = "-n" ]
+  then
+	find $dirname -name "$siznam" > /tmp/name.txt
+	for item in `cat /tmp/name.txt`
+	  do
+	      ls -l $item
+	      echo "do you wish to delete the file listed above (y/n)"
+	      read answer
+	      if [ "$answer" = "y" ]
+		  then
+                     rm $item
+	      fi 
+	  done
+fi

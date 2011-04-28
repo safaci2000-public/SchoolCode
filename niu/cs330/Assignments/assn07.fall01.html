@@ -1,0 +1,110 @@
+<html>
+<body>
+<pre>
+CSCI330              Assignment #7                     Fall 2001
+                C Shell Aliases
+                      (50 points)
+
+</pre>
+
+You can create a new command by using the C shell alias feature, or
+by writing a shell script.  For this assignment, you will be
+interpreting commands and then creating C shell aliases.<p>
+
+Part A.  INTERPRETING ALIAS/COMMANDS (2 points each; 6 points total)<p>
+
+a1. Enter the following commands:<ul>
+
+      mkdir tmp<br>
+      alias 2tmp 'cd tmp; pwd'<br>
+      2tmp<p>
+
+      What does the '2tmp' command do?<p>
+</ul>
+
+a2.   Enter the following command:<ul>
+
+      alias<p>
+
+      What does the 'alias' command do?<p>
+</ul>
+
+a3.   Enter the following commands:<ul>
+
+      unalias 2tmp<br>
+      2tmp<p>
+
+      What does the 'unalias' command do?<p>
+</ul>
+
+Part B. CREATING ALIASES (45 points total)<p>
+For this part of the assignment, you will create an alias that:<ul>
+      a) redefines an existing UNIX command,<br>
+      b) accepts zero arguments, and<br>
+      c) accepts one or more argument.<p>
+</ul>
+
+b1. (2 points) Create an alias definition called 'h' to display only the
+most recent (last) 10 commands.  This alias does not accept any argument.<p>
+
+b2. (6 points) Redefine the 'ls' command so that its output is displayed
+always as 3 columns, in round robin order (sort across row), and all
+directory names are marked with a slash (/) at the end and executable file
+names are marked with an asterisk at the end. This alias does not accept
+any argument. Check the man page on pr<p>
+
+Here is an example of the output of the redefined 'ls' command:<p>
+<pre>
+      % ls
+      Assignments/     ClassList/      alias
+      re.file*         re.file,v*      re.file.out
+</pre>
+
+b3. (7 points) Create an alias definition called 'rename' to rename a file
+or a directory.  This alias accepts only one argument, which is the name of
+a file or a directory. Rename the file so that it has an extension that is
+a contiguous sequence of digits representing the current time consisting of
+the year (4 digit), day of year, hour, minute, and second of day.  See date
+and strftime(3c) man pages.<p>
+
+b4. (7 points) Create an alias called 'printcsl' to send one or more output
+file to the CSL lab printer. This alias accepts one or more arguments, which
+is the file name(s). Use enscript as the print command and use its options
+to print the file's name and time of printing at the top of each page.<p>
+
+b5. (7 points) Create an alias definition called 'where' to find a file and
+list the absolute pathname of the file found. Start search from current
+directory.  This alias accepts one argument, which is a file name.<p>
+
+b6. (7 points) Create an alias called 'cd' which will change your directory
+and change the command prompt to include:
+<ul>
+  - the full pathname of your current working directory,<br>
+  - the history event number, and<br>
+  - the percentage sign (%).<p>
+</ul>
+
+This alias accepts one argument, which is the name of a directory. Note that
+you need to change to a directory to see your new prompt that include the
+above information. Each time your change to a directory, you should see
+information similar to this:<br>
+
+<ul>
+/home/mp/z036473/csci330<p>
+</ul>
+
+b7. (8 points) Create an alias called 'mylink' which will create a symbolic
+link (in your current working directory) to a csci330 assignment in the
+directory: /home/ux/krush/unix-assignments<p>
+
+This alias accepts one argument, which is the exact name of the assignment
+file.  For example: assign5.fall01<p>
+
+Here is an example on using the 'mylink' alias.<br>
+<ul>
+% mylink assign5.fall01<p>
+</ul>
+
+</pre>
+</body>
+</html>
