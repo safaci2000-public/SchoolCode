@@ -1,0 +1,17 @@
+5
+Lyon
+Paris
+Marseille
+Nice
+Toulouse
+3
+Chateau de Paris
+Hotel de M. Derange
+Auberge de Mme. La France
+3
+5 Etoiles
+Luxieux
+Bon Prix
+199.99
+199.99
+99.99
