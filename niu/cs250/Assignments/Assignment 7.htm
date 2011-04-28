@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<TITLE>Assignment 7</TITLE>
+</HEAD>
+<BODY>
+<PRE>
+CSCI 250                        ASSIGNMENT 7                     SPRING 2001
+            Indexed Tables, SEARCH ALL, Intrinsic Functions
+                                 60 Points
+
+
+The local weather club wants a program to process temperature data for
+selected cities.
+
+
+INPUT:
+
+Two groups of records are contained in the same data set.
+
+
+(1) The first group of records includes up to 20 city names.  These records
+are already in alphabetical order. A completely blank record separates these
+records from the next set of records.
+
+COLUMNS     CONTENTS
+
+  1-15      City name                       Alphanumeric
+ 16-80      Unused
+
+
+(2) Each record in the second set contains a city name and a table of
+seven daily high temperatures.  These records are in no particular order.
+
+COLUMNS     CONTENTS
+
+  1-15      City name                       Alphanumeric
+    16      Unused
+ 17-44      A table of 7 temperatures       Each temperature is numeric and
+                                            consists of
+                                                 a plus or minus sign, followed
+                                                 by 3 digits
+ 45-80      Unused
+
+
+(Negative numbers on input records will be discussed in class.  Read about the
+SIGN IS clause.)
+
+
+
+PROCESSING NOTES:
+
+1.  ALL TABLES in this assignment must be indexed.
+
+2.  You are to build a table in which each element holds (1) the city name
+from the first set of input records, and (2) the average of the 7 temperatures
+for that city in the second set of records.  This table will be in order on
+the city name.  There will be a maximum of 20 cities.
+
+3.  First, put the city names in the table from the first set of input
+records.
+
+4.  Next, process the second set of input records.  Do a BINARY SEARCH on the
+table to find the appropriate city and update that element by filling in the
+average of the 7 temperatures.  Use the intrinsic function MEAN to get the
+average.   Print a detail line containing the city name, the 7 daily
+temperatures, and the highest of the 7 temperatures.  Use the intrinsic
+function MAX to get the highest temperature.  If the city is not found in the
+table, print an error message and do not update the table.
+
+5.  Finally, print the table with the cities and average temperatures.
+
+6.  Print the unformatted date and time from the system first.  Then, in the
+header line, print the formatted date with a 4-digit year.  Use the intrinsic
+function CURRENT-DATE to get a date with a 4-digit year.
+
+7.  Center the output horizontally on the page.
+
+8.  Use the following JCL statement to access the input data:
+
+//GO.SYSIN  DD  DSN=T90ASS1.SPRING01.COBDATA(DATA07),DISP=SHR
+
+9.  Turn in flowcharts.
+
+
+Sample output:
+
+
+010320 21358835
+
+ 3/20/2001          WEEKLY TEMPERATURES IN SELECTED CITIES         PAGE  1
+
+
+CITY NAME        DAILY HIGH TEMPS                             WEEKLY HIGH
+
+Chicago           +10    +4    +0    -2    -6   +12   +18             +18
+
+Los Angles       ***Error:  City not found***
+
+Minneapolis        +2    -6    -8   -12   -10    +0    +4              +4
+
+
+
+ 3/20/2001                    MEAN TEMPERATURES                    PAGE  2
+
+
+                  Chicago           +5.1
+                  Minneapolis       -4.3
+
+
+
+</PRE>
+</BODY>
+</HTML>

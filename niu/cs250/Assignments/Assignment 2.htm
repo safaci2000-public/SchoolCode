@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<TITLE>Assignment 2</TITLE>
+</HEAD>
+
+<BODY>
+<PRE>
+CSCI 250                       Assignment 2                     Spring 2001 
+                  OPEN, CLOSE, STOP RUN, READ, WRITE, MOVE,
+                       PERFORM procedure-name UNTIL
+                               (40 points)
+ 
+This assignment requires modification of Assignment 0, as follows:
+
+(1) Instead of processing only one record, the program must process a file
+containing an unspecified number of records.
+
+(2) Instead of typing the data "in-stream", the data will be obtained from a
+file.  
+
+(3) The output format must be revised. 
+
+ 
+INPUT:
+ 
+The format of each input record is exactly the same as for Assignment 0, but
+there is a whole file of records to be processed. To access the input:
+
+(1) Remove the one line of in-stream data that follows //GO.SYSIN DD *
+
+(2) Modify the //GO.SYSIN DD * statement so that it reads:
+
+    //GO.SYSIN DD DSN=T90ASS1.SPRING01.COBDATA(DATA02),DISP=SHR
+ 
+   
+OUTPUT:                       
+ 
+Print the unformatted system date and time as on Assignment 0.
+
+Print the data from each input record in the format shown below:
+
+                     CSCI 250, 4 credit hours
+                     Computer Programming in Cobol
+                     Prerequisites:  Math 110
+
+Single space the three lines. Double space before each set of three lines. 
+Center the data horizontally on the page (hint:  the 3rd line is potentially
+the longest, so center that one, then position the others to align with it).
+
+   
+PROCESSING NOTES:
+ 
+1.  Turn in (1) all of the output from your job (don't forget to keep a
+printed backup copy), (2) a copy of the input data (obtained from running the
+IEBPTPCH program on page 4 of the Notes and Examples book), and (3)
+flowcharts.  Put your name on all three parts and clip them together.  Do not
+staple the flowcharts to the program.  Write the information specified in the
+Course Information handout on the front of the packet.
+ 
+2.  When using the Print Punch Utility (IEBPTPCH) on page 4 of the
+"Notes and Examples" book, you must replace the words 'data set name'
+with 'T90ASS1.SPRING01.COBDATA(DATA02)' so that the whole line reads:
+
+    //SYSUT1 DD DSN=T90ASS1.SPRING01.COBDATA(DATA02),DISP=SHR
+  
+3.  Don't forget to update the documentation to reflect the changes you made.
+
+</PRE>
+</BODY>
+</HTML>

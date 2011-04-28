@@ -1,0 +1,489 @@
+<HTML>
+<HEAD>
+<TITLE>Sample Exam 2</TITLE>
+</HEAD>
+
+<BODY>
+<PRE>
+CSCI 250                          Name____________________________________
+Sample Exam 2
+150 points                                       Section_______________
+
+
+
+
+
+PART 1:  OBJECTIVE QUESTIONS
+
+IMPORTANT:  Follow your instructor's directions about WHERE to write the answers to
+the objective questions.  Some sections may be required to write the answers on a
+machine readable form or on a separate page.
+
+
+Multiple Choice (2 points each)
+
+1.   In an edited PICTURE clause, which of the following is not a valid insertion
+     character?
+     (a) B
+     (b) /
+     (c) -
+     (d) 0
+
+2.   Given  05  NUM-A  PIC  $$$,$$9.99CR
+     How many character positions does NUM-A occupy?
+          (a) 7
+          (b) 9
+          (c) 10
+          (d) 12
+
+ 3.   Given:    05   COLOR-CODE          PIC 99.
+                     88    BLUE          VALUE IS 12.
+                     88    GREEN         VALUE IS 14.
+      Which of the following statements is true?
+          (a)  A syntax error will occur because 88 is not a valid level number.
+          (b)  A syntax error will occur because there is no picture clause preceding
+          the value clause on BLUE and GREEN.
+          (c)  A syntax error will occur because COLOR-CODE has a PICTURE clause.
+          (d)   No syntax error will occur.
+
+ 4.  Given the same 05 and 88 levels as in question 3, which of the following
+     procedure division statements will cause a syntax error?
+     (a)  IF BLUE
+     (b)  IF COLOR-CODE = BLUE
+     (c)  IF COLOR-CODE = 12
+     (d)  all of the above
+
+ 5.   Which of the following correctly lists the hierarchy of evaluation in a
+     compound condition?
+               (a)  NOT, AND, OR, relational operators
+               (b)  AND, OR, NOT, relational operators
+               (c)  relational operators, AND, OR, NOT
+               (d)  relational operators, NOT, AND, OR
+
+ 6.   Given:   A has the value 20.
+               B has the value 10.
+               C has the value 5.
+      Which of the following would resolve to true?
+               (a)  IF A < B OR B < C AND A < C
+               (b)  IF (A < B OR B < C) AND A < C
+               (c)  IF (A < B OR C) AND (B < C OR A)
+               (d)  none of the above
+
+ 7.  IF A = B OR C OR D
+     is equivalent to
+     a.   IF A = B OR C = D
+     b.   IF A = B OR B = C OR C = D
+     c.   IF A = B OR A = C OR A = D
+     d.   IF A = B OR A = C OR C = D
+
+ 8.   ACCEPT TODAYS-DATE FROM DATE will place in TODAYS-DATE
+               (a)  a single digit ranging from 1 to 7.
+               (b)  6 digits in the form mmddyy.
+               (c)  6 digits in the form yymmdd.
+               (d)  a Julian date in the form yyddd.
+
+9.   The scope of the IF condition is terminated by
+     (a)  an ELSE
+     (b)  an END-IF
+     (c)  a period
+     (d)  any of the above
+
+10.  The numeric class test can be applied to
+     (a)  a field defined as PIC 9.
+     (b)  a field defined as PIC X.
+     (c)  a field defined as PIC A.
+     (d)  both a and b above
+
+11.  A group move
+     (a)  is always a numeric move.
+     (b)  is always an alphanumeric move.
+     (c)  may be either numeric or alphanumeric depending on the picture clauses
+          of the subordinate items.
+     (d)  is not allowed in COBOL.
+
+12.  Given:    01   MY-TEST-TABLE.
+                    05   TEST-ELEMENT   OCCURS 10 TIMES.                                                                    10   FIRST-FIELD          PIC 9(4).
+                         10  TEST-FIELD-1    PIC X(16).
+                         10  TEST-FIELD-2    PIC 9(4).                                                                      10   SECOND-FIELD   PIC X(16).
+      How many character positions does MY-TEST-TABLE occupy?
+               (a)  20
+               (b)  200
+               (c)  10
+               (d)  100
+
+13.  Given the table in the preceding question, which of the following is an
+     invalid reference?
+               (a)  MY-TEST-TABLE (3)
+               (b)  TEST-ELEMENT (3)
+               (c)  TEST-FIELD-1 (3)
+               (d)  TEST-FIELD-2 (3)
+
+14.  The PERFORM...VARYING statement may be used
+               (a)  with subscripts but not indexes
+               (b)  with indexes but not subscripts
+               (c)  with either indexes or subscripts
+               (d)  none of the above
+
+15.  PERFORM 300-DO-IT VARYING SUB FROM 3 BY 3 UNTIL SUB > 20
+     will cause 300-DO-IT to be performed 
+               (a)  3 times
+               (b)  6 times
+               (c)  9 times
+               (d)  20 times
+
+
+
+16.  In order for two data items to CORRESPOND, 
+               (a)  their picture clauses must match exactly.
+               (b)  their level numbers must match exactly.
+               (c)  their intervening qualifiers must match exactly.
+               (a)  all of the above
+
+17.  IF FIELD-X (SUB) > FIELD-X (SUB + 1)
+     (a)  contains an example of relative subscripting
+     (b)  will cause a syntax error
+     (c)  compares the contents of FIELD-X in two adjacent table entries
+     (d)  both a and c
+
+
+True/False (2 points each)
+
+     18.  The following is a valid numeric edited PICTURE clause: $,$$9.99
+
+     19.  The receiving field in an arithmetic statement may have a numeric edited
+     PICTURE clause.
+
+     20.  Data names should be as short as possible to cut down on the coding effort.
+
+     21.  In a nested IF, COBOL uses indentation to determine which IF or ELSE a line of
+     code is subordinate to.
+
+     22.  The following are equivalent:
+          IF FIELD-A IS NOT GREATER THAN FIELD-B
+          IF FIELD-A NOT > FIELD-B
+
+     23.  Given: FIELD-X   PIC 9.
+          The following will cause a syntax error:
+          IF FIELD-X = '3'
+
+24.  The following are equivalent:
+          IF A > B
+          IF A NOT < B OR A NOT = B
+
+25.  In a numeric edited picture clause, the symbol DB will print if the sending
+     field is positive, and the symbol CR will print if the sending field is
+     negative.
+
+26.  The following are equivalent:
+          IF FIELD-X IS NEGATIVE
+          IF FIELD-X IS < 0
+
+27.  The following are equivalent:
+          IF FIELD-A IS ALPHABETIC
+          IF FIELD-A IS NOT NUMERIC
+
+28.  In a nested IF, each ELSE is paired with the closest preceding IF that does
+     not already have an ELSE or an END-IF.
+
+29.  In COBOL-85, a field is considered ALPHABETIC if it contains any combination
+     of upper case letters, lower case letters, and blank spaces.
+
+30.  When a control break occurs, it is necessary to read the next record before
+     continuing to process records.
+
+31.  If the PICTURE clause for a field does not contain an S, the field cannot hold
+     a negative number.
+
+32.  The INITIALIZE statement can be used to place a value other than zero in a
+     group of numeric fields.
+
+33.   The NOT AT END clause on the READ statement may be used with an in-line 
+      PERFORM to avoid the priming READ.
+
+34.  The same index may be used on more than one table.
+
+35.  The OCCURS clause is not permitted at the 01 level.
+
+36.  A subscript can be made more efficient by inclusion of the clause USAGE IS
+     COMP.
+
+37.  Both subscripts and indexes may be varied using PERFORM...VARYING.
+
+38.  In a control break program, when you add lower level subtotals to higher level
+     subtotals, you are keeping a running total.
+
+
+
+
+
+
+
+PART 2:  CODING AND INTERPRETING CODE
+
+
+1.   Short coding (3 points each)
+
+     a.   Write one COBOL statement that will read a record from an input file
+          (IN-FILE) and place that record in the area of WORKING-STORAGE defined
+          as  01 INPUT-RECORD.  If end of file occurs, set the end-of-file flag to
+          'Y'.
+
+
+
+
+
+
+
+          b.   Place parentheses as appropriate to clarify the order of evaluation in
+          COBOL.
+
+          IF   FLD-A = FLD-B   AND   FLD-C > FLD-D   OR   FLD-E  >  A + B
+
+
+
+
+          c.   Write the code to point the index ACCT-NDX at the first entry in the
+          table.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2.   Edited Picture Clauses
+
+          Show the contents of the receiving field after execution of the statement 
+     MOVE SOURCE-FIELD TO RECEIVING-FIELD.  Show every character position in the
+     receiving field.  Represent a blank space by the lower case letter b. (2
+     points each)
+
+        SOURCE FIELD                        RECEIVING FIELD
+
+          PICTURE       CONTENTS            PICTURE       EDITED RESULT
+          -------       --------            -------       -------------
+
+     9(5)V99       0012345             $$$,$$9.99    a.__________________
+
+     9(7)          0006007             $ZZ,ZZZ.99    b.__________________
+
+     S9(4)V99   (-)890123              ++,++9.99     c.__________________
+
+     S9(4)V99   (+)004567              ++,++9.99     d.__________________
+
+     S9(4)V99   (+)089012              --,--9.99     e.__________________
+      
+     9(6)          032797              99/99/99      f.__________________
+
+     S9(3)V99   (-)00345               $$$9.99CR     g.__________________
+
+     S9(3)V99   (+)67800               $$$9.99DB     h.__________________
+
+     9(6)V99       00090123            $***,***.99   i.__________________
+
+     X(6)          ABCDEF              XXBBXX/XX     j.__________________
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.   Fill in the contents of RECORD-2 after execution of the following code:
+          MOVE SPACES TO RECORD-2.
+          MOVE CORR RECORD-1 TO RECORD-2.
+
+     If a character position would contain a blank after the MOVE CORR, then leave
+     it blank. (10 points)
+     
+     01  RECORD-1.
+         05   STUDENT-NAME.
+              10   LAST-NAME            PIC X(10).
+              10   FIRST-NAME           PIC X(10).
+          05   STUDENT-TELEPHONE         PIC X(10)
+          05   STUDENT-MAJOR-FIELD       PIC X(20).
+          05   STUDENT-TEST-SCORE        PIC 9(3)  OCCURS 3 TIMES.
+          05   STUDENT-CREDIT-HRS.
+               10   CURRENT-SEMESTER     PIC 9(3).
+               10   PREVIOUS-SEMESTERS   PIC 9(3).
+
+      Contents of RECORD-1:
+
+     | L| I| N| C| O| L| N|  |  |  | A| B| R| A| H| A| M|  |  |  |
+
+     | 8| 1| 5| 7| 5| 3| 1| 2| 1| 2| C| O| M| P| U| T| E| R|  | S|
+
+     | C| I| E| N| C| E|  |  |  |  | 1| 0| 0| 0| 9| 8| 0| 9| 5| 0|
+
+     | 1| 5| 0| 4| 5|
+
+
+     01  RECORD-2.
+          02   STUDENT-TELEPHONE.
+               03 AREA-CODE             PIC X(3).
+               03 FIRST-THREE           PIC X(3).
+               03 LAST-FOUR             PIC X(4).
+          02   STUDENTS-MAJOR           PIC X(20).   
+          02   STUDENT-TEST-SCORE       PIC 9(3)   OCCURS 3 TIMES.
+          02   STUDENT-CREDITS.
+               03   CURRENT-SEMESTER    PIC 9(3).
+               03   PREVIOUS-SEMESTERS  PIC 9(3).
+          02   STUDENT-NAME.
+               03   FIRST-NAME          PIC X.
+               03   FILLER              PIC X.
+               03   LAST-NAME           PIC X(10).
+
+      Contents of RECORD-2:
+
+     |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+
+     |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+
+     |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     4.   Control Break Logic
+
+     Each record in an input file represents one sale.  The record contains the
+     sale amount as well as the salesperson's name and the region in which the
+     salesperson works.  These records are sorted on REGION, and within the
+     region, they are sorted on SALESPERSON-NAME.  From this input data, a
+     report is to be printed containing one detail line for each input record,
+     plus subtotals for each salesperson, subtotals for the region, and grand
+     totals for the whole company.  Write the procedure division code for 100-
+     PROCESS-ONE-REGION.  Do not attempt to write the whole program. (15 points)
+
+     NOTE: You do not need to show any data division code, but use good data
+     names so we can tell what you are incrementing, saving, or comparing.
+
+     100-PROCESS-ONE-REGION.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     5.   Given the following table in WORKING-STORAGE:
+
+     01   PRODUCT-SALES-TABLE.
+          02   PRODUCT-LINE  OCCURS 8 TIMES
+                             INDEXED BY PROD-NDX.
+                  03    PRODUCT-ID       PIC 9(4).
+                  03    PRODUCT-SALES    PIC 9(6)V99.
+
+     Declare a detail line that can be used to print out the 8 PRODUCT-SALES
+     amounts plus the TOTAL-SALES for all 8 product lines.  (10 points)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     Write the PROCEDURE DIVISION code to build and print the detail line you
+     declared above.  (10 points)
+
+
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,89 @@
+<HTML>
+<HEAD>
+<TITLE>Assignment 3</TITLE>
+</HEAD>
+
+<BODY>
+<PRE>
+CSCI 250                    Assignment 3                   Spring 2001
+          Arithmetic, COMPUTE, ROUNDED, Page and Column Heads
+                             40 points
+
+Write a program to calculate and print some Fantasy Football statistics.
+
+INPUT:
+------
+The input file contains one record for each quarter back. The records are
+formatted as follows:
+
+    COLUMNS       CONTENTS
+
+       1-20       Player name             Alphanumeric
+         21       Unused
+      22-41       Team Name               Alphanumeric
+         42       Unused
+      43-45       Pass Attempts           Numeric, 3 digits
+         46       Unused
+      47-49       Pass Completions        Numeric, 3 digits
+         50       Unused
+      51-52       Touchdowns              Numeric, 2 digits
+      53-80       Unused
+
+OUTPUT:
+-------
+Sample output is provided as a separate document because the output is wide
+and must be printed landscape in order to see all of the columns.
+Instructions for printing landscape are on the web page. The totals shown
+on the sample output are the actual totals your program should produce.
+
+PROCESSING NOTES and REQUIREMENTS:
+----------------------------------
+(1)  Detail line calculations:
+
+          Incomplete = Attempts - Completions
+
+          Points = Touchdowns * 6
+
+(2)  Summary line calculations:
+
+          Total Attempts, Total Completions, Total Touchdowns, and Total
+          Points are all accumulators (sums of their respective columns).
+
+          % Completions = Total Completions / Total Attempts * 100
+
+               The % completions must be rounded to the nearest integer.
+               It also must be calculated TWICE.  The first calculation
+               must use only arithmetic verbs (ADD, SUBTRACT, MULTIPLY,
+               DIVIDE).  The second calculation must be done with a
+               single COMPUTE verb.  The problems inherent in combining
+               multiple operations in one compute statement will be
+               discussed in class.
+
+(3)  DO NOT use data names from print lines in arithmetic statements.  Do
+     arithmetic in WORKING-STORAGE, and MOVE the numbers you want to print
+     to the appropriate print line fields.
+
+(4)  Print page and column heads at the top of your report. Don't forget
+     the system data and time. You may assume that there will be only one
+     page of data.  The totals will require another page header and
+     another column header, but print the totals on the same page as the
+     detail lines.
+
+(5)  To run the Cobol program, use the Job Control Language (JCL) on page
+     3 of Notes and Examples (same JCL you've used since Assignment 0),
+     including the following line above the //GO.SYSOUT line:
+
+          //GO.SYSIN DD DSN=T90ASS1.SPRING01.COBDATA(DATA03),DISP=SHR
+
+(6)  Run the PRINT PUNCH UTILITY on page 4 of Notes and Examples to obtain
+     a copy of the input data, and turn it in with your program.  The
+     //SYSUT1 line should read:
+
+     //SYSUT1 DD DSN=T90ASS1.SPRING01.COBDATA(DATA03),DISP=SHR
+
+(7)  Document your program according to the documentation standards in
+     Notes and Examples, and turn in a flowchart of your program logic.
+
+</PRE>
+</BODY>
+</HTML>

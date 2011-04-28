@@ -1,0 +1,198 @@
+<HTML>
+<HEAD>
+<TITLE>Assignment 9</TITLE>
+</HEAD>
+
+<BODY>
+<PRE>
+CSCI 250                        Assignment 9                   Spring 2001
+                                  60 points
+                        Master File Extract and Report
+        Date Functions:  CURRENT-DATE, INTEGER-OF-DATE, DATE-OF-INTEGER
+
+                            
+ABC Properties, Inc. wants to select records from the master file based on the
+following criteria:
+
+                         1.   Apartment/Townhouse indicator   
+                         2.   Number of bedrooms
+                         3.   Lease end date
+                         4.    Monthly rent
+
+The actual values for these criteria are specified in a separate input file
+called the parameter file.  By changing the values on the parameter record, it
+is possible to select different master file records without modifying the
+Cobol program.
+
+
+Parameter File
+--------------
+
+The parameter file contains a single 80-character record:
+
+               COLUMNS        CONTENTS
+               1-2            Apartment/Townhouse indicator
+                                 AP, TN, or spaces
+                                 (Spaces mean that either AP or TN 
+                                 meets the criterion.)
+                3             Number of bedrooms
+                                 0, 1, 2, 3
+               4-6            Days to lease end
+                                 (A maximum value. 999 means we don't care
+                                  when the lease ends.)
+               7-10           Monthly rent (upper limit)
+                                 (All zeroes mean that any monthly rent meets
+                                 the criterion.)
+              11-80           Unused
+
+To extract all apartments with 2 bedrooms, a lease that expires within 60
+days, and a monthly rent less than or equal to $1000, the parameter record
+would read as follows: AP20601000
+
+To extract all 3-bedroom apartments or townhouses with leases that expire
+within 30 days, the parameter record would read as follows: bb30300000
+(Note: each b represents one blank space.)
+
+To extract all 1-bedroom apartments with a monthly rent less than or equal to
+$750, the parameter record would read as follows:  AP19990750
+  
+Master file records are to be selected ONLY if they meet ALL of the criteria
+specified on the parameter record. 
+
+Four different parameter files will be made available for this assignment. 
+Three of the files will contain a valid parameter record, and one file will
+contain an invalid record.  You should test your program against all of the
+parameter files.  Your instructor, however, will tell you which file(s) to use
+for the final run(s) in your section.  You may be required to turn in more
+than one run, using different parameter files.  If you have written your COBOL
+program correctly, you should not have to change it in order to run it with a
+different parameter file.
+
+Since the parameter record contains raw input data, it must be validated.  For
+each invalid item on the parameter record, display an appropriate error
+message.  If any item on the parameter record is invalid, terminate the
+program without attempting to extract records from the master file.
+
+The parameter record is valid if it meets the following specifications:
+
+            Apartment/Townhouse -- AP or TN or Spaces
+            Number of bedrooms  -- 0, 1, 2, 3
+            Days to lease end   -- numeric
+            Monthly rent        -- numeric
+
+
+Master File
+-----------
+
+If the parameter record contains valid data, use the values on it to select
+records from the master file.  The format of the master file is given in a
+separate document.
+
+If a master file record satisfies all of the criteria on the parameter record,
+place a record in the extract file and place a detail line on the extract
+report. If a master file record fails to satisfy all of the criteria, do
+nothing with it.
+
+
+Extract File
+------------
+
+An extract record may contain all or part of the information from a master
+file record.  For this assignment, the extract record should contain the first
+94 characters of the master file record, i.e., everything but the rent payment
+table.
+
+The extract file also must contain a header record, which is to be formatted
+the same as the master file header except that the extract header is only 94
+characters long.  The date in the extract header should be the same as that in
+the master file header.  Add your own name to the header immediately following
+the date.
+  
+After the extract file has been created, close it for output, open it for
+input, and print out its contents (unformatted).
+
+
+Report File
+-----------
+
+For every record placed in the extract file, a detail line must appear on the
+report.  Sample report output is shown below.  
+
+The formatted date on the report should be the date from the master file
+header.  The other values in the report headers are created from the parameter
+record.
+
+If the Apartment/Townhouse indicator on the parameter record is spaces, print
+EITHER instead of AP or TN.  To get the date the lease must end by: get the
+current date, convert it to an integer, add the days on the parm record, and
+convert the integer back to a date.  
+
+To determine whether to extract or not based on the date: Convert the lease
+end date in the master file to an integer.  If that integer does not fall
+within the range of the integer formed from the current date and the integer
+formed from the current date plus the number of days on the parm record, do
+not extract.
+
+010408 22161209
+
+04/01/2001                ABC PROPERTIES, INC.                  PAGE 1
+                  
+                          APARTMENT/TOWNHOUSE: EITHER
+                          BEDROOMS: 3          
+                          LEASE ENDING BY: 05/31/2001
+                          MAXIMUM MONTHLY RENT: $1,050
+
+       
+APT ID      AP/TN   BEDROOMS     LEASE END DATE     MONTHLY RENT
+
+ A333         AP        3         03/31/1997           $1,100        
+
+ B190         TN        3         03/31/1997             $900
+
+
+          TOTAL NUMBER OF APARTMENTS EXTRACTED:    2
+
+
+NOTES:
+------
+(1)  For efficiency, build the report file at the same time as the extract
+     file--that is, read a master file record, determine if it should be
+     selected and, if so, create from it both an extract record and a report
+     line, then read the next master file record, etc.
+
+(2)  This program has two input files and two output files:
+
+     Apartment Master File (input)
+          Sequential file on disk.  Standard labels.  Blocked.
+          ASSIGN TO S-MASTER
+          //GO.MASTER DD DSN=T90ASS1.SPRING01.APT.MASTER,DISP=SHR
+
+     Parameter File (input)
+          Sequential file on disk.  Standard labels.  Blocked.
+          ASSIGN TO S-PARM
+          //GO.PARM  DD DSN=T90ASS1.SPRING01.PARM(ONE),DISP=SHR
+              (To access the variations on the parameter record, instead
+               of typing ONE, type TWO, THREE, or FOUR.)
+
+     Extract File (output)
+          Specify standard labels and 20 records per block.
+          ASSIGN TO S-EXTRACT
+          //EXTRACT DD DSN=&&EXT,UNIT=DISK,VOL=SER=ACA302,
+          //        SPACE=(TRK,(1,1)),DISP=(NEW,PASS)
+
+     Report File (output)
+          Same as previous print files.
+
+(3)  Your program should check for the following possible errors:
+          --missing parameter record
+          --invalid values in the parameter record
+               (Produce an error message for each invalid value.)
+          --missing header in the master file
+          --invalid header in the master file
+
+     If any of these errors occur, your program should report the error but
+     should not attempt to process any master file item records.
+
+</PRE>
+</BODY>
+</HTML>

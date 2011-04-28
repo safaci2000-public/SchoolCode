@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.2//EN">
+
+<HTML>
+<HEAD>
+<TITLE>Solution to Master File Update Worksheet</TITLE>
+<META NAME="Generator" CONTENT="HTMLed Pro Version 2.0d">
+<META NAME="Author" CONTENT="Unknown">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+<PRE>
+
+             <B>Solution to Master File Update Worksheet</B>
+
+                   <B>MASTER FILE UPDATE WORKSHEET</B>
+
+
+Using the Sequential Master File Update logic,  Write the <B>KEYS</B> (keys only!) as
+(keys only!) as they will appear in the new master file.  Remember,
+if a key is added and then changed, only the final version of the
+record is added to the new master file.  Also, write the KEYS and
+TRANSACTION TYPES (ie. 008 Delete) of all the invalid transactions.
+For each invalid transaction, give the reason that it is invalid.
+
+
+<B>TRAN		OLD MASTER	NEW MASTER	INVALID TRAN (reason?)</B>
+
+001 ADD		002		<B>001</B>
+
+001 CHANGE	003		<B>003</B>
+
+002 DELETE	004		<B>004</B>
+
+004 CHANGE	006		<B>005</B>
+
+005 ADD		007		<B>006</B>
+
+005 CHANGE	009		<B>007</B>
+
+005 CHANGE	011		<B>009</B>
+
+007 ADD		012		<B>011		007 ADD (key already exists)</B>
+
+007 CHANGE	013		<B>013		007 CHANGE (follows invalid add)</B>
+
+007 DELETE	014		<B>014		007 DELETE (follows invalid add)</B>
+
+007 DELETE	016		<B>016		007 DELETE (follows invalid add)</B>
+
+010 DELETE	019		<B>018		010 DELETE (not in Master</B>
+
+012 CHANGE	020		<B>019</B>
+
+012 CHANGE			<B>020</B>
+
+012 DELETE
+
+015 CHANGE					<B>015 CHANGE (not in Master</B>
+
+018 ADD
+
+</PRE>
+
+</BODY>
+
+</HTML>
+

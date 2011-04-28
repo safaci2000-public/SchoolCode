@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<TITLE>Arithmetic Worksheet Solution</TITLE>
+<META NAME="Generator" CONTENT="HTMLed Pro32 Version 2.0b">
+<META NAME="Author" CONTENT="Jim Woolley">
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+
+<PRE>
+				      CSCI 250
+                           Arithmetic Worksheet Solution
+
+	WORKING-STORAGE SECTION.
+
+	01  NUMBERS-1.
+	    05  NUM-1			PIC 999		VALUE 100.
+	    05  NUM-2			PIC 99V9	VALUE 20.5.
+	    05  NUM-3			PIC 9(4)	VALUE 1000.
+	    05  NUM-4			PIC 9V99	VALUE 2.50.
+	    05  NUM-5			PIC 99		VALUE 25.
+	    05  NUM-6			PIC 9		VALUE 5.
+	    05  NUM-7			PIC 9(4)V9.
+
+	PROBLEMS:
+        
+	Note: In the answers below, the capital letter V is used
+        to show the position of the implied decimal point.  
+
+	1.  ADD NUM-1 NUM-2 GIVING NUM-3.
+
+	    NUM-1 ___<U>100</U>___  NUM-2 ___<U>20V5</U>___ NUM-3 ___<U>0120</U>___
+
+	2.  ADD NUM-1 TO NUM-2
+
+	    NUM-1 ___<U>100</U>___  NUM-2 ___<U>20V5</U>___
+
+	3.  SUBTRACT NUM-2 FROM NUM-1.
+
+	    NUM-1 ___<U>079</U>___  NUM-2 ___<U>20V5</U>___
+
+	4.  MULTIPLY NUM-5 BY NUM-6.
+
+	    NUM-5 ___<U>25</U>___  NUM-6 ___<U>5</U>___
+
+	5.  MULTIPLY NUM-6 BY NUM-5.
+
+	    NUM-5 ___<U>25</U>___  NUM-6 ___<U>5</U>___
+
+	6.  MULTIPLY NUM-5 BY NUM-1 GIVING NUM-3.
+
+	    NUM-1 ___<U>100</U>___  NUM-3 ___<U>2500</U>___  NUM-5 ___<U>25</U>___
+
+	7.  DIVIDE NUM-6 INTO NUM-5.
+
+	    NUM-5 ___<U>05</U>___  NUM-6 ___<U>5</U>___
+
+	8.  DIVIDE NUM-5 BY 10 GIVING NUM-6.
+
+	    NUM-5 ___<U>25</U>___  NUM-6 ___<U>2</U>___
+
+	9.  COMPUTE NUM-7 = NUM-6 * NUM-1 + NUM-5 - NUM-3 / NUM-1.
+
+            NUM-7 ______<U>0515V0</U>______
+
+
+	10. COMPUTE NUM-7 = NUM-6 * (NUM-1 + NUM-5) - NUM-3 / NUM-1.
+
+            NUM-7 ______<U>0615V0</U>_____
+
+            What if the answer to Problem 10 had to go in NUM-5?
+
+            NUM-5 ________<U>15</U>_______
+
+	11. COMPUTE NUM-7 = NUM-6 * ((NUM-1 + NUM-5) - NUM-1) / NUM-5.
+
+            NUM-7 ______<U>0005V0</U>_____
+
+
+</PRE>
+</BODY>
+
+</HTML>

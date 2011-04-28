@@ -1,0 +1,135 @@
+<HTML>
+<HEAD>
+<TITLE>Assignment 6</TITLE>
+</HEAD>
+
+<BODY>
+<PRE>
+CSCI 250                ASSIGNMENT 6                  Spring 2001
+             Subscripted Tables, PERFORM VARYING,
+                     ACCEPT, MOVE CORR
+
+
+Write a program that will use an input file to build a table of
+student exam scores, then use the data in the table to do some
+calculations and print a report.
+
+
+INPUT:
+
+There is one record in the input file for each student.  Each
+record contains:
+
+COLUMNS   CONTENTS
+
+  1-2     Student number            Numeric (range 1-40)
+    3     Unused
+  4-23    Student name              Alphanumeric
+    24    Unused
+    25    Year in school            Numeric
+                                         1 = freshman
+                                         2 = sophomore
+                                         3 = junior
+                                         4 = senior
+    26    Unused
+ 27-29    Exam score                Numeric
+ 30-80    Unused
+
+
+There is one input record for each student.  Each record will be
+used to create one table element.  The table element should contain
+only the student name, year in school code, and exam score.  The
+student number does not need to be in the table, because it is the
+same as the subscript for that student's table entry.
+
+
+PROCESSING:
+
+For each record, verify that the student number falls in the range
+of 1-40.  (This is the only error checking you need to do on the
+input data.)  If the student number is out of range, list the
+record as invalid and do not process it further.
+
+If the student number is within the proper range (1-40), put that
+student's data in the table, using the student number to determine
+which table entry to fill in.
+
+This program should have a total of three tables:
+
+     (1) the main table with elements containing the student name, year
+     in school code, and exam scores
+     (2) a 4-element table with the names of the year in school--i.e.,
+     freshman, sophomore, junior, senior.  This table must hard
+     coded using REDEFINES.
+     (3) a 4-element table of counters for each year in school.  This
+     table should be incremented while printing out table 1.
+
+Note that tables 2 and 3 could be combined since they are each 4
+elements, but then you must be careful with initialization.
+
+DO NOT use EVALUATE in this program.
+
+
+OUTPUT:
+
+Print a report like the sample below.  The list of invalid records
+is printed while building the main table.  The rest of the report
+is printed after the main table is built.
+
+
+010305 24380715
+
+                     List of Invalid Records
+
+00 Donald Duck          1 076
+41 Mickey Mouse         2 084
+
+
+03/05/01               Student Exam Report
+
+Student#:    Name:            Year in School:            Score:
+
+   01        Joe Murphy       Sophmore                      83
+   02        John Watters     Freshman                      92
+   03        Mike Tyson       Junior                        22
+   04        Don Patterson    Senior                        79
+                              .
+                              .
+                              .
+
+               # of Freshmen:    9
+               # of Sophmores:  14
+               # of Juniors:     5
+               # of Seniors:     4
+
+               Average Students Exam Score:   81.2
+
+
+This will be a one-page report, so you do not need a page number.
+Single-space the detail lines.  Print the unformatted date and time
+as usual, but also use ACCEPT and MOVE CORR to put a formatted
+report date (mm/dd/yy) in the header as shown in the sample.
+
+
+NOTES:
+
+1.  Use the following line of JCL to access the input data:
+
+    //GO.SYSIN  DD  DSN=T90ASS1.SPRING01.COBDATA(DATA06),DISP=SHR
+
+2.  Also in the JCL, modify the EXEC statement to include SSRANGE:
+
+    //   EXEC IGYWCG,CPARM='FLAG(I,I),APOST,TEST(STMT),SSRANGE'
+
+SSRANGE will give you an abend with a reasonable error message if
+your subscript goes out of range.  Without SSRANGE in the JCL, a
+subscript out of range will result in either mysteriously incorrect
+output or abend messages that don't reflect the real problem.
+
+3.  Turn in your executed program and flowcharts.
+
+
+
+</PRE>
+</BODY>
+</HTML>

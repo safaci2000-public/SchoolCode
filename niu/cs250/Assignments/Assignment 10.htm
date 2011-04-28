@@ -1,0 +1,144 @@
+<HTML>
+<HEAD>
+<TITLE>Assignment 10</TITLE>
+</HEAD>
+
+<BODY>
+<PRE>
+CSCI 250                       Assignment 10                      Spring 2001
+                        SEQUENTIAL MASTER FILE UPDATE
+                               (100 points)
+
+
+For this assignment you are to write a program to update the sequential master
+file maintained by ABC Properties, Inc.
+
+Input to the update program consists of the current version of the master file
+(commonly called the "old" master) and a file of valid transactions to be
+applied to it.  Output from the update program consists of a revised version of
+the master file (commonly called the "new" master) plus a report showing all
+changes made to the file as well as all errors encountered in applying the
+transactions.
+
+The old master file is sorted on the apartment ID.  The transaction file is
+sorted on the apartment ID plus the transaction code.  Thus, if there are
+multiple transactions for the same apartment ID, those transactions will be in
+order based on the transaction code.
+
+     The format of the master file is given in a separate handout.  The format
+of the edited transaction file is the same as the format of the unedited
+transaction file used for assignment 8 (the data validation program).  The
+edited transaction file contains no errors that could have been picked up by a
+data validation program.  Records with errors have been corrected or deleted,
+plus the file has been sorted.
+
+     Both the master file and the edited transaction file contain a header
+record.  The new master file also must contain a header record, with the date of
+last update taken from the header record of the edited transaction file.  Also
+include your name right after the date in the new master file header record.
+
+     The processing to be performed by your program is outlined below by type
+of transaction.
+
+
+1.   For an ADD transaction:
+
+               a.   If there is no record with this apartment ID in the old master, then
+          this is a VALID ADD and a record should be added to the new master
+          in the appropriate position.  When a new record is added, the
+          contents of the rent payment table should be initialized to zeroes.
+
+               b.   If a record with the same apartment ID already exists in the old
+          master, or has just been added, then this is an INVALID ADD and an
+          error message should be printed indicating an attempt to add a
+          record which already exists.  Likewise, an attempt to add the same
+          key twice should produce an error message.
+
+
+2.   For an ALTER transaction:
+
+               a.   If a record with the same apartment ID already exists in the master
+          file, or has just been added, then this is a VALID ALTER and the
+          data indicated by the alter code should be modified in that record.
+          For this assignment all of the modifications involve moving new data
+          on top of old data.  For alter code 09, the first field indicates
+          which element to modify in the monthly rent payment table.
+
+               b.   If a record with the same apartment ID is not found in the old
+          master, then this is an INVALID ALTER and an error message should be
+          printed indicating an attempt to alter a non-existent record.
+
+
+3.   For a DELETE transaction:
+
+               a.   If a record with the same apartment ID is found in the old master,
+          or had just been added, then this is a VALID DELETE and that record
+          should be deleted (i.e., not written to the new master).
+
+               b.   If a record with the same apartment ID is not found, then this is an
+          INVALID DELETE, and an error message should be printed indicating an
+          attempt to delete a non-existent record.  Likewise, an attempt to
+          delete a record more than once should produce an error message.
+
+
+It is possible to have multiple transactions for a single item number.  Since
+the edited transaction file is in order on item number and transaction code, all
+ADD transactions precede all ALTER transactions, which precede all DELETE
+transactions for the same item.  Knowing this order is necessary for handling
+errors correctly.
+
+For add and alter transaction combinations, the information printed on the
+update report should be the same as the contents of the record's fields when the
+record is written to the new master file.  In the case of a delete transaction,
+the report should contain the information found in the record just prior to its
+deletion.  This should include any add and alter processing performed for that
+record.
+
+It is possible to add a new record, alter the contents of the new record, and
+then delete the record (see sample report to be handed out separately).  In such
+a case, the new record is not written to the new master file (because of the
+delete) even though it appears on the report.  It is also possible to add a new
+record and delete it, or to add a new record and alter it.
+
+Records from the old master which have no transactions applied to them should be
+placed in the new master, but should not be listed on the report.
+
+For each record printed on the update report, one or more of the following
+should appear at the left side of the page:  'ADD', 'ALT', 'DEL'.  Use these to
+indicate all of the processing that was done for that record.
+
+When some transactions for a particular item number are valid and some are in
+error, the errors should be printed first, followed by the valid transactions
+processed for that record (see sample report).  This is what will happen if you
+follow the pseudocode provided.
+
+To verify the contents of the new master file, after all other processing is
+finished, close this file for output, open it for input, and print out each
+record.
+
+NOTES ON THE FILES
+------------------
+
+     1.   Old Master File (input):
+                    Sequential file on disk.  Standard labels.  Blocked.
+                    ASSIGN TO S-OLDMAST
+          //GO.OLDMAST DD DSN=T90ASS1.APT.MASTER,DISP=SHR
+
+     2.   Edited Transaction File (input):
+                    Sequential file on disk.  Standard labels.  Blocked.
+                    ASSIGN TO S-TRAN
+                    //GO.TRAN  DD DSN=T90ASS1.APT.TRAN(EDITED),DISP=SHR
+
+     3.   New Master File (output):
+                    Sequential file on disk.  Standard labels.  Block this file with
+               35 records per block.
+          ASSIGN TO S-NEWMAST
+                    //GO.NEWMAST  DD DSN=&&NEWMAST,UNIT=DISK,
+          //   SPACE=(TRK,(1,1)),VOL=SER=ACA302,DISP=(NEW,PASS)
+
+4.   Report file (output):
+          Same as report files on previous assignments.
+
+</PRE>
+</BODY>
+</HTML>

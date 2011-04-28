@@ -1,0 +1,101 @@
+<HTML>
+<HEAD>
+<TITLE>Assignment 11</TITLE>
+</HEAD>
+
+<BODY>
+<PRE>
+CSCI 250                     ASSIGNMENT 11                        Spring 2001
+                        Multi-Dimensional Tables
+                              (40 points)
+
+
+
+This assignment requires writing a program to keep track of student quiz scores
+across all sections of a multi-sectioned course.  There will be 4 sections, a
+maximum of 15 students in each section, and 10 quizzes.  Each quiz has a maximum
+score of 20 points.
+
+
+
+INPUT:
+------
+
+There is one record in the input file for each student enrolled in the course,
+but these records are not in any particular order.  Students from the various
+sections are intermixed.
+
+Each input record has the following format:
+
+COLUMNS     CONTENTS                      FIELD TYPE
+
+  1-7       Student ID                    Alphanumeric (a "Z" number)
+    8       Unused
+    9       Section number                Numeric (range 1-4)
+   10       Unused
+ 11-30      Table of 10 quiz scores       Each quiz is numeric (2 digits)
+ 31-80      Unused
+
+
+
+OUTPUT:
+-------
+
+     Print out a report similar to the sample output below.
+
+
+
+PROCESSING NOTES:
+-----------------
+
+1)   Put all of the input data into a 3-dimensional table (section, student,
+score).  Don't forget to initialize the table before you build it.
+
+2)   You may use either indexes or subscripts.
+
+3)   Round averages to the nearest integer.
+
+4)   Although the table has room for 15 students in each section, some sections
+may not be full.  Do not include the zeroes from the unused part of the table
+when calculating the averages.
+
+5)   Double space the detail lines.
+
+6)   JCL for the input file:
+
+     //GO.SYSIN  DD  DSN=T90ASS1.SPRING01.COBDATA(DATA11),DISP=SHR
+
+
+
+
+SAMPLE OUTPUT:
+--------------
+
+
+                        COMPARISON OF QUIZ SCORES
+
+
+Section     Student ID     Quiz Scores...........................
+
+   1        Z121111        10  10  10  10  10  10  10  10  10  10
+
+   1        Z121112        20  20  20  20  20  20  20  20  20  20
+               .
+               .
+            Average score for Section 1:  15
+
+
+   2        Z123331        16  14  16  14  16  14  16  14  16  14
+
+   2        Z123332        18  20  18  20  18  20  18  20  18  20
+               .
+               .
+            Average score for Section 2:  17
+               .
+               .
+               .
+
+
+</PRE>
+</BODY>
+</HTML>

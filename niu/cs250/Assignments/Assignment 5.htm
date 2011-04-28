@@ -1,0 +1,107 @@
+<HTML>
+<HEAD>
+<TITLE>Assignment 5</TITLE>
+</HEAD>
+
+<BODY>
+<PRE>
+CSCI 250                   ASSIGNMENT 5                     SPRING 2001
+             Control Break Processing, INITIALIZE, SORT
+                           (60 points)
+
+
+You work for a large company that sells pet supplies (everything you need for
+your cat or dog) by catalog.
+
+You are to produce a sales report organized by Division (either Cat or Dog)
+and within Division by Item Category.  The report must produce subtotals for
+each item category as well as subtotals for each division.  At the end of the
+report, grand totals must be printed.
+
+
+INPUT:
+
+For each product sold, the input file contains one record summarizing the
+sales during the reporting period.  Also, for each product returned, the input
+file contains one record summarizing the returns. Each record is formatted as
+follows:
+
+COLUMNS    CONTENTS
+
+  1-5      Item identifier         Alphanumeric
+    6      Unused
+    7      Division                Alphanumeric
+                                   C = cat
+                                   D = dog
+    8      Unused
+  9-11     Item category           Alphanumeric
+                                          BED = bedding/furniture
+                                          GAT = gates and doors
+                                          GRM = grooming
+                                          TOY = toys
+                                          TRV = travel
+    12     Unused
+ 13-37     Item description        Alphanumeric
+    38     Unused
+ 39-43     Item price              Numeric (dollars and cents)
+    44     Unused
+ 45-47     Quantity                Numeric
+    48     Unused
+    49     Sold or Returned        Alphanumeric
+                                          S = sold
+                                          R = returned
+ 50-80     Unused
+
+
+OUTPUT:
+
+Format your report to look like the sample provided separately.  (Note: the
+sample output is not to scale (some fields may need to be larger) and the
+sample totals are not the actual ones that will be produced from the
+input data.)  Check your output with a calculator to verify your totals.
+
+
+PROCESSING NOTES:
+
+1.  Follow the sample output for detail lines and subtotal lines.
+
+2.  The input file is not sorted.  You will need to sort it by Division.
+Within Division, sort it by Item Category.  Since you will be using all of the
+records from the input file and will not be changing them in any way, the
+USING/GIVING options are appropriate.  Refer to pages 414-419 for a sample
+program.  The control break programs in Chapter 15 (1-level, 2-level, and
+3-level) also make use of the USING and GIVING options.
+
+3.  Define grand totals and subtotals in groups so the INITIALIZE verb
+can be used to initialize them.  Do not use a VALUE clause or a MOVE
+verb to set subtotals or grand totals to zero.
+
+4.  Print page headers with page numbers at the top of each page. Assume that
+two item categories will fit on one page along with any required subtotals.
+
+5.  To get the dashed lines, consider VALUE ALL '-'.
+
+6.  The SORT verb requires an extra FD (for the sorted file) as well as
+an SD (to be used by SORT as a temporary work file).  You will need a
+total of four SELECT statements.  Use the following ASSIGN clauses:
+
+ASSIGN TO S-SYSIN            (use for the input file)
+ASSIGN TO S-SORTWORK         (use for the SD)
+ASSIGN TO S-SORTED           (use for the sorted file)
+ASSIGN TO S-SYSOUT           (use for the output print file)
+
+7.  Place the following lines of JCL after the /* line:
+
+//GO.SYSIN  DD  DSN=T90ASS1.SPRING01.COBDATA(DATA05),DISP=SHR
+//GO.SORTWORK DD DSN=&&SORTWORK,UNIT=DISK,VOL=SER=ACA302,
+//          SPACE=(TRK,(1,1)),DISP=(NEW,PASS)
+//GO.SORTED DD DSN=&&SORTED,UNIT=DISK,VOL=SER=ACA302,
+//          SPACE=(TRK,(1,1)),DISP=(NEW,PASS)
+//GO.SYSOUT DD SYSOUT=*
+
+8.  You are no longer required to turn in the print punch, but you should
+continue to get it so you can verify your output.  Flowcharts are required.
+
+</PRE>
+</BODY>
+</HTML>

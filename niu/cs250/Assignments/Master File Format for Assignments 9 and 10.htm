@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+<TITLE>Master File Format for Assignments 9 and 10</TITLE>
+</HEAD>
+
+<BODY>
+<PRE>
+CSCI 250                  Assignments 9 and 10                   Spring 2001
+                   FORMAT OF RECORDS IN OLD MASTER FILE
+                              
+
+                 COLUMNS     FORMAT          CONTENTS
+
+HEADER RECORD:     1-27      Alphanumeric    Blanks
+                  28-35      Numeric         Date of last update (MMDDYYYY)
+                  36-142     Alphanumeric    Blanks
+
+
+ITEM RECORD:       1-4:                      Apartment ID (key field):
+                     1       Alphabetic         Building ID (A, B, C, or D)
+                     2-4     Numeric            Apartment number
+
+                   5-6       Alphabetic      Apartment or Townhouse
+                                                AP=apartment, TN=townhouse
+                     7       Numeric         Number of bedrooms
+                                                0 (for studio), 1, 2, or 3
+                   8-11      Numeric         Total square feet
+
+                  12-19:                     Lease start date:
+                     12-13   Numeric            Month (01 thru 12)
+                     14-15   Numeric            Day (01 thru 31)
+                     16-19   Numeric            Year
+                                                (The entire start date will
+                                                be zeroes if apartment is not
+                                                currently rented.)
+
+                  20-27:                    Lease end date:
+                     20-21   Numeric            Month (01 thru 12)
+                     22-23   Numeric            Day (01 thru 31)
+                     24-27   Numeric            Year
+                                                (The entire end date will
+                                                be zeroes if apartment is not
+                                                currently rented.)
+
+                  28-87      Alphanumeric    Renter name(s) 
+                                                (Table of up to 4 names--
+                                                person(s) responsible for
+                                                paying rent.  If apartment
+                                                is rented, at least the first 
+                                                entry will be non-blank.)
+
+                  88-89:                     Number of occupants:
+                     88      Numeric            Adults (at least 1)
+                     89      Numeric            Children
+
+                     90      Alphabetic      Pets (N=none, C=Cat, D=Dog,
+                                                O=Other)
+                  91-94      Numeric         Monthly rent
+                  95-142                     Rent payment table
+                                                12 entries, in order of
+                                                January thru December.  Each 
+                                                entry is PIC 9(4).
+ 
+
+</PRE>
+</BODY>
+</HTML>

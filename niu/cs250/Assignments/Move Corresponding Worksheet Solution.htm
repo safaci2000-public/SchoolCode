@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.2//EN">
+
+<HTML>
+
+<HEAD>
+
+<TITLE>Move Corresponding Worksheet Solution</TITLE>
+
+<META NAME="Generator" CONTENT="HTMLed Pro32 Version 2.0b">
+
+<META NAME="Author" CONTENT="Jim Woolley">
+
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+<PRE>
+                           <B>Move Corresponding</B>
+
+	       Solution for the Move Corresponding Worksheet
+
+       01  INVENTORY-REC.
+           02  INV-PART-NAME          PIC X(5)   VALUE 'NAILS'.
+           02  INV-NUMBER             PIC X(8)   VALUE 'ABCD1234'.
+           02  INV-QTY                PIC 9(3)   VALUE 765.
+           02  INV-PRICE              PIC 99V99  VALUE 10.50.
+           02  SUPPLIER.
+               05  SUPPLIER-NAME      PIC X(12)  VALUE 'ACE HARDWARE'.
+               05  SUPPLIER-ADDRESS.
+                   10  STREET         PIC X(10)  VALUE '12 LINCOLN'.
+                   10  CITY           PIC X(6)   VALUE 'DEKALB'.
+                   10  ZIP            PIC X(5)   VALUE '60115'.
+
+       01  STORE-INVENTORY.
+
+           02  PARTS-INFO.
+               
+               05  INV-NUMBER         PIC X(4)BX(4).	 <U>ABCD 1234   </U>
+
+               05  INV-QTY            PIC 9(3).          <U>765         </U>       
+
+               05  INV-PRT-NAME       PIC X(5).          <U>            </U>        
+
+               05  INV-PRICE          PIC 99.99.         <U>10.50       </U>            
+
+               05  SUPPLIER.
+   
+                   10  SUPPLIER-NAME  PIC X(12).         <U>ACE HARDWARE</U>                                             
+
+                   10  SUPPLIER-ADDR.
+
+                       15  STREET         PIC X(10).     <U>            </U>                      
+
+                       15  CITY           PIC X(6).      <U>            </U>                    
+
+                       15  ZIP-CODE       PIC X(5).      <U>            </U>
+
+	What are the values in STORE-INVENTORY after the COBOL
+	instructions: 
+
+           <B>MOVE SPACES TO STORE-INVENTORY.
+           MOVE CORRESPONDING INVENTORY-REC TO PARTS-INFO.</B>
+
+                       
+</PRE>
+
+</BODY>
+
+
+
+</HTML>
+

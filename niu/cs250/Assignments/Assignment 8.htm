@@ -1,0 +1,223 @@
+<HTML>
+<HEAD>
+<TITLE>Assignment 8</TITLE>
+</HEAD>
+
+<BODY>
+<PRE>
+CSCI 250                       Assignment 8                      Spring 2001
+                         Data Validation, Class Tests,
+                   Condition Names, Multiple Input Formats
+                                100 points
+
+ABC Properties, Inc., owns four apartment buildings and uses a sequential
+master file to keep all of the necessary data on each apartment.
+
+A sequential master file is updated periodically from a file of transaction
+records.  The purpose of a data validation program is to examine each record
+in the transaction file to determine whether it is valid or invalid.  Valid
+transactions are used later as input to another program, the master file
+update program.  (Assignment 10 will be an update program.)  Invalid
+transactions are listed on an exception report, so that someone can correct
+and resubmit them.
+
+A data validation program is sometimes called an "edit" program or an "input
+edit" program, but it does not change any data.  It just determines whether or
+not input is valid.
+
+
+INPUT
+-----
+
+Input to the data validation program is the raw (unedited) transaction file,
+which may contain typos or other errors.  The transaction file has a date
+record at the beginning, followed by any number of add, alter, and delete
+transactions.  The record formats are shown below.
+
+DATE RECORD:            COLUMNS    CONTENTS
+                          1-5      Blanks
+                          6-13     Date the transaction file was
+                                      created.  Format:  MMDDYYYY
+                         14-95     Blanks
+
+TRANSACTION RECORDS:    COLUMNS    CONTENTS
+                          1-4      Apartment ID (key field)
+                           5       Transaction code (1=add, 2=alter,
+                                      3=delete)
+
+                    The format of the rest of the record depends on the
+                    transaction code.
+
+
+ADD Transaction:
+
+An add transaction record contains all of the data needed to add a new record
+to the master file:
+                        COLUMNS    CONTENTS
+
+                          6-7      Apartment or townhouse indicator
+                            8      Number or bedrooms
+                          9-12     Total square feet
+                         13-20     Lease start date
+                         21-28     Lease end date
+                         29-88     Renter name(s)--from 1 to 4
+                         89-90     Number of occupants
+                                      89 -- Number of adults
+                                      90 -- Number of children
+                            91     Pets
+                         92-95     Monthly rent
+
+ALTER Transaction:
+
+There are nine types of alter transaction records, each of which will be used
+ultimately to alter a different field in a master file record.  The alter type
+is specified in columns 6 and 7, and is followed by the data needed to make
+the alteration.  The formats of the various alter types are shown below.
+
+                         COLUMNS    CONTENTS
+
+Alter Bedrooms:            6-7      01
+                             8      New number of bedrooms
+                           9-95     Blanks
+
+Alter Square Feet:         6-7      02
+                           8-11     New square feet
+                          12-95     Blanks
+
+Alter Lease Start Date:    6-7      03
+                           8-15     New start date (MMDDYYYY)
+                          16-95     Blanks
+
+Alter Lease End Date:      6-7      04
+                           8-15     New end date (MMDDYYYY)
+                          16-95     Blanks
+
+Alter Renter Name(s):      6-7      05
+                           8-67     New names (up to 4, 15 characters each)
+                          68-95     Blanks
+
+Alter Number of Occupants: 6-7      06
+                             8      New number of adults
+                             9      New number of children
+                          10-95     Blanks
+
+Alter Pets:                6-7      07
+                             8      New pet code
+                           9-95     Blanks
+
+Alter Rent:                6-7      08
+                           8-11     New monthly rent
+                          12-95     Blanks
+
+Alter Rent Payment:        6-7      09
+                           8-9      Which payment to alter (01-12)
+                          10-13     New payment amount
+                          14-95     Blanks
+
+
+DELETE Transaction:
+
+To delete a record, no further information is needed beyond the key field and
+the transaction code.  Therefore, columns 6-95 will be blank.
+
+
+
+OUTPUT
+------
+
+Output from a data validation program consists of (1) a file of valid
+transactions (having the same format as the input file), and (2) an exception
+report, which lists each invalid record along with one message for each error
+on the record.  A sample exception report will be handed out separately.
+
+
+PROCESSING REQUIREMENTS
+-----------------------
+
+Verify that the first record in the transaction file is a date record. (A
+valid date record has blank spaces in the key field.)  If the first record is
+not a date record, or if the date is invalid (i.e., not numeric), print an
+error message and terminate the program.  Do NOT code a second STOP RUN to
+terminate the program--a structured program must have only one STOP RUN
+statement.
+
+If the date record is valid, edit the transaction records, placing all valid
+transactions in the edited transaction file.  The edited transaction file must
+contain a header record, in the following format:
+
+Header Record:           COLUMNS    CONTENTS
+                           1-5      Blanks
+                           6-13     File creation date (from date record)
+                          14-33     Your last name
+                          34-95     Blanks
+
+Use the criteria given below to validate the input records.
+
+FIELD                    EDIT CRITERIA
+
+Apartment ID:
+   Building ID           Alphabetic (A, B, C, or D)
+   Apartment number      Numeric, greater than zero
+Transaction code         Numeric (1, 2, or 3)
+Alter code               Numeric, in range 01-09
+Apartment/Townhouse      Alphabetic (AP or TN)
+Number or bedrooms       Numeric (0, 1, 2, or 3)
+Total square feet        Numeric, greater than zero
+Lease start date:
+   MM                    Numeric, in range 01-12
+   DD                    Numeric, in range 01-31
+   YYYY                  Numeric
+Lease end date:
+   MM                    Numeric, in range 01-12
+   DD                    Numeric, in range 01-31
+   YYYY                  Numeric
+Renter name(s)           At least one non-blank entry
+Number of occupants:
+   Number of adults      Numeric, greater than zero
+   Number of children    Numeric
+Pets                     Alphabetic (N, C, D, or O)
+Monthly rent             Numeric, greater than zero
+
+
+The exception report must list all invalid transactions along with the
+appropriate error message(s) to indicate why the transaction was rejected.  If
+a given transaction record has more than one field in error, the report must
+print an error message for each invalid field.  Prior to the error message(s)
+for a given transaction, print the apartment ID, the transaction code, and the
+contents of the rest of the transaction record.  Keep all of the output for a
+given transaction on a single page.  Follow the format shown on the sample
+report.  Double space before printing the output for the next invalid
+transaction record.
+
+At the end of the exception report, print a summary indicating the number of
+input transaction records (do not count the header), the number of invalid
+transactions, and the number of valid transactions.
+
+Finally, in order to verify the contents of the valid transaction file, close
+that file for output, open it for input, and print out each record contained
+in the file.  Do not format this output; instead, print each 95-character
+record as it exists in the file.
+
+
+NOTES ON THE FILES
+------------------
+
+1.   The unedited input file is stored on disk.  It contains standard labels
+     and is a blocked file.  The ASSIGN clause for this file should be ASSIGN
+     TO S-TRAN, and the JCL to access it is as follows:
+
+     //GO.TRAN   DD DSN=T90ASS1.SPRING01.APT.TRAN(UNEDITED),DISP=SHR
+
+2.   The edited transaction file created by your program will be a temporary
+     disk file.  It must have standard labels and must contain 40 records per
+     block.  The ASSIGN clause for this file should be ASSIGN TO S-EDITTRAN,
+     and the JCL for it is as follows:
+
+     //GO.EDITTRAN DD DSN=&&EDITED,UNIT=DISK,VOL=SER=ACA302,
+     //       SPACE=(TRK,(1,1)),DISP=(NEW,PASS)
+
+3.   The print file for the exception report should be specified as usual.
+
+</PRE>
+</BODY>
+</HTML>

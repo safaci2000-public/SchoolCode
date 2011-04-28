@@ -1,0 +1,289 @@
+<HTML>
+<HEAD>
+<TITLE>Assignment 0</TITLE>
+</HEAD>
+
+<BODY>
+<PRE>
+CSCI 250                 Assignment 0                   Spring 2001
+                          20 points
+
+
+The text of a Cobol program is included with this assignment, along
+with the job control language (JCL) needed to submit that program to
+the IBM S/390 computer for execution.
+
+Your task is to type this text, save it in a file, submit the file
+for "execution", fetch the output to your screen to see if it is
+correct, make any necessary changes to the file and resubmit it (as
+often as needed until it is correct), and finally submit the file for
+"execution AND print".  You will turn in the final printed copy.
+(Note:  You may submit the file for "execution AND print" before it is
+correct whenever you need a printed copy for debugging purposes).
+
+Learning the things in the preceding paragraph is primarily a
+do-it-yourself project, using the tutorial in the back of your COBOL
+PROGRAMMING NOTES AND EXAMPLES book.
+
+Sections 1 through 6 of CSCI 250 will begin the do-it-yourself process
+during the second class period of the semester.  This class meeting
+will be held in the CSL, PM 56, instead of the regular classroom.
+
+Section 7 will go the CSL, PM 56, immediately AFTER the first class
+period of the semester.  If that is not possible because of conflict
+with another class, teaching assistants will be available to help you
+get started on Thursday, January 18, from 2-6 p.m. in the FRL (Faraday
+East 217).
+
+TO WORK IN THE LAB, YOU WILL NEED
+1.  a valid logonid (Z number)
+2.  your password (originally set to the last 6 digits of your SSN)
+3.  the information in your NOTES AND EXAMPLES book
+
+If you ever need to have your password reset, dial 752-RSET.
+
+If you have registered but do not have your logon id, you can get it
+by telephone.  You will need your social security number and your
+registration PIN. (If you have forgotten your registration PIN, call
+815-753-0681.)  Here are the five steps to get your logon id:
+
+     (1) Call 815-752-RSET (7738).
+     (2) Select option one.
+     (3) Enter social security number.
+     (4) Enter registration PIN.
+     (5) Select the logon id option.
+
+If you are unable to complete your registration, you may obtain a
+temporary logon id by calling 815-753-5897 between 8 a.m. and 4:30
+p.m.  You must provide your name, social security number, and the
+course reference number(s) for which you will be enrolling.  This
+temporary account will be suspended after 30 days, so move all your
+files to your regular account as soon as you get it.
+
+
+A lot of information is available to help you use the system.
+Academic Computing Services has put many documents on the web. Visit
+www.niu.edu/acs/doc.html   Note especially "Using the Computer and
+Communications Facilities."  Students who want to submit programs from
+home should look at "Using the Student Computer and Communications
+Facilities from a Remote Personal Computer."
+
+Output from Assignment 0 will be the (unformatted) system date and
+time in the upper left corner, plus data about one computer science
+course, as follows:
+
+082800 18302510
+
+                    CSCI 250        Computer Programming in Cobol
+                    Credit hours:   4
+                    Prerequisites:  Math 110
+
+
+If you do not get this output, either you made a typo or you typed
+something in the wrong column. Both the JCL reader and the Cobol
+compiler are very fussy about which columns things are typed in.  JCL
+lines (beginning with a /) start in column 1.  Documentation lines
+(beginning with a *) start in column 7.  IDENTIFICATION DIVISION
+starts in column 8. SELECT... starts in column 12.  FD starts in
+column 8 and is followed by 2 spaces, so that INPUT-FILE starts in
+column 12.  Type the program exactly as given.  Do not try to improve
+it in any way.
+
+The program you turn in should have correct output, and both return
+codes should be 0000.  The return codes are in the center of about
+lines 6 and 7 of the JES2 Job Log (second printed page).  You should
+see return codes of 0000 for both the .COB step and the .GO step.
+
+When your program is working, submit it for "execution AND print" so
+the output will go to the printer instead of the screen.  Then submit
+it a SECOND TIME for "execution AND print" so that you will have a
+printed backup copy.  You are expected to make a PRINTED backup copy
+of every program during the entire semester.
+
+When you are done with Assignment 0, DO NOT DELETE the file containing
+the program.  You will modify it for Assignment 2.
+
+
+JCL AND COBOL PROGRAM:
+
+(Note to students:  You are expected to type the text of the Cobol
+program below exactly as given, INCLUDING THE DOCUMENTATION.  In the
+first two lines of the text, you must substitute your own Z number,
+name, and bin number.  Use the last three digits of your Z number as
+your bin number.)
+
+
+//ZxxxxxxA JOB ,'your name'
+/*JOBPARM ROOM=yourbinnumber
+//    EXEC IGYWCG,CPARM='FLAG(I,I),APOST,TEST(STMT)'
+//COB.SYSIN DD *
+      ***************************************************************
+      * Module Name:   Assign0
+      *
+      * Function:      To print data about one computer science
+      *                course.
+      *
+      * Input:         A file containing one course record.
+      *
+      * Output:        Three detail lines are printed from the data
+      *                on the input record.
+      *
+      * Notes:         None
+      ***************************************************************
+
+       IDENTIFICATION DIVISION.
+
+       PROGRAM-ID.  ASSIGN0.
+
+
+
+       ENVIRONMENT DIVISION.
+
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT INPUT-FILE ASSIGN TO S-SYSIN.
+           SELECT PRINT-FILE ASSIGN TO S-SYSOUT.
+
+           EJECT
+       DATA DIVISION.
+
+       FILE SECTION.
+
+      ***************************************************************
+      * The INPUT-FILE contains one 80-character customer record.
+      * Each record contains the course number, course title,
+      * credit hours, and prerequisites.
+      ***************************************************************
+
+       FD  INPUT-FILE
+           RECORDING MODE IS F.
+
+       01  INPUT-RECORD.
+           05  IN-COURSE-NUMBER           PIC X(8).
+           05  IN-COURSE-TITLE            PIC X(35).
+           05  IN-CREDIT-HOURS            PIC X.
+           05  IN-PREREQUISITES           PIC X(35).
+           05                             PIC X.
+
+
+      ***************************************************************
+      * The PRINT-FILE holds the output.  PRINT-RECORD is written
+      * from detail lines defined in WORKING-STORAGE.
+      ***************************************************************
+
+       FD  PRINT-FILE
+           LABEL RECORDS ARE OMITTED
+           RECORDING MODE IS F.
+
+       01  PRINT-LINE                 PIC X(132).
+
+           EJECT
+       WORKING-STORAGE SECTION.
+
+      ***************************************************************
+      * VARIABLE DICTIONARY
+      *
+      * SYSTEM-DATE-AND-TIME     Current system date and time.
+      * DETAIL-LINE-ONE          Course number and title.
+      * DETAIL-LINE-TWO          Credit hours.
+      * DETAIL-LINE-THREE        Prerequisites.
+      ***************************************************************
+
+       01  SYSTEM-DATE-AND-TIME.
+           05  SYS-DATE               PIC X(6).
+           05                         PIC X           VALUE SPACE.
+           05  SYS-TIME               PIC X(8).
+
+       01  DETAIL-LINE-ONE.
+           05                         PIC X(45)       VALUE SPACES.
+           05  DET1-COURSE-NUMBER     PIC X(8).
+           05                         PIC X(8)        VALUE SPACES.
+           05  DET1-COURSE-TITLE      PIC X(35).
+           05                         PIC X(36)       VALUE SPACES.
+
+       01  DETAIL-LINE-TWO.
+           05                         PIC X(45)       VALUE SPACES.
+           05                         PIC X(16)
+                                        VALUE 'CREDIT HOURS:'.
+           05  DET2-CREDIT-HOURS      PIC X.
+           05                         PIC X(70)       VALUE SPACES.
+
+       01  DETAIL-LINE-THREE.
+           05                         PIC X(45)       VALUE SPACES.
+           05                         PIC X(16)
+                                        VALUE 'PREREQUISITES:'.
+           05  DET3-PREREQUISITES     PIC X(35).
+           05                         PIC X(36)       VALUE SPACES.
+
+           EJECT
+       PROCEDURE DIVISION.
+
+      ***************************************************************
+      * 000-MAIN obtains the system date and time, then calls a
+      * subroutine to print it.  It reads the input record, then
+      * calls a subroutine to print the detail lines.
+      ***************************************************************
+
+       000-MAIN.
+
+           OPEN INPUT INPUT-FILE
+                OUTPUT PRINT-FILE.
+
+           ACCEPT SYS-DATE FROM DATE.
+           ACCEPT SYS-TIME FROM TIME.
+           PERFORM 100-PRINT-HEADER.
+
+           READ INPUT-FILE.
+           PERFORM 200-PROCESS-RECORD.
+
+           CLOSE INPUT-FILE
+                 PRINT-FILE.
+           STOP RUN.
+
+
+
+      ***************************************************************
+      * 100-PRINT-HEADER just prints the system date and time.
+      ***************************************************************
+
+       100-PRINT-HEADER.
+
+           WRITE PRINT-LINE FROM SYSTEM-DATE-AND-TIME
+               AFTER ADVANCING PAGE.
+
+
+           EJECT
+      ***************************************************************
+      * 200-PROCESS-RECORD fills in each detail line (with
+      * appropriate data from the input record) and writes it.
+      ***************************************************************
+
+       200-PROCESS-RECORD.
+
+           MOVE IN-COURSE-NUMBER TO DET1-COURSE-NUMBER.
+           MOVE IN-COURSE-TITLE TO DET1-COURSE-TITLE.
+           WRITE PRINT-LINE FROM DETAIL-LINE-ONE
+               AFTER ADVANCING 2 LINES.
+
+           MOVE IN-CREDIT-HOURS TO DET2-CREDIT-HOURS.
+           WRITE PRINT-LINE FROM DETAIL-LINE-TWO
+               AFTER ADVANCING 1 LINE.
+
+           MOVE IN-PREREQUISITES TO DET3-PREREQUISITES.
+           WRITE PRINT-LINE FROM DETAIL-LINE-THREE
+               AFTER ADVANCING 1 LINE.
+
+/*
+//GO.SYSIN  DD *
+CSCI 250Computer Programming in Cobol      4Math 110
+//GO.SYSOUT DD SYSOUT=*
+//
+
+(Note to students:  The input record follows the //GO.SYSIN line and
+must be typed exactly as shown.  Since the course title does not take
+up all 35 character positions allotted for it in the FD, blank spaces
+are used to fill in the remaining character positions.)
+
+</PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,348 @@
+<HTML>
+<HEAD>
+<TITLE>Sample Exam 1</TITLE>
+</HEAD>
+
+<BODY>
+<PRE>
+CSCI 250                            Name:____________________________________
+
+SAMPLE EXAM 1                       Section _______
+150 points
+
+
+
+PART I.  OBJECTIVE QUESTIONS
+
+IMPORTANT: Mark the answers to the objective questions on the separate answer
+sheet.
+
+
+
+True/False  (2 points each)
+
+1.   Area B includes columns 12-72.
+
+2.   A reserved word may NOT be used as a programmer-supplied data name.
+
+3.   The statement SELECT INPUT-FILE ASSIGN TO S-SYSIN
+     may be found in the CONFIGURATION SECTION of the ENVIRONMENT DIVISION.
+
+4.   In structured programming, the iteration construct (loop) must have a
+     single entry point but may have several exit points.
+
+5.   Record descriptions must start at level number 01.
+
+6.   COBOL will treat a line as documentation if it has a star (*) in column
+     7.
+
+7.   An elementary data item is a data item that is not further subdivided.
+
+8.   A numeric PICTURE clause may contain either a real decimal point or an
+     implied decimal point.
+
+9.   A data item with the picture clause PIC 99V99 occupies 5 character
+     positions.
+
+10.  The AT END clause makes the READ statement conditional and must be
+     terminated with either a period or the scope terminator END-READ.
+
+11.  The statement
+          MOVE '5.2' TO NUM-1
+     contains a valid numeric literal.
+
+12.  The statement
+               PERFORM 100-PROCESS
+     will implement a loop in COBOL.
+
+13.  A file must be open for input before it can be read successfully.
+
+14.  In COBOL-85, ALPHABETIC data may contain capital letters, small letters,
+     and blank spaces, but nothing else.
+
+15.  The WRITE verb requires reference to a file name.
+
+16.  Division names, section names, and paragraph names all must begin in
+     area A.
+
+17.  The purpose of a structured walkthrough is to detect errors.
+
+18.  A structured COBOL program may NOT contain more than one STOP RUN
+     statement.
+
+19.  A MOVE statement naming a group item may be either alphanumeric or
+     numeric depending on the picture clauses of the subordinate items.
+
+20.  On a COMPUTE statement with no parentheses, addition and subtraction are  done before multiplication and division.
+
+
+
+
+Multiple Choice  (2 points each)
+
+21.  Which of the following is a valid programmer-supplied data name?
+     a.   GROSS-$$$$
+     b.   TOTAL NUMBER-SOLD
+     c.   AVERAGE-AMOUNT-OF-SALE
+     d.   All of the above are valid.
+
+22.  Which of the following is NOT a valid programmer-supplied data name?
+     a.   AVERAGE-DOLLAR-AMOUNT
+     b.   ENVIRONMENT-SECTION
+     c.   WORKING-STORAGE
+     d.   Both b and c are not valid.
+
+23.  Which of the following is NOT a valid numeric literal?
+     a.   -2.4
+     b.   +987.5
+     c.   82.
+     d.   .82
+
+24.  Which of the following is a valid nonnumeric literal?
+     a.   'EMPLOYEE-ID'
+     b.   '2487'
+     c.   '24.87'
+     d.    All of the above are valid.
+
+25.  If a COBOL program compiles successfully, it means that
+     a.   the program will not ABEND.
+     b.   the program has no syntax errors.
+     c.   the program will produce correct ouput.
+     d.   all of the above.
+
+26.  Given the following statement:
+
+          READ INPUT-FILE
+               AT END MOVE 'Y' TO EOF-FLAG
+          END-READ.
+
+     If INPUT-FILE contains 15 records, 'Y' will be moved to EOF-FLAG
+
+          a.   the first time the READ is executed.
+          b.   the fifteenth time the READ is executed.
+          c.   the sixteenth time the READ is executed.
+          d.   'Y' will never be moved to EOF-FLAG.
+
+27.  Which of the following statements will leave 1 blank line above the line
+     to be printed?
+     a.   WRITE PRINT-LINE.
+     b.   WRITE PRINT-LINE AFTER ADVANCING 2 LINES.
+     c.   WRITE PRINT-LINE AFTER SKIPPING 2 LINES.
+     d.   WRITE PRINT-LINE AFTER ADVANCING 1 LINE.
+
+28.  In COBOL, which of the following statements will increment a field
+     called COUNT by the value 5?
+     a.   ADD 5 TO COUNT.
+     b.   ADD COUNT 5 GIVING COUNT.
+     c.   COMPUTE COUNT = COUNT + 5.
+     d.   All of the above will correctly increment COUNT.
+
+29.  Given: FIELD-1    PIC 99V999     VALUE 33.378.
+            FIELD-2    PIC 99V99.
+
+     The statement: MOVE FIELD-1 TO FIELD-2 ROUNDED
+
+     a.   will place the digits 3338 in FIELD-2.
+     b.   will place the digits 3337 in FIELD-2.
+     c.   will cause a syntax error.
+     d.   will cause an ABEND.
+
+30.  Which of the following is NOT a valid scope terminator?
+     a.   END-READ
+     b.   END-MOVE
+     c.   END-ADD
+     d.   END-COMPUTE
+
+31.  Given the following fields:
+          STUDENT-NAME    PIC X(10)     VALUE 'JOHN SMITH'.
+          STUDENT-FIRST   PIC X(5)      VALUE 'MARY'.
+     What are the contents of STUDENT-NAME after execution of the statement:
+          MOVE STUDENT-FIRST TO STUDENT-NAME.
+     Note: Each b means one blank space.
+
+     a.   MARYbbbbbb
+     b.   MARY SMITH
+     c.   bbbbbbMARY
+     d.   This move is not allowed.
+
+32.  Given the following fields:
+           FIRST-FIELD   PIC X(10)   VALUE 'AABBCCDDEE'.
+           SECOND-FIELD  PIC X(6)    VALUE 'FFFFFF'.
+
+     What are the contents of FIRST-FIELD after execution of the following
+     statement:
+           MOVE SECOND-FIELD TO FIRST-FIELD.
+
+     a.   FFFFFF
+     b.   FFFFFFbbbb
+     c.   FFFFFFDDEE
+     d.   bbbbFFFFFF
+
+33.  Given the following fields:
+          NUM-1     PIC 99V99         VALUE   12.34.
+          NUM-2     PIC 999V9.
+     What digits are in NUM-2 after execution of the statement:
+          MOVE NUM-1 TO NUM-2.
+     a.   0123
+     b.   1230
+     c.   1234
+     d.   This move is not allowed.
+
+34.  Given the following fields:
+          NUM-1       PIC 9(3)V99   VALUE 745.67.
+          NUM-2       PIC 99V9.
+     What digits are in NUM-2 after execution of the statement:
+          MOVE NUM-1 TO NUM-2.
+     a.   745
+     b.   567
+     c.   557
+     d.   456
+
+35.  Which of the following does not belong in the FD for an input file?
+     a.   SELECT INPUT-FILE ASSIGN TO S-SYSIN.
+     b.   LABEL RECORDS ARE STANDARD
+     c.   BLOCK CONTAINS 0 RECORDS
+     d.   RECORDING MODE IS F
+
+
+
+PART II.    CODING, INTERPRETING CODE, PROGRAM LOGIC
+
+A.   Short coding problems.  (3 points each)
+
+     (1)  Open a file named PRINT-FILE so that records can be written to it.
+
+
+
+
+     (2)  Read a record from a file called STUDENT-FILE, which has already
+          been opened for input.
+
+
+
+
+
+     (3)  Write the instruction that should always end the main routine in a
+          COBOL program.
+
+
+
+
+     (4)  Implement a loop to process all of the records in the PRODUCT-
+          FILE.  The body of the loop is a procedure called 100-PROCESS, and
+          you want to stop processing records when EOF-FLAG is equal to 'Y'.
+
+
+
+
+
+
+     (5)  Using the information in the preceding question, write the last
+          COBOL instruction that should appear in 100-PROCESS.
+
+
+
+
+
+
+     (6)  Rewrite the following statement using the COMPUTE verb:
+               ADD NUM1 NUM2 NUM3 GIVING NUM4 ROUNDED.
+
+
+
+
+
+     (7)  Add SALE-AMT to the accumulator TOTAL-SALES, producing the error
+          message 'TOTAL-SALES TOO SMALL' if the PICTURE clause for TOTAL-
+          SALES does not have enough digit positions to the left of the
+          decimal point.
+
+
+
+
+
+     (8)  Divide FLD-A by FLD-B, rounding the quotient and placing it in
+          FLD-C.  Place the remainder in FLD-D.
+
+
+
+
+
+
+
+
+
+B.   In the table below, write the new contents of each CHANGED field.  If
+     the field is not changed by the instruction, LEAVE IT BLANK.
+     (3 points per instruction)
+
+     For each instruction, use the same initial values (given below).  Show
+     the contents of the entire field.  Use a V to indicate an inmplied
+     decimal point.
+
+          Data Name:              A         B              C              D
+          Picture Clause:      99V99        9(4)       9(4)V9       99V99
+          Initial Value:       10V77        0010       0125V2       50V62
+
+                              ________________________________________________
+                             |           |           |           |           |
+     ADD A TO D.             |           |           |           |           |
+                             |___________|___________|___________|___________|
+                             |           |           |           |           |
+     ADD A B D               |           |           |           |           |
+        GIVING C ROUNDED.    |___________|___________|___________|___________|
+                             |           |           |           |           |
+      SUBTRACT D FROM C.     |           |           |           |           |
+                             |___________|___________|___________|___________|
+                             |           |           |           |           |
+      MULTIPLY C BY B.       |           |           |           |           |
+                             |___________|___________|___________|___________|
+      MULTIPLY D BY 4        |           |           |           |           |
+        GIVING C ROUNDED.    |           |           |           |           |
+                             |___________|___________|___________|___________|
+      DIVIDE B BY 6          |           |           |           |           |
+        GIVING D ROUNDED     |           |           |           |           |
+        REMAINDER A.         |___________|___________|___________|___________|
+                             |           |           |           |           |
+      COMPUTE C ROUNDED =    |           |           |           |           |
+        A + D * B            |___________|___________|___________|___________|
+
+
+
+
+C.   (10 points) Write the FD and 01 record description for the following
+     input file of sales transactions:
+
+          COLUMNS                  CONTENTS
+            1-5                         Item ID
+            6-8                         Quantity Sold
+            9-14                        Price Each (dollars and cents)
+           15-34                        Description
+           35-80                        Unused
+
+
+D.   (14 points)  Using the input record you described in the previous
+     question, write the complete PROCEDURE DIVISION to process all of the
+     records in the file.  For each record, print one detail line containing
+     the data from the input record plus the calculated total sale amount
+     (quantity * price).  At the end of the report, print out the grand total
+     of all the total sale amounts.  Do NOT print page and column heads or
+     anything else extra.  Assume that anything you would need to have in the
+     Data Division has been properly defined.  Use PRT- as a prefix for data
+     names on the detail line.  Use SUM- as a prefix for data names on the
+     summary line.
+
+
+E.   (14 points)  Draw a flowchart of the logic required to solve the problem
+     below.  A blank sheet of paper is attached.
+
+     Read a file containing an unknown number of records.  Each record contains
+     the following data about the sale of one used car:  vehicle identification
+     number, year, model, price, and color.  Print the data from each record.
+     At the end of the report, print the total number of cars sold, the grand
+     total of all the selling prices, the average price per car sold, and the
+     number of red cars sold.
+
+</PRE>
+</BODY>
+</HTML>

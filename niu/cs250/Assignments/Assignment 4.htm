@@ -1,0 +1,73 @@
+<HTML>
+<HEAD>
+<TITLE>Assignment 4</TITLE>
+</HEAD>
+
+<BODY>
+<PRE>
+CSCI 250               Assignment 4                  Spring 2001
+                Signed Numbers, Edited Output,
+               IF, EVALUATE, Multi-Page Reports
+                        (60 points)
+
+
+A furniture store needs a sales report.
+
+
+INPUT:
+
+Each input record represents one sale and is formatted as
+follows:
+
+     Columns 1-6     Customer number (2 letters plus 4 digits)
+               7     Unused
+             8-13    Date (mmddyy)
+               14    Unused
+            15-21    Amount of sale/return (dollars and cents)
+               22    Unused
+               23    Transaction type
+                         1=sale
+                         2=return
+               24    Room type code
+                         1=Dining room
+                         2=Living room
+                         3=Bedroom
+                         4=Miscellaneous
+            25-80    Unused
+
+Use the following JCL to access the input data:
+
+     //GO.SYSIN DD DSN=T90ASS1.SPRING01.COBDATA(DATA04),DISP=SHR
+
+
+OUTPUT:
+
+Format your output to look like the sample report provided
+separately.
+
+
+PROCESSING NOTES:
+
+(1) Use floating dollar signs.
+
+(2) Print returns as a negative number in the Amount column
+(using the numeric edited symbol CR).  If the Running Total
+becomes negative, show that with CR also.
+
+(3) For the gross sales amounts, indicate negative numbers by a
+minus sign after the dollar amount.
+
+(4) Double space the detail lines. This will be a multi-page
+report. Print 15 detail lines per page. Print page and column
+heads at the top of each page.  The page headers must include the
+page number.
+
+(5) Print the gross sales on the last page of detail lines.
+
+(6) Along with the program, turn in flowcharts plus a copy of the
+input data (use the print punch utility program on page 4 of the
+Notes and Examples book).
+
+</PRE>
+</BODY>
+</HTML>
