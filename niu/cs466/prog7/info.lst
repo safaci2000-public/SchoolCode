@@ -1,0 +1,37 @@
+SQL> describe musich.cust
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUST_ID                                            CHAR(3)
+ CUST_LNAME                                         CHAR(11)
+ CUST_FNAME                                         CHAR(8)
+ CUST_STREET                                        CHAR(20)
+ CUST_CITY                                          CHAR(14)
+ CUST_STATE                                         CHAR(2)
+ CUST_ZIP                                           CHAR(5)
+ CUST_BALANCE                                       NUMBER(5)
+ CUST_CREDIT_LIMIT                                  NUMBER(5)
+
+SQL> describe musich.orders;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ORDER_NUMBER                                       CHAR(3)
+ ORDER_DATE                                         DATE
+ CUST_ID                                            CHAR(3)
+
+SQL> describe musich.ordlin;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ORDER_NUMBER                                       CHAR(3)
+ ITEM_NUMBER                                        NUMBER(3)
+ QUANTITY_ORDERED                                   NUMBER(3)
+ ORDER_PRICE                                        NUMBER(3)
+
+
+SQL> describe musich.item;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ITEM_NUMBER                                        NUMBER(3)
+ ITEM_DESCRIPTION                                   CHAR(20)
+ ITEM_QUAN_ON_HAND                                  NUMBER(3)
+ ITEM_PRICE                                         NUMBER(3)
+

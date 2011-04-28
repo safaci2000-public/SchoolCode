@@ -1,0 +1,1077 @@
+                                    NIU
+
+                               IMS Simulator
+
+                               User's Manual
+
+                                John Winans
+
+                             November 2, 1987
+
+A NOTE FROM THE AUTHOR
+
+In the past year and a half I have enjoyed providing support for the IMS
+simulator. Since the simulator was designed and written in-house, it
+receives no support outside that provided by students. If you are a good
+assembler debugger and coder and wish to join the few who have put in time
+on the IMS project, get a hold of the NIU computer science department
+member currently in charge of the IMS system. At the time of the writing of
+this manual the source code was written in 19,800 lines of assembler code.
+Have fun!
+
+- John
+
+NOTES: Here are a few things that have been discovered over the years:
+
+1. REGION parameter should be 4096K or see RC=20.
+
+2. We seem to have lost ASMTDLI use CBLTDLI for both assember and cobol
+programs.
+
+3. Run the load program and the application program as two separate jobs
+otherwise LINK takes the wrong &&OBJSET and you get a 806 or DLITCBL not
+found error.
+
+Date Modified: 10/1/97, for original and to make changes please see Dr.
+Kathi Hogshed Davis
+
+                         VOLUME TABLE OF CONTENTS
+
+1.0 INTRODUCTION
+
+2.0 GENERAL DESCRIPTION
+
+3.0 DETAILED DESCRIPTION
+
+3.1 DBDGEN MACROS
+
+3.1.1 THE DBD MACRO
+
+3.1.2 THE DATASET MACRO
+
+3.1.3 THE SEGM MACRO
+
+3.1.4 THE FIELD MACRO
+
+3.1.5 THE DBDGEN MACRO
+
+3.1.6 THE FINISH MACRO
+
+3.1.7 THE END STATEMENT
+
+3.2 PSB GENERATION MACROS
+
+3.2.1 THE PCB MACRO
+
+3.2.2 THE SENSEG MACRO
+
+3.2.3 THE PSBGEN MACRO
+
+3.3 PREPARING THE APPLICATION PROGRAM
+
+3.3.1 NAMING CONVENTIONS
+
+3.3.2 LINKAGE CONVENTIONS
+
+3.4 JOB STREAM JCL AND IMS PROCEDURES
+
+3.4.1 TYPES OF IMS RELATED JOBS
+
+3.4.1.1 APPLICATION PROGRAMS
+
+3.4.1.2 DBDGENS AND PSBGENS
+
+3.4.2 THE ASK PROCEDURE
+
+3.4.3 THE IMSSEG PROCEDURE
+
+3.4.4 THE DFSDUMP PROCEDURE
+
+4.0 IMS SIMULATOR ERROR MESSAGES AND CODES
+
+4.1 IMS SIMULATOR PCB STATUS CODES
+
+4.2 IMS SIMULATOR ABEND CODES
+
+4.3 IMS SIMULATOR DEBUGGING MODE
+
+5.0 ENHANCEMENTS FROM PREVIOUS VERSIONS
+
+APPENDIX IMS SIMULATOR LIBRARY NAMES
+
+The information in this manual has been primarily based on my understanding
+of the IMS simulator's source code. The descriptions of some of the status
+codes were lifted from pages 288 thru 301 of the IMS/VS VERSION1 RLSE3
+manual, PROGRAM PRODUCT NUMBER 5740-XX2.
+
+1.0. INTRODUCTION
+
+This document describes the NIU IMS simulator. written by the students and
+faculty of NIU over the time period of 1973 to 1987. The IMS simulator was
+designed for instructional purposes and as such is not capable of dealing
+with some of the more extravagant features found in the real IMS world.
+
+2.0. GENERAL DESCRIPTION
+
+The IMS simulator is a program written in IBM assembler language that
+consists of one load module named DFSRRC00 (which will be referred to as
+IMS.) When you run IMS you are doing no more than executing this load
+module. However, IMS requires that certain modules be located in certain
+libraries, and that these modules follow a strict naming convention.
+
+In order to operate correctly, IMS must be able to access your DBD load
+module(s), PSB load module, application program, and your IMS database. A
+JCL procedure is available that will link edit all of the above load
+modules and handle the DDname conventions, however, the user must be aware
+of the load module naming conventions or else suffer the rath of the
+vicious S213 return code.
+
+3.0. DETAILED DESCRIPTION
+
+The macros and JCL procedures are not the same as those required by real
+IMS. They have been designed to be as close a facsimile as possible. This
+section describes the services available to the NIU version as accurately
+as possible.
+
+3.1. DBD GENERATION MACROS
+
+The DBD generation process is used to tell IMS (as opposed to the
+application program's view of) exactly what the database looks like and
+what the name of the database is.
+
+The database is defined by coding a set of macro calls in IBM assembler.
+These macros are used to define the names of the segments, the names of the
+fields within the segments, which fields are to be used as keys, and the
+lengths of the fields and segments.
+
+3.1.1. THE DBD MACRO The DBD macro is used to define the name of the
+database and the type of structure that is to be stored in.
+
+Parameters:
+
+NAME= The name of the database being defined. The name must be a valid load
+module name
+
+ACCESS= The name of the access method used for this DBD. It defaults to
+HIDAM. If it is coded, it must be HIDAM.
+
+Example: DBD NAME=MYDBD,ACCESS=HIDAM
+
+3.1.2. THE DATASET MACRO. The DATASET macro is used to define the DDname of
+the data set that will be used to access the database. This is optional and
+totally irrelevant since the DDname used at run time MUST ALWAYS be the
+same as the name of the database (the DBD name.) This macro is also used to
+define the type of DASD device that the database will/does reside on. This
+too is irrelevant since IMS really uses QSAM to deal with the physically
+stored database and the operating system will deal with the device
+dependent problems.
+
+Parameters:
+
+DD1= The DBDname that IMS is to use to access the stored database. This is
+optional and if specified MUST BE the same name as the DBD name specified
+on the DBD macro!!!!!
+
+DEVICE= The type of DASD device on which the database is to reside. This is
+optional, for the simulator, and if specified, MUST BE 3350. Even though
+the real device may even be a tape! (Remember, all of this is for
+instructional purposes.)
+
+Example: DATASET DD1=MYDBD,DEVICE=3350
+
+3.1.3. THE SEGM MACRO. This macro is used to define the name, size,
+position of the segment in the database, and the rules to be followed when
+inserting new occurrences of this segment type into the database. There may
+be up to 256 segment types (SEGM macros) in one DBD.
+
+Parameters:
+
+NAME= The name of the segment type defined. This must be from 1 to 8
+characters.
+
+PARENT= The name of the parent segment for this segment type, or if this is
+a root segment type 0. 0 is the default if this parameter is not specified.
+
+BYTES= This is a 2 parameter sublist whose first value contains the minimum
+number of bytes long the data portion of a segment is to be, and the second
+is the maximum. For a segment of fixed length, these two numbers will be
+the same.
+
+RULES= This is a 2 parameter sublist whose first value is normally used for
+logical relationships and is not supported. The second is used for segments
+that have non-unique keys (sequence fields) or no keys. This value is used
+to determine where, within the twin chain, a new segment will be inserted.
+It is allowed to be one of three values FIRST, HERE, or LAST. If this
+parameter is not specified, it will default to LAST.
+
+Example: SEGM NAME=MYSEG,PARENT=0,BYTES=(80,80),RULES=(,HERE)
+
+3.1.4. THE FIELD MACRO. This macro is used to define the name and position
+of a field that may be used by the application program to locate a segment
+based on this field's contents. There may be up to 1000 fields defined in
+one DBD and each field in the DBD must have a unique name.
+
+Parameters:
+
+NAME= This is a three parameter sublist of which the first subparm is the
+name of the field being defined. The name may be from one to eight
+characters long. The second and third subparms are present only if the
+field is to be a sequence field. The second subparm is always SEQ if
+present. Only zero or one sequence field is allowed in each segment type
+being defined. The third subparm is either M if the sequence field may have
+multiple occurrences of the same key value, or U if the sequence field must
+only allow unique values.
+
+BYTES= The number of bytes long the field is to be. This must be nonzero.
+
+START= The position at which the field begins. This must be nonzero.
+
+Example: FIELD NAME=(MYFIELD,SEQ,M),BYTES=23,START=8
+
+FIELD NAME=SRCHFLD,BYTES=5,START=3
+
+3.1.5. THE DBDGEN MACRO. This macro signals the end of the DBD segment and
+field definitions and handles the generation of the DBD control blocks. It
+has no parameters.
+
+Example: DBDGEN
+
+3.1.6. THE FINISH MACRO. This macro is used to check and see if everything
+went ok. It does this by examining the status of all the macros used in the
+DBD generation and causes an undefined reference to be caused if anything
+went wrong (in turn generating a nonzero step return code.) This has no
+parameters.
+
+Example: FINISH
+
+3.1.7. THE END STATEMENT. The assembly must conclude with an end statement.
+
+Example: END
+
+3.2. PSB GENERATION MACROS
+
+The purpose of the PSB generation (or PSBgen) is to tell IMS what
+information it is to allow a specific application program to access, the
+name of the application program, and the language that the application
+program is written in (for linkage conventions.) The PSBgen looks like a
+DBDgen without any field macros coded.
+
+3.2.1. THE PCB MACRO. This macro is used to specify the name of the DBD,
+type of processing options for this PCB, and whether single or multiple
+positioning is to be used. There must be at least one PCB macro coded for a
+PSBgen and may be more. For each PCB macro coded, the parm list passed to
+the user program will contain a pointer to a PCB. The PCB pointers passed
+to the user program will be in the order that they are defined in the
+PSBgen.
+
+Parameters:
+
+TYPE= This is used to specify whether the PCB is to be used for
+teleprocessing(TP) or database(DB) purposes. This is optional and if
+specified, must be DB.
+
+DBDNAME= This is used to specify the name of the DBD that this PCB is
+associated with. It is required for every PCB macro coded since each PCB
+might refer to a different DBD.
+
+PROCOPT= This is used to specify the processing options for this PCB. It is
+required and must be one to four of the following:
+
+G allows get calls only
+
+I allows insert calls
+
+R allows replace calls
+
+D allows delete calls
+
+A allows any types of calls
+
+LS allows inserts for initial loading
+
+If LS is specified, no other procopts are allowed.
+
+KEYLEN= The length of the longest possible concatenated key. This is
+required so that the space may be set aside for it in the PCB. It is ok if
+the specified length is larger than that actually possible, however if the
+length specified here is too small, IMS will merrily blow away code and
+control blocks in what ever happens to be sitting at the end of the PCB.
+Perhaps resulting in a sneaky SOC4 return code that might take some hair
+removing time to figure out.
+
+POS= The positioning option for the PCB. This is optional and if specified,
+must be S. Multiple positioning is not supported.
+
+Example: PCB DBDNAME=MYDBD,PROCOPT=LS,KEYLEN=41
+
+3.2.2 THE SENSEG MACRO. The senseg macro is used to specify what segments
+the application program is allowed to access and what information the
+application program is allowed to get out of those segments. The purpose is
+to let the application program view the whole tree or just part of it. If
+any segment is not present in a PCB, the application program may use the
+database as if it were physically non-existent. This allows for simpler
+code, in some cases. It also allows for some security at the segment level.
+
+Parameters:
+
+NAME= The name of the segment as specified for the same segment in the DBD.
+
+PARENT= The name of the parent of the segment as specified in the DBD. This
+is optional and has a default value of 0.
+
+PROCOPT= The access allowed to this segment type. It is optional and
+defaults to D. If specified, one of the following MUST be specified:
+
+D access to all data in segment
+
+K access to key field only
+
+If K is specified, then no data will be returned in the specified I/O
+buffer. The key will appear in the PCB key feedback area. This allows
+access to other segments that are dependents of the K procopt segment,
+while providing some security from the data in the K procopt segment(s).
+
+Example: SENSEG NAME=MYSEG,PARENT=0,PROCOPT=K
+
+SENSEG NAME=ROOTSEG
+
+3.2.3 THE PSBGEN MACRO. This macro is similar to the DBDGEN macro in that
+it performs the actual generation of the control block(s) needed to define
+the PCB(s). There is only one PSBGEN macro coded for the PSBgen process no
+matter how many PCB macros are coded. It is used to specify the language
+that the application program was written in, and the name of it.
+
+Parameters:
+
+LANG= The language of the application program. This is optional and
+defaults to COBOL. If coded, it MUST be either COBOL or ASSEM. Since COBOL
+and assembler abide by the same linkage conventions, it really makes no
+difference.
+
+PSBNAME= The name of this PSB. The load module name and entry point name
+(unless DLITCBL is coded in the application program) of the application
+program MUST BE THE SAME. This is how IMS goes about finding the
+application program in the load library!!!!
+
+Example: PSBGEN PSBNAME=MYPSB
+
+3.3 PREPARING THE APPLICATION PROGRAM
+
+The application program may be written in any language as long as it
+follows the standard COBOL linkage conventions. It may be noted that, if so
+desired, the application program may be written in any languages) as long
+as it's interfaces with IMS follow the standard linkage conventions (happy
+link-editing!)
+
+3.3.1 NAMING CONVENTIONS. The application program MUST have the same load
+module name as the name of it's associated PSB ... NO MATTER WHAT! It will
+receive as many parameters as there were PCB macros coded in the PSBgen.
+These parms point to separate PCBs that are used to pass status information
+from IMS to the application program. If so desired, the application program
+may specify DLITCBL as it's entry point (but the load module name MUST BE
+THE SAME AS THE PSB NAME!!!)
+
+3.3.2 LINKAGE CONVENTIONS. When the application program calls IMS it MUST
+call either CBLTDLI or ASMTDLI and pass a standard COBOL parm list
+containing 3 to 18 parms consisting of the following:
+
+parm 1 Address of one of the following function codes: GU, GN, GHU, GHN,
+GNP, GHNP, ISRT, DLET, REPL, DISP. Where DISP is a special debugging
+function code only available on the NIU simulator (see, something good came
+of this) that causes IMS to print the current PCB status and the status of
+the specified PCB after every call. See 4.3.
+
+PARM 2 - ADDRESS OF THE PCB TO USE FOR THIS call.
+
+PARM 3 - ADDRESS OF THE I/O BUFFER TO USE for this call.
+
+parms 4-18 addresses of SSAs to use in the call.
+
+Remember (for you assembler coders) that the last entry in a standard COBOL
+parm list will ALWAYS have it's high order bit set!!! If you forget this,
+the results will most always be that of some nasty message from the ASMTDLI
+CSECT or a SOC4 with the PSW pointing somewhere in the CBLTDLI CSECT or
+DFSRRC00 load module!
+
+The CBLTDLI (or ASMTDLI) CSECT will be pulled from the IMS load library at
+link-edit time in order to resolve the V-con to it. It may be of interest
+to note how the application program really gets back to DLI to complete its
+calls since the CBLTDLI CSECT is really just part of the application
+program and does not do the actual DLI processing.
+
+The PCB has in it a field that is a pointer to a control block called the
+JCB. There is one (1) JCB for each PCB. The JCB contains information that
+pertains to the status of the PCB over the whole time the job is active
+under DLI (for example, the number of each type of call, whether the last
+call was a hold call, and where current position is in the database at each
+level in the current and last call's segment path.) The JCB also has some
+control block pointers, one of which is to a control block named the PST.
+
+The PST (as you might have already guessed) contains the status of all the
+JCBs and a list of V-cons that are the entry points for each of the allowed
+function codes. So the CBLTDLI csect really only contains a simple routine
+to chase some pointers to the PST, check if the function code is in the
+table, then call CSECT that it's corresponding V-con points to in the PST.
+
+S000oooooo, don't ever write any information into the PCB yourself that may
+destroy the JCB pointer in the PCB. The results are most always a SOC4 with
+the PSW pointing somewhere into the CBLTDLI CSECT!
+
+3.4. JOB STREAM JCL AND IMS PROCEDURES
+
+The JCL required for IMS is mostly supplied in procedures that are located
+in the IMS procedure library (see appendix for IMS system library names.)
+
+3.4.1. TYPES OF IMS RELATED JOBS. There are basically two types of IMS
+related jobs as far as the user is concerned. The execution of the IMS
+application program, and the control block generation jobs.
+
+3.4.1.1. APPLICATION PROGRAMS. To assemble and/or compile the application
+program, you may simply use the procedures that you are acquainted with or
+write your own JCL, just as long as the resulting object module(s) end(s)
+up in the standard &&OBJSET temporary data set. Then use the IMSSEG PROC to
+link edit the application program, PSB, and DBD(s).
+
+3.4.1.2. DBDGENs AND PSBGENs. The assembler must be used to perform the
+required work for the DBDgens and PSBgens. The assembler must have
+available to it, the IMS user macro library. A procedure has been prepared
+specifically for this purpose, it is in the IMS procedure library, and it
+is named ASM (see appendix for IMS system library names.)
+
+3.4.2 THE ASM PROCEDURE. The ASM procedure has been designed specifically
+for the purpose of performing DBDgens and PSBgens. It is very similar to
+the ASMHC procedure, except that it does not include the usual SYS1 and
+SYS2 macro libraries. It has only the IMS user macro library included in
+the SYSLIB dataset. To use the ASM procedure, the IMS simulator procedure
+library must be specified as the PROCLIB dataset for the job (see appendix
+for IMS system library names.)
+
+Example:
+
+//PROCLIB DD DSN=(IMS procedure library name),DISP=SHR
+
+// EXEC ASM
+
+//ASM.SYSIN DD *
+
+(your DBD or PSB gen macros go here)
+
+/*
+
+//ASM.SYSLIN DD DSN=(your DBD or PSB object data set)...
+
+Note: The object deck should be sent to a PDS especially for a DBDgen.
+Because otherwise you may not be able to work with multiple IMS databases
+with the same application program. See the suggested INSSEG JCL below and
+the linkage editor manual for reasons.
+
+3.4.3 THE IMSSEG PROCEDURE. The IMSSEG procedure has been designed
+specifically for the purpose of link-editing the application program,
+link-editing the DBD(S) , link-editing the PSB, and executing IMS. (NOTE:
+If you are using COBOL-II, use a procedure called IMSSEG85 instead.)
+
+To use the IMSSEG procedure you must have the IMS procedure library
+specified as the PROCLIB dataset. The IMSSEG procedure allows the user to
+load, access and update or backup IMS databases. The options that the user
+wishes to use are communicated to the IMSSEG procedure via use of a few
+symbolic parms.
+
+Parameters:
+
+PSBNAME= This specifies the name of the PSB. By convention this MUST also
+be the name of the application program. The procedure uses this name for
+the PSB load module and the application program. It also passes this name
+to IMS to tell it the name of the program to run. This parameter is
+required.
+
+LOADMEM= This specifies what databases will be loaded in this program run.
+Each specified name must be separated by a semicolon. Each database on this
+list will be given an empty database with the capability to grow to a
+maximum size of 64K. This is optional and is to be specified ONLY for a
+database load.
+
+WRITE= This specifies the names of the databases that are to be written to
+disk after the application program terminates. It also specifies the DDname
+of the dataset that they will be unloaded to. This parameter is optional
+and should only be used if the user wishes to save the database image at
+the end of the application program. Recall however that the original
+database image will be retained if the disp on it does not delete it. So,
+this is usually used after database loads or database updates.
+
+LOADLIB= This specifies the name of the IMS load library. It is mandatory,
+but has a default of the library name. So it need not be specified by the
+user.
+
+NOTE: Commas instead of semicolons in the LOADMEM or WRITE between database
+names will cause a U0001 BAD FORMAT ERROR.
+
+Examples: The first is general IMS JCL.
+
+//PROCLIB DD DSN=(IMS procedure library name),DISP=SHR
+
+// EXEC (COBUC, ASMHC, etc. as necessary for application)
+
+.
+
+.
+
+// EXEC IMSSEG,COND=(0,NE),
+
+// PSBNAME=userpsb,
+
+// LOADMEM='(dbdl;dbd2;dbd3)',
+
+// WRITE='(dbdl.punchl;dbd4.punch2)'
+
+//DBDLINK.SYSLIN DD *
+
+INCLUDE DBDLIB(dbdl)
+
+NAME dbdl
+
+INCLUDE DBDLIB(dbd2)
+
+NAME dbd2
+
+INCLUDE DBDLIB(dbd3)
+
+NAME dbd3
+
+INCLUDE DBDLIB(dbd4)
+
+NAME dbd4
+
+INCLUDE DBDLIB(dbd5)
+
+NAME dbd5
+
+/*
+
+//DBDLINK.DBDLIB DD DSN=(Your DBD object module lib name),
+
+// DISP=SHR,.....
+
+//PSBLINK.SYSLIN DD DSN=(your PSB object module name),
+
+// DISP=SHR,......
+
+//IMS.dbd4 DD DSN=database4,DISP=(OLD....)....
+
+//IMS.dbd5 DD DSN=database5,DISP=(OLD....)....
+
+//IMS.punch1 DD DSN=new.database1,DISP=(NEW....)....
+
+//IMS.punch2 DD DSN=new.database4,DISP=(NEW...).......
+
+//IMS.
+
+//IMS. any DDnames used by the application program
+
+//IMS.
+
+//
+
+The above JCL is a good example of how to handle loading and updating of
+several databases at the same time. In this example let us assume that the
+PSB for the application program has PCBs for dbd1, dbd2, dbd3, dbd4, and
+dbd5. Before the application program runs, IMS will set aside three 64K
+buffers for the databases 1, 2, and 3 because they are on the LOADMEM list.
+IMS will also read in database4 through the DDname dbd4 and database5
+through DDname dbd5. IMS knows to read in dbd4 and dbd5 because they appear
+in the PSB and are not in the LOADMEM list!! IMS uses the DBD name as the
+DDname if it has to read in a database!!
+
+IMS MUST be able to get to the DBDs! It expects to find all the DBDs to
+appear in the DBD library created by the DBDLINK step. So, there MUST be a
+NAME card for each DBD that appears in the PSB. The example DBDLINK step
+will link edit each of the five DBDs and save then as separate members in
+the DBD library. It is assumed that the user has already assembled the DBDs
+and saved the object modules for each of them in the same library specified
+on the DBDLINK.OBJLIB DD card.
+
+AT this time the application program is given control.
+
+When the application program terminates, IMS will write databases 1 and 4
+out to punchl and punch2 respectively. The punch1 and punch2 datasets will
+be filled with the 64K images of the IMS databases. Then IMS will terminate
+processing. It should be noted here that database2, database3, and
+database5 do not get their image written out in this job! In fact, since
+database2 and database3 were on the LOADMEM list, they were empty at the
+start of the application program and will be thrown away at the end. This
+may be useful if the application program needs an IMS scratch database!
+
+Example of the loading of a single database (dbdl.)
+
+//PROCLIB DD DSN=(IMS procedure library name),DISP=SHR
+
+// EXEC (IGWYC, ASMHC, etc. as necessary for application)
+
+.
+
+.
+
+// EXEC IMSSEG,COND=(0,NE),
+
+// PSBNAME=userpsb,
+
+// LOADMEM='(dbdl)',
+
+// WRITE='(dbdl.punchl)'
+
+//DBDLINK.SYSLIN DD *
+
+INCLUDE DBDLIB(dbdl)
+
+NAME dbdl
+
+/*
+
+//DBDLINK.DBDLIB DD DSN=(Your DBD object module lib name),
+
+// DISP=SHR,.....
+
+//PSBLINK.SYSLIN DD DSN=(your PSB object module name),
+
+// DISP=SHR,......
+
+//IMS.punchl DD DSN=new.databasel,DISP=(NEW...).......
+
+//IMS.
+
+//IMS. any DDnames used by the application program
+
+//IMS.
+
+//
+
+An example of single database access with no new database written back out
+(good for read only applications or testing update applications.) Note the
+lack of the LOADMEM and WRITE parms .
+
+//PROCLIB DD DSN=(IMS procedure library name),DISP=SHR
+
+// EXEC (IGWYC, ASMHC, etc. as necessary for application)
+
+.
+
+.
+
+// EXEC IMSSEG,COND=(0,NE),
+
+// PSBNAME=userpsb
+
+//DBDLINK.SYSLIN DD *
+
+INCLUDE DBDLIB(dbdl)
+
+NAME dbdl
+
+/*
+
+//DBDLINK.DBDLIB DD DSN=(your DBD object module lib name),
+
+// DISP=SHR...
+
+//PSBLINK.SYSLIN DD DSN=(Your PSB object module name),
+
+// DISP=SHR...
+
+//IMS.dbdl DD DSN=databasel,DISP=(OLD...) ...
+
+//IMS.
+
+//IMS. any DDnames used by the application program
+
+//IMS.
+
+//
+
+An example of updates applied to an existing database and the new database
+image being written back out.
+
+//PROCLIB DD DSN=(IMS procedure library name),DISP=SHR
+
+// EXEC (COBUC, ASMHC, etc. as necessary for application)
+
+.
+
+.
+
+// EXEC IMSSEG,COND=(0,NE),
+
+// PSBNAME=userpsb,
+
+// WRITE='(dbdl.punchl)'
+
+//DBDLINK.SYSLIN DD *
+
+INCLUDE DBDLIB(dbdl)
+
+NAME dbdl
+
+/*
+
+//DBDLINK.DBDLIB DD DSN=(your DBD object module lib name),
+
+// DISP=SHR...
+
+//PSBLINK.SYSLIN DD DSN=(your PSB object module name),
+
+// DISP=SHR...
+
+//IMS.dbdl DD DSN=databasel,DISP=(OLD...)...
+
+//IMS.punchl DD DSN=new.databasel,DISP=(NEW...)...
+
+//IMS.
+
+//IMS. any DDnames used by the application program //IMS.
+
+//
+
+3.4.4 THE DFSDUMP PROCEDURE. The DFSDUMP procedure is available in the IMS
+procedure library. It can be used to print out a formatted dump of the IMS
+database image that has been saved. It includes all the pointers and flags
+in the prefix and way be of some interest to observe after a database has
+been modified via delete and insert calls.
+
+Parameters:
+
+DBD= This specifies the name of the DBD (and in turn the name of the
+database.) It is mandatory that the user specify this.
+
+DBDLIB= This specifies the name of the library holding the DBD load module.
+It must be specified, however it has a default that should be used except
+for special cases when the user writes his/her own job stream JCL for the
+DBDLINK step of the IMSSEG proc.
+
+DBDDISP= This specifies the DISP parm for the DBD library. It must be
+specified, however it has a default that should be used.
+
+LOADLIB= Must be specified to name the IMS load library, however it has a
+default that should be used.
+
+The user MUST specify a SYSUT1 dataset that contains the dataset to be
+dumped!!!!!!
+
+Example:
+
+.
+
+.
+
+the end of the JCL from the IMSSEG proc
+
+//IMS.xxxx
+
+//*
+
+//*THIS WILL DUMP OUT 1 DATABASE FOR dbdl
+
+//*
+
+//EXEC DFSDUMP,COND=(0,NE),DBD=dbdl
+
+//SYSUT1 DD DSN=databasel,DISP=(OLD...)...
+
+//
+
+4.0 IMS SIMULATOR ERROR MESSAGES AND CODES
+
+There are two basic categories of error messages and codes. First there are
+those associated with the PCB status field, which pertain to the status of
+a call that has just been completed by IMS. And second, those associated
+with abnormal termination of the execution of one or more job steps in the
+IMSSEG procedure.
+
+4.1 IMS SIMULATOR PCB STATUS CODES
+
+@@ NIU IMS specific. The call should have been completed, but the simulator
+was incapable of dealing with an internal problem caused when processing
+the call. This is most common when a database becomes too large and not
+enough memory is available to complete an insert call (or when a database
+is too fragmented to complete an insert call ... Remember that segments are
+not physically deleted, they are just marked as deleted.) If this status is
+returned, your position is left in an unknown status, but most of the time
+it is left unchanged. This occurs when a program has some sort of error in
+it anyway, so it is best to exit processing and try to figure out what
+happened.
+
+AC An SSA had a segment name that does not exist in the DBD or the segment
+name is out of hierarchical sequence or there are two SSAs for the same
+segment. If this status is returned, your position in the database is left
+unchanged.
+
+AH An insert call was issued that did not include any SSAs. If this status
+is returned, your position in the database is unchanged.
+
+AJ There is an error in one of the SSAs. An SSA contains an invalid command
+code for that call, the relational operator in the qualification is
+invalid, the qualifier is missing a right paren or a
+
+boolean connector, a delete call specified a qualified SSA, a replace call
+specified a qualified SSA, or an insert call had a qualified SSA on the
+lowest level.
+
+AK An SSA contains an invalid field name.
+
+AM The processing options specified for the PCB or the segment does not
+allow this call to be completed.
+
+DA A program modified the key portion of a segment and then tried to issue
+a replace or delete call.
+
+DJ A delete or replace call was issued and there was no get hold call
+preceding it.
+
+DX A delete call was issued that violated the delete rules for that
+segment.
+
+GA In trying to satisfy an UNQUALIFIED get next call, IMS crossed a
+hierarchical boundary into a higher level. This status code is an
+information only status, it means that call was successful. The application
+program may use this status as it wishes.
+
+GB When trying to process a get next call IMS hit the end of the database.
+When this happens, the current position is set to the beginning of the
+database and no data will be returned this is very similar to the GE status
+code.)
+
+GE IMS could not find the requested segment. The current position may be
+partially established, in this case any segments that were found will be
+returned if requested.
+
+GK In trying to satisfy an UNQUALIFIED get next call, IMS crossed a
+hierarchical boundary and returned a different segment type at the same
+level as position at the start of the call. This basically says that the
+parent of the current position did not change but the returned segment was
+that of a sibling, not a twin, of the type that current position was set on
+before the call started. This is an information only status code.
+
+GP A GNP or GHNP call was issued when there was no parentage set. Or when
+the segment requested by the call is not a type that is under the current
+parent.
+
+II An insert call was issued that tried to insert a segment that already
+exists, into the database. This can only happen for segment types that have
+unique sequence fields!
+
+LB During a database load, an insert was attempted to put in a segment that
+already exists (same as II except occurs during database loads.)
+
+LC During a database load, the sequence field of the segment being inserted
+is out of order.
+
+LD During a database load, there is no parent for this segment loaded into
+the database yet.
+
+RX A replace call was issued that violated the replace rule for the
+segment.
+
+V1 An insert or replace call was issued for a variable length segment whose
+length is outside the allowed range in the SEGM macro in the DBDgen.
+
+blanks The call was successful, no particular status set.
+
+4.2 IMS SIMULATOR ABEND RETURN CODES
+
+U000 IMSPARSE could not handle the parameters passed into IMS. Check the
+syntax of the PSBNAME, WRITE, and LOADMEM parameters.
+
+U0002 PARDBG did not like the debugging options in the debug parameters,
+check for open and close parens as well as periods between module numbers.
+
+U0003 PARLOAD found an error in the LOADMEM parm list.
+
+U0004 PARWRITE found an error in the WRITE parm list.
+
+U0005 INITIMS found a problem in an SDB. Somewhere the PSB and the DBD may
+not match (i.e., misspelled a segment name or wrong parent.)
+
+U0006 ASMTDLI found that there was no JCB for what was passed to DLI as a
+PCB. The parms may be out of order on a DLI call or the PCB may have been
+written over. See the explanation of how DLI gets called in 3.3.2.
+
+U0007 ASMTDLI found that too little or too many parms were specified on a
+DLI call. If you are working in assembler remember to flag the last parm's
+high order bit!!!
+
+U0111 IMSSIM could not find the application program in the program load
+library created in the PGMLINK step of the IMSSEG proc. Check your naming
+conventions!!! The PSB and program must have the same names!!!!!
+
+U0112 PCBPROC couldn't find the DDname needed for a database that must be
+read in. This happens when the LOADMEM parm is forgotten or when the DDname
+was typed in wrong.
+
+U0804 GETCORE found that it could not get enough memory.
+
+U0999 SPIE failed internally. This means the simulator is having program
+checks internally that it can not handle. Check to see if the application
+program is writing to memory outside of it's region.
+
+U1000 DFSDUMP can't open the database. check if the SYSUT1 dataset is
+missing or misspelled.
+
+U1002 DFSDUMP can't open the database or is having internal problems.
+
+U400x These return codes are issued by the ISRT routines. They will always
+appear with a message in the output referring to the problem. Most of the
+time the 400x status codes are due to an option for one of the IMS
+functions not being implemented on the simulator.
+
+Often IMS will print a message as to what the problem is before it abends.
+IMS will also print a few meaningless messages about the AJ status code
+when they occur. This is due to a problem that occurs when SSAs are parsed
+incorrectly. Note that this is the user's fault and will never appear when
+the SSAs are built properly in the application program.
+
+4.3 IMS SIMULATOR DEBUGGING MODE
+
+Since the IMS simulator was written with students in mind, a debugging mode
+that prints a nice formatted dump of the PCB after each call made to DLI
+has been included in IMS. To turn on this debugging mode, make a standard
+call to DLI with the function name of DISP, and specify ON in the I/O area
+for the call. To turn the traces off, call DLI with the DISP function name
+and OFF in the I/O area for the call.
+
+The DISP call must be used for each PCB that the application program needs
+printed.
+
+Example:
+
+05 DEBUG PIC X(4) VALUE 'DISP'.
+
+05 ON PIC X(2) VALUE 'ON'.
+
+05 OFF PIC X(3) VALUE 'OFF'.
+
+.
+
+.
+
+CALL 'CBLTDLI' USING DEBUG
+
+PCB-MASK-1
+
+ON.
+
+.
+
+.
+
+CALL 'CBLTDLI' USING DEBUG
+
+PCB-MASK-1
+
+OFF.
+
+5.0 ENHANCEMENTS FROM PREVIOUS VERSIONS
+
+1. ISRT calls work better than before. ISRT calls now traverse thru the
+twin chain at the first level to be inserted. However current position must
+be set on the parent segment of the first segment to be inserted. For
+example:
+
+If I wish to insert a new segment C, I must first set position to segment
+B. Then I may issue an ISRT call. If position is not present at that parent
+level (segment B) then IMS will abend me with a 4-thousand series code and
+print a message about not being on the parent level.
+
+2. During an ISRT call ABSOLUTELY NO SSAs may be specified above the SSA(S)
+for the segments to be inserted!
+
+If this is done, there will be a message sent with a 4-thousand series
+abend saying that current position was not set at the required parent level
+(same as above). Even if position was set there, it will abend you.
+
+3. ISRT calls now allow and observe the FIRST, LAST and HERE rules as
+stated by IBM for non- key segments, unique-key segments, and multiple-key
+segments.
+
+4. Non-unique key segments are now treated as non-unique keyed segments at
+all times (instead of just part of the time.)
+
+5. The U and V command codes operate as they should (instead of as they
+shouldn't).
+
+6. Get unique calls begin as they should (from current position) when no
+SSAs are specified at higher levels. They also lock the scan to the current
+database as they should when no SSA is specified the root level.
+
+7. The L command code will back up hierarchically as it should, at the
+level in which it is specified (sets the begin of the search up the same
+way as it does to begin the scan for the F command code.)
+
+8. The debugging mode (DISP function) provides more information about the
+current position after an IMS call completes. (It prints the hex address of
+the true current position that IMS keeps inside so the user may look on a
+DFSDUMP of the database and check it.)
+
+DISP will also print out the current IMS call number along with the dump of
+the ?CB. (note that the call count is still wrong sometimes)
+
+9. Variable length segments are supported.
+
+10. Non-sensitive segments that appear in the PSBGEN are now nonsensitive.
+(They used to be accessible anyway.)
+
+11. D and K PROCOPTS are now supported on the SENSEG macro.
+
+12. Path ISRT calls are now supported. (D command codes present on all SSAs
+in an ISRT call.) For example, the above A, B, and C database defined above
+can accept an ISRT call like:
+
+ISRT B *D
+
+C
+
+and will insert a new B segment and a new C segment under that new B, all
+under the current A segment.
+
+13. You can not insert new root segments into the database.
+
+14. You still cant use the C command code (it is still just ignored.)
+
+15. Multiple positioning is not supported.
+
+16. You are not allowed to delete all the segments in a database (empty
+databases are illegal unless you are loading it and it was created by
+specifying it on the LOADMEM= parm on the EXEC IMSSEG JCL statement.)
+
+17. Free space that is created by deleted segments is not reused, your
+database goes thru many deletions, then many inserts, it a end up that you
+have a full database of deleted segments. (There is compression facility
+either ... sorry. However, it should be easy enough for you to write a
+program to reload it with the same data that it has in it. Simply issue get
+next calls on the old database a insert each segment retrieved into a new
+copy of the old database.)
+
+APPENDIX
+
+This section provides the names of all the IMS simulator
+
+T90GMH2.JJ.IMSSIM.LOADLIB - The load module library
+
+T90GMH2.JJ.IMSSIM.PROCLIB - The procedure library
+
+T90GMH2.JJ.IMSSIM.MACLIBA - The macro library used to assemble the IMS
+simulator.
+
+T90GMH2.JJ.IMSSIM.MACLIBB - The user macro library for doing DBD and PSB
+gens.
+
+T90GMH2.JJ.IMSSIM.SRCELIB - The source and documentation for the IMS
+simulator.
+
+T90GMH2.JJ.IMSSIM.OBJLIB - The object code library for each of the IMS
+simulator modules.
+
+T90GMH2.JJ.IMSSIM.GENLOAD - The JCL that is used to link edit the
+simulator.
+
+T90GMH2.JJ.IMSSIM.ASMALL - The JCL used to assemble all of the source code
+in the simulator.
+
+Dr. Kathi Hogshead Davis The original of THIS USER'S MANUAL in Microsoft
+Word.

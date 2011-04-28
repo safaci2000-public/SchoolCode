@@ -1,0 +1,482 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="ProgId" content="Word.Document">
+<meta name="Generator" content="Microsoft Word 9">
+<meta name="Originator" content="Microsoft Word 9">
+<link rel="File-List" href="http://www.cs.niu.edu/%7Egbrown/assn1_files/filelist.xml">
+<link rel="Edit-Time-Data" href="http://www.cs.niu.edu/%7Egbrown/assn1_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]--><title>CSCI466 ASSIGNMENT 1 Spring 2003</title>
+
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Georgia Brown</o:Author>
+  <o:LastAuthor>NIU Computer Science</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>12</o:TotalTime>
+  <o:LastPrinted>2003-01-06T15:51:00Z</o:LastPrinted>
+  <o:Created>2003-01-10T17:15:00Z</o:Created>
+  <o:LastSaved>2003-01-10T17:15:00Z</o:LastSaved>
+  <o:Pages>4</o:Pages>
+  <o:Words>652</o:Words>
+  <o:Characters>3720</o:Characters>
+  <o:Company>L and S Consulting</o:Company>
+  <o:Lines>31</o:Lines>
+  <o:Paragraphs>7</o:Paragraphs>
+  <o:CharactersWithSpaces>4568</o:CharactersWithSpaces>
+  <o:Version>9.2720</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>0</w:DisplayVerticalDrawingGridEvery>
+  <w:UseMarginsForDrawingGridOrigin/>
+  <w:Compatibility>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 65.95pt 1.0in 65.95pt;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]--></head>
+
+<body lang="EN-US" style="">
+
+<div class="Section1">
+
+<p class="MsoPlainText">CSCI466<span style="">                       </span>ASSIGNMENT
+1<span style="">                        </span>Spring 2003</p>
+
+<p class="MsoPlainText"><span style="">                         
+</span><span style="">    </span>100 POINTS</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">In this assignment you will be creating an IMS database
+which manages a hotel reservation system.<span style=""> 
+</span>This database would be used to track the reservations in various hotel
+locations.</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">The fields of each segment type in the database are given
+below. A "K" denotes a key field.<span style=""> 
+</span>A U indicates a unique key and an N indicates a non-unique key.<span style="">  </span>Assume that all the other fields could be
+potential search fields and must be defined by name.<span style="">  </span></p>
+
+<p class="MsoPlainText">Note: All dates are in the format: YYYYMMDD.</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">HOTEL:</p>
+
+<p class="MsoPlainText"><span style="">     </span>IDNUM<span style="">      </span>PIC 9(3)<span style="">    </span>UK</p>
+
+<p class="MsoPlainText"><span style="">     </span>CITY<span style="">       </span>PIC X(15)<span style="">    </span></p>
+
+<p class="MsoPlainText"><span style="">     </span>NUMROOMS<span style="">   </span>PIC 9(2)</p>
+
+<p class="MsoPlainText"><span style="">     </span>POOL<span style="">       </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">     </span>PETS<span style="">       </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">     </span>FOOD<span style="">       </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">     </span>LAUNDRY <span style="">   </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">     </span>WEIGHTRM<span style="">   </span>PIC X</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">RATES:</p>
+
+<p class="MsoPlainText"><span style="">     </span>TYPEROOM<span style="">  </span>PIC X<span style="">      
+</span>NK</p>
+
+<p class="MsoPlainText"><span style="">     </span>TYPEWEEK<span style="">  </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">     </span>RATE<span style="">      </span>PIC 9(3)V99</p>
+
+<p class="MsoPlainText"><span style="">     </span></p>
+
+<p class="MsoPlainText">DAYS:</p>
+
+<p class="MsoPlainText"><span style="">     </span>DATE<span style="">      </span>PIC X(8)<span style="">    </span>UK</p>
+
+<p class="MsoPlainText"><span style="">     </span>WEEKTYPE<span style="">  </span>PIC X</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">ROOMS:</p>
+
+<p class="MsoPlainText"><span style="">     </span>ROOMNUM<span style="">   </span>PIC 9(2)<span style="">   
+</span>UK</p>
+
+<p class="MsoPlainText"><span style="">     </span>ROOMTYPE<span style="">  </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">     </span>SMOKING<span style="">   </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">     </span>BOOKED<span style="">    </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">     </span>GUARANTE<span style="">  </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">     </span>FILLED<span style="">    </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">     </span>CUSTNUM<span style="">   </span>PIC X(3)</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">CUSTOMER:</p>
+
+<p class="MsoPlainText"><span style="">     </span>CNUM<span style="">      </span>PIC 9(3)<span style="">    </span>UK</p>
+
+<p class="MsoPlainText"><span style="">     </span>CLNAME<span style="">    </span>PIC X(15) </p>
+
+<p class="MsoPlainText"><span style="">     </span>CFNAME<span style="">    </span>PIC X(10)</p>
+
+<p class="MsoPlainText"><span style="">     </span>DISCTYPE<span style="">  </span>PIC X</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">CHARGES:</p>
+
+<p class="MsoPlainText"><span style="">     </span>CHRGDATE<span style="">  </span>PIC<span style=""> 
+</span>X(8)<span style="">    </span>NK</p>
+
+<p class="MsoPlainText"><span style="">     </span>CHRGTYPE<span style="">  </span>PIC<span style=""> 
+</span>X<span style="">    </span></p>
+
+<p class="MsoPlainText"><span style="">     </span>CHRGAMT<span style="">   </span>PIC<span style=""> 
+</span>9(3)V99<span style="">       </span></p>
+
+<p class="MsoPlainText"><span style="">     </span>CHRDISC<span style="">   </span>PIC<span style=""> 
+</span>9(3)V99</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">1.<span style="">  </span>Code and
+assemble the DBD for the database.</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">2.<span style="">  </span>Code and
+assemble a PSB for loading the database.<span style=""> 
+</span></p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">3.<span style="">  </span>Write a COBOL
+program to load the database. </p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">4.<span style="">  </span>Use IMSSEG85 to
+link edit the DBD, the two PSB's and load program and then execute the load
+program.<span style="">  </span>Also provide a DD card to dump
+the database into a sequential dataset.</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">5.<span style="">  </span>Use the
+DFSDUMP utility to list the dumped database.</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">6.<span style="">  </span>The data for
+loading the database is located in:</p>
+
+<p class="MsoPlainText">T90MBM1.HOTEL.DATA1. </p>
+
+<p class="MsoPlainText">The format of the card is:</p>
+
+<p class="MsoPlainText"></p>
+
+<p class="MsoPlainText"><span style="">  </span>col 1:<span style="">       </span>segment type:<span style="">  </span>1 = HOTEL<span style="">            </span>4 =
+ROOMS<span style="">   </span></p>
+
+<p class="MsoPlainText"><span style="">                              </span>2 = RATES<span style="">            </span>5 = CUSTOMER</p>
+
+<p class="MsoPlainText"><span style="">                              </span>3 = DAYS<span style="">             </span>6 = CHARGES</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText"><span style="">  </span>col 2 - 80:<span style="">  </span>the data for the rest of the segment.<span style="">  </span>The format depends upon the type and list
+listed above.</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">Do not assume that the segments are in the proper
+order.<span style="">  </span>Check the hierarchical sequence
+and if any of the segments are out of order or you encounter an invalid segment
+type print an error message that contains the segment contents, the status code
+and an error note.<span style="">  </span>This should be done
+by testing the status code for errors.<span style=""> 
+</span>Remember each IMS call returns a status code and it must be checked
+after each call.<span style="">  </span>Please let us know if
+you find any segments out of order so that we can fix the data set!</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">Your program must count the number of occurrences of each
+segment type inserted plus the total number of segments in the database.<span style="">  </span>After all segments have been loaded print
+the count information.</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">Note: </p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">Make the first step of your program an IEFBR14 step that
+deletes the data set containing the database.<span style=""> 
+</span>This way each time you run the program it will delete the database and
+then you can make the DISP equal to NEW when you create the database.</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">Put the database files in a permanent PDS, you will need
+it for assignments 2 and 3.<span style="">  </span>Save this
+program because if anything happens to your database you can rerun it and
+recreate the database.</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><br clear="all" style="page-break-before: always;">
+</span>
+
+<p class="MsoPlainText">CODE DESCRIPTIONS BY SEGMENT TYPE:</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">HOTEL:</p>
+
+<p class="MsoPlainText">The following fields will either have a value of 'Y' or
+'N'.<span style="">  </span>Y means that option is available
+and N means that option is not available.</p>
+
+<p class="MsoPlainText"><span style="">     </span>POOL<span style="">       </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">     </span>PETS<span style="">       </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">     </span>FOOD<span style="">       </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">     </span>LAUNDRY<span style="">    </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">     </span>WEIGHTRM<span style="">   </span>PIC X</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">RATES:</p>
+
+<p class="MsoPlainText"><span style="">     </span>TYPEROOM<span style="">  </span>PIC X<span style="">     
+</span></p>
+
+<p class="MsoPlainText"><span style="">          </span>S =
+SINGLE</p>
+
+<p class="MsoPlainText"><span style="">          </span>D =
+DOUBLE</p>
+
+<p class="MsoPlainText"><span style="">          </span>K = KING</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText"><span style="">     </span>TYPEWEEK<span style="">  </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">          </span>D =
+WEEKDAY (SUNDAY THRU THURSDAY)</p>
+
+<p class="MsoPlainText"><span style="">          </span>W =
+WEEKEND (FRIDAY AND SATURDAY)</p>
+
+<p class="MsoPlainText"><span style="">     </span></p>
+
+<p class="MsoPlainText">DAYS:</p>
+
+<p class="MsoPlainText"><span style="">     </span>WEEKTYPE<span style="">  </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">          </span>D =
+WEEKDAY (SUNDAY THRU THURSDAY)</p>
+
+<p class="MsoPlainText"><span style="">          </span>W =
+WEEKEND (FRIDAY AND SATURDAY)</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">ROOMS:</p>
+
+<p class="MsoPlainText"><span style="">     </span>ROOMTYPE<span style="">  </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">          </span>S =
+SINGLE</p>
+
+<p class="MsoPlainText"><span style="">          </span>D =
+DOUBLE</p>
+
+<p class="MsoPlainText"><span style="">          </span>K = KING</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText"><span style="">     </span>SMOKING<span style="">   </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">          </span>S =
+SMOKING</p>
+
+<p class="MsoPlainText"><span style="">          </span>N =
+NON-SMOKING</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText"><span style="">     </span>BOOKED<span style="">    </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">          </span>Y =
+BOOKED</p>
+
+<p class="MsoPlainText"><span style="">          </span>N =
+AVAILABLE</p>
+
+<p class="MsoPlainText"><span style="">          </span></p>
+
+<p class="MsoPlainText"><span style="">     </span>GUARANTE<span style="">  </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">          </span>Y =
+GUARANTEED LATE</p>
+
+<p class="MsoPlainText"><span style="">          </span>N = NOT
+CUARANTEED</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText"><span style="">     </span>FILLED<span style="">    </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">          </span>Y =
+OCCUPIED</p>
+
+<p class="MsoPlainText"><span style="">          </span>N =
+EMPTY</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText">CUSTOMER:</p>
+
+<p class="MsoPlainText"><span style="">     </span>DISCTYPE<span style="">  </span>PIC X</p>
+
+<p class="MsoPlainText"><span style="">          </span>S =
+SENIOR</p>
+
+<p class="MsoPlainText"><span style="">          </span>C =
+HOTEL CLUB</p>
+
+<p class="MsoPlainText"><span style="">          </span>B = BOTH
+SENIOR AND HOTEL CLUB</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<span style="font-size: 10pt; font-family: &quot;Courier New&quot;;"><br clear="all" style="page-break-before: always;">
+</span>
+
+<p class="MsoPlainText">CHARGES:</p>
+
+<p class="MsoPlainText"><span style="">     </span>CHRGTYPE<span style="">  </span>PIC<span style=""> 
+</span>X<span style="">    </span></p>
+
+<p class="MsoPlainText"><span style="">     </span></p>
+
+<p class="MsoPlainText"><span style="">          </span>F = FOOD</p>
+
+<p class="MsoPlainText"><span style="">          </span>T =
+TELEPHONE</p>
+
+<p class="MsoPlainText"><span style="">          </span>R = ROOM</p>
+
+<p class="MsoPlainText"><!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+<p class="MsoPlainText"><!--[if gte vml 1]><o:wrapblock><v:shapetype id="_x0000_t75"
+  coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+  filled="f" stroked="f">
+  <v:stroke joinstyle="miter"/>
+  <v:formulas>
+   <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+   <v:f eqn="sum @0 1 0"/>
+   <v:f eqn="sum 0 0 @1"/>
+   <v:f eqn="prod @2 1 2"/>
+   <v:f eqn="prod @3 21600 pixelWidth"/>
+   <v:f eqn="prod @3 21600 pixelHeight"/>
+   <v:f eqn="sum @0 0 1"/>
+   <v:f eqn="prod @6 1 2"/>
+   <v:f eqn="prod @7 21600 pixelWidth"/>
+   <v:f eqn="sum @8 21600 0"/>
+   <v:f eqn="prod @7 21600 pixelHeight"/>
+   <v:f eqn="sum @10 21600 0"/>
+  </v:formulas>
+  <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+  <o:lock v:ext="edit" aspectratio="t"/>
+ </v:shapetype><v:shape id="_x0000_s1026" type="#_x0000_t75" style='position:absolute;
+  margin-left:-1.15pt;margin-top:0;width:478.65pt;height:262.45pt;z-index:1;
+  mso-position-horizontal-relative:text;mso-position-vertical-relative:text'
+  o:allowincell="f">
+  <v:imagedata src="./assn1_files/image001.png" o:title="HOTEL"/>
+  <w:wrap type="topAndBottom"/>
+ </v:shape><![endif]--><!--[if !vml]--><span style="position: relative; z-index: 0; left: -2px; top: 0px; width: 639px; height: 350px;"><img width="639" height="350" src="assn1_files/image002.html" v:shapes="_x0000_s1026"></span><!--[endif]--><!--[if gte vml 1]></o:wrapblock><![endif]--><br style="" clear="all">
+<!--[if !supportEmptyParas]--> <!--[endif]--><o:p></o:p></p>
+
+</div>
+
+</body></html>

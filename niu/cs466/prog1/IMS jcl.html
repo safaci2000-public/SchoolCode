@@ -1,0 +1,291 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./IMS%20Simulator%20JCL_files/filelist.xml">
+<title>IMS Simulator JCL</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>NIU Computer Science</o:Author>
+  <o:LastAuthor>NIU Computer Science</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>1</o:TotalTime>
+  <o:Created>2002-09-04T15:14:00Z</o:Created>
+  <o:LastSaved>2002-09-05T15:03:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>253</o:Words>
+  <o:Characters>1447</o:Characters>
+  <o:Lines>12</o:Lines>
+  <o:Paragraphs>2</o:Paragraphs>
+  <o:CharactersWithSpaces>1777</o:CharactersWithSpaces>
+  <o:Version>9.2720</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:script;
+	mso-font-pitch:variable;
+	mso-font-signature:647 0 0 0 159 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+</head>
+
+<body lang=EN-US style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>IMS
+Simulator JCL<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:50.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>//ZNNNNNNI
+JOB<b style='mso-bidi-font-weight:normal'> </b>'Yourname'<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:50.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>//PROCLIB
+DD DSN=T90GMH2.JJ.IMSSIM.PROCLIB,DISP=SHR<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:50.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>//STEP1
+EXEC PGM=IEFBR14<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:50.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>//DD1
+DD DSN=ZNNNNNN.DBDPDS,UNIT=DISK,VOL=SER=ACA301,<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:50.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><span
+style='mso-tab-count:1'>                 </span>DISP=(MOD,DELETE,DELETE)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:50.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>//DD2
+DD DSN=ZNNNNNN.DBFILE,UNIT=DISK,VOL=SER=ACA301,<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:50.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><span
+style='mso-tab-count:1'>                 </span>DISP=(MOD,DELETE,DELETE)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:50.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>//STEP2<span
+style='mso-tab-count:1'>     </span>EXEC ASM<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:50.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>//ASM.SYSIN
+DD *<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:50.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>Your DBD macros go here<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//ASM.SYSLIN DD
+DSN=ZNNNNNN.DBDPDS(yourdbdname),UNIT=DISK,<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//<span style="mso-spacerun: yes">           
+</span>VOL=SER=ACA301,SPACE=(2960,(20,10,2)),DISP=(NEW,KEEP,KEEP),<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//<span style="mso-spacerun: yes">           
+</span>DCB=(LRECL=80,BLKSIZE=2960,RECFM=FB) <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//STEP3 EXEC ASM <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//ASM.SYSIN DD *<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:right 429.75pt'><span style='font-size:
+9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>Your PCB macros go
+here<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:right 429.75pt'><span style='font-size:
+9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:38.25pt 62.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>//ASM.SYSLIN
+DD DSN=ZNNNNNN.DBDPDS(yourpsbname),UNIT=DISK,<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:38.25pt 62.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><span
+style='mso-tab-count:1'>             </span>VOL=SER=ACA301,DISP=(OLD,KEEP,KEEP),<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:38.25pt 62.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><span
+style='mso-tab-count:1'>             </span>DCB=(LRECL=80,BLKSIZE=2960,RECFM=FB)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:38.25pt 62.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>//STEP4<span
+style='mso-tab-count:1'> </span>EXEC IGYWC,CPARM='APOST,TEST(STMT)',COND=(4,LT)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:38.25pt 62.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>//COB.SYSIN
+DD *<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:38.25pt 62.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span style='font-size:9.0pt;
+mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>IDENTIFICATION DIVISION.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:122.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><span
+style="mso-spacerun: yes">            </span>PROGRAM&#8209;ID.<span
+style='mso-tab-count:1'>         </span>yourpsbname.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:122.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:122.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><span
+style="mso-spacerun: yes">            </span>LINKAGE SECTION<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:122.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><span
+style="mso-spacerun: yes">            </span>PROCEDURE DIVISIION.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:122.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><span
+style='mso-tab-count:1'>                                         </span>ENTRY
+‘DLITCBL’ USING PCB-MASK<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:122.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:122.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:122.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><span
+style="mso-spacerun: yes">            </span>GOBACK<o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:122.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='tab-stops:122.25pt right 429.75pt'><span
+style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//STEP5 EXEC
+IMSSEG85,COND=(O,NE),LOADMEM='(Yourdbdname)', <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//<span style="mso-spacerun: yes">           
+</span>PSBNAME=yourpsbname,WRITE='(yourdbdname.PUNCH)' <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//PGMLINK.SYSLIN <span style="mso-spacerun:
+yes"> </span>DD *<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span style='font-size:9.0pt;
+mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>ENTRY DLITCBL<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//DBDLINK.SYSLIN DD<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span style='font-size:9.0pt;
+mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>INCLUDE
+DBDLIB(yourdbdname)<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:.5in'><span style='font-size:9.0pt;
+mso-bidi-font-size:12.0pt;font-family:"Comic Sans MS"'>NAME yourdbdname<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>/*<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//DBDLINK.DBDLIB DD
+DSN=ZNNNNNN.DBDPDS,DISP=SHR,UNIT=DISK, VOL=SER=ACA301<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'><span style="mso-spacerun:
+yes"> </span>//PSBLINK.SYSLIN DD
+DSN=ZNNNNNN.DBDPDS(yourpsbname),DISP=SHR,UNIT=DISK,<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//<span style='mso-tab-count:1'>         </span>VOL=SER=ACA301
+<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//IMS.PUNCH DD
+DSN=ZNNNNNN.DBFILE,UNIT~DISK,VOL=SER=ACA301, <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//<span style='mso-tab-count:1'>         </span>DISP=(NEW,KEEP,KEEP),SPACE=(TRK,(1,1)),<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//<span style='mso-tab-count:1'>         </span>DCB=(LRECL=80,BLKSIZE=800,RECFM=FB)
+<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//IMS.SYSOUT DD SYSOUT=*<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'><span style="mso-spacerun: yes"> </span>//IMS.????
+Any DDs needed by your program. There may be several.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'><span style="mso-spacerun: yes"> </span>//STEP6
+EXEC DFSDUMP,COND=(O,NE),DBD=yourdbdname <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//DFSDUMP.SYSUT1 DD DSN=ZNNNNNN.DBFILE,UNIT=DISK,VOL=SER=ACA301,<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//<span style='mso-tab-count:1'>         </span>DISP=(OLD,KEEP,KEEP)<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+font-family:"Comic Sans MS"'>//<o:p></o:p></span></p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+</div>
+
+</body>
+
+</html>

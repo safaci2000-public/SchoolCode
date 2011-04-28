@@ -1,0 +1,211 @@
+/****************************************************************************
+ * Name:        Samir Faci
+ * Class:       CS466
+ * Assign       Prog 7
+ *
+ * Function:   program queries a DB and fetches data based on certain
+ *             sql statements, then formats them in an easy to read
+ *             format.
+ *
+ * Notes:        
+ * *************************************************************************/
+#include <stdlib.h>
+#include <stdio.h>
+#include <sqlda.h>
+#include <sqlcpr.h>
+#include <string.h>
+#include <sqlca.h>
+
+/*           begin host variables declarations */
+
+EXEC SQL begin declare section;
+  char user[20];    /* my user name */
+  char pass[20];    /* my password */
+
+  struct 
+  {
+    char order_number[4]; /* order number */
+    char order_date[10];  /* order date   */
+    char cust_id[4];    /* customer id */
+  }orders;
+
+
+  struct 
+  {
+    char cust_id[4];   /* customer id */
+    char cust_lname[12]; /* customer's last name */
+    char cust_fname[9];   /* customer's first name */
+    char cust_street[21];/* customer's street    */
+    char cust_city[15];   /* customer's residing city */
+    char cust_state[3];  /* customer's residing state */
+    char cust_zip[6];   /* customer's residing zip */
+    int  cust_balance;   /* customer's balance */
+    int  cust_credit_limit; /* customer's credit limit */
+  }cust;
+
+  struct 
+  {
+    int item_number;     /* item number */
+    char item_description[21];  /* item description */
+    int  item_quan_on_hand; /* item quantity on hand */
+    double item_price;   /* item price */
+  }item;
+
+  struct 
+  {
+    char order_number[4];    /* order number */
+    int  item_number;    /* item number */
+    int  quantity_ordered; /* quantity ordered */
+    double order_price;    /* order price */
+  }ordlin;
+
+EXEC SQL end declare section;
+
+int main(int argc, char * argv[])
+{
+  system("clear");  /* clears the screen */
+  double total_price = 0;  /* price of each item ordered
+                qty_ordered * item price */
+  double running_total = 0; /* total of all items on a specific order */
+  double customer_total = 0; /* total of all orders for a specific cust */
+  int order_cnt = 0;        /* counts # of orders for each cust */
+  int page_count = 0;       /* why does this program remind of a cobol nightmare?
+							   oh yeah, it supposedly keeps track of the page number
+							   on the reports */
+
+  /* initialize user/pass */
+  strcpy(user, "z002161");
+  strcpy(pass, user);
+
+  /* connect to db */
+  EXEC SQL connect :user identified by :pass;
+
+  if (sqlca.sqlcode !=0)
+    printf("error.  could not connect to db:  %d\n", sqlca.sqlcode);
+  
+
+  /*              Begin Cursor declarations           */
+  /*         decares customer cursor             */
+  EXEC SQL declare custcurse cursor for select cust_id, cust_lname, cust_fname,
+      cust_street, cust_city, cust_state, cust_zip, cust_balance, 
+      cust_credit_limit from musich.cust order by musich.cust.cust_id;
+
+
+  /* decares the orders curosr */
+  EXEC SQL declare ordcursor cursor for select orders.order_number, orders.order_date 
+      from musich.orders where orders.cust_id = :cust.cust_id order by :cust.cust_id, musich.orders.order_number;  
+      
+
+  /* declares the ordlin cursor */
+  EXEC SQL declare linecursor cursor for select musich.ordlin.item_number,
+      musich.ordlin.quantity_ordered, musich.ordlin.order_price, 
+      musich.item.item_description from musich.ordlin, musich.item where 
+      ordlin.order_number = :orders.order_number and 
+	  musich.ordlin.item_number = item.item_number
+        order by :cust.cust_id, :orders.order_number, musich.item.item_number; 
+  /*              End Cursor declarations           */
+
+  /* opens the customer cursor */
+  EXEC SQL open custcurse;
+
+
+  /*  if customer cursor ok */
+  if (sqlca.sqlcode == 0)  
+  {
+    EXEC SQL fetch custcurse into :cust.cust_id, :cust.cust_lname, :cust.cust_fname
+          , :cust.cust_street, :cust.cust_city, :cust.cust_state, 
+          :cust.cust_zip, :cust.cust_balance, :cust.cust_credit_limit;
+
+
+
+    /* while customer fetch is ok */
+    while (sqlca.sqlcode == 0)
+    {
+
+    printf("Customer Name:\t %s %s\n", cust.cust_lname, cust.cust_fname);
+    printf("              \t %s\n", cust.cust_street);
+    printf("              \t %s, %s  %s\n", cust.cust_city, 
+              cust.cust_state, cust.cust_zip);
+
+    customer_total = 0;
+    order_cnt = 0;
+      EXEC SQL open ordcursor;
+
+
+      printf("\nOrders:  \n");
+
+      /* if order cursor ok */
+      if (sqlca.sqlcode == 0)
+      {
+
+        EXEC SQL fetch ordcursor into :orders.order_number, :orders.order_date; 
+    
+
+    /* check for valid order cursor open */
+        if (sqlca.sqlcode != 0)
+        {
+          fprintf(stderr, "error:  could not retrieve data:  %d", sqlca.sqlcode);
+        }
+        else
+        {
+       /* fetch all orders while not end of cursor */
+      while (sqlca.sqlcode == 0) {  
+              printf("%s\t\t\t\t  Date:  %s\n\n", orders.order_number, orders.order_date);
+        order_cnt++;
+          EXEC SQL open linecursor;
+        /* checks ordlin cursor's valid open */
+        if (sqlca.sqlcode != 0)
+          printf("error, could not open ordline cursor:  %d\n", sqlca.sqlcode);
+        else
+        {
+            EXEC SQL fetch linecursor into :ordlin.item_number, :ordlin.quantity_ordered, 
+              :ordlin.order_price, :item.item_description;
+          /* fetch all ordline details */
+          printf("Item Number\tDescription\tQty Ordered\tUnit Price\tTotal Price\n");
+      printf("-----------\t-----------\t-----------\t----------\t-----------\n");
+      running_total = 0;
+      while (sqlca.sqlcode == 0) {
+
+        total_price = ordlin.order_price * ordlin.quantity_ordered;
+        running_total += total_price;
+              printf("%d\t\t%s\t%d\t$%5.2f\t\t$%5.2f\n",
+              ordlin.item_number, item.item_description, 
+                ordlin.quantity_ordered, ordlin.order_price, total_price);
+
+
+              EXEC SQL fetch linecursor into :ordlin.item_number, :ordlin.quantity_ordered, 
+                  :ordlin.order_price, :item.item_description;
+                          
+          } /*  end ordlin details */  
+
+             customer_total += running_total;
+             printf("\nOrder Total:   \t$%7.2f\n\n", running_total);
+             EXEC SQL close linecursor;
+
+
+          EXEC SQL fetch ordcursor into :orders.order_number, :orders.order_date; 
+        }  /* end check for valid ordlin cursor open */             
+      } 
+          printf("%d Orders\t$%7.2f Total\n\n", order_cnt, customer_total);
+    } /* end valid cursor open */                          
+
+      EXEC SQL close ordcursor; 
+   } /* ends order cursor ok check */
+
+
+      EXEC SQL fetch custcurse into :cust.cust_id, :cust.cust_lname, 
+          :cust.cust_fname, :cust.cust_street, :cust.cust_city, 
+          :cust.cust_state, :cust.cust_zip, :cust.cust_balance, 
+          :cust.cust_credit_limit; 
+          
+    }  /* ends while customer fetch */    
+  }  /* end  if customer cursor opened */
+
+
+   EXEC SQL close custcurse; 
+
+  /* disconnects from db */
+  EXEC SQL commit release;
+
+  return 0;
+}

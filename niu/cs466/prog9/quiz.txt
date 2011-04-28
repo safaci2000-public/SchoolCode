@@ -1,0 +1,22 @@
+State Capitals
+What is the capital of
+IL,Springfield,Chicago,Vandalia,Rockford,A
+WI,Milwaukee,Madison,Oshkosh,La Cross,B
+AK,Anchorage,Sitka,Nome,Juneau,D
+CA,Los Angeles,San Francisco,Sacramento,Fresno,C
+TX,Austin,Dallas,Houston,SanAntonio,A
+OH,Cincinnati,Cleveland,Akron,Columbus,D
+MO,St.Louis,Jefferson City,Hannibal,Springfield,B
+CO,Boulder,Pueblo,Aspen,Denver,D
+AZ,Phoenix,Flagstaff,Tucson,Yuma,A
+IA,Sioux City,Des Moines,Waterloo,Dubuque,B
+MN,Minneapolis,Rochester,St. Paul,Winona,A
+NC,Charlotte,Durham,Raleigh,Greensboro,C
+FL,Pensacola,Miami,Tampa,Tallahasee,D
+ME,Bangor,Augusta,Portland,Salem's Lot,B
+ND,Grand Forks,Bismarck,Fargo,Minot,B
+LA,Baton Rouge,New Orleans,Shreveport,Alexandria,A
+PA,Pittsburgh,Harrisburg,Philadelphia,Scranton,B
+SD,RapidCity,Sioux Falls,Aberdeen,Pierre,D
+NV,Carson City,Reno,Las Vegas,Ely,A
+HI,Maui,Hilo,Honolulu,Lanai City,C 

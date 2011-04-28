@@ -1,0 +1,260 @@
+/****************************************************************************
+ * Name:				Samir Faci
+ * Class:				CS466
+ * Assign				Prog 6
+ *
+ * Function:  			program writes data from text files into Oracle 8 
+ * 						database.
+ *
+ * Notes:				wish we could do this in C++ instead of C.
+ *
+ * *************************************************************************/
+#include <stdlib.h>
+#include <stdio.h>
+#include <sqlda.h>
+#include <sqlcpr.h>
+#include <string.h>
+#include <sqlca.h>
+
+/* host variables */
+
+EXEC SQL begin declare section;
+
+char user[20];		/* my user name */
+char pass[20];		/* my password */
+
+
+struct 
+{
+	char stuid[6];		/* student id */
+	char stulast[16];	/* student last name */
+	char stufirst[16];	/* student first name */
+	int classrank;		/* class rank */
+	int stupoints;		/* student points */
+	int stucredit;		/* student credits */
+	int year;			/* student year */
+} student;
+
+
+struct
+{
+	char classnum[8];	/* class number */
+	char section;		/* section number */
+	int maxenroll;		/* max enroll per class */
+} course;
+
+struct 
+{
+	char classnum[8];	/* class number */
+	char section;		/* section number */
+	char stuid[6];		/* student id */
+} enroll;
+
+
+EXEC SQL end declare section;
+
+
+
+void loadstudent(FILE *);   /* loads student table into db */
+void loadcourses(FILE *);	/* loads the courses db */
+void loadenroll(FILE *);   /* loads the enroll db */
+
+int main(int argc, char * argv[])
+{
+		
+		system("clear");
+
+		/* open data files */
+		FILE *cr_file = fopen("course.txt", "r");
+		FILE *er_file = fopen("enroll.txt", "r");
+		FILE *stu_file = fopen("student.txt", "r");
+
+		if (!cr_file || !er_file || !stu_file )
+		{
+			printf("error: could not open files\n");
+			exit(-1);
+		}
+		
+		/* initialize user/pass */
+		strcpy(user,"z002161");
+		strcpy(pass, "z002161");
+
+
+		/* connect to db */
+		EXEC SQL connect :user identified by :pass;
+        printf("connect to db with status:  %d\n", sqlca.sqlcode);
+		
+
+		/* call functions to load data into tables */
+		loadstudent(stu_file); 
+		loadcourses(cr_file);   
+		loadenroll(er_file);   
+
+		/* close data files */
+		fclose(stu_file);
+		fclose(cr_file);
+		fclose(er_file);
+
+		/* disconnects from oracle */
+		EXEC SQL commit release;	
+
+
+		return 0;
+}
+/****************************************************************************
+ * Method:  			void loadstudent(FILE *);
+ * 
+ * Function:			Loads the student data into the database
+ *
+ * Parms:				File *   pointer to students.txt
+ *
+ * Returns:				none
+ *
+ * Notes:
+ *
+ * ***************************************************************************/
+void loadstudent(FILE *file)
+{
+	char line[80];		/* buffer used to read from file */
+
+
+	/* drops and creates the table structure */
+	EXEC SQL drop table student cascade constraints;
+	EXEC SQL create table student(stuid char(5) primary key,
+		stulast char(15), stufirst char(15), classrank integer,
+		stupoints integer, stucredits integer, year integer );
+
+	while (fgets(line, 80, file) != NULL)
+	{
+		
+		/* parse file and extract data into structs */
+		strncpy(student.stuid, line, 5);
+		student.stuid[5] = '\0';
+		strncpy(student.stulast, line+5, 15);
+		student.stulast[15] = '\0';
+		strncpy(student.stufirst, line+20, 15);
+		student.stufirst[15] = '\0';
+		student.classrank = atoi(line+35);
+		student.stupoints = atoi(line+37);
+	    student.stucredit = atoi(line+44);
+		student.year = atoi(line+50);  
+
+
+		/* set permissions */
+		EXEC SQL set transaction read write;
+
+		
+		/* write entry into db */
+		EXEC SQL insert into student (stuid, stulast, stufirst, classrank, stupoints, stucredits, year) values (:student.stuid, :student.stulast, :student.stufirst, :student.classrank, :student.stupoints, :student.stucredit, :student.year);
+
+		if (sqlca.sqlcode == 0)
+		 	EXEC SQL commit; 
+		else
+		{
+		  printf("error:  on student insert %d \n",  sqlca.sqlcode);
+
+		}  
+
+	}  /* end while */
+
+	printf("student table was written to db\n");
+
+}
+/****************************************************************************
+ * Method:  			void loadcourses(FILE *file)
+ * Function:			to load the courses data into the database
+ *
+ * Parms:				File *   pointer to courses.txt
+ *
+ * Returns:				none
+ *
+ * Notes:
+ *
+ * ***************************************************************************/
+void loadcourses(FILE *file)
+{
+		char line[80];     /* used to read a line from file buffer */
+
+		/* drop and creates table structure */
+		EXEC SQL drop table course cascade constraints;
+		EXEC SQL create table course(classnum char(7),
+		section char(1), maxenroll integer);
+
+
+	while (fgets(line, 80, file) != NULL)
+	{
+		
+		/* parses data from text file into struct */
+		strncpy(course.classnum, line, 7);
+		course.classnum[7] = '\0';
+		(char) course.section= line[8];
+		course.maxenroll = atoi(line+9);
+
+
+		/* sets permissions */
+		EXEC SQL set transaction read write;
+
+		/* writes entry to db */
+		EXEC SQL insert into course (classnum, section, maxenroll)
+				values (:course.classnum, :course.section, :course.maxenroll);
+
+		if (sqlca.sqlcode == 0)
+				EXEC SQL commit;
+		else
+		{
+			printf("error on commit, %d\n", sqlca.sqlcode);
+		}
+
+	}  /* end while */
+
+
+	printf("course table was written to db\n");
+}
+/****************************************************************************
+ * Method:  			void loadenroll(FILE *file)
+ * Function:			to load the enroll data into the database
+ *
+ * Parms:				File *   pointer to enroll.txt
+ *
+ * Returns:				none
+ *
+ * Notes:
+ *
+ * ***************************************************************************/
+void loadenroll(FILE *file)
+{
+
+		char line[80];     /* used to read a line from file buffer */
+
+		/* drop and creates table structure for db */
+		EXEC SQL drop table enroll cascade constraints;
+		EXEC SQL create table enroll(classnum char(7),
+		section char(1), stuid char(5));
+	
+		while (fgets(line, 80, file) != NULL)
+		{
+		
+			/* parses buffer and loads data into structs */
+			strncpy(enroll.classnum, line, 7);
+			(char) enroll.section= line[8];
+			strncpy(enroll.stuid, line+10, 5); 
+
+
+			/* sets permissions */
+			EXEC SQL set transaction read write;
+
+			/* writes entry to db */
+			EXEC SQL insert into enroll (classnum, section, stuid)
+				values (:enroll.classnum, :enroll.section, :enroll.stuid);
+
+			if (sqlca.sqlcode == 0)
+					EXEC SQL commit;
+			else
+			{
+				printf("error on commit, %d\n", sqlca.sqlcode);
+			}
+
+		}  /* end while */
+
+		printf("enroll table was written to db\n");
+}
