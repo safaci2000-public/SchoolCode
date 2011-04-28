@@ -1,0 +1,199 @@
+
+#include<iostream.h>
+#include<iomanip.h>
+
+int fn(int, int &)
+
+main()
+ {
+ int num = 0;
+
+ cout << fn(num,num) << endl;   //line 1
+ cout << num << endl;           //line 2
+
+ return 0;
+ }
+
+int fn(int a, int &b)
+ {
+  cout << a + (++b) << endl;	//line 3
+  cout << (++a) + b << endl;    //line 4
+  cout << a + (++b) << endl;	//line 5
+  return(a + b);
+
+ }
+
+1.) Based on the above code, what is the output from: (1 pt each)
+
+    line 1?		line 2?		line 3?
+   --------	       --------	       --------
+   a.) 0		a.) 0		a.) 0
+   b.) 1		b.) 1		b.) 1
+   c.) 2		c.) 2		c.) 2
+   d.) 3	        d.) 4		d.) 4
+   f.) cant' be determined f.) ditto    f.) see last f
+
+
+2.) How would the output from line 2 change if Line 4 was deleted?(2pts)
+   
+   a.) The number printed would be unchanged 
+   b.) the number printed would be greater by 1
+   c.) the number printed would be less by 1
+   d.) the number would still be 0
+
+
+3.) Where do you specify default arguements for a function written in
+     C++? (2pts)
+    
+    a.) the function definition header
+    b.) in the body of the function
+    c.) in the function declaration before main
+    d.) both a + c
+    e.) c++ does not allow this feature
+
+
+4.) Write the line of code which allows the use of setw and setprecision 
+     functions in C++: (2pts)
+
+
+5.) Which are correct function declarations in C++? (2pts)
+   
+   a.) int f(int, int = 0, char* = 0);
+   b.) int g(int = 0, int, char *);
+   c.) int h(int = 0, int char* = 0);
+   d.) int k(int, int = 0, char* = 0);
+
+
+6.) What does the following code output? (3pts)
+
+   void g()
+   {
+    int i = 1;
+    int j = 1;
+    f(i,j);
+    cout << i << j;
+   }
+
+  void f(int value1, int &value2)
+   {
+    value1++;
+    ++value2;
+   }
+
+
+
+7.) The operator_____________ creates objects and the operator ___________
+     is used to destory them. (1 pt each)
+
+
+
+8.) Convert the following to a C++ statement: (2pts)
+    
+     printf("my 241 grade is: %c.\n I recieved %d out of %d points",
+       grade, mypoints, max);
+
+
+9.) Conver the header to a pass by reference header: (2pts)
+
+    void test(int *val1, double *val2);
+  
+
+10.) What are the values of a + b? (3pts)
+ 
+   int main(int argc, char **argv)
+     {
+      int a = 10, b = 10;
+      funct(a,b);
+      cout << a << b;
+      return 0;
+     }
+
+   funct(int &p, int &q)
+    {
+      p = p * q;
+      q = p * q;
+    }
+
+
+11.) Which of the following can be used for a newline? (2pts)
+
+     a.) endl
+     b.) "\n"
+     c.) "\nl"
+     d.) newl
+     e.) a + b
+
+
+12.) Which of the following is true? (2pts)
+
+     a.) prototype declaration is optional in C as well as C++
+     b.) prototype declaration is mandatory in C but not C++
+     c.) prototype declaration is optional in C but mandatory in C++;
+     d.) prototype declaration is mandatory in both C and C++
+
+
+13.) Given the following code, what is the output? (1pt per line)
+
+int main()
+ {
+  int a = 2, b = 5;
+  double c = 2, d = 5;
+
+  cout << avg(c,b) << endl;
+  cout << avg(a,d) << endl;
+  cout << avg(b,a) << endl;
+  cout << avg(c,d) << endl;
+ }
+
+ int avg(int a, int b)
+  {
+   return ((a+b)/2);
+  }
+
+ double avg(double a, int b)
+  {
+   return ((a+b)/2);
+  }
+
+ double avg(int a, double b)
+  {
+   return ((a+b)/2);
+  }
+
+ double avg(double a, double b)
+  {
+   return ((a+b)/2);
+  }
+
+
+14.  Which of the following is not true of constructor? (2pts)
+
+     a) A constructor has the same name as the class
+     b) Initialization of an object may done in a constructor
+     c) A constructor may be called from anywhere in the program
+     d) The constructor is executed automatically when a object is 
+        declared.
+
+
+
+
+15  Given this class declaration:
+
+class A {
+private:
+  int x, y;
+public:
+       A() { x = y = 10; }
+       A(int xx, int yy) { x = xx; y = yy; }
+   ...
+};
+
+which of the following will finish with an object a having x = 10 
+and y = 5? (3pts)
+
+        a.A a(5);
+        b.A a(5, 10);
+        c.A a();
+        d.a.y = 5;
+        e.A a(10, 5);
+

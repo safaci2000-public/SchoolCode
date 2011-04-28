@@ -1,0 +1,52 @@
+1.)  Write the 3 - letter designation for each of the corresponding tree
+	traversal patterns: (1pt each)
+ 
+        Inorder
+        Preorder
+        Postorder
+
+
+2.) Create a binary search tree starting with the number 8.  The rest of
+     the data for the tree will be 7, 18, 5, 10, 14, 11, 3, 8, 17 (3pts)
+     a. 0
+     b. 3
+     c. 4
+     d. 5
+ 
+
+
+3.) Suppose T is a binary tree with 14 nodes.  What is the minimum
+     possible depth of T? (2pts)
+
+
+4.) What is the bounded or marked part of the following tree called in 
+     relation to the tree? (2pts)
+
+		A
+	       / \
+         -----/--|\
+        |    B   | C
+        |   / \  | 
+        |  D   E |
+        |        |
+         --------
+
+
+5.)  What are the features of Activation Records? (3pts)
+
+
+6.) What are the main features of Recursion? (2pts)
+
+
+7.) What do the 2 and 3 signify in a 2-3 Tree? (2pts)
+
+
+8.) Write the C code to insert the node "New" into a double linked
+    list at the beginning of the list.  Assume you have the value 
+    "Headpntr" and the list contains more than 1 element. (3pts)
+    (Hint 3 lines)
+ 
+
+9.) Write the C code to delete the node pointed to by "Curr" from the
+    end of a doubly linked list: Free the memory.  Assume you have a 
+    "Tailpntr" (Hint 3 lines) (3pts)

@@ -1,0 +1,17 @@
+linked:  H  e  l  l  o  W  o  r  l  d  
+sequential:  H  e  l  l  o  W  o  r  l  d  
+
+linked:  W  o  r  l  d  
+sequential:  W  o  r  l  d  
+
+linked:  W  o  r  l  d  
+sequential:  w  o  r  l  d  
+
+linked:  t  e  s  t  i  n  g     
+sequential:  t  e  s  t  i  n  g      
+
+linked:  t  e  s  t  i  n  g     
+sequential:  t  e  s  t  i  n  g  s   
+
+linked:  t  e  s  t  i  n  g     
+sequential:  t  e  s  t  i  n  g  s   3  

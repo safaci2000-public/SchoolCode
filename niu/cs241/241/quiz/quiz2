@@ -1,0 +1,66 @@
+1.) What is the size(in bytes) of an int and a double on the unix system?
+
+2.) What is the phase after compile, and what is the instruction 
+    for that phase?
+
+3.) What phase is responsible for resolving external references?
+
+4.) What is the name of the file created by this command:
+    gcc -c prog2.c
+     a.) a.out
+     b.) prog2.o
+     c.) prog2.out
+     d.) prog2
+
+5.) How do you include a user defined file "myfile.h" in your program?
+    Assume the file is in your directory
+
+6.) How do you define a constant k=9.376?
+
+7.) What is the difference between these two file names:
+     file1 : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacc
+     file2 : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabj
+
+8.) Which code segment is more efficient and why?
+  segment 1 = 
+    int year;
+    if(year % 4 == 0)
+       {
+        printf("Leap year");
+       }
+
+  segment 2 =
+    int year, valresult;
+    valresult = year % 4;
+    if(!valresult)
+      {
+       printf("Leap year");
+      }
+
+9.) You have 2 files, main.c and fileg.c  They both contain source code
+that is needs to be linked into an executable file.
+ Write the commands to compile these:
+
+ Write the command to link the 2 object files:
+
+10.) You are using ftp in the directory:
+       /home/mp/z971234/241/assign
+     and you want to obtain the file document.doc from:
+       /home/mp/z991234/
+    Do this in one ftp command.  Assume you are already connected
+
+11.) What ftp command will transfer a file from your computer onto mp?
+     Give an example
+
+12.) Which of the following contains an object table?
+      a.) Source Code
+      b.) Object Module
+      c.) Executable file
+      d.) None of the above
+
+13.) Which of the following shows the correct precedence from highest to
+     lowest?
+      a.) + * / !
+      b.) * ! + -
+      c.) ! * + &&
+      d.) pow * ! +

@@ -1,0 +1,211 @@
+             LINKLISTs
+
+The following discussion provides the various operations needed to manage the
+different cases of the single linklist data structure (pointers only go in a
+forward direction).
+
+use the following declaration
+
+   struct LNode
+      {
+       char chfld;              /* data field */
+       struct LNode *nodepntr;  /* link field */
+      }
+
+   struct LNode *NEWpntr, *HDpntr, *CURpntr;
+
+   HDpntr
+     |
+     |
+     V
+    ,-----,     ,-----,     ,-----,     ,-----,     ,-----,
+    |  |  |     |  |  |     |  |  |     |  |  |     |  |  |
+    |  | -+---->|  | -+---->|  | -+---->|  | -+---->|  |NU|
+    |  |  |     |  |  |     |  |  |     |  |  |     |  |  |
+    '--'--'     '--'--'     '--'--'     '--'--'     '--'--'
+
+
+OPERATION ONE: Inserting a node (adding the node to the chain)
+
+ Before performing any of the 3 cases, a separate function (initnodeftn)
+ should allocate and initiate the node.
+   NEWpntr = MALLOC (SIZEOF (struct LNode));
+   NEWpntr->chfld = char_value; /*get input data  */
+   NEWpntr-> nodepntr = NULL; /* initiate the pointer field */
+                               /* NU = NULL in each figure   */
+
+3 cases:
+  1.  Add a node to the beginning of the chain
+  2.  Add a node in the middle of the chain
+  3.  Add a node at the end of the chain
+
+
+  case 1: add a node to the beginning of the chain.
+
+                HDpntr=CURpntr
+          c.     | |   b1.
+         ,-------' |
+         |         V
+         |       ,-----,     ,-----,     ,-----,     ,-----,     ,-----,
+         |       |  |  |     |  |  |     |  |  |     |  |  |     |  |  |
+         |       |  | -+---->|  | -+---->|  | -+---->|  | -+---->|  |NU|
+         |       |  |  |     |  |  |     |  |  |     |  |  |     |  |  |
+         V       '--'--'     '--'--'     '--'--'     '--'--'     '--'--'
+        ,-----,   ^
+        |  |  |   |
+        |  | -+---'b2.
+        |  |  |
+        '--'--'
+           a.
+
+
+     step a. allocate new node (use initnodeftn)
+     step b. /* link in new node */
+         b1. CURpntr = HDpntr;  /* initialize current pointer */
+         b2. NEWpntr->nodepntr = CURpntr;
+     step c. /*reset HDpntr to beginning of chain */
+             HDpntr = NEWpntr;
+
+
+  case 2: Add a node in the middle of the chain.
+
+          HDpntr=CURpntr         CURpntr
+            |  b1.                  | 
+            |                       |b2.
+            V                       V
+           ,-----,     ,-----,     ,-----,     ,-----,     ,-----,
+           |  |  |     |  |  |     |  |  | cx. |  |  |     |  |  |
+           |  | -+---->|  | -+---->|  | -+---->|  | -+---->|  |NU|
+           |  |  |     |  |  |     |  | ||     |  |  |     |  |  |
+           '--'--'     '--'--'     '--'-+'     '--'--'     '--'--'
+                                        |       ^
+                                    c1. V       | 
+                           NEWpntr----->,-----, | 
+                                        |  |  | |
+                                        |  | -+-'b3.
+                                        |  |  |
+                                        '--'--'
+                                           a.
+
+
+     step a. allocate new node (use initnodeftn)
+     step b. /* link in new node */
+         b1. CURpntr = HDpntr; /* initialize moving pointer             */
+             /* find appropriate place in chain using node criteria     */
+             /* connect the new node with the back half of the chain    */
+             while (CURpntr->nodepntr->chfld < newpntr->chfld) /* test  */ 
+         b2.   CURpntr = CURpntr->nodepntr;            /* get next node */
+         b3. NEWpntr->nodepntr = CURpntr->nodepntr; /* hook in new node */
+     step c. /* connect the new node with the front half of the chain   */
+             /* remove pointer (cx)                                     */
+         c1.   CURpntr->nodepntr = NEWpntr;
+
+  case 3: Add a node at the end of the chain
+         
+           HDpntr=CURpntr
+             |   b1.
+             |
+             V
+           ,-----,     ,-----,     ,-----,     ,-----,
+           |  |  |     |  |  |     |  |  |     |  |NU| 
+           |  | -+---->|  | -+---->|  | -+---->|  | -+----,b3.
+           |  |  |     |  |  |     |  |  |     |  |  |    | 
+           '--'--'     '--'--'     '--'--'     '--'--'    V 
+                                                ^        ,-----,
+                                             b2.|        |  |  |
+                                                |        |  |NU| 
+                                             CURpntr     |  |  |
+                                                         '--'--'
+                                                           a.
+
+     step a. allocate new node (use initnodeftn)
+     step b. /* link in new node */
+         b1. CURpntr = HDpntr; /* initialize moving pointer             */
+             while (CURpntr->nodepntr != NULL) /* find last node        */
+         b2.   CURpntr = CURpntr->nodepntr; 
+         b3. /* insert the new node at end of chain                     */
+             CURpntr->nodepntr = NEWpntr;
+
+
+OPERATION TWO: Removing a node (Deleting a node from the chain)
+
+3 cases:
+  1.  Delete a node at the beginning of the chain 
+  2.  Delete a node in the middle of the chain
+  3.  Delete a node at the end of the chain
+
+
+  case 1: Delete a node at the beginning of the chain
+
+      HDpntr=CURpntr  HDpntr
+          | a.         | 
+          |            |b.
+          V TN         V
+         ,-----,     ,-----,     ,-----,     ,-----,     ,-----,
+         |  |  |     |  |  |     |  |  |     |  |  |     |  |  |
+         |  | -+---->|  | -+---->|  | -+---->|  | -+---->|  |NU|
+         |  |  |     |  |  |     |  |  |     |  |  |     |  |  |
+         '--'--'     '--'--'     '--'--'     '--'--'     '--'--'
+            c.
+
+     step a: /* initialize the start of the search in the chain */
+                CURpntr = HDpntr;
+     step b: /* locate target node (TN) in the first location   */
+             /* move HDpntr to the next node in the chain       */
+             HDpntr = CURpntr->nodepntr;
+     step c. /* mark this node for disposal - deallocate space  */
+             free (CURpntr);
+
+  case 2: Delete a node in the middle of the chain
+
+          NOTE: If the target node is to be disposed, a temporary pointer
+                variable is needed (i.e., temppntr)
+                If garbage collection is to remove the target node, then 
+                eliminate temppntr and the appropriate instruction(s).
+
+i                                    d. 
+         HDpntr=CURpntr        ,-----------,
+            |a.       CURpntr  | temppntr  | 
+            |           |b1.   |    |      |
+            V           V      |    V TN   | 
+           ,-----,     ,-----, |   ,-----, |   ,-----,     ,-----,
+           |  |  |     |  | -+-'   |  |  | `-->|  |  |     |  |  |
+           |  | -+---->|  |  |     |  |  |     |  | -+---->|  |NU|
+           |  |  |     |  | -+---->|  | -+---->|  |  |     |  |  |
+           '--'--'     '--'--' dx  '--'--'     '--'--'     '--'--'
+                                     c1.
+
+        step a: /* initialize the start of the search in the chain   */
+                CURpntr = HDpntr;
+        step b. /*  locate the TN somewhere in the chain             */ 
+                while (CURpntr->nodepntr->chfld != char) /* criteria */
+            b1.   CURpntr = CURpntr->nodepntr; 
+        step c. /* mark this node for disposal - deallocate space    */
+                /* save pointer to connect the two halves of chain   */
+                tempnode = CURpntr->nodepntr->nodepntr; 
+            c1. free (CURpntr->nodepntr)
+        step d. /* connect the two halves of the chain now and       */
+                /* remove the TN by deleting the access (dx) to it   */ 
+                CURpntr->nodepntr = tempnode;
+
+  case 3: Delete a node at the end of the chain
+
+        HDpntr = CURpntr                   CURpntr 
+          |       a.                       b1.| 
+          |                                   |
+          V                                   V             TN 
+         ,-----,     ,-----,     ,-----,     ,-----, b3. ,-----,
+         |  |  |     |  |  |     |  |  |     |  | -+---->|  |  |
+         |  | -+---->|  | -+---->|  | -+---->|  |NU|     |  |NU|
+         |  |  |     |  |  |     |  |  |     |  |b3|     |  |  |
+         '--'--'     '--'--'     '--'--'     '--'--'     '--'--'
+                                                           b2.
+        step a: /* initialize the start of the search in the chain */
+                CURpntr = HDpntr;
+        step b. /* locate the TN at the end of the chain                      */ 
+                while (CURpntr->nodepntr->nodepntr != NULL) /* find last node */
+            b1.   CURpntr = CURpntr->nodepntr; 
+            b2. /*  mark this node for deallocation of space */
+                free (CURpntr->nodepntr);
+            b3. /* remove TN by deleting pointer to it     */
+                CURpntr->nodepntr = NULL;

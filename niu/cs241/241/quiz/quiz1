@@ -1,0 +1,95 @@
+CSCI 241 Quiz #1 Questions
+
+1.) On the unix system, which instruction changes the permissions
+ on a file or directory?
+ 
+ a.) chdir
+ b.) chprm
+ c.) chmod
+ d.) mkdir
+
+
+
+2.) What is the default file name for an executable load module when
+ you do not specify a name?
+ 
+ a.) a.out
+ b.) file.exe
+ c.) loadmod
+ d.) file.c
+
+3.) the instruction to copy a file is:
+ 
+ a.) copy
+ b.) cpy
+ c.) ren
+ d.) cp
+
+
+4.) Copy the file prog1 which is in \home\usr\john\files to your directory
+  Assume you are in \home\usr and your directory is \home\usr\sam
+
+
+5.) Change the permissions of the file example so that the owner has all the
+ permissions, group has read permission and others have execute permission.
+
+
+6.) Which will execute a prog called 'file1' getting its input from a file 
+ called 'file2' and appending the output to a file called 'file3' ?
+
+ a.) file2 >> file1 < file3
+ b.) file1 < file2 >> file3
+ c.) file3 << file1 > file2
+ d.) file1 >> file2 < file3
+
+
+7.) What ouput would the unix system give if one of your classmates attempted
+ to execute 241 in the listing below:
+ drwxr-r--  2 z123456 student 512 Aug30 18:36 hello
+ -r-xr-xr-x 5 z123456 student 241 Aug27 17:52 yes
+ -rwx------ 7 z123456 student  67 Sep8  2:02  no
+ d-----x-wx 1 z123456 student 700 Jul11 1:51  241
+
+ a.) The program would be executed and its output displayed
+ b.) Nothing because they don't have execute permissions
+ c.) The system administrator would be alerted
+ d.) None of the above
+
+
+8.) What is the 3 digit decimal representation of 'hello' from the previous listing?
+
+
+for 9 & 10:
+
+source       /home/mp/z979112/text.c
+destination  /home/mp/z979112/241/testback.c
+
+9.) Using the above source and destination paths make a copy of the file
+ using a unix command
+
+10.) What command tells the user their current path?
+
+11.) What do the -l, -a, -i, or -r options for the ls command do?
+
+12.) Your Relative position in the tree is E. In a sequence of cd commands
+ change your path to C
+
+		A
+               / \
+              /   \
+             B     C
+            / \   / 
+           /   \ Data3
+          D     E
+               / \
+              /   \
+            Data1  Data2 
+
+
+ 13.) How do you list all the files in you parent dirctory,
+   including the hidden files?
+
+
+14.) What is the command for compiling a file to get your own
+ executable filename instead of a.out?
+

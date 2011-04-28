@@ -1,0 +1,166 @@
+CSCI 241                ASSIGNMENT 1                   Summer 2001
+                          POINTS
+ 
+The NIU office wants to print a report containing a list of all
+of students and their beginning of the semester status and their
+end of semester status.  For each student processed there will be
+two lines of data printed.  If the student's gpa has decreased by
+the end of the semester the second output line will be flagged.
+ 
+INPUT:
+ 
+There are three types of records in this file.  The first field in
+each type of record will be a code (integer).
+The first type of record is the professor reference number record.
+It has a code of 0 in the first positon. All reference records are
+grouped together before the student records. Each reference record
+has the following format:
+==>reference# (int) teacher name(char array -maxlen of 10).
+An example of this record would be:
+0 562 janota
+
+The second type of record is the student record. It has a code of 1.
+in the first position. Each student record has the following format:
+==>the social security number(long integer) of the student,
+credits earned to date (integer), points earned to date (integer).
+An example of this record would be:
+1 123456789   25   100
+ 
+The third type of record is the course reference record. It has a
+code of 2 in the first position. Each course reference record has
+the following format:
+==>course reference number(integer), course credits(integer), and
+letter grade earned(character).
+An example of this record would be:
+2   2563   4 B
+ 
+Each student record will be followed by 0 or more course records
+which represent the courses that the student took that semester. 
+Update each student's original record with the new course
+information by accumulating the points earned and the credits
+earned. 
+  
+The input data is found in the file on the unix system: 
+       ~janorob/cs241/pgm/pgm1.dat
+IMPORTANT: Open the file in your program. DO NOT use I/O redirection.
+Note: For each type of record (0-2), there is no restriction as
+to the field boundaries. This means the spacing between fields
+of each record type may vary.
+ 
+OUTPUT:
+ 
+The output report will be written to a file named Z??????1.out
+where ?????? are the last 6 digits of your Z id number.
+ 
+For each page, print report and column headings. The page heading
+must contain the current part number being processed. 
+For each student record print two lines.  The first line contains
+the original student data which represents their status at the
+beginning of the semester, including the social security number,
+grade level, credits earned, points earned, current gpa.  The
+second line will be printed after the courses for that semester
+have been processed and the student's record has been updated and
+will contain the same fields as the first line.  If the student's
+gpa has decreased by the end of the semester print '^^^^^' at the
+end of the line.
+ 
+Print 10 students per page.  The two lines for each student
+should be single spaced, but there should be a blank line between
+students. After the 10th student, use the "\f" control char to
+break to a new page.
+ 
+The output will look similar to the following:
+ 
+ 
+                  STUDENT STATUS REPORT                  PAGE:  1
+ 
+SSN          GRADE LEVEL    CREDITS    POINTS    GPA     DECREASED
+ 
+123456789    FRESHMAN         25         75      3.00
+123456789    SOPHOMORE        35        115      3.29      
+ 
+111111111    JUNIOR           65        240      3.69
+111111111    JUNIOR           80        270      2.96      ^^^^^
+ 
+ 
+After all students have been processed,  print a summary
+containing the total number of students processed, and a break
+down by class level of total students at that level, percent of
+total students, and the number of students at that level who
+improved their gpa's.  The summary must be on its own page and
+contain a report heading.
+ 
+An example of the final report summary follows.
+ 
+ 
+                       STUDENT SUMMARY                   PAGE: 5
+ 
+TOTAL STUDENTS:        40
+ 
+                 TOTAL       PERCENT    IMPROVED
+ 
+FRESHMAN:         10           25           5
+SOPHOMORE:        10           25           4
+JUNIOR:           10           25           1
+SENIOR:           10           25           2
+ 
+After all student summary reports have been created, print a
+professor summary report that contains the professor's name, the
+total number of students  and the average gpa for each professor.
+The summary must be on its own page and contain a report heading
+An example of this report summary follows:
+
+                      PROFESSOR REPORT                   PAGE: 8
+
+NAME          TOTAL STUDENTS              AVE. GPA
+JANOTA            50                        3.88
+WINANS            0                         0.00
+ZERWEKH           55                        3.83
+RANNIE            40                        2.56
+ 
+NOTES:
+ 
+1.  Write a function to assign points to letter grades.  It will
+receive as input a character which represents a letter grade.  It
+will return an integer representing the points for the grade.
+Points should be assigned to letter grades as follows:  A = 4, B
+= 3, C = 2, D = 1, F = 0.  (Use the switch statement in this
+function.)
+ 
+2.  Write a function which will, for each student processed, 
+determine if the student lowered their GPA over the course of
+the semester.  This function expects as input:  the initial gpa,
+a pointer to a field to hold the new gpa and the fields needed to
+calculate the new gpa.  This function will calculate the new gpa,
+compare it with the initial gpa and then if the new gpa is lower
+than the original gpa send back via a return statement a 0 if the
+student did improve and a 1 if the student did not improve.  
+ 
+3.  To update the appropriate grade level counter use the
+following criteria:  0-30 credits = freshman; 31-60 credits =
+sophomore; 61-90 credits = junior; 91 and up = senior.  (Note the
+grade level counters are updated based upon the grade level at
+the end of the semester, not the original grade level.)
+ 
+4.  Write a function to print the report and column headings. 
+This function expects as input pointer to the page number
+variable.
+ 
+5.  You may use other functions as you deem necessary.
+ 
+6.  Print all gpa fields to two decimal places. 
+ 
+7.  The output for this report, with the exception of the summary
+lines, must be centered horizontally on the page.
+ 
+8.  You must hand in printed copies of the source code contained
+in the .c file and the output in the Z??????1.out. 
+ 
+9.  Copy the .c and .out files into the electronic dropbox per
+instructions discussed in class.  Name the source code file
+Z??????1.c where ?????? is the last 6 digits of your Z9 number.
+ 
+10.  Remember, this program must contain full documentation.
+ 
+ 
+ 

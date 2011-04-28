@@ -1,0 +1,46 @@
+1.) How many bytes are allocated in memory for the following code? (3pts)
+	struct node
+         {
+          int data;
+          struct node *link;
+         }
+
+2.) Match the following (1pt each)
+   Data Stucture		Used For
+  --------------	     -----------------
+   QUEUE			Expression Evaluation
+   STACK			Memory Management
+   TREE			        Operating System Scheduling
+
+3.) What does the function malloc return? (3pts)
+   
+
+4.) Indicate whether the following is a dynamic or a static data stucture:
+	(1 pt each)
+  a.) 2D array
+  b.) linked list
+  c.) 1D array
+  d.) sparce matrix
+
+5.) List 2 advantages of a linked list. (1 pts each)
+
+
+6.) Name the four data constructs.  (1 pt each)
+
+
+7.) Write the code to dynamically allocate memory to the following node:
+     struct node { 					(3pts)
+         int key;
+         struct node *nextptr;
+       };
+
+
+8.) Headptr currently points to the first node of a linked list which has
+  the following format:
+   struct node {
+      char key;
+      struct node * nextptr;
+       };
+
+   Write the code to set the first node's key variable to 'a'. Then link
+  this node to another node pointed to by 'someptr'.  (4pts)

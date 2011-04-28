@@ -1,0 +1,91 @@
+1.) What is the default value of a register storage class variable? (3pts)
+
+
+2.) What happens if you had a register storage class variable declared as
+   reg int i;   but all the registers are already busy/occupied? (3pts)
+
+
+3.) Which section of code executes faster? (3 pts)
+     i.	register int i = 0;         ii.  static int i = 0;
+         while(i < 0)		           while(i < 0)
+          {				    {
+           i++;				     i++;
+          }				    }
+
+      a.) i
+      b.) ii
+      c.) both execute at same speed
+      d.) can not be determined
+
+
+4.) What does the following code print? (3pts)
+
+    int ar[5] = {5,10,15,20,25}
+    printf("%d",*(ar+3));
+
+
+5.) What does the following code print? (3pts)
+    int ar[5] = {5,10,15,20,25}  
+    printf("%d",ar);
+
+
+6.) Given char ar[10][10][5]; (3pts)
+    What is the size in bytes of the variable?
+
+
+7.) Given char ar[10][5][2]; (4pts)
+    What is the offset in bytes into the array if 
+     ar[2][3][1] is needed? 
+    (Hint: Use the 3D formula for calculating offset)
+
+8.) What storage class would you use for the following situations? 
+   (2 pts each)
+
+  a.) "home" is a formal argument (paramater to a function)
+  b.) The "secret" variable is to be shared by 2 files
+  c.) The "topsecret" variable is to be shared by the functions in one
+	file but hidden from other files
+  d.) "beencalled" keeps track of how many times the function containing
+	it has been called
+
+9.) What is the value in num after this code is executed? (3pts)
+    int *p;
+    int num;
+    int ar[5] = {3,4,0,2,9};
+    p = ar;
+    p = p + 1;
+    num = *p+1;
+
+   a.) 0
+   b.) 1
+   c.) 4
+   d.) 5
+
+
+10.) Write a function prototype for a function called "addup" which
+     returns an integer, and can take the following 2-D array as its only 
+     arguement:
+     int table[rows][cols];
+
+11.) What will the following line of code print? (3pts)
+     printf("%f",ceil(5.443532));
+
+12.) What does the following code output? (4pts)
+
+int num = 6;
+
+prnt_num(&num, num);
+printf("%d", num);
+
+void prnt_num(int *p, int q)
+  {
+  q++;
+  (*p)++;
+  }
+
+
+a.) 6
+b.) 7
+c.) 8
+d.) 9
+

@@ -1,0 +1,47 @@
+                  CS241 Int. C and C++
+Assignment 2
+worth: 100 pts.
+due: Sept. 27, 2000
+The purpose of this assignment is to categorize the integers from 1 to 2000 
+according to the following:
+  category                         description
+ PRIMES           - a number that is divisible by itself and one only
+ PSQRTS           - any number that has a perfect square root
+                    (ex.9 is a perfect sq. rt. since 9=3*3)
+ DIVBY13          - any number divisible by 13
+ FIBON            - any fibonacci number in the sequence (a0=0, a1=1,a2=1)
+                    where ai = ai-1 + ai-2;
+ OTHER            - any number that does not fall into any other category
+                    (exclude all even numbers)
+
+ Your program must have the following requirements:
+  1.) use only arrays of bits
+       you must use the following header file:  
+         #INCLUDE "/home/ferrddp/janorob/cs241/pgm/bool.h"
+  2.) all arrays must be declared in main, no global variables 
+  3.) create a separate function for each category 
+  4.) provide only one generic print function for printing out all resultant
+           values. This function can only access one array at a time. 
+  5.) write any extra functions you deem necessary depending on the design
+           of your program. 
+
+ 
+The output must have the following format:
+ category (max of 10 spaces)
+each line can have a maximum of 10 numbers with a minumin of 3 spaces between
+each number. All numbers (columns) must be aligned.
+Each cateogry must be printed out individually
+No category should print on more than one page, but more than one category
+can be printed per page
+
+
+Category
+ PRIMES       2      3      5      7     11     13     17     19     23     27
+             29     31     37     41     43     47     53     59     61     67
+
+submit your assignment to ~janorob/cs241/subpgm/pgm2/reci
+                        where i = your recitation section
+if you submit your assignment to any other directory, it will be discarded and
+NOT graded.
+       your files should be named "(your z number).pgm2.c" (source)   and
+                                  "(your z number).pgm2.out" (output)

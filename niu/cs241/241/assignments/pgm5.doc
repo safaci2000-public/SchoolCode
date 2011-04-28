@@ -1,0 +1,64 @@
+Assignment: program 5
+due date:Oct. 18, 2000 by 10:00 P.M.
+worth: 100 points
+
+This assignment will require you to sort single characters. Your assignment must
+use a linklist data structure (a chain) with only forward pointers.Each node
+must be defined according to the following:
+ before the main function
+    struct LNode
+      {
+       char chfld;
+       struct LNode *nodepntr;
+      }
+ in the main function
+    struct LNode *HDpntr, *CURpntr, *NEWpntr;
+
+
+The input to your program will come from I/O redirection and each input will 
+have the following format:
+       Action field    Single Character
+
+The action field must declare the action to be:
+
+   (I)  Insert the character alphabetically into the list
+   (D)  Delete the designated character from the list 
+   (P)  Print the list in ascending alphabetical order.
+
+Your program must be designed in structured programming fashion.  This means 
+you need separate procedures for INSERT, DELETE, and PRINT, as well as any 
+others that you deem apropriate.
+
+There are to be no Global variables in your program.  Pass parameters to your 
+functions. Each function will be required to navigate the chain using local 
+pointers to the chain. You should not have more than 2 pointers to the chain
+in any function. ex typedef struct LNode *curptr, *nextptr; 
+
+Assume "user-friendly" data. This means that there will be no duplicate
+characters to be inserted into the list and no bad action fields.
+
+Output: Characters must be printed in ascending order with two blanks in
+between.  Nothing else is required.
+
+Sample sequence of input:
+	I  B
+        I  F
+        I  D
+        I  E
+        P               (output will be: B  D  E  F)
+        D  E
+        I  A
+        A               (output will be: A  B  D  F)
+        I  H
+        I  K            (output will be: A  B  D  F  H  K)
+        D  A
+        D  K
+        I  J           
+        P               (output will be: B  D  F  H  J)
+
+
+When you are ready to submit your program, use the following path:
+~janorob/cs241/subpgm/pgm5/reci  where i = your recitation session
+be sure to use the correct naming convention
+   z#.pgm5.c  (source c main pgm)
+   z#.pgm5.out (output)

@@ -1,0 +1,121 @@
+Assignment: program 10 (last assignment) (now bring on the final!!)
+due date: dec. 6, 2000 by 10:00 P.M. (may be extended)
+worth: 240 pts.
+ 
+This program is designed to implement two concepts: sorting and classes.  
+You are to use these two tools to complete this assignment.
+
+The class you are to design for this program will keep track of students 
+and their grades throughout the semester.  To do this you will have to 
+implement several member functions, including:
+Student class:
+	1.) A constructor that initializes the student
+	2.) A destructor that cleans up when you are done
+	3.) An operator= method
+        4.) An operator< method
+        5.) An operator> method
+        6.) An overloaded istream method
+        7.) An overloaded ostream method 
+        8.) A static method to input all the students into an array of objects 
+        9.) Several data access methods
+   
+Your program will also have several private data members:
+	1.) A string for first name
+        2.) A string for last name
+        3.) A string for ssn
+        4.) A float val for quiz grade average.
+        5.) A float val for test grade average.
+        6.) A float val for total average, based on the formula:
+		.4 * quizavg + .6 * testavg
+      
+
+The input data for this assignment starts with an integer that is the 
+number of records in the data. Each record itself consists of the 
+following:
+
+firstname lastname
+social security number
+10 quiz grades(between 0 and 10)
+2 test grades(between 0 and 100)
+
+ex.
+Dr Janota
+666-66-6666
+10 10 10 10 10 10 10 10 10 10
+100 100
+
+The input file is named pgm10.in and located in the same directory as this 
+document.(that file will be available after brake)
+
+Your input operator should read the entire record in using one statement,
+ex. cin >> mystudent.
+
+Your output operator should do the same
+ex. cout << mystudent.
+
+should produce the following for a student:
+Dr. Janota
+666-66-6666
+Quiz Average:  100.00%
+Test Average:  100.00%
+Total Average: 100.00%
+ 
+Your main should be in a seperate file with the class #included.
+Your main will declare a pointer to an instance of your class type.
+It should then call your method to read in and create your array of 
+students.  
+
+Once you have initialized your data array, now you must sort it. 
+For this assignment you are to implement two different sorts, 
+the Heap sort and the Quick sort. Both of these sorts will be done both
+recursively and non-recursively.  
+
+First sort by Social Security Number.  
+You will specify what sort to use by a command line argument.
+The different commnand line arguments are as follows:
+ -hr  a recursive heap sort
+ -hn  a nonrecursive heap sort
+ -qr  a recursive quick sort
+ -qn  a nonrecursive quick sort
+
+ex. a10 -hr < pgm10.in
+or  a10 -qn < pgm10.in
+
+
+Print them out in ascending order, ie. 
+000-00-0000 is printed before 999-99-9999. 
+
+Following this you are to calculate the class average for tests, quizes 
+and total grade, and print this out as well:
+ex.
+	Quiz Avg	Test Avg	Total Avg
+	  76.44%         45.23%           57.65%
+
+Next you are to once again sort your array.  
+This sort is to be done in descending order keyed on total average.
+
+Print out the students one final time, worst grades at the top on a new page. 
+Along with the student records, you are to print out a final grade and an 
+appropriate comment:
+
+Dr. Janota
+666-66-6666
+Quiz Average:  100.00%
+Test Average:  100.00%
+Total Average: 100.00%
+
+Final Grade:  A ... Nice Job !!!
+		
+After all result have been printed, your program must clean up after itself 
+before exiting. 
+
+Only use pass by reference, do no pass by pointer.
+
+Besides the required methods, any other methods are fine, but you MUST use 
+the methods that have been described at the top of the document.(ex. don't
+write a print that takes the place of overloading the output stream)
+
+When you are ready to submit your program, use the following pathname:
+ ~janorob/cs241/subpgm/pgm10/reci where i = your recession session 
+be sure to use the correct naming convention:
+z#.pgm10.cpp (source code) 

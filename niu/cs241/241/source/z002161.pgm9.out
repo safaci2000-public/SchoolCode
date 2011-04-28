@@ -1,0 +1,109 @@
+
+                STUDENT STATUS REPORT             PAGE 1
+SSN         GRADE LEVEL     CREDIT    POINTS     GPA     DECREASED
+123456789	Freshman 	25	100\64		     4
+123456789	Sophomore	36	136\88	  3.78		YES
+
+111111111	Freshman 	30	90\5a		     3
+111111111	Sophomore	37	122\7a	   3.3
+
+222222222	Freshman 	11	22\16		     2
+222222222	Freshman 	24	62\3e	  2.58
+
+333333333	Senior   	120	360\168		     3
+333333333	Senior   	124	368\170	  2.97		YES
+
+444444444	Junior   	85	255\ff		     3
+444444444	Senior   	96	287\11f	  2.99		YES
+
+555555555	Sophomore	55	110\6e		     2
+555555555	Junior   	67	170\aa	  2.54
+
+666666666	Sophomore	42	126\7e		     3
+666666666	Sophomore	53	158\9e	  2.98		YES
+
+777777777	Freshman 	12	48\30		     4
+777777777	Freshman 	20	68\44	   3.4		YES
+
+888888888	Freshman 	22	44\2c		     2
+888888888	Freshman 	25	56\38	  2.24
+
+999999999	Sophomore	36	90\5a		   2.5
+999999999	Sophomore	44	118\76	  2.68
+
+
+                STUDENT STATUS REPORT             PAGE 2
+SSN         GRADE LEVEL     CREDIT    POINTS     GPA     DECREASED
+101010101	Sophomore	47	90\5a		  1.91
+101010101	Sophomore	58	102\66	  1.76		YES
+
+111111110	Sophomore	56	140\8c		   2.5
+111111110	Junior   	69	188\bc	  2.72
+
+222222220	Junior   	75	170\aa		  2.27
+222222220	Junior   	82	190\be	  2.32
+
+222525252	Junior   	67	190\be		  2.84
+222525252	Junior   	72	218\da	  3.03
+
+353535352	Junior   	85	260\104		  3.06
+353535352	Senior   	96	296\128	  3.08
+
+524215141	Senior   	95	290\122		  3.05
+524215141	Senior   	106	342\156	  3.23
+
+525252525	Senior   	110	330\14a		     3
+525252525	Senior   	122	374\176	  3.07
+
+626262626	Senior   	125	375\177		     3
+626262626	Senior   	132	403\193	  3.05
+
+727272727	Senior   	140	550\226		  3.93
+727272727	Senior   	147	582\246	  3.96
+
+852585258	Freshman 	15	35\23		  2.33
+852585258	Freshman 	25	51\33	  2.04		YES
+
+
+                STUDENT STATUS REPORT             PAGE 3
+SSN         GRADE LEVEL     CREDIT    POINTS     GPA     DECREASED
+526352632	Freshman 	25	75\4b		     3
+526352632	Sophomore	33	119\77	  3.61
+
+636363636	Junior   	75	250\fa		  3.33
+636363636	Junior   	79	266\10a	  3.37
+
+526987454	Junior   	76	250\fa		  3.29
+526987454	Junior   	84	274\112	  3.26		YES
+
+585858585	Senior   	110	350\15e		  3.18
+585858585	Senior   	121	386\182	  3.19
+
+885885858	Freshman 	12	36\24		     3
+885885858	Freshman 	18	64\40	  3.56
+
+774774774	Freshman 	23	67\43		  2.91
+774774774	Freshman 	29	95\5f	  3.28
+
+152415241	Junior   	65	130\82		     2
+152415241	Junior   	72	142\8e	  1.97		YES
+
+888887777	Sophomore	47	150\96		  3.19
+888887777	Sophomore	56	186\ba	  3.32
+
+
+                STUDENT SUMMERY                   PAGE4
+STATUS:         TOTAL      PERCENT(%)     IMPROVED
+Freshman	6		    21		5
+Sophmore	7		    25		3
+Junior  	7		    25		6
+Senior  	8		    29		4
+
+                PROFFESSOR REPORT                 PAGE 5
+NAME:         TOTAL STUDENTS        AVG. GPA
+janota		15    		2.9
+winans		7    		3.3
+zerwekh		14    		3.3
+rannie		3    		5.1
+angotti		7    		2.7
+glickfield		4    		3

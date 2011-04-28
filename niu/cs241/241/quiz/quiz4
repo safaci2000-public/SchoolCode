@@ -1,0 +1,101 @@
+1.) What would be the output produced by this section of code? (3pts)
+	
+	int i = 1;
+
+ 	switch(i) {
+	  case 0: 
+           printf("0");
+          case 1: 
+           printf("01");
+          case 2:
+           printf("012");
+          default:
+           printf("3");
+           break;
+          }
+
+2.) What is the value of i after execution of this code? (3pts)
+	i=0;
+       do 
+        { i++;
+          while(i >> 1)
+           {
+            i++;
+           }
+        } while(i);
+
+ a.) 0
+ b.) 1
+ c.) 2
+ d.) infinite loop
+
+
+3.) Is the following statement valid? If not, why not? If so, what does it
+   do? (3pts)
+
+   int x = 1,024;
+
+4.) How do you represent octal and hexadecimal numbers in C.
+	Give some examples. (2pts)
+
+5.) What is the main difference betwee a do while and a while loop? (2pts)
+
+6.) How do you mark the 'EOF' on MS-DOS an UNIX?
+
+7.) int a = 1;
+    while(a)
+    {
+     printf("hello");
+     a--;
+    }
+   
+    How many times does "Hello get printed? (2pts)
+    a.) 1 time
+    b.) 2 times
+    c.) 0 times
+    d.) infinite loop
+
+
+8.) for(i=0;i<10;i++)
+     for(j=0;j<7;j++)
+      printf("hello");
+
+    How many times does "Hello" get printed? (3pts)
+    a.) 7 times
+    b.) 17 times
+    c.) 70 times
+    d.) 69 times
+
+9.) What is the numeric equivalent of EOF? (2pts)
+    a.) 1
+    b.) 0
+    c.) -1
+    d.) it depends
+    e.) c + d
+
+10.) What will happen if a trancode of 3 is read in? (3pts)
+     
+      switch(trancode)
+      {
+       case: 1
+        printf("trancode is %d",trancode);
+        break;
+       case: 2
+        printf("trancode is %d",trancode);
+        break;
+       case: 4
+        printf("trancode is %d",trancode);
+        break;
+       }
+
+11.) What would the following code produce: (2pts)
+     int i; 
+     for(i=0;i<2;i++)
+       printf("hello");
+
+12.) What would the following code produce: (2pts)
+      int i=0;
+      while(++i < 1)
+       printf("hello");
+
+    

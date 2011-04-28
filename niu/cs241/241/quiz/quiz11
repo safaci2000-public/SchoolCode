@@ -1,0 +1,72 @@
+1.) When a binary operator is overloaded using a method how many args does 
+    the method have? (2pts)
+
+
+
+2.) If the operator + was overloaded, which of the following would be the
+    correct usage of the + operator? Select all that are correct (2pts)
+
+    a.) c = a + b
+    b.) c = a.operator+(b)
+    c.) c = a +operator(b)
+    d.) c = a.operator+b
+
+
+3.) What are the operators that cannot be overloaded? (1pt each)
+
+
+
+4.) When are constructors called? When are deconstructors called? (3pts)
+
+
+
+5.) In a recursive quicksort algorithm for an array: (2pts)
+     a.) There is one recursive call to the quicksort function itself
+     b.) There are two recursive calls to the quicksort function only
+     c.) There are three recursive calls to quicksort, one for L,N, & R
+     d.) There is one recursive call to quicksort and one call to a 
+          function that returns the midpoint of the array
+     e.) There are two recursive calls to quicksort and one call to a 
+          function that returns the array midpoint
+
+
+
+6.) What is argc used for and what data type is it? (2pts)
+
+
+7.) What is argv used for and what data type is it? (2pts)
+
+
+ class Student
+  {
+   public:
+     Student();     // 1
+     Student(int);  // 2
+     fn();          // 3
+     fn(int);       // 4
+   private:
+     int student_num;
+  }
+
+ 
+8.) What method of the class is invodek in the following 
+    line of code:(2pts)
+   
+    Student stu(1);
+ 
+    a.) 1
+    b.) 2
+    c.) 3
+    d.) 4
+    e.) there is no function called stu(1)
+
+
+
+9.) If an object called stu1 has been created from the above class,
+     which of the following statements is false?
+  
+    a.) stu1 was instantiated in 1 of 2 ways
+    b.) fn() has access to student_num
+    c.) teach2.func(stu1.student_num)
+    d.) method 4 can be invoked by method 3 in the following way:
+        fn(student_num);

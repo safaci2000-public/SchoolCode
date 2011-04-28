@@ -1,0 +1,92 @@
+Assignment: program 3
+due date: July 18, 2001 by 10:00 P.M
+worth: 100 pts
+
+The following assignment manipulates a circular queue using a fixed
+(array) and dynamic memory (linked list) allocation. A circular queue is
+a data construct with no beginning and no end. 
+It has a beginning pointer (headpntr) and an ending pointer (tailpntr) 
+where the tailpntr is always chasing the headpntr
+
+For The Array:
+The nodes for the fixed implementation of the queue will be a simple
+character array defines as the following:
+  char queue[10];
+  NOTE: only 10 values can be stored at a time
+
+For this queue, index pointers(integers) are needed for addressing:
+  int qheadpntr, qtailpntr;
+
+For the linked list:
+The nodes for the dynamic implementation of the queue will have the following 
+format:
+ struct LNode
+  {
+   char chfld;
+   struct LNode *nodepntr;
+  };
+
+For this queue, location pointers (struct node *'s) are needed for
+addressing:
+ struct LNode *lheadpntr, *ltailpntr;
+
+Your program must manage (i.e. build and maintain) the two queues
+simultaneously
+
+The input to your program will come from I/O redirection. You are to 
+create your own input file which will have the following format:
+	 Action field    Character field    Modify field 
+
+The action field must declare the action to be:
+
+   (I) Insert the input character into both queues(pointed to by headpntr)
+   (D) Delete a space from both queues (pointed to by tailpntr)
+        the exisiting character is ignored
+   (P) Print all characters from tailpntr to headpntr in both queues
+   (M) Modify a single character according to the following options:
+       (Only for the fixed queue)
+
+ 	Modify 		
+        Field		Action Required
+      ---------	  -------------------------------------------------
+         1        Replace the character currently pointed to by qheadpntr
+         
+         2        Replace the character currently pointed to by qtailpntr
+
+         3        (for qheadpntr > qtailpntr) & round down
+                  Replace the character currently pointed to by 
+                     (qheadpntr - qtailpntr)/2 + qtailpntr
+
+         4        (for qheadpntr < qtailpntr) & round down
+                  Replace the character currently pointed to by
+                     ((qheadpntr+10) - qtailpntr)/2 + qtailpntr
+
+For the input data in this assignment, the following cases exist:
+ 1.) If the action field is not = I, D, P, or M
+ 2.) If the Modify field is not = 1, 2, 3, or 4
+ 3.) underflow in the queue( i.e.. delete action with an empty queue)
+ 4.) overflow in the queue(i.e., and insert action with a full queue)
+    *** this case is only to be considered in the fixed queue ***
+ NOTE: All of the above cases will require an appropriate error message.
+  Discard that input and scan for the next action field.
+ 5.) the character field will only contain legimate characters 
+
+For the dynamic queue, overflow does not exist so insert the character.
+
+Sample Input:
+I A
+D
+D
+D	(Here Underflow for both queue's will occur)
+I Z
+I H
+I N
+I R
+P	(Here your output should be : l = Z H N R (newline) s = Z H N R
+M a 1
+M b 2
+P       (Here your output should be : l = Z H N R (newline) s = a H N b)
+
+When you are ready to submit your program, be sure to use the correct
+naming convention
+ z#.pgm3.c (source c main pgm)

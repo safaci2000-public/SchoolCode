@@ -1,0 +1,62 @@
+Assignment: program 8 
+due date: Nov. 15, 2000 by 10:00 P.M.
+worth: 100pts
+
+Assignment 8 will be a continuation of assignment 7. You will need to
+build your tree using the same code as you did in assignment 7.  The only
+difference is the addition of a "visited" field to each tree node.
+
+struct node
+{
+ int val;
+ int visited;
+ struct node *left;
+ struct node *right;
+};
+ 
+After tree is built you will need to do the following actions to it using
+recursive functions:
+
+   1. height. This function will calculate the maximum height of the tree.
+              Remember, use the height of the bigger of the two subtrees.
+
+   2. leaves. This function will calculate the number of leaf nodes on the
+              tree.
+
+   3. num of nodes: This function will calculate the total number of nodes
+              (internal and leaves) in the tree. 
+ 
+   4. preorder print: print the nodes out in preorder traversal.
+
+   5. inorder print:  this should be the same as the print for #7
+
+   6. postorder print: print the nodes out in postorder
+
+Finally, you are to write a postorder traversal function that does not use
+recursion.  This function will need to use an auxiliary stack in order to
+traverse the tree.  You will need to declare the stack, as well as write
+push and pop functions to manipulate the stack. 
+Besides printing the postorder traversal, this function must also calculate
+the average of the values of the nodes.
+
+
+Your input will be the same as in assignment 7, a series of integer values
+using I/O redirection.   
+ex.  5 2 7 8 6 3 1 4
+
+Your output is to look like the following
+Preorder:  5 2 1 3 4 7 6 8
+Inorder:   1 2 3 4 5 6 7 8
+Postorder: 1 4 3 2 6 8 7 5 
+
+Height:    4
+Leaves:    4
+Nodes:     8
+Average:   4.5
+
+
+When you are ready to submit your program, use the following path:
+~janorob/cs241/subpgm/pgm8/reci  where i = your recitation session
+be sure to use the correct naming convention
+   z#.pgm8.c  (source c main pgm)
+

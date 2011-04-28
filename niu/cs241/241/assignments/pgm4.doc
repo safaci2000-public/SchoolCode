@@ -1,0 +1,107 @@
+Assignment: program 4
+due date:Oct. 11, 2000 by 10:00 P.M.
+worth: 100 points
+
+This assignment will require you to write your own string functions (do not
+invoke the functions from the string.h or stdlib.h files) and then manipulate
+those functions according to a specific criteria (described by the input
+records section below). These functions are the following:
+
+1. mystrngcpy-copies source string to destination string in its entirety.
+   int mystrngcpy (char *srcptr, char *destptr) /* source, dest */
+       return code > 0  ==> successful op, number of calls to the function
+                   = 0  ==> failure
+
+2. mystrngncpy-copies n characters from source string to destination string
+               if source string has <= n characters and n > 0
+                  then pad the destination string with blanks from right to left
+               if source string has <= n characters and n < 0
+                  then pad the destination string with blanks from left to right
+               if source string has > n characters, then truncate the string
+                  after n characters are copied from left to right
+   int mystrngncpy (char *srcptr, char *destptr, int n_size)
+                   /* source string, destination string for n chars */
+       return code > 0 ==> successful op, number of calls to this function
+                   = 0 ==> failure
+
+3. mystrngcmp-compares string 1 with string2
+   int mystrngcmp (const char *strng1ptr, const char *strng2ptr)
+                  /* string1, string2 */
+       return code > 0 if string1 > string2
+                   = 0 if string1 = string2
+                   < 0 if string1 < string2
+
+4. mystrngcasecmp-ignores the case sensitivity of each character in string1
+                  and string2 while comparing those strings
+   int mystrngcasecmp (const char *strng1ptr, strng2ptr)
+                      /* compares string1 with string2 without case dependency)
+       return code: same as mystrngcmp results
+
+The "main" routine will be stored in one file (pgm4m.c) while the four functions
+will be stored in a separate file (pgm4x.c). Be sure to establish the proper
+connections between files.
+Also, keep track in each copy function only of how many times that function was
+called. It is required to use the STATIC storage class.
+
+Your main routine will read in records through I/O redirection (including the
+test data). Therefore your program will not need any file commands. No global
+variable access will be allowed in any function (except main). Use parameter
+passing when necessary. 
+
+There will be two types of input records. The first is in the following format:
+code   string	string 
+ 1      hello   world
+
+When you read in a record of this format, you are to use the mystrngcmp
+function to determine which string is bigger (longer or in alphabetical order).
+Store the larger of the two strings in an array of "Stringlg" with your
+mystrngcpy function.
+the "Stringlg" array should be allocated as a 2 dimensional array (20 x 100)
+   where row = the number of strings found (maximum 20)
+         col = the strings found (remember: a string is an array)
+The other type of record is as follows:
+code	string	  string    number
+ 2      Robert    Janota      5
+
+When this type of record is received, you are to compare the two strings using
+the mystrngcasecmp function. Store the smaller of the two strings into an array
+of Strings with the mystrngncpy function. Use the number from the record as the
+size of the string copied.
+the "Stringsm" array should be allocated as a 2 dimensional array (20 x 100).
+ row = the number of strings found  (maximum 20)
+ col = the strings found (remember: each string is an array) 
+
+
+After you reach the end of the Input, you are to print out a listing of both
+arrays that you stored.  Your output should look like this:
+
+High Strings		
+------------
+    world 			 
+    zues	
+
+Low Strings
+-----------
+   Janot 
+    adam
+		 
+After you have completed printing this report, print a report that states
+the number of times each copy function has been called.
+
+Calls To Functions
+
+mystrngcpy   10 calls
+mystrngncpy   8 calls
+
+Your output should resemble the sample output shown here.
+
+Although there are only 4 functions required for this program, structured
+programming suggests a further subdivision of tasks (left to your decision).
+For example, a print function assists in the ouput logic. 
+
+When you are ready to submit your program, use the following path:
+~janorob/cs241/subpgm/pgm4/reci  where i = your recitation session
+be sure to use the correct naming convention
+   z#.pgm4m.c  (source c main pgm)
+   z#.pgm4x.c  (source c your string functions)
+   z#.pgm4.out (output)

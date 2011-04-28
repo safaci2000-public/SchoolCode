@@ -1,0 +1,107 @@
+1.) given the function header: void func(double ** pntr)
+      allocate memory for pntr and use the correct syntax to assign pntr a
+	value (3pts)
+
+2.) Given the linked list:
+  
+         -- --    -- --    -- --    -- --
+        |  |  |  |  |  |  |  |  |  |  |  |
+  head->|A |  |->|B |  |->|C |  |->|D |  |
+        |  |  |  |  |  |  |  |  |  |  |  |
+         -- --    -- --    -- --    -- --
+
+  Give the 3 lines of c code that will delete the 'C' node and
+  free the memory.  Assume currentpntr points to 'B'. (4pts)
+
+
+3.) Whats the condition to be checked for a queue to be empty or full, if
+    'front' and 'rear' are the pointers you use? (2pts)
+
+
+4.) Whats the advantage of a singly linked list over a doubly linked list?
+    (2pts)
+
+
+5.) struct node
+    {
+     char letter;
+     struct node *prev;
+     struct node *next;
+    };
+     struct node *curr;
+
+     -----    -----    -----    -----    -----
+     |   | -> |   | -> |   | -> |   | -> |   |
+     | A | <- | B | <- | C | <- | D | <- | E |
+     -----    -----    -----    -----    -----
+                        /\
+                        |
+                      curr
+
+     Write 2 lines of code to delete node C only using curr (3pts)
+
+
+
+6.) Given this "memory" (assume 4 bytes words even though only 2 show)
+    
+         ------------------------------------------------------
+X'A000' | A020 | C'C'| A000 | A050 | A050 | A054 | A020 | C'B' |
+         ------------------------------------------------------
+X'A020' | A028 | C'A'| A030 | C'F' | A038 | C'E' | A040 | C'D' |
+         ------------------------------------------------------
+
+  struct node
+   {
+    struct node *link;
+    char letter;
+   };
+
+   struct node *hdr = X'A000'
+
+
+   What is contained in the character field of the 2nd node?  (4pts)
+
+
+7.) A queue is the appropriate data structure when information must
+    be saved and then later retrieved in the _____ order as recieved.
+     (2pts)                 
+    a.) same
+    b.) reverse
+    c.) alternating
+    d.) sorted
+
+
+8.) One difference between a queue and a stack is: (2pts)
+    a.) Queues require linked lists, but stacks do not
+    b.) Stacks require linked lists, but queues do not
+    c.) Queues use two ends of the structure, stacks use only one
+    d.) Stacks use tow ends of the structure, queues use only one
+
+
+9.) What 2 parameters are the minumum required to pass an insert function
+    for a linked list? (3pts)
+
+
+10.) In order for the insert and delete functions to work, such as in 
+     your assignment 5, what criteria of the linked list is necessary
+     for their logic to work? (2pts)
+
+
+11.) Consider the following pair of stacks:
+	
+      | 20 | <- top -> | 18 |
+      ------           ------
+      | 17 |           | 25 | 
+      ------           ------
+      | 23 |           | 22 |
+      ------           ------
+      | 21 |           | 21 |
+      ------           ------
+
+  What sequence of Push and Pop operations is required to make the first
+   stack identical to the second? (3pts)
+
+12.) What does the headpntr and tailpntr of a non circular  doubly linked
+      list with 1 node point to? (2pts)
+
+         

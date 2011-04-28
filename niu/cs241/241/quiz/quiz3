@@ -1,0 +1,48 @@
+1.) Complete the following truth table 5pts
+
+  X || Z && Y  result
+ --------------------
+  0    0    0 |
+  0    0    1 |
+  0    1    0 |
+  0    1    1 |
+  1    0    0 |
+  1    0    1 |
+  1    1    0 |
+  1    1    1 |
+
+
+2.) Using bitwise operators how do you multiply 40 by 16? (2pts)
+
+3.) Which of the following is not a bitwise operator? (2pts)
+ a.) >>
+ b.) <<
+ c.) |
+ d.) *
+
+4.) int val1 = 2, val2 = 8;
+    What is the result of the following statement? (3pts)
+     val1 = val1 & val2
+
+5.) Write the following operators in the order they will be interpreted?
+      =  !  &&  <  &                    (2pts)
+
+6.)  9 and 14 are integers. 
+     What is the result of XORing them? (2pts each)
+     What is the result of ANDing them?
+     What is the result of ORing them?   
+   
+7.) Consider the two C statements. Are they equivalent on the Unix
+     platform(ASCII)? (2pts)
+      char grade = 65;
+      char grade = 'A';
+
+8.) What would be the answer for the following? (1 pt each)
+  5 == 5 || 5 == 9
+  5 <  8 || 5 >  2
+  5 >  8 || 5 <  2
+
+
+9.) What is the output for the following: (1 pt each)
+    5 > 3 ? 10 : 12
+    3 == 9 ? 25 : 18

@@ -1,0 +1,13 @@
+Preorder Traversal Using Recursive:  	50  40  30  20  10  25  23  22  24  27  26  28  35  33  32  37  36  38  45  43  42  44  47  46  48  60  65  63  62  64  67  68  
+Inorder Traversal Using Recursive:  	10  20  22  23  24  25  26  27  28  30  32  33  35  36  37  38  40  42  43  44  45  46  47  48  50  60  62  63  64  65  67  68  
+Postorder Traversal Using Recursive:  	10  22  24  23  26  28  27  25  20  32  33  36  38  37  35  30  42  44  43  46  48  47  45  40  62  64  63  68  67  65  60  50  
+
+Height: 		 6
+Leaves: 		 15
+Nodes: 			 32
+Average: 		40.6
+
+
+
+Program Terminated
+Thank you for using a product of the CS241 curriculum

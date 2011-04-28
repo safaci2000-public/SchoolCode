@@ -1,0 +1,29 @@
+Error...invalid input detected!!
+Error...invalid input.  only 1, 2, 3 or 4 are valid inputs.
+
+linked:  S  a  m  i  r  
+sequential:  S  a  m  i  r    
+Error!!!!  overflow..can not insert anymore items into array queue
+Error!!!!  overflow..can not insert anymore items into array queue
+Error!!!!  overflow..can not insert anymore items into array queue
+Error!!!!  overflow..can not insert anymore items into array queue
+Error!!!!  overflow..can not insert anymore items into array queue
+
+linked:  S  a  m  i  r     A  l  e  x  a  n  d  e  r  
+sequential:  S  a  m  i  r     A  l  e  x  
+Error...invalid input.  only 1, 2, 3 or 4 are valid inputs.
+Err.  code does not apply here.  head pointer is not smaller then tail pointer
+Error!!  underflow encountered in array queue
+Error!!  underflow encountered in array queue
+Error!!  underflow encountered in array queue
+Error!!  underflow encountered in array queue
+Error!!  underflow encountered in array queue
+
+linked:  Err:  Linked List Queue is empty...no data to print!!!
+
+sequential:  Err:  Array Queue is empty...no data to print!!!
+
+
+linked:  H  e  l  l  o  
+sequential:  H  e  l  l  o    
+Err.  code does not apply here.  head pointer is not greater then tail pointer

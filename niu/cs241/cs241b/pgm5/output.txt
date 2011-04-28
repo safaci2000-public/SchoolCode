@@ -1,0 +1,92 @@
+Objects sorted by Social Security using recursive Quicksort 
+
+Brad  Bode
+111-22-3333
+Quiz Average:   90.00%
+Test Average:   100.0%
+Total Average:  96.00%
+
+Ravikiran  Paidipally
+123-45-6789
+Quiz Average:   55.00%
+Test Average:   77.00%
+Total Average:  68.20%
+
+Pat  Stephen
+653-45-2342
+Quiz Average:   57.00%
+Test Average:   77.00%
+Total Average:  69.00%
+
+Greg  Comerford
+654-65-6565
+Quiz Average:   58.00%
+Test Average:   49.00%
+Total Average:  52.60%
+
+Rajanikanth  Somu
+676-65-7666
+Quiz Average:   47.00%
+Test Average:   93.00%
+Total Average:  74.60%
+
+Chris  Connelly
+777-66-5555
+Quiz Average:   100.0%
+Test Average:   93.00%
+Total Average:  95.80%
+
+Priya  Jagadeesan
+921-65-2342
+Quiz Average:   52.00%
+Test Average:   100.0%
+Total Average:  80.80%
+
+
+Objects sorted by Total Avg using recursive Heapsort 
+
+Greg  Comerford
+654-65-6565
+Quiz Average:   58.00%
+Test Average:   49.00%
+Total Average:  52.60%
+
+Ravikiran  Paidipally
+123-45-6789
+Quiz Average:   55.00%
+Test Average:   77.00%
+Total Average:  68.20%
+
+Pat  Stephen
+653-45-2342
+Quiz Average:   57.00%
+Test Average:   77.00%
+Total Average:  69.00%
+
+Rajanikanth  Somu
+676-65-7666
+Quiz Average:   47.00%
+Test Average:   93.00%
+Total Average:  74.60%
+
+Priya  Jagadeesan
+921-65-2342
+Quiz Average:   52.00%
+Test Average:   100.0%
+Total Average:  80.80%
+
+Chris  Connelly
+777-66-5555
+Quiz Average:   100.0%
+Test Average:   93.00%
+Total Average:  95.80%
+
+Brad  Bode
+111-22-3333
+Quiz Average:   90.00%
+Test Average:   100.0%
+Total Average:  96.00%
+
+Quiz Avg	Test Avg	Total Grade Avg	
+
+65.57%   	84.14%   	76.71%

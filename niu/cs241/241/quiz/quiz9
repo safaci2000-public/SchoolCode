@@ -1,0 +1,42 @@
+1.) In object - oriented programming with C++, functions belonging to a 
+    class are called:__________ <2pts)
+
+    
+2.) How does a bubble-sort algorithm work(for ascending order) in one
+     pass?(2pts)
+
+    a.) low values migrate up to their proper position at the beginning of
+	the array
+    b.) high values migrate down to their proper position at the end 
+        of the array
+    c.) the lowest value is selected and swaped to the beginning of the 
+        array
+    d.) both a + b
+    e.) bubblesort is recursive and sorting is done through 
+        partitioning the array
+
+
+3.) Which of the following is a feature of C++? (3pts)
+    a.) abstract data types         
+    b.) inheritance
+    c.) explicit pointer manipulation
+    d.) b + c
+    e.) a + b
+
+
+4.) What is the efficiency of the following sort algorithms?(4pts)
+    Quick Sort _____________
+    Heap Sort  _____________
+
+
+
+5.) What is the average number of comparisons in the bubble sort? (3pts)
+
+
+6.) Code the swap routine used for sorting 2 float variables f1 + f2.
+    (4pts)
+
+
+7.) Fill in the blanks: (1pt each)
+     Objects are ________  variables.
+     Inheritance mechanism can be used for __________ and ___________.
