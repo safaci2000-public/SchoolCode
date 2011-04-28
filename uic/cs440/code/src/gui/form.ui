@@ -1,0 +1,285 @@
+<ui version="4.0" >
+ <author></author>
+ <comment></comment>
+ <exportmacro></exportmacro>
+ <class>mainWindow</class>
+ <widget class="QMainWindow" name="mainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>648</width>
+    <height>502</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Stego ver. 1.0</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <widget class="QTabWidget" name="tabWidget" >
+    <property name="geometry" >
+     <rect>
+      <x>30</x>
+      <y>20</y>
+      <width>541</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="toolTip" >
+     <string>Choose the appropriate tab for the action you wish to perform</string>
+    </property>
+    <property name="currentIndex" >
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab" >
+     <attribute name="title" >
+      <string>Embed Data</string>
+     </attribute>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>9</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="2" column="1" >
+       <widget class="QLabel" name="label_4" >
+        <property name="text" >
+         <string>Choose a text or binary file to embed</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QLabel" name="label_3" >
+        <property name="text" >
+         <string>Choose an Image file of the same type</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QLabel" name="label_2" >
+        <property name="text" >
+         <string>Choose an Image File</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" >
+       <widget class="QPushButton" name="EData" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <property name="toolTip" >
+         <string>Choose Data to Embed</string>
+        </property>
+        <property name="text" >
+         <string>Choose &amp;Data to Embed</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QPushButton" name="OImage" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <property name="toolTip" >
+         <string>Choose An Output Image</string>
+        </property>
+        <property name="text" >
+         <string>Choose An O&amp;utput Image</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <widget class="QPushButton" name="IImage" >
+        <property name="toolTip" >
+         <string>Load Input Image</string>
+        </property>
+        <property name="text" >
+         <string>Load &amp;Input Image</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="tab_2" >
+     <attribute name="title" >
+      <string>Extract Data</string>
+     </attribute>
+     <widget class="QLabel" name="label" >
+      <property name="geometry" >
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>321</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Choose a file that contains embedded data.</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="OpenEmbed" >
+      <property name="geometry" >
+       <rect>
+        <x>30</x>
+        <y>60</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="toolTip" >
+       <string>Open File </string>
+      </property>
+      <property name="text" >
+       <string>&amp;Open File</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_5" >
+    <property name="geometry" >
+     <rect>
+      <x>30</x>
+      <y>330</y>
+      <width>91</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Command to
+Execute</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label1" >
+    <property name="geometry" >
+     <rect>
+      <x>160</x>
+      <y>340</y>
+      <width>411</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>./stego</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label3" >
+    <property name="geometry" >
+     <rect>
+      <x>160</x>
+      <y>420</y>
+      <width>421</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bExit" >
+    <property name="geometry" >
+     <rect>
+      <x>260</x>
+      <y>290</y>
+      <width>104</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="toolTip" >
+     <string>Exit</string>
+    </property>
+    <property name="text" >
+     <string>E&amp;xit</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bRun" >
+    <property name="enabled" >
+     <bool>false</bool>
+    </property>
+    <property name="geometry" >
+     <rect>
+      <x>130</x>
+      <y>290</y>
+      <width>104</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="toolTip" >
+     <string>Execute or Run</string>
+    </property>
+    <property name="text" >
+     <string>&amp;Execute</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label2" >
+    <property name="geometry" >
+     <rect>
+      <x>160</x>
+      <y>380</y>
+      <width>411</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QMenuBar" name="menuBar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>648</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionExit_2" />
+   </widget>
+   <addaction name="menu_File" />
+  </widget>
+  <action name="actionExit" >
+   <property name="text" >
+    <string>&amp;Exit</string>
+   </property>
+   <property name="statusTip" >
+    <string comment="Exit" />
+   </property>
+   <property name="shortcut" >
+    <string>Alt+F4</string>
+   </property>
+  </action>
+  <action name="actionAbout" >
+   <property name="text" >
+    <string>&amp;About</string>
+   </property>
+   <property name="statusTip" >
+    <string comment="About" />
+   </property>
+   <property name="shortcut" >
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="actionExit_2" >
+   <property name="text" >
+    <string>Exit</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+ </widget>
+ <pixmapfunction></pixmapfunction>
+ <tabstops>
+  <tabstop>IImage</tabstop>
+  <tabstop>OImage</tabstop>
+  <tabstop>EData</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

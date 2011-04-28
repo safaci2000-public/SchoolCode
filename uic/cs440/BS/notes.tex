@@ -1,0 +1,852 @@
+%        File: notes.tex
+%     Created: Fri Sep 01 11:00 AM 2006 C
+% Last Change: Fri Sep 01 11:00 AM 2006 C
+%
+\documentclass[a4paper]{article}
+\begin{document}
+
+September:
+{
+Fri Sep  1 11:01:46 CDT 2006
+[
+ Linear Model:\newline
+  
+Winberg Case Study\newline
+Teal Tractor Company\newline
+	Moving Target Problem\newline
+
+Water Fall Model:
+
+Requirements
+  Analysis
+  	Design
+		Implementation
+			Testing
+				Post Delivery Maintenance
+
+]
+Wed Sep  6 11:08:36 CDT 2006
+[
+				Inc A:			Incr B:				Inc C:		Incr D:
+
+Req:			4				4-3					2			1
+
+Analysis:		1				3-4					2			1
+
+Design:			1				1					3-4			2-1
+
+Implementation:	1				1					3-4			4
+
+Testing:		1				1					1			3-4
+
+
+--------------------------------------------------------------------------------
+
+Increment B:
+
+				Itr A:			Itr B:				Itr C:
+
+Req:				
+
+Analysis:				
+
+Design:						
+
+Implementation:					
+
+Testing:														
+
+--------------------------------------------------------------------------------
+Evolutionary  model
+
+Req:				Req1									Req4
+
+Analysis:			Analysis								Analysis4
+
+Design:				Design					Design3			Design4
+
+Implementation:		Impl1		impl2		Impl3			Impl4
+
+Testing:														
+
+--------------------------------------------------------------------------------
+Code and fix model
+
+Implement
+    |
+	|
+	|------->  modify until client is satisfied and repeat --> deliver-->post dliveriy maintenance
+
+
+--------------------------------------------------------------------------------
+Rapid Prototype Model:
+
+Initial Prototype
+  |
+  |__> Requirements
+  			|
+			|__>Analysis
+					|
+					|__> Design
+							|
+							|__> Impl
+								   |
+								   |__>Post Del. Maintenance 
+
+--------------------------------------------------------------------------------
+
+Spiral Model:
+
+*insert spiral overlay on cartesian grid*
+
+Planning			Risk Analysis Unit Prototype
+
+each spiral corresponds to a work flow.
+
+Mainly used for very large software
+
+--------------------------------------------------------------------------------
+Agile Process:
+	Features (stairs)
+	Pair Programming
+
+
+--------------------------------------------------------------------------------
+Open Software:
+
+ ie. Linux
+
+
+]
+Mon Sep 11 11:09:20 CDT 2006
+[
+Unified Process
+
+   Req.		Business model - cost-benefit analysis
+   				extensive communication with the client
+
+   Analysis	Write down clients requirements in English
+
+ 
+Specification document:
+
+    1. Product overview & summary
+	2. Development, operating and maintenance environment.
+	3. External interface and work flow -- user displays report format user command language.
+	4. Functional Req.
+	5. Performance Req.
+	6. Exception Handling
+	7. Foreseeable modifications & enhancements
+	8. Acceptance Criteria
+	9. Design hints & guideline
+
+Desirable Properties:
+
+	1. Consistency
+	2. Completeness
+	3. Extensibility/flexibility
+	4. Traceability
+	5. Testability.						Software Quality Assurance Dept (SQA)
+
+Design
+
+		Arch. Design
+		Interface of modules
+		specs for each module
+
+
+Detailed Design:
+		
+		internal data structs,
+	 	algorithems to be used
+
+Implementation:
+
+		Unit Testing
+		Integration Testing
+		Product testing
+		Alpha testing
+		Beta testing
+
+]
+Mon Sep 18 11:30:19 CDT 2006
+[
+MSG foundation:
+
+performs calculations need to determine how much money is available each to purchase a home.
+
+msg staff member ==> |estimates funds for the week. |
+applicant   ==>      | apply for msg mortage        |  
+staff member	     | compute weekly repay amount  |
+staff member	     | manageing investments	    |
+
+
+Requi:
+   couples married for at least one year and at most for ten years.
+   both of them are employed
+   28% of the weekly gorss income of the couples < weekly payments for the mortgage
+                 or
+   the couples can not pay the initial deposit + closing costs ($7000)
+
+  
+  1 estimate annual return on the investments and divide by 52
+  2 estimate operating expenses for the year and divide by 52
+  3 total estimated mortgage paymetns for the week is completed
+  4 Total estimated grant amount is computed
+
+  funds available for the week (1) - (2) + (3) - (4)
+
+  Estimate funds available for the week
+
+  Estimate investment's return for the week
+
+--------------------------------------------------------------------------------
+
+]
+Wed Sep 20 11:00:19 CDT 2006
+[
+  Missed class
+]
+Fri Sep 22 11:08:22 CDT 2006
+[
+ MSG Cont.
+(
+ estimate funds for week
+ manage investments
+ update operating expenses
+ manage mortgage    -- borrower
+ print reports
+
+
+ Estimate available funds for the week
+ 1. compute estimate returns on the investment for the week
+ 2. computer estimate operating exp. for the week
+ 3. compute the estimated mortgate payments for the week
+ 4. computer the estimated grants given for week
+ 5. available funds for the week = (1) - (2) +(3) - (4)
+ 6. print the avail. funds report
+
+Print Report:
+ 1.  On demand print the investments report
+
+ for each investment print the defaults of the invest.
+ 1. item number
+ 2. name
+ 3. estimated annual return
+ 4. date is computed
+
+Investments:
+
+  item number,
+  item name,
+  estimated annual 
+  	return (updated whenever new information comes )
+  date estimate annual return was updated.
+
+
+For each mortage keep the following info:
+  acct #
+  name of borrowers 
+  orginal purchase price
+  date mortgage was issued
+  weekly P&I
+  current confirmed gross weekly income
+  date the above was updated
+  annual real-estate tax
+  date it was updated
+  annual home owners insurance preimum
+  date it was updated
+)
+
+Rapid Prototype:
+
+lots of user user interface and reports
+
+Analysis:
+   case tools, UML
+]
+Mon Sep 25 11:02:27 CDT 2006
+[
+Analysis workflow--
+
+   spcific/precise
+
+Structureed System Analysis
+
+  Data flow diagram (DFD)s
+
+  ---
+  |  |   --> source or destination of data
+  ----
+
+  --->       flow of data
+
+  ----
+  (  )       processes that transforms flow of data
+  ----
+
+  ---
+  |____		stores of data
+
+  Case study:  Sally' software shop
+
+Step1:  Draw DFS
+Step2:  Decide on which parts to coputerize and how
+Step3:  Determine details of data flow
+
+ 	Order:
+	    Order identification
+		customer details
+		package details
+]
+Wed Sep 27 11:08:19 CDT 2006
+[
+ Developing the dfd
+ decide twhat parts to be computerized
+ determine the data flow details
+      order:
+	  	order identification
+		customer - details
+		packae details
+ define the logic of the precedures
+ define the data stores
+ define the physical resources
+
+
+ MSG Foundation DFD:
+
+SEO1000
+
+]
+Fri Sep 29 11:00:18 CDT 2006
+[
+  Programming Languages for Large Scale Parallel Computing
+
+  Very large system >> 1k cpu cores
+
+  Focused on Scientific Computing
+
+  	memory races are bugs, not features.
+	programmers expect reproducibility
+  Large codes
+      >> 100 KLOC
+
+	Mirianet.  
+
+	shared memory prog:  Open np
+
+	C++, Fortran (computationation kernels), MPI (Inter process communication)
+
+	MPI Language:
+	   Performance  -- 
+	      faster, compiled communication that avoid software overhead of mpi
+		  compiler optimization of communication
+	   Performacne:  Fortran more dominant then C/C++ in MPI
+    Ideal Language:
+		  faster, compiled communication that avoid software overhead of MPI
+		  Compiler optimization of communications
+		  Time = work/p + depth
+
+		  global namespace
+		  	caching rather thant copying: location is not part of name
+
+]
+}
+Octobre
+{
+
+Mon Oct  2 11:00:46 CDT 2006
+[
+  Requirements project submission dead line will be on Oct 16th.
+  Midterm exam will be on October 13th Friday.
+
+  Three types of classes:
+  	Entity Class   -- long lasting info       O
+											 ---
+	Bounding class	-- user interface, reports etc.   |-O
+	control class	-- non-trivial algo
+
+
+	estimite avail. weekly funds
+	manage an investment
+	manae a mortage
+	update estimated operating expanse
+	provide a report
+
+    
+	Manage a mortage -- a scenarion where real estate tax is updated
+
+
+	1. staff member
+		counts the mortgage identity,
+		the new vaule of real estate tax
+	2. The system find the mortgage & updates the tax
+
+	Alter.
+		Athe requested mortage is not present mortage # extneded.
+
+	1.  staff enters the mortage # & the new value of the new value of weekly gross income
+	2.  the system updates the weekly gross income and it also updates the date-weekly-income test updated
+	alter:
+
+	A.  mortage # wrongly entered
+	B. proper documentation not presented
+
+  Second for "estimated funds available for week" 
+
+  1.  for each investment of the estimated anual return.
+     sum them up and divide by 52
+  2.  obtain annual operate expense and divde by 52
+  3.  for each mortage
+      3.1 computer P&I + 1/52(re tax + ins premium)
+	  3.2 computer 28% of weekly income
+	  3.3 if 3.1 > 3.2 then
+	        3.2 is the weekly payment
+			3.1 - 3.2 is the grant
+		  else 
+		     3.1 is the weekly payment and grant=0 
+  4.  add mortage  payment computed in 3
+  5.  compute the \cdots 
+
+
+  Initial class Diagram:
+
+    basic desc of the software:
+
+		 Weekly reports are to be printed showing how much money is available for mortages.  In addition , history of investmens and mortages must be printed on demand
+]
+
+Fri Oct  6 11:15:51 CDT 2006
+[
+  Sequence diagrams
+
+  Staff
+   Stick Figure
+
+  |-O
+    user interface
+
+	O  manage asset
+
+ UML Diagram
+
+
+ 
+
+]
+
+
+Wed Oct 11 16:08:47 CDT 2006
+[
+  Midter review:
+
+Covers Chap. 1-3, 10-12
+
+Life Cycle Models:
+  (
+   Linear Model
+   Evolutionary Model
+   Code n fix
+   waterfall
+   iterate n increment
+   rapid prototype model
+   open source 
+   agile processing
+   extreme programming
+   synchronize n stabalize
+   spiral 
+   )
+Artifact, workflow, phases
+
+Unified Process - object oreinted model
+  Req, analysis, design, etc.
+
+two dimensional life cycle.
+capability maturity model
+
+Requirements
+ (
+  What rather then how
+    use case
+	use case diagram
+	use case description
+ )
+
+Classical Analysis
+ (
+  Structured system analysis
+   1. DFD - data flow diagram
+   2. decide which part to computerize
+   details of info flow
+   logic of process
+   define physical resource
+   define data store
+   define IO specs
+   seizing 
+   hardware req.
+  )
+
+Unified Process Analysis
+   use case realization (collaboration, sequence, class diagram)
+
+]
+
+
+Mon Oct 16 11:28:54 CDT 2006
+[
+  Petrinets
+
+  Places P= {p1,p2,p3,p4}
+  transititionsT={t1,t2}
+
+  input function i t-> P(infinit)
+  
+  output function O t ->P(infiniti)
+
+  tokens
+
+
+]
+
+
+Wed Oct 18 11:02:15 CDT 2006
+[
+   Petrinets
+
+P.   Place
+T.   Transition
+   Input
+   Output
+
+   Marking  P-> { 0, 1 }
+
+]
+
+
+Mon Oct 23 11:02:50 CDT 2006
+[
+  Design -- External Design
+  		    Architectural Design
+			Detailed Design 
+  Cohesion:
+
+     1. Coincidental Cohesion   -- module has coincidental cohesion.
+	 		It performs many unrelated operations  (get next message, read a file, something else)
+	2. Logical Cohesion
+		module performs a series of operations one of which is chosen through the arguments and the code for the different operations may be interlaced.
+	3.  Temporal Cohesion
+			Performs a set of operations temporarily related 
+			can not be used
+	4.  Procedural Cohesion
+			performs a series of operations by a sequence of steps followed by a product.
+	5.  Communication Cohesion
+			All the operations are one the same data.
+	6.  Functional Cohesion
+	 		module performs exactly one operations.  Debug easily, reusable
+	7.  Information cohesion
+			perform a series of operation on the same data
+			each with its own entry and exit points (abstract)
+
+Coupling:
+	
+	1.  Content coupling
+			two modules are content
+			couples if one directly
+			direct reference the contents of the other module
+			module a modified a statement in module b
+
+]
+
+
+Fri Oct 27 11:02:29 CDT 2006
+[
+-->|Read file menu| --filename-->|validate filename|--filename-->|cost# of words|--word cost-->|format word count|--formatedwordcount-->|display word count|-->display output
+
+				|perform word count|
+				   |    |      |
+		   ---------    |      -----------
+		   |            |                |
+		  read and   count-num			format and display 
+		  validate	 of words			word count
+		  filename
+
+O (filled circle) status flag
+O  (not filled) date
+
+Module name : read-file-name
+Module type:  function
+
+module doesn't return anything
+function returns something
+
+Module Name:	read-file-name
+Module type:	function
+Return type:	string
+input 
+output
+error messages displayed
+file accessed:
+file accessed
+file changed
+modules called: need-file-name, validate-file-anem
+Narrative
+]
+}
+November
+{
+Mon Nov  6 11:01:13 CST 2006
+[
+  Good programming practices
+  	document
+	readable
+	easy to modify/maintain
+
+	level 0 prog:  (type-less)
+		basic, cobol, apl, lisp, snobol
+	
+	level 1:  does automatic conversion
+		does not distinguish between numeric and boolean
+
+	level 2: mixed mode   fortran
+
+	level 3:   strong type checking
+
+	\ldots
+
+ Testing:
+
+   
+
+]
+
+Wed Nov  8 11:03:09 CST 2006
+[
+Unit Testing
+	black box testing, i/o testing, functional testing
+			behavior testing, data driven testing
+			test to specification
+			
+	Glass box testing, white box testing, test to code, logic driven, path oriented testing, structural testing
+
+	Black box testing:
+		boundary analysis
+
+	msg foundation case study
+
+	  Investment data
+	  item name
+	  equivalence classes
+	  1. First char is not alphabetic
+	  2. <1 char
+	  3. Exactly one char
+	  4. 1 to 25 char
+	  5. 25 char
+	  6. 725 char
+
+]
+
+Mon Nov 13 11:03:30 CST 2006
+[
+ control struct testing
+ 	condition testing
+	complex conditions boolean combinations of simple condition
+
+	simple conditions 
+
+loop testing
+
+	for nested loops
+		1. start at the inner most loop
+		   set all other loops to their min. value
+
+
+]
+
+Fri Nov 17 11:24:46 CST 2006
+[
+  Sandwich intergration:
+  	combines topdown and bottom up integration
+	divide the module into top layer and bottom layers
+
+	1. test n integrate modules in the top layer in a  top-down fashion
+	2. test and integrate bottom layer as seperate cluster with bottom up integration
+
+]
+
+Mon Nov 20 11:14:24 CST 2006
+[
+Formal verification
+
+  {p}   S {v}
+
+  {x >=0} sort(x,y)  {y^2 = x}
+
+	x := e
+	s1; s2
+	if b do s1 else s2
+	while b do S
+
+I.	{q[e/x]} x:=e   {q}
+
+	{y>=10} x:=y  {x>=y}
+     premise  statement  result
+
+II.	{p} s1 {v}, {q} s2 {r}
+	-----------------------
+	  {p} s1; s2 {r}
+
+	{y >=q} y:=y+1 {y >=10}, {y>=10} x:=y {x>=10}
+	----------------------------------------------
+	 {y>=q} y:=y+1; x:=y    {x>=10}
+
+III.a  p > p', {p'} S {q}
+	  ----------------------
+	   {p} S {q}
+
+	b.  {p} S {q'}, q subset of q
+	------------------------------
+	{p} S {q}
+
+
+	y>=9 is a subet y+1>=10, {y+1>=10} y:=y+1  {y >=10}
+	----------------------------------------------------
+	{y >= 9} y:=1  {y >=10}
+]
+
+
+Mon Nov 27 11:03:33 CST 2006
+[
+{I ^ b} S {i}
+-------------------
+{i} while b do s {i ^ ~b}
+
+compute-log(int x, int y)
+ int y;
+   i:= 0;
+   y:= 0;
+
+   while y < x
+   
+     y:=2y;
+	 i = i+1;
+   
+----------------------
+
+2^i <= x < 2^(i+1)
+
+
+I ===>  y=2^i ^ y < 2x 
+
+
+]
+
+
+Wed Nov 29 11:07:01 CST 2006
+[
+  Computermin(int a[]<++>, int n, int x)
+  (
+  	x := a[1];
+	i := 2;
+
+	while i <= n
+	(
+		if A[i] < x then x:= a[i]
+		else	x:=x
+
+		i := i + 1;
+	)
+  )
+
+I:  	x = min {A[1]; A[i-1]} ^ i <= n+1
+
+{i^b} S {i}
+
+]
+
+}
+December
+{
+Mon Dec  4 11:08:55 CST 2006
+[
+time estimate:
+	loc = lines of code
+	kdsi = 
+
+	other metrics:
+
+		ffp = files, flows, process
+
+		files -- collection records that are permenantly resident
+		flows -- interfaces between the prodduct and the environment
+		processes -- functions that manipulate data objects sorting, validating, updating
+
+		cost = dxS
+		S = files + flow + process
+
+
+		function points:
+
+			4x inp = # of input items
+			5x out = # of output items
+			4x inq = # of inquiries
+			10x maf = # of master files
+			7x inf = # of interfaces
+			-----------------------------
+			S = 
+
+		Expert judgment
+
+		Delphi method = multiple experts analysis
+
+		Algorithemic cost estimate--  COCOMO
+
+		step1
+			estimate nominal cost
+
+		step2
+			multiply nominal with various multipliers taking various attributes of the product
+
+		classify into three different prodcuts
+
+		products:
+				organic:		small & less difficult
+				semidetached		medium
+				embedded		complex
+
+		organic
+			nominal effort = 3.2 * KDSI
+				kdsi = 12
+					3.2x 12^1.05 = 43 person months
+
+			embedded = 2.8 x (KDSI)^1.2 = 44 person months
+
+
+			
+
+
+
+
+
+]
+
+
+Wed Dec  6 11:10:18 CST 2006
+[
+  Personal attributes
+  	analys capabilities
+	application experience
+	programmer capability
+	V mc/ experience
+	program lang experience
+
+ Project attributes:
+ 	use of modern prog practices
+
+	Cocomo II   2000
+
+
+
+]
+}
+
+\end{document}

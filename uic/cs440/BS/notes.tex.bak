@@ -1,0 +1,311 @@
+%        File: notes.tex
+%     Created: Fri Sep 01 11:00 AM 2006 C
+% Last Change: Fri Sep 01 11:00 AM 2006 C
+%
+\documentclass[a4paper]{article}
+\begin{document}
+
+Septembre:
+{
+Fri Sep  1 11:01:46 CDT 2006
+[
+ Linear Model:\newline
+  
+Winberg Case Study\newline
+Teal Tractor Company\newline
+	Moving Target Problem\newline
+
+Water Fall Model:
+
+Requirements
+  Analysis
+  	Design
+		Implementation
+			Testing
+				Post Delivery Maintenance
+
+]
+Wed Sep  6 11:08:36 CDT 2006
+[
+				Inc A:			Incr B:				Inc C:		Incr D:
+
+Req:			4				4-3					2			1
+
+Analysis:		1				3-4					2			1
+
+Design:			1				1					3-4			2-1
+
+Implementation:	1				1					3-4			4
+
+Testing:		1				1					1			3-4
+
+
+--------------------------------------------------------------------------------
+
+Increment B:
+
+				Itr A:			Itr B:				Itr C:
+
+Req:				
+
+Analysis:				
+
+Design:						
+
+Implementation:					
+
+Testing:														
+
+--------------------------------------------------------------------------------
+Evolutionary  model
+
+Req:				Req1									Req4
+
+Analysis:			Analysis								Analysis4
+
+Design:				Design					Design3			Design4
+
+Implementation:		Impl1		impl2		Impl3			Impl4
+
+Testing:														
+
+--------------------------------------------------------------------------------
+Code and fix model
+
+Implement
+    |
+	|
+	|------->  modify until client is satisfied and repeat --> deliver-->post dliveriy maintenance
+
+
+--------------------------------------------------------------------------------
+Rapid Prototype Model:
+
+Initial Prototype
+  |
+  |__> Requirements
+  			|
+			|__>Analysis
+					|
+					|__> Design
+							|
+							|__> Impl
+								   |
+								   |__>Post Del. Maintenance 
+
+--------------------------------------------------------------------------------
+
+Spiral Model:
+
+*insert spiral overlay on cartesian grid*
+
+Planning			Risk Analysis Unit Prototype
+
+each spiral corresponds to a work flow.
+
+mainly used for very large software
+
+--------------------------------------------------------------------------------
+Agile Process:
+	Features (staires)
+	Pair Programming
+
+
+--------------------------------------------------------------------------------
+Open Software:
+
+ ie. Linux
+
+
+]
+Mon Sep 11 11:09:20 CDT 2006
+[
+Unified Process
+
+   Req.		Business model - cost-benefit analysis
+   				extensive communication with the client
+
+   Analysi	Write down clients requrirements in English
+
+ 
+Specification document:
+
+    1. Product overview & summary
+	2. Development, operating and maintenance environment.
+	3. External interface and work flow -- user displays report format user command language.
+	4. Functional Req.
+	5. Performance Req.
+	6. Exception Handeling
+	7. Forseable modifications & enhancements
+	8. Acceptance Criteria
+	9. Design hints & guideline
+
+Desirable Properties:
+
+	1. Consistency
+	2. completness
+	3. extensability/flexibility
+	4. traceability
+	5. Testability.						Software Quality Assurance Dept (SQA)
+
+Design
+
+		Arch. Desin
+		Interface of modules
+		specs for each module
+
+
+Detailed Design:
+		
+		internal data structs,
+	 	algorithems to be used
+
+Implementation:
+
+		Unit Testing
+		Integration Testing
+		Producet testing
+		Alpha testing
+		Beta testing
+
+]
+Mon Sep 18 11:30:19 CDT 2006
+[
+MSG foundation:
+
+performs calculations need to determine how much money is available each to purchase a home.
+
+msg staff member ==> |estimates funds for the week. |
+applicant   ==>      | apply for msg mortage        |  
+staff member	     | compute weekly repay amount  |
+staff member	     | manageing investments	    |
+
+
+Requi:
+   couples married for at least one year and at most for ten years.
+   both of them are employed
+   28% of the weekly gorss income of the couples < weekly payments for the mortgage
+                 or
+   the couples can not pay the initial deposit + closing costs ($7000)
+
+  
+  1 estimate annual return on the investments and divide by 52
+  2 estimate operating expenses for the year and divide by 52
+  3 total estimated mortgage paymetns for the week is completed
+  4 Total estimated grant amount is computed
+
+  funds available for the week (1) - (2) + (3) - (4)
+
+  Estimate funds available for the week
+
+  Estimate investment's return for the week
+
+--------------------------------------------------------------------------------
+
+]
+Wed Sep 20 11:00:19 CDT 2006
+[
+  Missed class
+]
+
+Fri Sep 22 11:08:22 CDT 2006
+[
+ MSG Cont.
+(
+ estimate funds for week
+ manage investments
+ update operating expenses
+ manage mortgage    -- borrower
+ print reports
+
+
+ Estimate available funds for the week
+ 1. compute estimate returns on the investment for the week
+ 2. computer estimate operating exp. for the week
+ 3. compute the estimated mortgate payments for the week
+ 4. computer the estimated grants given for week
+ 5. available funds for the week = (1) - (2) +(3) - (4)
+ 6. print the avail. funds report
+
+Print Report:
+ 1.  On demand print the investments report
+
+ for each investment print the defaults of the invest.
+ 1. item number
+ 2. name
+ 3. estimated annual return
+ 4. date is computed
+
+Investments:
+
+  item number,
+  item name,
+  estimated annual 
+  	return (updated whenever new information comes )
+  date estimate annual return was updated.
+
+
+For each mortage keep the following info:
+  acct #
+  name of borrowers 
+  orginal purchase price
+  date mortgage was issued
+  weekly P&I
+  current confirmed gross weekly income
+  date the above was updated
+  annual real-estate tax
+  date it was updated
+  annual home owners insurance preimum
+  date it was updated
+)
+
+Rapid Prototype:
+
+lots of user user interface and reports
+
+Analysis:
+   case tools, UML
+]
+
+
+Mon Sep 25 11:02:27 CDT 2006
+[
+Analysis workflow--
+
+   spcific/precise
+
+Structureed System Analysis
+
+  Data flow diagram (DFD)s
+
+  ---
+  |  |   --> source or destination of data
+  ----
+
+  --->       flow of data
+
+  ----
+  (  )       processes that transforms flow of data
+  ----
+
+  ---
+  |____		stores of data
+
+  Case study:  Sally' software shop
+
+Step1:  Draw DFS
+Step2:  Decide on which parts to coputerize and how
+Step3:  Determine details of data flow
+
+ 	Order:
+	    Order identification
+		customer details
+		package details
+]
+}
+
+Octobre
+{
+
+}
+\end{document}
