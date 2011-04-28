@@ -1,0 +1,153 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>Programming Assignment 6</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">CSCI 465</td>
+    <td width="33%"><p align="center">Programming Assignment 6 (100 Points)</td>
+    <td width="34%"><p align="right">Spring 2002</td>
+  </tr>
+</table>
+
+<p><br>
+This assignment will have you use the Cobol COPY verb and Cobol's SORT and MERGE features.
+Your program will be processing two input files that contain information about some books.
+The FD's and data record descriptions for these input files have already been written and
+are to be COPIED into your source program from the cataloged library
+T90RAZ1.C465S02.COPYLIB.</p>
+
+<p>The FD and record description for input file number 1 (DSN=T90RAZ1.C465S02.A6BOOKS1,
+catalogued) can be copied into your source program by <strong>copying</strong> (i.e.,
+using the COBOL COPY verb) the member named FDFILE1 from the COPYLIB specified
+above.&nbsp; Here is what you will get:</p>
+
+<pre>
+FD  BOOK1-FILE.
+    01  BOOK1-REC.
+        02  BOOK1-DATA.
+            03  B1-ISBN                   PIC X(8).
+            03  B1-AUTHOR                 PIC X(25).
+            03  B1-TITLE                  PIC X(40).
+            03  B1-CODE                   PIC X(6).
+            03  B1-QUANTITY               PIC 9(3).
+</pre>
+
+<p>You may also code your own redefintion(s) of BOOK1-REC if you care to do so.</p>
+
+<p>The FD and record description for input file number 2 (DSN=T90RAZ1.C465S02.A6BOOKS2,
+catalogued) can be copied into your source program by <strong>copying</strong> the member
+named FDFILE2 from the COPYLIB specified above.&nbsp; Here is what you will get:</p>
+
+<pre>
+FD  BOOK2-FILE.
+    01  BOOK2-REC.
+        02  B2-ISBN                   PIC X(8).
+        02  B2-AUTHOR                 PIC X(25).
+        02  B2-JUNK                   PIC X(10).
+        02  B2-TITLE                  PIC X(40).
+        02  B2-CODE                   PIC X(6).
+        02  B2-QUANTITY               PIC 9(3).
+</pre>
+
+<p>Here is what your COBOL program should do.</p>
+
+<p>1.)&nbsp; Sort <strong>input file number 1</strong> in ascending order based on the
+ISBN number.&nbsp; Use an INPUT PROCEDURE to eliminate any record that has a quantity less
+than 10.&nbsp; Send the remaining records to be sorted.</p>
+
+<p>Use an OUTPUT PROCEDURE on the sorted records from input file 1.&nbsp; In this output
+procedure, you are to DYNAMICALLY call an external program (that you will write -- see
+below) that will return 'number of pages' in this book.&nbsp; Pass the external program an
+01 level item defined as PIC 999.&nbsp; The external program will receive this item and
+store 'number of pages' in it.&nbsp; Your output procedure should add this field on to the
+end of each sorted record, and then write these (lengthened) records out to a temporary
+file on disk.</p>
+
+<p>To ensure that the call to the external program is dynamic, use the CALL IDENTIFIER
+version of the Call statement, not the CALL 'LITERAL' version.&nbsp; So, define a PIC X(8)
+item in Working-Storage and move the external program name to that field prior to the
+first call.&nbsp; After this output procedure has finished, the main routine should CANCEL
+IDENTIFIER so that the next time the program is called, we will get a fresh copy.</p>
+
+<p>2.)&nbsp; Sort <strong>input file number 2</strong> in ascending order based on the
+ISBN number.&nbsp; Use an INPUT PROCEDURE to remove the B2-JUNK field from each record and
+then pass these records on to be sorted.</p>
+
+<p>Use an OUPUT PROCEDURE to dynamically call the external program to get 'number of
+pages' for each record in the sorted set.&nbsp; Add 'number of pages' to the end of each
+record and then write these (lengthened) records out to a second temporary file on disk.</p>
+
+<p>3.)&nbsp; <strong>Merge</strong> the two temporary files created in steps 1 and 2
+above.&nbsp; Use an OUTPUT PROCEDURE to eliminate any duplicate records (i.e., if 2 or
+more records have the same ISBN, only keep the last one) and write this (sorted, merged)
+data set out to a third temporary file on disk.</p>
+
+<p>4.)&nbsp; Open the temporary file created in step 3 and print a nice looking, formatted
+report. Use COBOL's DATE facility to get the date for the report and number the pages of
+the report.&nbsp; Print a double spaced report.</p>
+
+<p align="center"><strong>THE EXTERNAL PROGRAM</strong></p>
+
+<p>Write a small COBOL program that will receive a PIC 9(3) 01 level item as an argument.
+&nbsp; This program should begin page numbering at value 20 and increment that value by 20
+each time it is called.&nbsp; The first time this program is called, it will be returning
+page numbers for the books in input file 1. Thus, these books should show page numbers
+starting at 20, and increasing by 20 for each record in the sorted file.&nbsp; After the
+books in the first file have been processed, the Main Routine of the COBOL program will
+CANCEL this external program (i.e., remove it from memory).&nbsp; </p>
+
+<p>Now the Main COBOL program will be calling it again from the output procedure
+associated with input file number 2. The first call in this output procedure will get a
+fresh copy of the load module, and so the page numbers for these books will begin at 20
+and increase by 20 for each book in the sorted file.</p>
+
+<p>Use the Linkage Editor to turn this COBOL external program into a load module and put
+it in a permanent PDS under your own Z number.</p>
+
+<p>You will need to concatenate this Library under STEPLIB in the execution step of the
+Main COBOL program. </p>
+
+<p><strong>Additional Programming Notes</strong></p>
+
+<p>1.&nbsp; After each sorting procedure and the merge procedure, check the SORT-RETURN
+register for successful completion. If the operation is not successful, DISPLAY an error
+message and continue processing.&nbsp; Read about SORT-RETURN in the IBM Cobol Language
+Reference Manual.<br>
+<br>
+2. Your program should be designed to receive two parameters at execution time. The two
+parameters are the estimated numbers of records in each of the two input files. Input file
+#1 has about 30 records and input file #2 has about 34 records.&nbsp; Pass these two
+values to your program and use these numbers to inform Syncsort (via Cobol's
+SORT-FILE-SIZE register) of the estimated number of records to expect per sorting
+operation.<br>
+<br>
+3. Use Cobol's DATE facility to ACCEPT the date, and then use INSPECT...REPLACING to
+install backslashes between year/month/day. Include this date at the top of each new page
+of your reports.</p>
+
+<p>4. Make sure you save your source code for this program. It will be needed in order to
+complete assignment 7.<br>
+<br>
+5. Don't forget to provide a temporary work data set for Syncsort's use in the Go step.
+See sample Syncsort listoffs in your class notes.<br>
+<br>
+6. If you code the FLAG compiler option, do not code a level I. Be prepared to expect
+compiler warnings in this program (i.e., RC=4). Every time your program references the
+SORT-FILE-SIZE special register, the compiler will tell you that the value may be
+overridden by the SORT control cards. This is ok. We are not using any SORT control cards,
+so the value will not be overridden.<br>
+<br>
+If you code a level I on FLAG, then you'll receive a bunch of informational messages
+telling you that such &amp; such a file may be eligible for the FASTSRT compiler option.
+But FASTSRT only works when you specify the USING... or GIVING... options on the Sort
+verb. And since we are writing Input and Output procedures, we can't use FASTSRT anyway.<br>
+<br>
+</p>
+</body>
+</html>

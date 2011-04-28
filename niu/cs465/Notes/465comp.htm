@@ -1,0 +1,416 @@
+<html>
+<head>
+<title>COBOL compiler, ASSEMBLER assembler, Loader, Linkage Editor and Fetch</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+
+<p><b>COBOL compiler</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>Creates an <b>object module</b>, which is a non-executable machine language
+version of the source code.</p>
+
+<p><b>Compiler name:</b> IGYCRCTL</p>
+
+<p><b>Requirements:</b></p>
+<ul>
+  <li><p>2048 Kilobytes of memory to run in</p></li>
+
+  <li><p>A STEPLIB  DD card which specifies the location of the compiler:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //STEPLIB  DD  DSN=SYS2.ADCOBOL.V110.SIGYCOMP,DISP=SHR
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A SYSLIN  DD card which specifies the name of the object module:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSLIN   DD  DSN=&&OBJMOD,UNIT=PUB,SPACE=(TRK,(3,3)),
+   //      DISP=(NEW,PASS,DELETE)
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A SYSPRINT  DD card which specifies where the compiler messages are
+  to be printed:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSPRINT  DD  SYSOUT=*
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>Seven SYSUT#  DD cards which are work data sets that the compiler
+  needs to complete its work:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSUT1   DD  UNIT=PUB,SPACE=(CYL,(1,1))
+   //SYSUT2   DD  UNIT=PUB,SPACE=(CYL,(1,1))
+   ...
+   ...
+   //SYSUT7   DD  UNIT=PUB,SPACE=(CYL,(1,1))
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A SYSIN  DD card for the COBOL source code:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSIN  DD  *
+   ...
+   COBOL code
+   ...
+   /*
+</pre></p>
+</ul>
+
+</font><font face="Courier New" size=3>
+<p>Put it all together:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //stepname  EXEC  PGM=IGYCRCTL,REGION=2048K
+   //STEPLIB   DD  DSN=SYS2.ADCOBOL.V110.SIGYCOMP,DISP=SHR
+   //SYSLIN    DD  DSN=&&OBJMOD,UNIT=PUB,SPACE=(TRK,(3,3)),
+   //      DISP=(NEW,PASS,DELETE)
+   //SYSPRINT  DD  SYSOUT=*
+   //SYSUT1    DD  UNIT=PUB,SPACE=(CYL,(1,1))
+   //SYSUT2    DD  UNIT=PUB,SPACE=(CYL,(1,1))
+   //SYSUT3    DD  UNIT=PUB,SPACE=(CYL,(1,1))
+   //SYSUT4    DD  UNIT=PUB,SPACE=(CYL,(1,1))
+   //SYSUT5    DD  UNIT=PUB,SPACE=(CYL,(1,1))
+   //SYSUT6    DD  UNIT=PUB,SPACE=(CYL,(1,1))
+   //SYSUT7    DD  UNIT=PUB,SPACE=(CYL,(1,1))
+   //SYSIN     DD  *
+   ...
+   COBOL code
+   ...
+   /*
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p><b>ASSEMBLER assembler</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>Creates a non-executable object module.</p>
+
+<p><b>Assembler name:</b> ASMA90</p>
+
+<p><b>Requirements:</b></p>
+<ul>
+  <li><p>512 Kilobytes of memory to run in</p></li>
+
+  <li><p>A STEPLIB  DD card which specifies the location of the assembler:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //STEPLIB  DD  DSN=SYS2.HLA.V120.LOADLIB,DISP=SHR
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A concatenated SYSLIB  DD card which specifies the name of the macro
+  libraries:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSLIB   DD  DSN=SYS2.MACLIB,DISP=SHR   (this MUST be first)
+   //         DD  DSN=SYS1.MACLIB,DISP=SHR
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A SYSLIN  DD card which specifies the name of the object module:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSLIN   DD  DSN=&&ASMMOD,UNIT=PUB,SPACE=(TRK,(3,3)),
+   //      DISP=(NEW,PASS,DELETE)
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A SYSPRINT  DD card which specifies where the assembler messages are
+  to be printed:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSPRINT  DD  SYSOUT=*
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A SYSUT1  DD card which is a work data set that the assembler
+  needs to complete its work:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSUT1   DD  UNIT=PUB,SPACE=(CYL,(1,1))
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A SYSIN  DD card for the ASSEMBLER source code:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSIN  DD  *
+   ...
+   ASSEMBLER code
+   ...
+   /*
+</pre></p>
+</ul>
+
+</font><font face="Courier New" size=3>
+<p>Put it all together:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //stepname  EXEC  PGM=ASMA90,REGION=512K
+   //STEPLIB   DD  DSN=SYS2.HLA.V120.LOADLIB,DISP=SHR
+   //SYSLIB    DD  DSN=SYS2.MACLIB,DISP=SHR   (this MUST be first)
+   //          DD  DSN=SYS1.MACLIB,DISP=SHR
+   //SYSLIN    DD  DSN=&&ASMMOD,UNIT=PUB,SPACE=(TRK,(3,3)),
+   //      DISP=(NEW,PASS,DELETE)
+   //SYSPRINT  DD  SYSOUT=*
+   //SYSUT1    DD  UNIT=PUB,SPACE=(CYL,(1,1))
+   //SYSIN     DD  *
+   ...
+   ASSEMBLER code
+   ...
+   /*
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p><b>The Loader</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>Takes a machine language version of the source code (the non-executable
+object module), produces an executable version of the source code (called a
+<b>load module</b>),
+and executes it.</p>
+
+<p>Once execution is complete, both the object and load module are deleted.</p>
+
+<p>In order to execute the program again, it must be resubmitted to the loader.</p>
+
+<p>The loader is best used for testing new or altered programs.</p>
+
+<p><b>Loader name:</b> HEWLDRGO or LOADER</p>
+
+<p><b>Requirements:</b></p>
+<ul>
+  <li><p>2048 Kilobytes of memory to run in</p></li>
+
+  <li><p>A SYSLIN  DD card which specifies the name of the object module(s) to
+  be put into the load module:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSLIN   DD  DSN=&&OBJMOD,DISP=(OLD,DELETE,DELETE)
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A STEPLIB  DD card which specifies the location of the loader:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //STEPLIB  DD  DSN=SYS2.LE370.V111.SCEERUN,DISP=SHR
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A SYSLIB  DD card which specifies the name of libraries containing any
+  load or object modules referenced by the SYSLIN object module(s):</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSLIB   DD  DSN=SYS2.LE370.V111.SCEELKED,DISP=SHR
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A SYSLOUT  DD card which specifies where the loader messages are
+  to be printed:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSLOUT  DD  SYSOUT=*
+</pre></p>
+</ul>
+
+</font><font face="Courier New" size=3>
+<p>Put it all together:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+                         LOADER
+   //stepname  EXEC  PGM=HEWLDRGO,REGION=2048K
+   //SYSLIN    DD  DSN=&&OBJMOD,DISP=(OLD,DELETE,DELETE)
+   //STEPLIB   DD  DSN=SYS2.LE370.V111.SCEERUN,DISP=SHR
+   //SYSLIB    DD  DSN=SYS2.LE370.V111.SCEELKED,DISP=SHR
+   //SYSLOUT   DD  SYSOUT=*
+
+   Any input/output DD statements needed by the program should also
+   be specified.
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p><b>The Linkage Editor</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>Takes a machine language version of the source code (the non-executable
+object module), produces an executable version of the source code (the load
+module), but <b><u>DOES NOT</u></b> execute it.</p>
+
+<p>The load module is saved in a partitioned data set so it can be executed
+whenever it is needed.</p>
+
+<p>The linkage editor is best used for programs that have been tested and are
+known to work.</p>
+
+<p><b>Linkage Editor name:</b> HEWL</p>
+
+<p><b>Requirements:</b></p>
+<ul>
+  <li><p>1024 Kilobytes of memory to run in</p></li>
+
+  <li><p>A SYSLIN  DD card which specifies the name of the object module(s) to
+  be put into the load module:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSLIN   DD  DSN=&&OBJMOD,DISP=(OLD,DELETE,DELETE)
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A SYSLIB  DD card which specifies the name of libraries containing any
+  load or object modules referenced by the SYSLIN object module(s):</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSLIB   DD  DSN=SYS2.LE370.V111.SCEELKED,DISP=SHR
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A SYSLMOD  DD card which specifies the name of load module that will
+  be created:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSLMOD  DD  DSN=<b>Z123456.MYLIB(MEM1)</b>,DISP=(NEW,PASS,DELETE),
+   //     UNIT=DISK,VOL=SER=<b>ACA301</b>,SPACE=(1024,(50,20,1))
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A SYSPRINT  DD card which specifies where the linkage editor messages
+  are to be printed:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSPRINT  DD  SYSOUT=*
+</pre></p>
+</font><font face="Courier New" size=3>
+
+  <li><p>A SYSUT1  DD card which is a work data set that the linkage editor
+  needs to complete its work:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //SYSUT1   DD  UNIT=PUB,SPACE=(TRK,(10,10))
+</pre></p>
+</ul>
+
+</font><font face="Courier New" size=3>
+<p>Put it all together:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //stepname  EXEC  PGM=HEWL,REGION=1024K
+   //SYSLIN    DD  DSN=&&OBJMOD,DISP=(OLD,DELETE,DELETE)
+   //SYSLIB    DD  DSN=SYS2.LE370.V111.SCEELKED,DISP=SHR
+   //SYSLMOD   DD  DSN=<b>Z123456.MYLIB(MEM1)</b>,DISP=(NEW,PASS,DELETE),
+   //     UNIT=DISK,VOL=SER=<b>ACA301</b>,SPACE=(1024,(50,20,1))
+   //SYSPRINT  DD  SYSOUT=*
+   //SYSUT1    DD  UNIT=PUB,SPACE=(TRK,(10,10))
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p><b>The Fetch Step</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>Executes a load module.</p>
+
+<p><b>Program Fetch name:</b> member name from linkage editor's SYSLMOD DD card</p>
+
+<p><b>Requirements:</b></p>
+<ul>
+  <li><p>1024 Kilobytes of memory to run in</p></li>
+
+  <li><p>A concatenated STEPLIB  DD card which specifies the name of the PDS
+  that contains the load module to execute:</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //STEPLIB  DD  DSN=<b>Z123456.MYLIB</b>,DISP=(OLD,DELETE)
+   //         DD  DSN=SYS2.LE370.V111.SCEERUN,DISP=SHR
+</pre></p>
+</ul>
+
+</font><font face="Courier New" size=3>
+<p>Put it all together:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+   //stepname  EXEC  PGM=<b>MEM1</b>,REGION=1024K
+   //STEPLIB   DD  DSN=<b>Z123456.MYLIB</b>,DISP=(OLD,DELETE)
+   //          DD  DSN=SYS2.LE370.V111.SCEERUN,DISP=SHR
+
+   Any input/output files needed by the program should also
+   be specified
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p><b>A comparison of the Loader, Linkage Editor, and Fetch</b></p>
+</font><font face="Courier New" size=3>
+
+<table border cellspacing=1 cellpadding=7 width=638>
+<tr>
+  <td width="25%" valign="top"><p>&nbsp;</p></td>
+  <td width="25%" valign="top"><p><b><center>LOADER</b></center></p></td>
+  <td width="25%" valign="top"><p><b><center>LINKAGE EDITOR</b></center></p></td>
+  <td width="25%" valign="top"><p><b><center>FETCH</b></center></p></td>
+</tr>
+<tr>
+  <td width="25%" valign="top"><p>Object module as input</p></td>
+  <td width="25%" valign="top"><p><center>YES</center></p></td>
+  <td width="25%" valign="top"><p><center>YES</center></p></td>
+  <td width="25%" valign="top"><p><center>NO</center></p></td>
+</tr>
+<tr>
+  <td width="25%" valign="top"><p>Brings in external references</p></td>
+  <td width="25%" valign="top"><p><center>YES</center></p></td>
+  <td width="25%" valign="top"><p><center>YES</center></p></td>
+  <td width="25%" valign="top"><p><center>NO</center></p></td>
+</tr>
+<tr>
+  <td width="25%" valign="top"><p>Saves a load module to disk</p></td>
+  <td width="25%" valign="top"><p><center>NO</center></p></td>
+  <td width="25%" valign="top"><p><center>YES</center></p></td>
+  <td width="25%" valign="top"><p><center>NO</center></p></td>
+</tr>
+<tr>
+  <td width="25%" valign="top"><p>Allows the program to execute</p></td>
+  <td width="25%" valign="top"><p><center>YES</center></p></td>
+  <td width="25%" valign="top"><p><center>NO</center></p></td>
+  <td width="25%" valign="top"><p><center>YES</center></p></td>
+</tr>
+</table>
+
+</font>
+</body>
+</html>

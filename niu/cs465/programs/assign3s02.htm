@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0044)http://www.seasite.niu.edu/cs465/pgm3f01.htm -->
+<html>
+
+<head>
+<title>Programming Assignment 3 - CSCI 465</title>
+<meta content="text/html; charset=windows-1252" http-equiv="Content-Type">
+<meta content="Microsoft FrontPage 3.0" name="GENERATOR">
+</head>
+
+<body>
+
+<table border="0" width="100%">
+<TBODY>
+  <tr>
+    <td width="33%">CSCI 465</td>
+    <td width="33%"><p align="center">Programming Assignment 3</td>
+    <td width="34%"><p align="right">Spring 2002</td>
+  </tr>
+</TBODY>
+</table>
+
+<p>In this programming assignment, you will write an assembler program that will process
+two input files of data records, print a report, and write an output file of selected data
+records. The output file will then be read back in and its contents printed in a report.
+All data I/O will be done using QSAM.</p>
+
+<p>The first data file that your program should read is the same file of school names and
+team names you used in program 1.&nbsp; This file is called T90RAZ1.C465S02.NAMEFILE and
+it is on ACA302.&nbsp; Reminder:&nbsp; each record consists of the following format:</p>
+
+<p>SCHOOL NAME&nbsp;&nbsp;&nbsp;&nbsp; 20 bytes<br>
+TEAM NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; occurs 4 times - each team
+name is 20 bytes long</p>
+
+<p>Put all of the names in this file into a table in your assembler program's storage
+area.</p>
+
+<p>Next, your program should read a file called T90RAZ1.C465S02.PGM3FILE which is
+catalogued.&nbsp; Each record consists of the following format:</p>
+
+<p>TEAM-SCORES OCCURS 4 TIMES<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASCORE OCCURS 4 TIMES PIC 999</p>
+
+<p>Each record in this file contains scores for the four teams associated with a school.
+&nbsp; Each school has 4 scores.&nbsp; Your program should process this file and print a
+report that contains the following items:</p>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="14%">School Name</td>
+    <td width="14%">Team Name</td>
+    <td width="14%">Score1</td>
+    <td width="14%">Score2</td>
+    <td width="14%">Score3</td>
+    <td width="15%">Score4</td>
+    <td width="15%">Average of 4 scores</td>
+  </tr>
+</table>
+
+<p>Formatting requirements for the report are:<br>
+<br>
+- each page of the first report should contain the information for only 2 schools<br>
+- first page header should read: BIG 9 CONFERENCE <br>
+- second page header should read: SCORES REPORT<br>
+- choose suitable names for column headers<br>
+- number the pages of the report<br>
+- put the current date of program execution on each page of the report. Use the TIME macro
+(See the Course notes) to do this.<br>
+</p>
+
+<p>As you calculate the average of each team's 4 scores, any team whose average score is <strong>equal
+to or greater than</strong> <strong>84</strong> should have its name, its school name, and
+average score written to a TEMPORARY file on disk. When you have finished processing the
+input data, you are then to read in and process the temporary extract file. Print each
+record of this file in another report. First page header stays the same, second page
+header should read EXTRACTED SCORES REPORT. Remember, this report should only contain
+school name, team name, and average score.&nbsp; Print the same number of lines per page
+as you used in printing the first report.</p>
+
+<p>PROGRAMMING NOTES:</p>
+
+<p><strong><font color="#FF0000">NEW</font></strong>:&nbsp; <strong>You must use the
+N.I.U. structured macros in this assignment.</strong><br>
+<br>
+1.) Write and document your own JCL using the ASMA90 Assembler and the Loader.<br>
+<br>
+3.) Upon normal termination, put a return code of zero in R15 before returning control to
+the operating system.<br>
+<br>
+4.) Include an XSNAPOUT DD card in the Loader step. XSNAPs can be placed anywhere in the
+source code to help you debug your program. Your instructor will explain the syntax of the
+XSNAP macro in class.<br>
+<br>
+5.) Check with your instructor regarding whether&nbsp; macros should be expanded via PRINT
+GEN or not when you bring debugging problems to the office for help. On the copy that you
+turn in to be graded, DO NOT expand the macros. Turn off the expansion with PRINT NOGEN.<br>
+<br>
+6.) If your program abends, you will want to see a dump of storage.&nbsp; You have two
+choices here: (1) Immediately after your standard entry linkage, you may code the macro
+PGMDUMP. PGMDUMP is a macro that will establish a spie environment on your program. In the
+case of an abend, it will produce a dump of your program.&nbsp; This is convenient, and
+saves paper too, because it does not dump the contents of every module used in your
+program. Read about PGMDUMP in your Course notes to find out what other necessary cards
+need to be included in your JCL in order for PGMDUMP to work. <br>
+<br>
+(2) If you would rather have a system dump (i.e., dump every module used in the program),
+you must include a SYSUDUMP card in the LOADER step directing the output to the printer.
+Remember, the system dump is HUGE, and unless there is a good reason to see the contents
+of every module, we prefer you save some paper and code PGMDUMP. If you do go with the
+PGMDUMP, do NOT code a SYSUDUMP card.<br>
+<br>
+8.) Make sure that you check each DCB for a successful open.&nbsp; If a DCB does not open
+successfully, abend your program (using the ABEND macro) with a different user defined
+return code for each file opened in the program.</p>
+
+<p>9.) You MAY NOT use the XDECI or XDECO macros to load and display numbers.<br>
+<br>
+10.) Your program must utilize both the MOVE and LOCATE versions of the QSAM I/O macros.
+Which file(s) you decide to read (or write/print) in LOCATE (or MOVE) mode are up to you.<br>
+<br>
+11.) The size of the buffer to hold the input records (if you use GM) should not exceed 80
+bytes.<br>
+<br>
+12.) Your temporary extract file should not have a LRECL greater than what is necessary to
+hold the information it should contain.<br>
+<br>
+</p>
+</body>
+</html>

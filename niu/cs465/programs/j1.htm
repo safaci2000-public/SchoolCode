@@ -1,0 +1,915 @@
+<html>
+
+<head>
+<title>Job 1</title>
+</head>
+
+<body>
+
+<p>&nbsp;</p>
+
+<pre>This is <font color="#FF0000">JOB 1</font>.  The <strong>compiler options</strong> used in this program are:</pre>
+
+<pre><strong>APOST</strong> - treat the apostrophe as enclosing string literals</pre>
+
+<pre><strong>FLAG(X,Y) </strong>X = lowest level of syntax error message to issue
+          Y = also embed message in source code
+Values for X (lowest level through highest level)
+I - informational messages
+W - Warning messages
+E - Error messages
+S - Severe Error messages
+U - Unrecoverable Error messages</pre>
+
+<pre><strong>OFFSET</strong> -- Provides
+- a condensed verb listing with relative addresses of all verbs
+- information about program global tables
+- working-stroage information
+= literals</pre>
+
+<pre><font color="#008000">OFFSET is incompatible with LIST</font></pre>
+
+<pre><strong>XREF</strong> -- Provides a sorted cross reference of
+= data names
+= procedure names
+= program names
+- It also embeds a modified version of this information in the source code itself</pre>
+
+<pre><strong>Loader options</strong> used in this program are:
+<strong>MAP</strong> - produce a load module map
+<strong>LET</strong> - try to execute the load module even if compiler had a return code of 8</pre>
+
+<pre>1                        J E S 2  J O B  L O G  --  S Y S T E M  O 2 B 4  --  N O D E  N I U
+0
+ 18.47.49 JOB06183 ---- MONDAY,    18 SEP 2000 ----
+ 18.47.49 JOB06183  $HASPU01 JOB PARMS - TIME=(0,5),LINES=2,CARDS=100,TAPES=0,ROOM=34
+ 18.47.49 JOB06183  $HASP373 DUMP     STARTED - INIT 17   - CLASS A - SYS O2B4
+ 18.47.49 JOB06183  ACF9CCCD USERID T90RAZ1  IS ASSIGNED TO THIS JOB - DUMP
+ 18.47.49 JOB06183  IEF403I DUMP - STARTED - TIME=18.47.49</pre>
+
+<pre><font color="#FF0000">********Return codes are always found up here. 3000 is a general return code meaning
+********your program crashed.  If does not provide the details as to why.</font></pre>
+
+<pre>
+ 18.47.51 JOB06183  AMS000I: STEP END  DUMP    <font color="#FF0000">.COB       RC=  0000</font>    CPU= 00:00:00.28    PGM=IGYCRCTL
+ 18.47.53 JOB06183  AMS000I: STEP END  DUMP    <font
+color="#FF0000">.GO        RC=  3000</font>    CPU= 00:00:00.24    PGM=LOADER
+ 18.47.53 JOB06183  F   WYLBUR,TO .T90RAZ1  JOB06183 DUMP     HAS COMPLETED 18:47:53 GO       CC=3000
+ 18.47.53 JOB06183  AMS000I: STEP END  DUMP    .SWNOTIFY  RC=  0000    CPU= 00:00:00.03    PGM=SWNOTIFY
+ 18.47.53 JOB06183  IEF404I DUMP - ENDED - TIME=18.47.53
+ 18.47.53 JOB06183  AMS000I: JOB  END  DUMP      ZERWEKH               CPU= 00:00:00.55
+ 18.47.53 JOB06183  $HASP395 DUMP     ENDED
+0------ JES2 JOB STATISTICS ------
+-  18 SEP 2000 JOB EXECUTION DATE
+-          107 CARDS READ
+-          699 SYSOUT PRINT RECORDS
+-            0 SYSOUT PUNCH RECORDS
+-           43 SYSOUT SPOOL KBYTES
+-         0.06 MINUTES EXECUTION TIME
+1        1 //DUMP JOB ,'ZERWEKH'                                                   JOB06183
+           //* $ACFJ219 ACF2 ACTIVE NIU                                                ACF2
+           //*J0BFR0M $ACFJ201 ACF2 CONTROL CARD SUCCESSFULLY SCANNED              WYLBUR
+           /*ROUTE  PRINT FETCH                                                    WYLBUR
+           /*ROUTE  PUNCH FETCH                                                    WYLBUR
+           /*NOTIFY T90RAZ1    S=WYLBUR                                            WYLBUR
+           //*                                                                     WYLBUR
+           //* Submitted by T90RAZ1  on 09/18/2000 (2000.262) at 18:47:49          WYLBUR
+           //* Temp T90RAZ1.PRACCODE                                               WYLBUR
+           //* From T90RAZ1.PRACCODE / ACA301                                      WYLBUR
+           //*                                                                     WYLBUR
+</pre>
+
+<pre><font color="#FF0000">*****I am using the catalogued procedure IGYWCG to compile and execute this program.
+*****CPARM is a symbolic parameter for assigning parameters to the compiler.
+*****LPARM is a symbolic parameter for assigning parameters to the Loader.
+*****GPARM is a symbolic parameter for assigning parameters to the executing
+*****program as well as the so-called run-time parameters.
+*****Note in JCL below that any line beginning with XX is a JCL line that was
+*****originally in the procedure.  Any line beginning with // is a line that
+*****I (the procedure user) Added to this execution</font></pre>
+
+<pre>         2 //S1  EXEC IGYWCG,CPARM='OFFSET,XREF,FLAG(I,I),APOST',
+           //  LPARM='MAP,LET'
+         3 XXIGYWCG PROC  CPARM=,                                                  00001000
+           XX             CREGION=2048K,                                           00002000
+           XX             GPARM=,                                                  00003000
+           XX             GREGION=2048K,                                           00004000
+           XX             LEVEL=SYS2,                                              00005000
+           XX             LEVER=V111,                                              00006000
+           XX             LPARM=MAP,                                               00007002
+           XX             SYSLBLK=3200,                                            00008000
+           XX             UTSPACE='(CYL,(1,1))',                                   00009000
+           XX             VERSION=V110                                             00010000
+           XX*                                                                     00011000
+           XX******************************************************************    00012000
+           XX* PLEASE CALL 3-1875 IF YOU HAVE ANY PROBLEMS WITH THIS PROCEDURE*    00013000
+           XX******************************************************************    00014000
+           XX*                                                                     00015000
+         4 XXCOB    EXEC PGM=IGYCRCTL,REGION=&amp;CREGION,PARM='&amp;CPARM'                00016000
+           IEFC653I SUBSTITUTION JCL - PGM=IGYCRCTL,REGION=2048K,PARM='OFFSET,XREF,FLAG(I,I),APOST'
+         5 XXSTEPLIB  DD  DSNAME=&amp;LEVEL..ADCOBOL.&amp;VERSION..SIGYCOMP,DISP=SHR       00017000
+           IEFC653I SUBSTITUTION JCL - DSNAME=SYS2.ADCOBOL.V110.SIGYCOMP,DISP=SHR
+         6 XXSYSPRINT DD  SYSOUT=*                                                 00018000
+         7 XXSYSLIN   DD  DSNAME=&amp;&amp;OBJSET,UNIT=DISK,                               00019000
+           XX             DISP=(MOD,PASS),SPACE=(TRK,(3,3)),                       00020000
+           XX             DCB=(BLKSIZE=&amp;SYSLBLK)                                   00021000
+           IEFC653I SUBSTITUTION JCL - DSNAME=&amp;&amp;OBJSET,UNIT=DISK,DISP=(MOD,PASS),SPACE=(TRK,(3,3)),DCB=(BLKSIZE=3200)
+         8 XXSYSUT1   DD  UNIT=DISK,SPACE=&amp;UTSPACE                                 00022000
+           IEFC653I SUBSTITUTION JCL - UNIT=DISK,SPACE=(CYL,(1,1))
+         9 XXSYSUT2   DD  UNIT=DISK,SPACE=&amp;UTSPACE                                 00023000
+           IEFC653I SUBSTITUTION JCL - UNIT=DISK,SPACE=(CYL,(1,1))
+        10 XXSYSUT3   DD  UNIT=DISK,SPACE=&amp;UTSPACE                                 00024000
+           IEFC653I SUBSTITUTION JCL - UNIT=DISK,SPACE=(CYL,(1,1))
+        11 XXSYSUT4   DD  UNIT=DISK,SPACE=&amp;UTSPACE                                 00025000
+           IEFC653I SUBSTITUTION JCL - UNIT=DISK,SPACE=(CYL,(1,1))
+        12 XXSYSUT5   DD  UNIT=DISK,SPACE=&amp;UTSPACE                                 00026000
+           IEFC653I SUBSTITUTION JCL - UNIT=DISK,SPACE=(CYL,(1,1))
+        13 XXSYSUT6   DD  UNIT=DISK,SPACE=&amp;UTSPACE                                 00027000
+           IEFC653I SUBSTITUTION JCL - UNIT=DISK,SPACE=(CYL,(1,1))
+        14 XXSYSUT7   DD  UNIT=DISK,SPACE=&amp;UTSPACE                                 00028000
+           XX*                                                                     00029000
+           IEFC653I SUBSTITUTION JCL - UNIT=DISK,SPACE=(CYL,(1,1))
+        15 //COB.SYSIN DD *
+        16 XXGO     EXEC PGM=LOADER,COND=(8,LT,COB),PARM='&amp;LPARM/&amp;GPARM',          00030000
+           XX             REGION=&amp;GREGION                                          00031000
+           IEFC653I SUBSTITUTION JCL - PGM=LOADER,COND=(8,LT,COB),PARM='MAP,LET/',REGION=2048K
+        17 XXSYSLIB   DD  DSNAME=&amp;LEVEL..LE370.&amp;LEVER..SCEELKED,DISP=SHR           00032000
+           IEFC653I SUBSTITUTION JCL - DSNAME=SYS2.LE370.V111.SCEELKED,DISP=SHR
+        18 XXSYSLOUT  DD  SYSOUT=*                                                 00033000
+        19 XXSYSLIN   DD  DSNAME=&amp;&amp;OBJSET,DISP=(OLD,DELETE)                        00034000
+        20 XXSTEPLIB  DD  DSNAME=&amp;LEVEL..LE370.&amp;LEVER..SCEERUN,DISP=SHR            00035000
+           IEFC653I SUBSTITUTION JCL - DSNAME=SYS2.LE370.V111.SCEERUN,DISP=SHR
+        21 XXSYSPRINT DD  SYSOUT=*                                                 00036000
+        22 //GO.CEEDUMP DD SYSOUT=*
+           X/CEEDUMP  DD  SYSOUT=*                                                 00037000
+        23 XXSYSUDUMP DD  SYSOUT=*                                                 00038000
+           XX*                                                                     00039000
+           XX*      END OF IGYWCG PROC                                             00040000
+           XX*                                                                     00041000
+        24 //GO.INPUT DD DSN=T90RAZ1.PRACDATA,DISP=SHR
+        25 //GO.OUTPUT DD SYSOUT=*
+        26 //NOTIFY EXEC SWNOTIFY,PARM='T90RAZ1,WYLBUR'                            WYLBUR
+        27 XXSWNOTIFY  PROC
+           XX*
+           XX*   THIS WILL NOTIFY A USER LOGGED ON TO WYLBUR THAT A JOB
+           XX*   HAS RUN.  CALL SYSTEMS AT 3-1875 WITH PROBLEMS.
+           XX*
+        28 XXSWNOTIFY  EXEC PGM=SWNOTIFY,REGION=256K,COND=EVEN
+  STMT NO. MESSAGE
+         2 IEFC001I PROCEDURE IGYWCG WAS EXPANDED USING SYSTEM LIBRARY SYS2.PROCLIB
+        26 IEFC001I PROCEDURE SWNOTIFY WAS EXPANDED USING SYSTEM LIBRARY SYS2.PROCLIB</pre>
+
+<pre><font color="#FF0000">*****This is the beginning of the Allocation - Termination Messages.  We have no
+*****control over their content.  We can only suppress them on the MSGLEVEL
+*****parm on the JOB card.</font></pre>
+
+<pre>
+ IEF236I ALLOC. FOR DUMP COB S1
+ IEF237I <font color="#FF0000">050E ALLOCATED TO STEPLIB</font>  <font
+color="#FF0000">&lt;-- Port number assigned to Steplib data set, We'll see it again below</font>
+ IEF237I JES2 ALLOCATED TO SYSPRINT
+ IGD101I SMS ALLOCATED TO DDNAME (SYSLIN  )
+         DSN (SYS00262.T184749.RA000.DUMP.OBJSET.H01      )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP102
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT1  )
+         DSN (SYS00262.T184749.RA000.DUMP.R0176168        )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP101
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT2  )
+         DSN (SYS00262.T184749.RA000.DUMP.R0176169        )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP301
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT3  )
+         DSN (SYS00262.T184749.RA000.DUMP.R0176170        )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP103
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT4  )
+         DSN (SYS00262.T184749.RA000.DUMP.R0176171        )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP101
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT5  )
+         DSN (SYS00262.T184749.RA000.DUMP.R0176172        )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP102
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT6  )
+         DSN (SYS00262.T184749.RA000.DUMP.R0176173        )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP103
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT7  )
+         DSN (SYS00262.T184749.RA000.DUMP.R0176174        )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP103
+ IEF237I JES2 ALLOCATED TO SYSIN
+ IEF142I DUMP COB S1 - STEP WAS EXECUTED - COND CODE 0000
+ IEF285I   SYS2.ADCOBOL.V110.SIGYCOMP                   KEPT <font
+color="#FF0000">&lt;---Kept this dataset..did not delete it</font>
+ IEF285I   VOL SER NOS= SYS301.
+ IEF285I   T90RAZ1.DUMP.JOB06183.D0000102.?             SYSOUT</pre>
+
+<pre><font color="#FF0000">*****Note temporary name given to object module YYDDD.Time.RA000.JobName.DSN
+*****And that it was passed to next Job step.
+</font>
+ IGD106I <font
+color="#FF0000">SYS00262.T184749.RA000.DUMP.OBJSET.H01       PASSED,    DDNAME=SYSLIN</font></pre>
+
+<pre><font color="#FF0000">*****Temporary work data sets needed by compiler are all deleted.</font>
+ IGD105I SYS00262.T184749.RA000.DUMP.R0176168         DELETED,   DDNAME=SYSUT1
+ IGD105I SYS00262.T184749.RA000.DUMP.R0176169         DELETED,   DDNAME=SYSUT2
+ IGD105I SYS00262.T184749.RA000.DUMP.R0176170         DELETED,   DDNAME=SYSUT3
+ IGD105I SYS00262.T184749.RA000.DUMP.R0176171         DELETED,   DDNAME=SYSUT4
+ IGD105I SYS00262.T184749.RA000.DUMP.R0176172         DELETED,   DDNAME=SYSUT5
+ IGD105I SYS00262.T184749.RA000.DUMP.R0176173         DELETED,   DDNAME=SYSUT6
+ IGD105I SYS00262.T184749.RA000.DUMP.R0176174         DELETED,   DDNAME=SYSUT7
+ IEF285I   T90RAZ1.DUMP.JOB06183.D0000101.?             SYSIN</pre>
+
+<pre><font color="#FF0000">*****Compile step termination stats. All logon IDs are associated with a
+*****certain performance group.  Each performance group has certain parameters
+*****associated with it; e.g., how many service units you get before being
+*****swapped out.  Return code for this step also reported here.</font></pre>
+
+<pre>
+ ************************************************************************************************************************************
+ *                                                  STEP TERMINATION STATISTICS                                                     *
+ *                                                                                                                                  *
+ * STEP NAME     COB         <font
+color="#FF0000">START TIME  18:47:49.71 </font>  VIRT SYS  USED     324K   PAGE INS              0  STEP CPU      00:00:00.28 *
+ * PGM NAME      IGYCRCTL    <font
+color="#FF0000">STOP  TIME 18:47:51.99</font>    VIRT CORE USED   2,048K   PAGE OUTS             0  JOB  CPU      00:00:00.28 *
+ * DISPATCH PRTY   0         ELAP. TIME 00:00:02.28    NUMBER SWAPS           0  NUMBER PAGES          0  SRB TIME      00:00:00.02 *
+ * <font
+color="#FF0000">PERF. GROUP         0  </font>   SERV UNITS         684    TRANS ACT TIME  00:00:01.29                        <font
+color="#FF0000">COMPLETION CODE      0000</font> *
+ *  MAIN STORAGE UNITS           0     CPU UNITS             427     SRB UNITS              34     I/O UNITS             223        *
+ ************************************************************************************************************************************
+</pre>
+
+<pre><font color="#FF0000">*****EXCP stats for compile step (Execute Channel Program). Reports on I/O
+*****done for the named datasets listed there. If you see a zero for a data
+*****set you expect I/O to be done on...this is a sign of a problem.</font></pre>
+
+<pre> *                                                   EXCP STATISTICS                                                                *
+ *                                                                                                                                  *
+ *  DDNAME   CC# UNIT EXCP COUNT  DDNAME   CC# UNIT EXCP COUNT  DDNAME   CC# UNIT EXCP COUNT  DDNAME   CC# UNIT EXCP COUNT          *
+ *  <font
+color="#FF0000">STEPLIB       50E        296</font>  SYSLIN        53D          2  SYSUT1        53C          7  SYSUT2        536          5          *
+ *  SYSUT3        53E          1  SYSUT4        53C         10  SYSUT5        53D          0  SYSUT6        53E          4          *
+ *  SYSUT7        53E          7                                                                                                    *
+ *                                                                                                                                  *
+ * EXCP TOTAL             332  VIO PAGE INS          0       VIO PAGE OUTS          0       PAGES SWAPPED IN          0             *
+ *                                                                                                                                  *
+ ************************************************************************************************************************************
+ IEF373I STEP/COB     /START 2000262.1847
+ IEF374I STEP/COB     /STOP  2000262.1847 CPU    0MIN 00.28SEC SRB    0MIN 00.02SEC VIRT  2048K SYS   324K EXT   32736K SYS    9368K</pre>
+
+<pre><font color="#FF0000">*****Allocation - Termination Messages for Loader step</font>
+ IEF236I ALLOC. FOR DUMP GO S1
+ IEF237I 050E ALLOCATED TO SYSLIB
+ IEF237I JES2 ALLOCATED TO SYSLOUT
+ IGD103I SMS ALLOCATED TO DDNAME SYSLIN
+ IEF237I 050E ALLOCATED TO STEPLIB
+ IEF237I JES2 ALLOCATED TO SYSPRINT
+ IEF237I JES2 ALLOCATED TO CEEDUMP
+ IEF237I JES2 ALLOCATED TO SYSUDUMP
+ IEF237I 050C ALLOCATED TO INPUT
+ IEF237I JES2 ALLOCATED TO OUTPUT
+ IEF237I JES2 ALLOCATED TO SYSOUT
+ IEF142I DUMP GO S1 - STEP WAS EXECUTED - COND CODE 3000
+ IEF285I   SYS2.LE370.V111.SCEELKED                     KEPT
+ IEF285I   VOL SER NOS= SYS301.
+ IEF285I   T90RAZ1.DUMP.JOB06183.D0000103.?             SYSOUT</pre>
+
+<pre><font color="#FF0000">*****Note that the temporary object module data set was deleted</font>
+ IGD105I SYS00262.T184749.RA000.DUMP.OBJSET.H01       DELETED,   DDNAME=SYSLIN
+ IEF285I   SYS2.LE370.V111.SCEERUN                      KEPT
+ IEF285I   VOL SER NOS= SYS301.
+ IEF285I   T90RAZ1.DUMP.JOB06183.D0000104.?             SYSOUT
+ IEF285I   T90RAZ1.DUMP.JOB06183.D0000105.?             SYSOUT
+ IEF285I   T90RAZ1.DUMP.JOB06183.D0000106.?             SYSOUT
+ IEF285I   T90RAZ1.PRACDATA                             KEPT
+ IEF285I   VOL SER NOS= ACA301.
+ IEF285I   T90RAZ1.DUMP.JOB06183.D0000107.?             SYSOUT
+ IEF285I   T90RAZ1.DUMP.JOB06183.D0000108.?             SYSOUT
+ ************************************************************************************************************************************
+ *                                                  STEP TERMINATION STATISTICS                                                     *
+ *                                                                                                                                  *
+ * STEP NAME     GO          START TIME  18:47:52.07   VIRT SYS  USED     356K   PAGE INS              0  STEP CPU      00:00:00.24 *
+ * PGM NAME      LOADER      STOP  TIME 18:47:53.18    VIRT CORE USED   1,296K   PAGE OUTS             0  JOB  CPU      00:00:00.52 *
+ * DISPATCH PRTY   0         ELAP. TIME 00:00:01.11    NUMBER SWAPS           0  NUMBER PAGES          0  SRB TIME      00:00:00.02 *
+ * PERF. GROUP         0     SERV UNITS         528    TRANS ACT TIME  00:00:00.87                        COMPLETION CODE      3000 *
+ *  MAIN STORAGE UNITS           0     CPU UNITS             357     SRB UNITS              22     I/O UNITS             149        *
+ ************************************************************************************************************************************
+ *                                                   EXCP STATISTICS                                                                *
+ *                                                                                                                                  *
+ *  DDNAME   CC# UNIT EXCP COUNT  DDNAME   CC# UNIT EXCP COUNT  DDNAME   CC# UNIT EXCP COUNT  DDNAME   CC# UNIT EXCP COUNT          *
+ *  SYSLIB        50E         89  SYSLIN        53D          3  STEPLIB       50E        151  <font
+color="#FF0000">INPUT         50C          9</font>          *
+ *                                                                                                                                  *
+ *                                                                                                                                  *
+ * EXCP TOTAL             252  VIO PAGE INS          0       VIO PAGE OUTS          0       PAGES SWAPPED IN          0             *
+ *                                                                                                                                  *
+ ************************************************************************************************************************************
+ IEF373I STEP/GO      /START 2000262.1847
+ IEF374I STEP/GO      /STOP  2000262.1847 CPU    0MIN 00.24SEC SRB    0MIN 00.02SEC VIRT  1296K SYS   356K EXT    1184K SYS    9432K
+ IEF142I DUMP SWNOTIFY NOTIFY - STEP WAS EXECUTED - COND CODE 0000
+ ************************************************************************************************************************************
+ *                                                  STEP TERMINATION STATISTICS                                                     *
+ *                                                                                                                                  *
+ * STEP NAME     SWNOTIFY    START TIME  18:47:53.20   VIRT SYS  USED     300K   PAGE INS              0  STEP CPU      00:00:00.03 *
+ * PGM NAME      SWNOTIFY    STOP  TIME 18:47:53.27    VIRT CORE USED      16K   PAGE OUTS             0  JOB  CPU      00:00:00.55 *
+ * DISPATCH PRTY   0         ELAP. TIME 00:00:00.07    NUMBER SWAPS           0  NUMBER PAGES          0  SRB TIME      00:00:00.00 *
+ * PERF. GROUP         0     SERV UNITS          42    TRANS ACT TIME  00:00:00.05                        COMPLETION CODE      0000 *
+ *  MAIN STORAGE UNITS           0     CPU UNITS              41     SRB UNITS               0     I/O UNITS               1        *
+ ************************************************************************************************************************************
+ IEF373I STEP/SWNOTIFY/START 2000262.1847
+ IEF374I STEP/SWNOTIFY/STOP  2000262.1847 CPU    0MIN 00.03SEC SRB    0MIN 00.00SEC VIRT    16K SYS   300K EXT      12K SYS    9352K
+ ************************************************************************************************************************************
+</pre>
+
+<pre><font color="#FF0000">*****Job Termination stats.  Gives start and end time of Job.  May be different
+*****than what is printed on Job banner page due to delays in printing.</font></pre>
+
+<pre> *                                                  JOB TERMINATION STATISTICS                                                      *
+ *                                                                                                                                  *
+ *  JOB NAME    DUMP      JOB06183                              CPU TIME  00:00:00.55            SRB TIME            00:00:00.04    *
+ *                                                                                                                                  *
+ *  PROGRAMMER  ZERWEKH                                         <font
+color="#FF0000">INIT DATE 09/18/00   00.262      INITIATION TIME     18:47:49.71 </font>   *
+ *                                                                                                                                  *
+ *  SYSTEM ID   O2B4                                            TERM DATE 09/18/00   00.262      TERMINATION TIME    18:47:53.30    *
+ *                                                                                                                                  *
+ *  CLASS       A         PERF. GROUP      0                    SERV UNIT      1,254             ELAPSED TIME        00:00:03.59    *
+ *                                                                                                                                  *
+ *  MAIN STORAGE UNITS           0     CPU UNITS             825     SRB UNITS              56     I/O UNITS             373        *
+ *                                                                                                                                  *
+ *  JOB LOG DUMP     00262 18:47:49.18                          MVS REL   SP6.0.6                                                   *
+ *                                                                                                                                  *
+ *  ACCTG DATA 0114290675,T90    RAZ1,T,T90    ,ZERWEKH ROBERT A                                 COMPLETION STATUS   C0000          *
+ *                                                                                                                                  *
+ ************************************************************************************************************************************
+ IEF375I  JOB/DUMP    /START 2000262.1847
+ IEF376I  JOB/DUMP    /STOP  2000262.1847 CPU    0MIN 00.55SEC SRB    0MIN 00.04SEC
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91                Date 09/18/00  Time 18:47:50   Page     1</pre>
+
+<pre><font color="#FF0000">*****Compiler reporting on what compiler options are in effect.  Indented
+*****ones are in effect.</font>
+0Invocation parameters:
+ OFFSET,XREF,FLAG(I,I),APOST <font
+color="#FF0000">&lt;-- Options invoked by user</font>
+0Options in effect:
+       ADV
+       APOST
+     NOAWO
+       BUFSIZE(4096)
+     NOCMPR2
+     NOCOMPILE(S)
+     NOCURRENCY
+       DATA(31)
+     NODBCS
+     NODECK
+     NODUMP
+     NODYNAM
+     NOEVENTS
+     NOEXIT
+     NOFASTSRT
+       FLAG(I,I)
+     NOFLAGMIG
+     NOFLAGSAA
+     NOFLAGSTD
+       LANGUAGE(EN)
+     NOLIB
+       LINECOUNT(60)
+     NOLIST
+     NOMAP
+     NONAME
+     NONUMBER
+       NUMPROC(NOPFD)
+       OBJECT
+       OFFSET
+     NOOPTIMIZE
+       OUTDD(SYSOUT)
+     NORENT
+       SEQUENCE
+       SIZE(MAX)
+       SOURCE
+       SPACE(1)
+     NOSSRANGE
+     NOTERM
+     NOTEST
+       TRUNC(STD)
+     NOVBREF
+     NOWORD
+       XREF(FULL)
+       ZWB
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91      PRACDUMP  Date 09/18/00  Time 18:47:50   Page     2
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8  Map and Cross Reference</pre>
+
+<pre><font color="#FF0000">***** The numbers and other codes seen to the far right and part of XREF output. It embeds a
+modified cross reference listing specifying the line number where a data name or procedure name
+was defined. Other codes you will see here include:  UND - user name is undefined;
+DUP - user name is defined more than once; INF - an intrinsic function reference;
+EXT - an external reference; IMP - implicitly defined name (e.g., value spaces)</font></pre>
+
+<pre>
+0  000001                IDENTIFICATION DIVISION.
+   000002                PROGRAM-ID.  PRACDUMP.
+   000003                AUTHOR.      Z.
+   000004                ENVIRONMENT DIVISION.
+   000005                INPUT-OUTPUT SECTION.
+   000006                FILE-CONTROL.
+   000007
+   000008                    SELECT IN-FILE  ASSIGN TO UT-S-INPUT.                                  14
+   000009                    SELECT OUT-FILE ASSIGN TO UR-S-OUTPUT.                                 24
+   000010
+   000011                DATA DIVISION.
+   000012                FILE SECTION.
+   000013
+   000014                FD  IN-FILE
+   000015                    LABEL RECORDS ARE STANDARD
+   000016                    RECORDING MODE IS F.
+   000017
+   000018                01  IN-REC.
+   000019                    02  I-NBR            PIC 9(4).
+   000020                    02  I-PTS            PIC 9(5).
+   000021                    02  I-CNT            PIC 9(5).
+   000022                    02  I-DEP            PIC 99.
+   000023
+   000024                FD  OUT-FILE
+   000025                    LABEL RECORDS ARE OMITTED
+   000026                    RECORDING MODE IS F.
+   000027                01  OUT-REC              PIC X(133).
+   000028
+   000029                WORKING-STORAGE SECTION.
+   000030                77  FILLER               PIC X(39) VALUE
+   000031                             '***** WORKING STORAGE STARTS HERE *****'.
+   000032
+   000033                01  MISC-VARS.
+   000034                    02  R-CNTR          PIC S99 COMP SYNC VALUE +0.
+   000035                    02  EOF-FLAG        PIC XXX.
+   000036
+   000037                01  ACCUMULATOR-TABLE.
+   000038                    02  ACCUM-ENTRIES   OCCURS 5 TIMES
+   000039                                        INDEXED BY ACC-NDX.
+   000040                        03  A-NBR       PIC 9(4).
+   000041                        03  A-PTS       PIC 9(5) COMP-3.
+   000042                        03  A-CNT       PIC 9(5) COMP.
+   000043                        03  A-DEP       PIC 99.
+   000044
+   000045                01  WS-OUT-REC.
+   000046                    02  FILLER          PIC X(25) VALUE SPACES.                            IMP
+   000047                    02  O-NBR           PIC X(12).
+   000048                    02  O-PTS           PIC X(13).
+   000049                    02  O-CNT           PIC X(13).
+   000050                    02  O-DEP           PIC X(60).
+   000051
+   000052                PROCEDURE DIVISION.
+   000053                    OPEN INPUT IN-FILE OUTPUT OUT-FILE.                                    14 24
+   000054                    MOVE 'NO' TO EOF-FLAG.                                                 35
+   000055                    MOVE ZEROS TO ACCUMULATOR-TABLE.                                       IMP 37
+   000056                    READ IN-FILE.                                                          14
+   000057                    SET ACC-NDX TO 1.                                                      39
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91      PRACDUMP  Date 09/18/00  Time 18:47:50   Page     3
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8  Map and Cross Reference
+0  000058                    PERFORM PROCESS-RTN UNTIL R-CNTR &gt; 4.                                  64 34
+   000059                    SET ACC-NDX TO 1.                                                      39
+   000060                    PERFORM TOTALS-RTN UNTIL ACC-NDX &gt; 4.                                  77 39
+   000061                    CLOSE IN-FILE OUT-FILE.                                                14 24
+   000062                    STOP RUN.
+   000063
+   000064                PROCESS-RTN.
+   000065                    ADD I-NBR TO A-NBR (ACC-NDX).                                          19 40 39
+   000066                    ADD I-DEP TO A-DEP (ACC-NDX).                                          22 43 39
+   000067                    MOVE I-PTS TO O-PTS.                                                   20 48
+   000068                    MOVE I-CNT TO O-CNT.                                                   21 49
+   000069                    MOVE I-NBR TO O-NBR.                                                   19 47
+   000070                    MOVE I-DEP TO O-DEP.                                                   22 50
+   000071                    WRITE OUT-REC FROM WS-OUT-REC.                                         27 45
+   000072                    ADD 1 TO R-CNTR.                                                       34
+   000073                    SET ACC-NDX UP BY 1.                                                   39
+   000074                    READ IN-FILE.                                                          14
+   000075                PROCESS-RTN-EXIT.  EXIT.
+   000076
+   000077                TOTALS-RTN.
+   000078                     MOVE A-NBR (ACC-NDX) TO O-NBR.                                        40 39 47
+   000079                     MOVE A-DEP (ACC-NDX) TO O-DEP.                                        43 39 50
+   000080                     IF EOF-FLAG = 'NO'                                                    35
+   000081      1                 ADD I-PTS TO A-PTS (ACC-NDX)                                       20 41 39
+   000082      1              ADD I-CNT TO A-PTS (ACC-NDX).                                         21 41 39
+   000083                     MOVE A-PTS (ACC-NDX) TO O-PTS.                                        41 39 48
+   000084                     MOVE A-CNT (ACC-NDX) TO O-CNT.                                        42 39 49
+   000085                     WRITE OUT-REC FROM WS-OUT-REC.                                        27 45
+   000086                     SET ACC-NDX UP BY 1.                                                  39
+   000087                TOTALS-EXIT.  EXIT.
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91      PRACDUMP  Date 09/18/00  Time 18:47:50   Page     4</pre>
+
+<pre><font color="#FF0000">***** More of XREF's work. It shows the sorted cross reference list of all data, procedure
+and program names, the line number where defined, line numbers where there were references
+to this item, and line numbers where the item was modified (preceeded by an M)</font></pre>
+
+<pre>
+0An &quot;M&quot; preceding a data-name reference indicates that the data-name is modified by this reference.
+ </pre>
+
+<pre>  Defined   Cross-reference of data names   References
+ </pre>
+
+<pre>       42   A-CNT. . . . . . . . . . . . .  84
+       43   A-DEP. . . . . . . . . . . . .  M66 79
+       40   A-NBR. . . . . . . . . . . . .  M65 78
+       41   A-PTS. . . . . . . . . . . . .  M81 M82 83
+       39   ACC-NDX. . . . . . . . . . . .  <font
+color="#FF0000">M57</font> M59 60 65 66 M73 78 79 81 82 83 84 M86
+       38   ACCUM-ENTRIES
+       37   ACCUMULATOR-TABLE. . . . . . .  M55
+       35   EOF-FLAG . . . . . . . . . . .  M54 80
+       21   I-CNT. . . . . . . . . . . . .  68 82
+       22   I-DEP. . . . . . . . . . . . .  66 70
+       19   I-NBR. . . . . . . . . . . . .  65 69
+       20   I-PTS. . . . . . . . . . . . .  67 81
+       14   IN-FILE. . . . . . . . . . . .  8 53 56 61 74
+       18   IN-REC
+       33   MISC-VARS
+       49   O-CNT. . . . . . . . . . . . .  M68 M84
+       50   O-DEP. . . . . . . . . . . . .  M70 M79
+       47   O-NBR. . . . . . . . . . . . .  M69 M78
+       48   O-PTS. . . . . . . . . . . . .  M67 M83
+       24   OUT-FILE . . . . . . . . . . .  9 53 61
+       27   OUT-REC. . . . . . . . . . . .  M71 M85
+       34   R-CNTR . . . . . . . . . . . .  58 M72
+       45   WS-OUT-REC . . . . . . . . . .  71 85
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91      PRACDUMP  Date 09/18/00  Time 18:47:50   Page     5
+</pre>
+
+<pre><font color="#FF0000">***** More from XREF. Sorted list of all procedure names. Letters below provide
+context usage for each procedure listed.</font></pre>
+
+<pre>0Context usage is indicated by the letter preceding a procedure-name reference.
+ These letters and their meanings are:
+     A = ALTER (procedure-name)
+     D = GO TO (procedure-name) DEPENDING ON
+     E = End of range of (PERFORM) through (procedure-name)
+     G = GO TO (procedure-name)
+     P = PERFORM (procedure-name)
+     T = (ALTER) TO PROCEED TO (procedure-name)
+     U = USE FOR DEBUGGING (procedure-name)
+ </pre>
+
+<pre><font color="#FF0000">  Defined   Cross-reference of procedures   References
+</font> </pre>
+
+<pre>       64   PROCESS-RTN. . . . . . . . . .  P58
+       75   PROCESS-RTN-EXIT
+       87   TOTALS-EXIT
+       77   TOTALS-RTN . . . . . . . . . .  P60
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91      PRACDUMP  Date 09/18/00  Time 18:47:50   Page     6
+0 <font
+color="#FF0000">Defined   Cross-reference of programs     References</font>
+ </pre>
+
+<pre>        2   PRACDUMP
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91      PRACDUMP  Date 09/18/00  Time 18:47:50   Page     7</pre>
+
+<pre><font color="#FF0000">***** Beginning of OFFSET output</font>
+0<font color="#FF0000">PROGRAM GLOBAL TABLE BEGINS AT LOCATION 0000F4 FOR 000028 BYTES</font>
+ THE PGT CONTAINS 000001 CELL(S) FOR ADDRESSABILITY TO THE CGT
+ PBL1    AT LOCATION 000354 FOR LINE 2
+0
+<font
+color="#FF0000"> LITERAL POOL MAP FOR SYSTEM LITERALS IN THE PGT:</font>
+ 0000F4  (LIT+0)      00000064 40404040 40404040 40404040 40404040 40404040 40404040 40        |....                            |
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91      PRACDUMP  Date 09/18/00  Time 18:47:50   Page     8
+0CONSTANT GLOBAL TABLE BEGINS AT LOCATION 00011C FOR 0000F5 BYTES
+<font
+color="#FF0000"> LITERAL POOL MAP FOR LITERALS IN THE CGT:</font>
+ </pre>
+
+<pre> 000128  (LIT+0)      00000027 00000001 00000000 000D0004 5C5C5C5C 5C40E6D6 D9D2C9D5 C740E2E3  |................***** WORKING ST|
+ 000148  (LIT+32)     D6D9C1C7 C540E2E3 C1D9E3E2 40C8C5D9 C5405C5C 5C5C5CD7 D9C1C3C4 E4D4D7E2  |ORAGE STARTS HERE *****PRACDUMPS|
+ 000168  (LIT+64)     E8E2D6E4 E34040D5 D6400000 013C0000 00020000 01340000 00010000 01380000  |YSOUT  NO ......................|
+ 000188  (LIT+96)     00010000 01500000 00010000 00000000 00008000 00000800 00000400 00004000  |.....&amp;........................ .|
+ 0001A8  (LIT+128)    00400000 00000000 00000000 00000000 00800000 000025C0 0001C000 08080000  |. ..............................|
+ 0001C8  (LIT+160)    20004380 00000000 00000000 00000000 00000040 00010002 80008000 01000280  |................... ............|
+ 0001E8  (LIT+192)    00800000 000040C0 00014000 08080000 20004302 C0000808 00002000 43090001  |...... ... .....................|
+ 000208  (LIT+224)    40000009 00013C00 00</pre>
+
+<pre><font color="#FF0000">***** OFFSET's verb listing. It shows line number where each verb occurred, its relative
+offset from the beginning of the program, and what verb it was. The verbs are listed here in
+the order in which they occur in the program and once for each time that they occur.</font></pre>
+
+<pre>                                                     | ........                       |
+ LINE #  HEXLOC  VERB                        LINE #  HEXLOC  VERB                        LINE #  HEXLOC  VERB
+ 000053 0003F4 OPEN                          000054 00041E MOVE                          000055 000424 MOVE
+ 000056 00042E READ                          000057 000458 SET                           000058 00045E PERFORM
+ 000059 000482 SET                           000060 000488 PERFORM                       000061 0004AC CLOSE
+ 000062 0004D6 STOP                          000065 0004E0 ADD                           000066 00050A ADD
+ 000067 000534 MOVE                          000068 000540 MOVE                          000069 00054C MOVE
+ 000070 000558 MOVE                          000071 000568 WRITE                         000072 00059A ADD
+ 000073 0005B0 SET                           000074 0005BC READ                          000075 0005E8 EXIT
+ 000078 0005E8 MOVE                          000079 0005FA MOVE                          000080 000610 IF
+<font
+color="#FF0000"> 000081 00061A ADD   offset 634 in b/w       000082 000644 ADD                           000083 00066E MOVE</font>
+ 000084 000684 MOVE                          000085 0006A0 WRITE                         000086 0006D2 SET
+ 000087 0006E4 EXIT
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91      PRACDUMP  Date 09/18/00  Time 18:47:50   Page     9</pre>
+
+<pre><font color="#FF0000">***** The TGT (Task Global Table) contains information about the environment in which
+your program is running. First column shows the hex offset of the TGT field from
+the beginning of the program.  Second column shows hex offset of the TGT field
+in the TGT itself.</font></pre>
+
+<pre>
+0                 <font color="#FF0000">  *** TGT MEMORY MAP ***</font>
+            PGMLOC  TGTLOC
+ </pre>
+
+<pre>            000710  000000  72 BYTE SAVE AREA
+            000758  000048  TGT IDENTIFIER
+            00075C  00004C  NEXT AVAILABLE BYTE ADDRESS FOR CEL
+            000760  000050  TGT LEVEL INDICATOR
+            000761  000051  RESERVED - 3 SINGLE BYTE FIELDS
+            000764  000054  32 BIT SWITCH
+            000768  000058  POINTER TO RUNCOM
+            00076C  00005C  POINTER TO COBVEC
+            000770  000060  POINTER TO PROGRAM DYNAMIC BLOCK TABLE
+            000774  000064  NUMBER OF FCB'S
+            000778  000068  WORKING STORAGE LENGTH
+            00077C  00006C  POINTER TO PREVIOUS TGT IN TGT CHAIN
+            000780  000070  ADDRESS OF IGZESMG WORK AREA
+            000784  000074  ADDRESS OF 1ST GETMAIN BLOCK (SPACE MGR)
+            000788  000078  FULLWORD RETURN CODE
+            00078A  00007A  RETURN CODE SPECIAL REGISTER
+            00078C  00007C  SORT-RETURN SPECIAL REGISTER
+            00078E  00007E  MERGE FILE NUMBER
+            000790  000080  ADDRESS OF CEL COMMON ANCHOR AREA
+            000794  000084  LENGTH OF TGT
+            000798  000088  RESERVED - 1 SINGLE BYTE FIELD
+            000799  000089  PROGRAM MASK USED BY THIS PROGRAM
+            00079A  00008A  RESERVED - 2 SINGLE BYTE FIELDS
+            00079C  00008C  NUMBER OF SECONDARY FCB CELLS
+            0007A0  000090  LENGTH OF THE VN(VNI) VECTOR
+            0007A4  000094  COUNT OF NESTED PROGRAMS IN COMPILE UNIT
+            0007A8  000098  DDNAME FOR DISPLAY OUTPUT
+            0007B0  0000A0  SORT-CONTROL SPECIAL REGISTER
+            0007B8  0000A8  POINTER TO COM-REG SPECIAL REGISTER
+            0007BC  0000AC  CALC ROUTINE REGISTER SAVE AREA
+            0007F0  0000E0  ALTERNATE COLLATING SEQUENCE TABLE PTR.
+            0007F4  0000E4  ADDRESS OF SORT G.N. ADDRESS BLOCK
+            0007F8  0000E8  ADDRESS OF PGT
+            0007FC  0000EC  CURRENT INTERNAL PROGRAM NUMBER
+            000800  0000F0  POINTER TO 1ST IPCB
+            000804  0000F4  POINTER TO NEXT TGT (NORES ONLY)
+            000808  0000F8  POINTER TO ABEND INFORMATION TABLE
+            00080C  0000FC  POINTER TO TEST INFO FIELDS IN THE TGT
+            <font
+color="#FF0000">000810  000100  ADDRESS OF START OF COBOL PROGRAM</font>
+            000814  000104  POINTER TO VN'S IN CGT
+            000818  000108  POINTER TO VN'S IN TGT
+            00081C  00010C  POINTER TO FIRST PBL IN THE PGT
+            000820  000110  POINTER TO FIRST FCB CELL
+            <font
+color="#FF0000">000824  000114  WORKING STORAGE ADDRESS</font>
+            000828  000118  POINTER TO FIRST SECONDARY FCB CELL
+ </pre>
+
+<pre>                    *** VARIABLE PORTION OF TGT ***
+ </pre>
+
+<pre>            00082C  00011C  BACKSTORE CELL FOR SYMBOLIC REGISTERS
+            00083C  00012C  BASE LOCATORS FOR SPECIAL REGISTERS
+            <font
+color="#FF0000">000844  000134  BASE LOCATORS FOR WORKING-STORAGE</font>
+            000848  000138  BASE LOCATORS FOR LINKAGE-SECTION
+            00084C  00013C  BASE LOCATORS FOR FILES
+            000854  000144  VARIABLE NAME (VN) CELLS
+            000860  000150  INDEX CELLS
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91      PRACDUMP  Date 09/18/00  Time 18:47:50   Page    10
+0           000864  000154  PERFORM SAVE CELLS
+            000870  000160  FCB CELLS
+            000878  000168  INTERNAL PROGRAM CONTROL BLOCKS
+            000888  000178  TEMPORARY STORAGE-2
+0
+ TGT      LOCATED AT 000710 FOR 00000188 BYTES
+ <font
+color="#FF0000">DCB00001 LOCATED AT 000898 FOR 00000060 BYTES</font>  <font
+color="#FF0000">The 2 DCB's used in this program</font>
+ FCB00001 LOCATED AT 0008F8 FOR 00000100 BYTES
+ <font
+color="#FF0000">DCB00002 LOCATED AT 0009F8 FOR 00000060 BYTES</font>
+ FCB00002 LOCATED AT 000A58 FOR 00000100 BYTES
+ GDT00001 LOCATED AT 000B58 FOR 000000A0 BYTES
+ WRK-STOR LOCATED AT 000BF8 FOR 000000F3 BYTES
+ SPEC-REG LOCATED AT 000CF0 FOR 00000031 BYTES
+-* Statistics for COBOL program PRACDUMP:
+ *    Source records = 87
+ *    Data Division statements = 20
+ *    Procedure Division statements = 31
+0End of compilation 1,  program PRACDUMP,  no statements flagged.
+0Return code 0
+1DFSMS/MVS V1 R4.0 BINDER     18:47:52 MONDAY SEPTEMBER 18, 2000</pre>
+
+<pre><font color="#FF0000">***** The Loader produced MAP</font></pre>
+
+<pre> BATCH EMULATOR  JOB(DUMP    ) STEP(S1      ) PGM= LOADER    PROCEDURE(GO      )
+ IEW2278I B352 INVOCATION PARAMETERS - MAP,LET/
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>1                         *** M O D U L E  M A P ***
+ </pre>
+
+<pre> ---------------
+ CLASS  B_TEXT            LENGTH =     1958  ATTRIBUTES = CAT,   LOAD, RMODE= 24 ALIGN = DBLWORD
+ ---------------
+ </pre>
+
+<pre>  SECTION    CLASS                                      ------- SOURCE --------
+   OFFSET   <font
+color="#FF0000">OFFSET  NAME</font>                TYPE    LENGTH  DDNAME   SEQ  MEMBER
+ </pre>
+
+<pre>             <font color="#FF0000">30000  PRACDUMP           CSECT       D21</font>  SYSLIN    01  **NULL**
+ </pre>
+
+<pre>             30D28  CEESG005        *  CSECT        18  <font color="#FF0000">SYSLIB</font>    01  CEESG005
+ </pre>
+
+<pre>             30D40  CEEBETBL        *  CSECT        B4  <font color="#FF0000">SYSLIB</font>    01  CEEBETBL
+ </pre>
+
+<pre>             30DF8  CEESTART        *  CSECT       110  <font color="#FF0000">SYSLIB </font>   01  CEESTART
+ </pre>
+
+<pre>             30F08  IGZCBSN         *  CSECT       4B0  <font color="#FF0000">SYSLIB</font>    01  IGZCBSN
+ </pre>
+
+<pre>             313B8  CEEBPIRA        *  CSECT       2D0  <font color="#FF0000">SYSLIB </font>   01  CEEINT
+        0    313B8     CEEINT             LABEL
+        0    313B8     CEEBPIRB           LABEL
+        0    313B8     CEEBPIRC           LABEL
+ </pre>
+
+<pre>             31688  CEEARLU         *  CSECT       130  SYSLIB    01  CEEARLU
+ </pre>
+
+<pre>             317B8  CEEBTRM         *  CSECT        9C  SYSLIB    01  CEEBTRM
+ </pre>
+
+<pre>             31858  CEEBLLST        *  CSECT        F8  SYSLIB    01  CEEBLLST
+       10    31868     CEELLIST           LABEL
+ </pre>
+
+<pre>             31950  CEEBINT         *  CSECT         8  SYSLIB    01  CEEBINT
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>&nbsp;
+1          ***  DATA SET SUMMARY  ***
+ </pre>
+
+<pre> DDNAME    CONCAT   FILE IDENTIFICATION
+ SYSLIB      01     SYS2.LE370.V111.SCEELKED
+ SYSLIN      01     SYS00262.T184749.RA000.DUMP.OBJSET.H01
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>1          *** SYMBOL REFERENCES NOT ASSOCIATED WITH ANY ADCON ***
+ </pre>
+
+<pre> TYPE   SCOPE   NAME
+  ER      L     CEESG005
+  ER      M     CEEMAIN
+ </pre>
+
+<pre>           *** E N D  O F  M O D U L E  M A P ***
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>1<font color="#FF0000">PROCESSING OPTIONS</font>: <font color="#FF0000">(options for the Loader)</font>
+ </pre>
+
+<pre>    ALIASES             NO
+    ALIGN2              NO
+    AMODE               UNSPECIFIED
+    CALL                YES
+    CASE                UPPER
+    COMPAT              UNSPECIFIED
+    DCBS                NO
+    DYNAM               NO
+    EXTATTR             UNSPECIFIED
+    EXITS:              NONE
+    FILL                NONE
+    GID                 UNSPECIFIED
+    HOBSET              NO
+    LET                 08
+    LINECT              060
+    LIST                SUMMARY
+    LISTPRIV            NO
+    MAP                 YES
+    MAXBLK              032760
+    MSGLEVEL            00
+    OVLY                NO
+    PRINT               YES
+    RES                 YES
+    REUSABILITY         UNSPECIFIED
+    RMODE               UNSPECIFIED
+    STORENX             NO
+    TERM                NO
+    UID                 UNSPECIFIED
+    UPCASE:             NO
+    WKSPACE             000000K,000000K
+    XCAL                NO
+    XREF                NO
+    ***END OF OPTIONS***
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>1LOAD OPERATION SUMMARY:
+ </pre>
+
+<pre>    LOADED NAME         <font color="#FF0000">**GO</font>  <font color="#FF0000">Loader always calls the load module GO</font>
+    TIME OF LOAD        18.47.52  SEP 18, 2000
+  <font
+color="#FF0000">  LOAD PT VADDR(HEX)  00030000  Load point and entry point are identical
+    ENTRY PT VADDR(HEX) 00030000</font>  <font
+color="#FF0000">because the object module was 1st in the list above</font>
+ </pre>
+
+<pre>&nbsp;
+1LOAD MODULE ATTRIBUTES:
+ </pre>
+
+<pre>    AMODE               ANY
+    PAGE ALIGN          NO
+    RMODE                24
+    MODULE SIZE (HEX)   00001958
+ </pre>
+
+<pre>&nbsp;
+1DFSMS/MVS V1 R4.0 BINDER     18:47:52 MONDAY SEPTEMBER 18, 2000
+ BATCH EMULATOR  JOB(DUMP    ) STEP(S1      ) PGM= LOADER    PROCEDURE(GO      )
+ IEW2010I 0F06 LOADED PROGRAM RETURN CODE =  3000.
+ IEW2008I 0F03 PROCESSING COMPLETED.  RETURN CODE =  3000.
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>1----------------------
+ MESSAGE SUMMARY REPORT
+ ----------------------
+  SEVERE MESSAGES        (SEVERITY = 12)
+  NONE
+ </pre>
+
+<pre>  ERROR MESSAGES         (SEVERITY = 08)
+  NONE
+ </pre>
+
+<pre>  WARNING MESSAGES       (SEVERITY = 04)
+  NONE
+ </pre>
+
+<pre>  INFORMATIONAL MESSAGES (SEVERITY = 00)
+  2008  2010  2278
+ </pre>
+
+<pre>&nbsp;
+  **** END OF MESSAGE SUMMARY REPORT ****
+ 
+</pre>
+
+<pre><font color="#FF0000">***** Output from the program</font></pre>
+
+<pre>1                         1111        11111        11111        11
+                          2222        22222        22222        22
+                          3333        33333        33333        33
+                          4444        44444        44444        44
+                          5555        55555        55555        55
+<font
+color="#FF0000"> CEE3207S The system detected a Data exception.
+          The error occurred in program unit PRACDUMP at entry point PRACDUMP at offset +00000634 at address 00030634.</font></pre>
+
+<p><font color="#FF0000">Find this relative offset in the condensed verb listing to find
+the line number where the abend occurred.&nbsp; You get both the relative address here as
+well as the real address.</font></p>
+</body>
+</html>

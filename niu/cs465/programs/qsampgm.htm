@@ -1,0 +1,109 @@
+<html>
+
+<head>
+<title>QSAM Program</title>
+</head>
+
+<body>
+
+<pre>//QSAM JOB ,'ZERWEKH',REGION=2048K,TIME=(,5)
+// JCL HERE TO ASSEMBLE A PROGRAM
+//SYSIN DD *
+         PRINT NOGEN
+**************************************************
+*  A PROGRAM TO DEMONSTRATE FUNDAMENTALS OF QSAM *
+**************************************************
+*
+*  DSECT DESCRIBES STRUCTURE OF SIMPLE INPUT RECORD
+*
+REC      DSECT
+FNAME    DS    CL15
+LNAME    DS    CL20
+ADDR     DS    CL20
+*
+*
+MAIN     CSECT
+         XSAVE BR=13,TR=NO
+*
+*  OPEN INPUT DCB, CHECK R15 FOR SUCCESS
+*
+         OPEN  (INDCB,(INPUT))
+         IF    (LTR,R15,R15,NZ)
+               ABEND 465,DUMP,,USER
+         ENDIF
+*
+* OPEN OUTPUT (PRINTER) DCB, CHECK OPEN FLAG FOR SUCCESS
+*
+         OPEN  (OUTDCB,(OUTPUT))
+         IF    (TM,OUTDCB+X'30',X'10',NO)
+               ABEND 464,DUMP,,USER
+         ENDIF
+*
+* READ A RECORD IN LOCATE MODE.  ADDR RETURNED IN R1
+*
+         GET   INDCB
+*
+* START READ LOOP, CHECKING EOFFLAG AFTER EVERY GET
+*
+         DO    WHILE,(CLI,EOFFLAG,EQ,C'N')
+*
+              LR    R2,R1   SAVE ADDR OF RECORD
+              USING REC,R2  APPLY DSECT
+*
+*  MOVE INPUT RECORD PIECES TO PRINT LINE
+*             
+              MVC   FNAMEOUT(15),FNAME
+              MVC   LNAMEOUT(20),LNAME
+              MVC   ADDROUT(20),ADDR
+*
+*  WRITE THIS RECORD TO PRINT BUFFER
+*
+              PUT   OUTDCB,PLINE    PUT, MOVE MODE
+*
+* GET NEXT RECORD
+*
+             GET   INDCB
+*
+         ENDDO
+*
+* CLOSE DCBS
+* 
+         CLOSE (INDCB,,OUTDCB)
+         XRETURN TR=NO
+*
+* STORAGE
+*         
+EOFFLAG  DC    C'N'
+*
+* END OF FILE ROUTINE
+*
+EOFRTN   MVI   EOFFLAG,C'Y'
+         BR    R14
+*
+PLINE    DC    C'0'
+FNAMEOUT DC    15C' '
+         DC    10C' '
+LNAMEOUT DC    20C' '
+         DC    10C' '
+ADDROUT  DC    20C' '
+         DC    5C' '
+*
+* INPUT DCB
+*
+INDCB    DCB   DDNAME=INSET,EODAD=EOFRTN,MACRF=GL,DEVD=DA,DSORG=PS
+*
+* OUTPUT (PRINTER) DCB
+*
+OUTDCB   DCB   DDNAME=REPORT,DEVD=DA,DSORG=PS,RECFM=FA,                X
+               LRECL=80,MACRF=PM
+*
+         EQUREGS
+         DROP
+         END   MAIN
+/*
+//  LOADER JCL GOES HERE FOLLOWED BY DATA SETS NEEDED BY THE
+//  ASSEMBLER PROGRAM
+//INSET  DD DSN=NAME AND LOCATION OF INPUT FILE
+//REPORT  DD SYSOUT=*</pre>
+</body>
+</html>

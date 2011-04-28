@@ -1,0 +1,182 @@
+<html>
+<head>
+<title>CSCI 465 Sample Final Exam</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+
+<p><b>CSCI 465 section 1 sample Final Exam</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p><pre>
+<b>Part I. Multiple Choice</b>
+Select the answer that is most correct
+
+1. ACCESS MODE IS RANDOM indicates that records will be
+
+   a. read/written in sequential order
+   b. read/written in a user specified order
+   c. both a and b
+   d. neither a nor b
+
+2. Which of the following lines of JCL will execute a procedure?
+
+   a. //STEPA  EXEC  PROC1,...
+   b. //STEPA  EXEC  PGM=PROC1,...
+   c. //STEPA  EXEC  PROC=PROC1...
+   d. both a and b
+   e. both a and c
+   f. all of the above will execute a procedure
+
+3. In a COBOL program, the key for a RRDS cluster is defined in
+
+   a. the File Description
+   b. working storage
+   c. the Sort file Description
+   d. either a or b
+   e. none of the above
+
+4. Which of the following is not a valid mode for opening a file?
+
+   a. INPUT
+   b. OUTPUT
+   c. I-O
+   d. EXTEND
+   e. all of the above are valid
+   f. none of the above are valid
+
+5. When using IDCAMS, what parameter is used to create a RRDS cluster?
+
+   a. NUMBERED
+   b. INDEXED
+   c. NONINDEXED
+   d. KEYED
+   e. RELATIVE
+
+6. When performing a read, what indicates a sequential read?
+
+   a. NEXT
+   b. RECORD
+   c. SEQUENTIAL
+   d. AT END
+   e. none of the above
+
+7. Which of the following will change the COND parameter on STEP1 of
+   procedure PROC1?
+
+   a. STEP1.COND=(4,LT)
+   b. COND.STEP1=(4,LT)
+   c. PROC1.STEP1.COND=(4,LT)
+   d. a and b
+   e. none of the above
+
+8. Lines from a catalogued JCL procedure may begin with
+
+   a. XX
+   b. ++
+   c. ++*
+   d. XX*
+   e. a and d
+   f. b and c
+
+9. IEBGENER can be used to produce an edited copy of a sequential data set.
+
+   a. true      b. false
+
+10. FILE STATUS IS WS-FILE-STAT.  WS-FILE-STAT should be defined as a
+    _____ byte field.
+
+   a. 1         b. 2         c. 3         d. 4         e. 6
+
+
+<b>Part II. Short Answer</b>
+
+Assume the following record description for PLAYER-FILE:
+
+01  PLAYER-REC.
+    05  PLAYER-NUMBER     PIC X(3).
+    05  PLAYER-NAME       PIC X(30).
+    05  PLAYER-RBIS       PIC 9(3).
+    05  PLAYER-BAT-AVG    PIC 9V9(3)
+
+11. Define a RRDS cluster that has a space allocation of 3 tracks primary
+    and 3 tracks secondary, is located on ACA302, and has player number as
+    its relative record number.
+
+
+
+
+
+
+
+
+
+
+12. Write the DD statement(s) that will be needed by a COBOL program that
+    uses the cluster defined in question 11.
+
+
+
+
+
+
+13. Write a complete SELECT statement for PLAYER-FILE, which may be read
+    from or written to, and may be processed sequentially or randomly.
+    Define any extra storage that may be needed.
+
+
+
+
+
+
+
+
+
+
+14. Write the code to open PlAYER-FILE.
+
+
+
+
+
+
+15. Write the code to display all of the records in PLAYER-FILE.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+16. Write the code to display the record for player number 10.  If the
+    player is not found, display an error message.
+
+
+
+
+
+
+
+
+17. Write the code to add INPUT-REC, which has a field IN-PLAYER-NUM, to
+    the file.  Display a message to indicate if the record has been
+    successfully added.
+</pre></p>
+</font>
+</body>
+</html>

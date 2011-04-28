@@ -1,0 +1,178 @@
+<html>
+
+<head>
+<title>Extra Credit Homework Assignment</title>
+</head>
+
+<body>
+
+<pre>CSCI 465                                                    Spring, 2002
+</pre>
+
+<pre>                        Extra Credit Assignment</pre>
+
+<pre>                         Utilities - 40 Points</pre>
+
+<pre>------------------------------------------------------------------------</pre>
+
+<pre>     Create and run a multistep job using the utility programs to per-
+form the operations described below.  Use proper JCL documentation.</pre>
+
+<pre>------------------------------------------------------------------------</pre>
+
+<pre>Input:</pre>
+
+<pre>     Four input files are involved here, all catalogued.  </pre>
+
+<pre>     The first 9 steps involve two files. The OLDUSER file has data set
+name T90HCH1.CSCI465.SPRING02.EXTRA.OLDUSER, and the NEWUSER file has
+data set name T90HCH1.CSCI465.SPRING02.EXTRA.NEWUSER.</pre>
+
+<pre>     The next 6 steps involve the PDSDATA file which has data set name
+T90HCH1.CSCI465.SPRING02.EXTRA.DATA.  You will also need a PDS called
+T90HCH1.CSCI465.SPRING02.EXTRA.LIB. </pre>
+
+<pre>     The records in the OLDUSER file have this format:</pre>
+
+<pre>          Field               Columns      Type of Data</pre>
+
+<pre>          Last Name             1-10        alphabetic
+          First Name           11-20        alphabetic
+          ID                   21-29        numeric
+          LogonID              30-36        alphanumeric
+          Password             37-44        alphanumeric
+          Account Balance      45-50        signed numeric, 
+                                            dollars and cents
+          Credit Rating        51           signed numeric</pre>
+
+<pre>     The records in the NEWUSER file have this format:</pre>
+
+<pre>          Field                Columns       Type of Data</pre>
+
+<pre>          ID                     1-9          numeric
+          LogonID               10-14         alphanumeric
+          Last Name             15-24         alphabetic
+          First Name            25-34         alphabetic</pre>
+
+<pre>     The records in the PDSDATA file are each 43 bytes long.  They are
+in 3 groups.  The first group is terminated by a record with !!!!! in
+the columns 6 through 10, and the second group is terminated by a record
+with ???????? in the last 8 bytes.</pre>
+
+<pre>     The records in the various members of the PDS also have a record
+length of 43.
+</pre>
+
+<pre>Processing:</pre>
+
+<pre>     Your job should contain the following steps:</pre>
+
+<pre> 1.  Use IEBPTPCH to print the OLDUSER file using IEBPTPCH's default
+     format (no RECORD FIELD).  You should have a page heading, and
+     it should be single-spaced.
+ </pre>
+
+<pre> 2.  Use IEBGENER to copy the OLDUSER file and rearrange the fields in
+     this order:</pre>
+
+<pre>         LogonID
+         First Name
+         Last Name
+         Password
+         ID
+         Credit Rating
+         Account Balance</pre>
+
+<pre>     Give the new file a name of the form Znumber.OLDCOPY, where Znumber 
+     is your own LogonID.   </pre>
+
+<pre> 3.  Use IEBGENER to copy the NEWUSER file.  You will need to make the
+     record longer to make the format match the records in the OLDUSER 
+     file:
+     (a)  The existing LogonID is 5 characters long, and it should be 
+          7, so add the user's initials (first initial, last initial, 
+          in that order, at the beginning of the old LogonID to form 
+          the new one.  That is, if the user's name is Kathy Jones and 
+          her LogonID (in the NEWUSER) file is 12345, then we want to 
+          make her LogonID (in the new version of the file) KJ12345.
+     (b)  The Password should be 'LETMEIN!'.
+     (c)  The Account Balance should be 0.
+     (d)  The Credit Rating should be 0.</pre>
+
+<pre>     The order of fields in the new file should match the order of
+     fields in the new copy of OLDUSER.</pre>
+
+<pre>     Give the new file a name of the form Znumber.NEWCOPY, where Znumber
+     is your own LogonID.  </pre>
+
+<pre> 4.  Use SYNCSORT to sort the two new files, OLDCOPY from step 2 and 
+     NEWCOPY from step 3, concatenated together in SORTIN, in ascending 
+     order on the LogonID field, into a temporary file.</pre>
+
+<pre> 5.  Use IEBGENER to make a copy of the temporary file from step 4.  Pack 
+     all the numeric fields.  The new copy should have a name of the form      
+     Znumber.PACKED.   </pre>
+
+<pre> 6.  Use IEBPTPCH to print the PACKED file (from step 5) in hexadecimal 
+     format, single-spaced.  Use a page heading but there is no need for  
+     column headings or separation between fields.</pre>
+
+<pre> 7.  Use IEBPTPCH to print the PACKED file into a temporary file, unpack-
+     ing all the packed numeric fields.  </pre>
+
+<pre>&nbsp;
+ 8.  Use IEBGENER to copy the temporary file from step 7 into a new
+     file.  Remove the carriage-control character in column 1.  Insert a
+     dollar sign at the left of the Account Balance field and a decimal
+     point between the dollars and cents.  Remove the sign digit from the
+     end of the ID field.  Insert dashes into the ID field so the numbers
+     are in the format 999-99-9999.  The new copy should be named
+     Znumber.NEATCOPY.</pre>
+
+<pre> 9.  Use IEBPTPCH to print NEATCOPY, the file created in step 8.  You
+     should provide a page heading and column headings.  Leave at least
+     5 spaces between columns.  Make it single-spaced.  You may need to
+     use STRTAFT=1.  (Figure out why!)</pre>
+
+<pre>10.  Use IEBGENER to create 3 members of a new PDS from the PDSDATA 
+     file.  Call the 3 members FIRST, SECOND and THIRD, in that order.
+     Invent a name for your PDS, starting with your Znumber.</pre>
+
+<pre>11.  Use IEBPTPCH to print all of the members of your PDS.  Use a page 
+     heading and single-spacing but no editing. </pre>
+
+<pre>12.  Use IEHLIST to print the directory of your PDS.</pre>
+
+<pre>13.  Use IEBCOPY to copy the members NEWFIRST, SECOND and FOURTH from 
+     the PDS named T90HCH1.CSCI465.SPRING02.EXTRA.LIB into the PDS 
+     you created in step 8.  When you copy NEWFIRST, change its name 
+     to FIRST, replacing the original FIRST member.  When you copy
+     SECOND, make sure it replaces the original SECOND.</pre>
+
+<pre>14.  Use IEHLIST to print the directory of your PDS.</pre>
+
+<pre>15.  Use IEBPTPCH with TYPORG=PO to print all 4 members of your PDS.  
+     (You do not need any MEMBER statements.)  Use a page heading and 
+     single-spacing but no editing. </pre>
+
+<pre>16.  Use IEFBR14 to delete all these files and libraries you have been
+     creating in the above steps.</pre>
+
+<pre>------------------------------------------------------------------------</pre>
+
+<pre>Notes:</pre>
+
+<pre>     You need to choose a VOL=SER for each permanent file or PDS, either 
+ACA301 or ACA302.</pre>
+
+<pre>     When you create the new files using IEBGENER, you will need to
+supply DCB information on the DD statements.</pre>
+
+<pre>     Put appropriate COND parameters on the steps that need them.  Use 
+COND=EVEN on the last step.</pre>
+
+<pre>     Please don't do any extra steps.  This is long enough as it is.
+Along the way, though, it may be necessary to run some extra IEFBR14
+jobs to delete files from time to time.</pre>
+</body>
+</html>

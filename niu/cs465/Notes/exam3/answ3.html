@@ -1,0 +1,186 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>CSCI 465 Sample Exam 3</title>
+<meta NAME="Template" CONTENT="C:\MSOFFICE\WINWORD\OFFICE\html.dot">
+<script LANGUAGE="JavaScript">
+<!--
+var ansarray;
+
+//********************************
+function mkArray()
+{
+ for (var i = 0; i < 120; i++)
+     this[i] = " ";
+}
+
+//****************************
+function doit()
+{
+  ansarray = new mkArray();
+  ansarray[0] = "Additions never come before modifications."
+  ansarray[1] = "Look for a better answer."
+  ansarray[2] = "Additions never come before modifications. "    
+  ansarray[3] = "This is the right answer."
+  ansarray[4] = "Sorry, there is an answer."
+
+  ansarray[5] = "Since a Step is coded, this does not refer to the SAME step."
+  ansarray[6] = "This is correct. "    
+  ansarray[7] = "Since a Step is coded, this does not refer to the SAME step."
+  ansarray[8] = "Since a Step is coded, this does not refer to the SAME step."
+  ansarray[9] = "Sorry. There is a correct answer."
+
+  ansarray[10] = "Nope  Nulls cannot be included in a procedure."
+  ansarray[11] = "Never  This is true only of instream procedures."
+  ansarray[12] = "Nope.  PROC= is optional."
+  ansarray[13] = "Right. "    
+
+  ansarray[14] = "Of course it can."
+  ansarray[15] = "Of course it can."
+  ansarray[16] = "It can be in Assembler or CICS."
+  ansarray[17] = "I made up this name."
+  ansarray[18] = "Right.  All can be accessed randomly."    
+
+  ansarray[19] = "This still leaves an entry in the system catalog."
+  ansarray[20] = "Correct."
+  ansarray[21] = "This still leaves an entry in the system catalog."
+  ansarray[22] = "This still leaves an entry in the system catalog."
+  ansarray[23] = "No, only one of the above."
+  ansarray[24] = "Sorry.  There is an answer. "    
+
+  ansarray[25] = "This means duplicate key."
+  ansarray[26] = "This means record not found."
+  ansarray[27] = "Nope, not this one either.. "    
+  ansarray[28] = "Right.  10 means end of file."
+  ansarray[29] = "Sorry.  One of them is correct."
+
+  ansarray[30] = "Right.  22 means duplicate record."
+  ansarray[31] = "This means record not found."
+  ansarray[32] = "This means everything is cool."
+  ansarray[33] = "This is the infamous Other Error."
+  ansarray[34] = "Sorry.  There is a correct answer. "    
+
+  ansarray[35] = "Correct."
+  ansarray[36] = "Nope.  Here you would use AT END."
+  ansarray[37] = "Only true of an RRDS."
+  ansarray[38] = "Sorry.  Only one is true. "     
+  ansarray[39] = "Sorry.  There is a correct answer."
+
+  ansarray[40] = "This says it begins in 11th column."
+  ansarray[41] = "This says it's 10 bytes long."
+  ansarray[42] = "This is correct. "    
+  ansarray[43] = "Nope.  I don't know what this means."
+  ansarray[44] = "Sorry.  There is a correct answer."
+
+  ansarray[45] = "Cannot print VSAM clusters."
+  ansarray[46] = "Cannot print VSAM clusters."
+  ansarray[47] = "Right."
+  ansarray[48] = "Sorry.  Only one is true. "    
+  ansarray[49] = "Half right."
+
+  ansarray[50] = "I made this up."
+  ansarray[51] = "Nope."
+  ansarray[52] = "Sorry."
+  ansarray[53] = "Right. Just code DISP=(OLD,UNCATLG)"
+  ansarray[54] = "Sorry.  There is an answer."
+
+  ansarray[55] = "Half Right."
+  ansarray[56] = "These are written in key sequence. "    
+  ansarray[57] = "These are written by relative record number."
+  ansarray[58] = "Half right."
+  ansarray[59] = "Correct."
+
+  ansarray[60] = "Nope. "    
+  ansarray[61] = "Correct."
+  ansarray[62] = "RRDS does not support notion of Key."
+  ansarray[63] = "QSAM does not support notion of Key."
+  ansarray[64] = "Sorry.  Only one is true."
+
+  ansarray[65] = "Nope."
+  ansarray[66] = "These use Keys."
+  ansarray[67] = "Right. "    
+  ansarray[68] = "Nope."
+  ansarray[69] = "Half right."
+
+  ansarray[70] = "Half right."
+  ansarray[71] = "Half right."
+  ansarray[72] = "Does not support alternate index."
+  ansarray[73] = "Nope."
+  ansarray[74] = "Right. "    
+
+  ansarray[75] = "Partially correct."
+  ansarray[76] = "Partially correct."
+  ansarray[77] = "Partially correct."    
+  ansarray[78] = "Partially correct."
+  ansarray[79] = "Right.  Check all files for successful open."
+
+  ansarray[80] = "This organization is Sequential."
+  ansarray[81] = "Correct. "    
+  ansarray[82] = "This organization is Relative."
+  ansarray[83] = "Organization clause not supported for QSAM."
+  ansarray[84] = "Half right."
+
+  ansarray[85] = "This has nothing to do with it."
+  ansarray[86] = "Correct. Look for presence of NEXT"    
+  ansarray[87] = "Are you serious?."
+  ansarray[88] = "You are really confused."
+  ansarray[89] = "Sorry.  There is a correct answer."
+
+  ansarray[90] = "Sorry, cannot physically delete from ESDS."
+  ansarray[91] = "Partially correct."
+  ansarray[92] = "Partially correct. "    
+  ansarray[93] = "Sorry, cannot physically delete from QSAM."
+  ansarray[94] = "Correct."
+
+  ansarray[95] = "Right.  There is no wasted space here."
+  ansarray[96] = "Has embedded free space."
+  ansarray[97] = "May have empty slots."
+  ansarray[98] = "I made this up."
+  ansarray[99] = "Sorry.  Only 1 is true." 
+
+  ansarray[100] = "Yes it can.  But that's terribly expensive."    
+  ansarray[101] = "Yes it can.  But that's terribly expensive."
+  ansarray[102] = "Yes, if symbolic parms are assigned defaults."
+  ansarray[103] = "Then where do you suppose default values ARE assigned?"    
+  ansarray[104] = "Sorry.  It's the KSDS that suffers from this. "    
+  ansarray[105] = "Right. Only KSDS incurs CI splits. "    
+  ansarray[106] = "This is the true statement. "    
+  ansarray[107] = "Why did you say false?"
+  ansarray[108] = "Not in sequential order by any notion of a key."
+  ansarray[109] = "You can retrieve in sequential slot order, but not by key. "    
+  ansarray[110] = "What about all those CI and CA splits?."
+  ansarray[111] = "Right. CI and CA splits means it will need to be reorganized "    
+  ansarray[112] = "Right. In fact, they all do. "    
+  ansarray[113] = "Sorry. But all VSAM clusters permit this. "    
+  ansarray[114] = "Sorry. Programmer must manage it."
+  ansarray[115] = "Right. The programmer must declare it and manage it."    
+  ansarray[116] = "Sorry, but it is."    
+  ansarray[117] = "Right. Reads affect it. Delete, Write does not."    
+  ansarray[118] = "Nope.  This permits Direct only."    
+  ansarray[119] = "Right. You need to specify Dynamic."
+  document.myform.ans.value = "";
+
+}
+
+//*******************************
+function showans(x)
+{
+  document.myform.ans.value = "";
+
+  document.myform.ans.value = ansarray[x-1];
+}
+
+
+//  -->
+</script>
+</head>
+
+<body onLoad="doit();">
+
+<form NAME="myform">
+  <p><input TYPE="text" NAME="ans" SIZE="150" VALUE> </p>
+</form>
+</body>
+</html>

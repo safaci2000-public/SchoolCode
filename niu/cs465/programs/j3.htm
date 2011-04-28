@@ -1,0 +1,1317 @@
+<html>
+
+<head>
+<title>Job 3</title>
+</head>
+
+<body>
+
+<p>&nbsp;</p>
+
+<pre><font color="#FF0000">This is JOB 3 </font><font color="#000000">The <strong>new</strong> compiler options used here are:</font></pre>
+
+<pre><font color="#000000"><strong>MAP</strong> - provides a mapping of all data division items plus all implicitly declared variables</font></pre>
+
+<pre><font color="#000000">The Run time option <strong>TERMTHDACT(DUMP) </strong>requests a formatted dump in the case of an abend.</font></pre>
+
+<pre>1                        J E S 2  J O B  L O G  --  S Y S T E M  O 2 B 4  --  N O D E  N I U
+0
+ 18.44.43 JOB06166 ---- MONDAY,    18 SEP 2000 ----
+ 18.44.43 JOB06166  $HASPU01 JOB PARMS - TIME=(0,5),LINES=2,CARDS=100,TAPES=0,ROOM=34
+ 18.44.44 JOB06166  $HASP373 DUMP     STARTED - INIT 17   - CLASS A - SYS O2B4
+ 18.44.44 JOB06166  ACF9CCCD USERID T90RAZ1  IS ASSIGNED TO THIS JOB - DUMP
+ 18.44.44 JOB06166  IEF403I DUMP - STARTED - TIME=18.44.44
+ 18.44.46 JOB06166  AMS000I: STEP END  DUMP    .COB       RC=  0000    CPU= 00:00:00.29    PGM=IGYCRCTL
+ 18.44.48 JOB06166  AMS000I: STEP END  DUMP    .GO        RC=  3000    CPU= 00:00:00.47    PGM=LOADER
+ 18.44.48 JOB06166  F   WYLBUR,TO .T90RAZ1  JOB06166 DUMP     HAS COMPLETED 18:44:48 GO       CC=3000
+ 18.44.48 JOB06166  AMS000I: STEP END  DUMP    .SWNOTIFY  RC=  0000    CPU= 00:00:00.03    PGM=SWNOTIFY
+ 18.44.48 JOB06166  IEF404I DUMP - ENDED - TIME=18.44.48
+ 18.44.49 JOB06166  AMS000I: JOB  END  DUMP      ZERWEKH               CPU= 00:00:00.79
+ 18.44.49 JOB06166  $HASP395 DUMP     ENDED
+0------ JES2 JOB STATISTICS ------
+-  18 SEP 2000 JOB EXECUTION DATE
+-          107 CARDS READ
+-        1,161 SYSOUT PRINT RECORDS
+-            0 SYSOUT PUNCH RECORDS
+-           96 SYSOUT SPOOL KBYTES
+-         0.08 MINUTES EXECUTION TIME
+1        1 //DUMP JOB ,'ZERWEKH'                                                   JOB06166
+           //* $ACFJ219 ACF2 ACTIVE NIU                                                ACF2
+           //*J0BFR0M $ACFJ201 ACF2 CONTROL CARD SUCCESSFULLY SCANNED              WYLBUR
+           /*ROUTE  PRINT FETCH                                                    WYLBUR
+           /*ROUTE  PUNCH FETCH                                                    WYLBUR
+           /*NOTIFY T90RAZ1    S=WYLBUR                                            WYLBUR
+           //*                                                                     WYLBUR
+           //* Submitted by T90RAZ1  on 09/18/2000 (2000.262) at 18:44:43          WYLBUR
+           //* Temp T90RAZ1.PRACCODE                                               WYLBUR
+           //* From T90RAZ1.PRACCODE / ACA301                                      WYLBUR
+           //*                                                                     WYLBUR
+         2 //S1  EXEC IGYWCG,CPARM='MAP,TEST,APOST',
+           //  LPARM='MAP,LET',GPARM='/TERMTHDACT(DUMP)'
+         3 XXIGYWCG PROC  CPARM=,                                                  00001000
+           XX             CREGION=2048K,                                           00002000
+           XX             GPARM=,                                                  00003000
+           XX             GREGION=2048K,                                           00004000
+           XX             LEVEL=SYS2,                                              00005000
+           XX             LEVER=V111,                                              00006000
+           XX             LPARM=MAP,                                               00007002
+           XX             SYSLBLK=3200,                                            00008000
+           XX             UTSPACE='(CYL,(1,1))',                                   00009000
+           XX             VERSION=V110                                             00010000
+           XX*                                                                     00011000
+           XX******************************************************************    00012000
+           XX* PLEASE CALL 3-1875 IF YOU HAVE ANY PROBLEMS WITH THIS PROCEDURE*    00013000
+           XX******************************************************************    00014000
+           XX*                                                                     00015000
+         4 XXCOB    EXEC PGM=IGYCRCTL,REGION=&amp;CREGION,PARM='&amp;CPARM'                00016000
+           IEFC653I SUBSTITUTION JCL - PGM=IGYCRCTL,REGION=2048K,PARM='MAP,TEST,APOST'
+         5 XXSTEPLIB  DD  DSNAME=&amp;LEVEL..ADCOBOL.&amp;VERSION..SIGYCOMP,DISP=SHR       00017000
+           IEFC653I SUBSTITUTION JCL - DSNAME=SYS2.ADCOBOL.V110.SIGYCOMP,DISP=SHR
+         6 XXSYSPRINT DD  SYSOUT=*                                                 00018000
+         7 XXSYSLIN   DD  DSNAME=&amp;&amp;OBJSET,UNIT=DISK,                               00019000
+           XX             DISP=(MOD,PASS),SPACE=(TRK,(3,3)),                       00020000
+           XX             DCB=(BLKSIZE=&amp;SYSLBLK)                                   00021000
+           IEFC653I SUBSTITUTION JCL - DSNAME=&amp;&amp;OBJSET,UNIT=DISK,DISP=(MOD,PASS),SPACE=(TRK,(3,3)),DCB=(BLKSIZE=3200)
+         8 XXSYSUT1   DD  UNIT=DISK,SPACE=&amp;UTSPACE                                 00022000
+           IEFC653I SUBSTITUTION JCL - UNIT=DISK,SPACE=(CYL,(1,1))
+         9 XXSYSUT2   DD  UNIT=DISK,SPACE=&amp;UTSPACE                                 00023000
+           IEFC653I SUBSTITUTION JCL - UNIT=DISK,SPACE=(CYL,(1,1))
+        10 XXSYSUT3   DD  UNIT=DISK,SPACE=&amp;UTSPACE                                 00024000
+           IEFC653I SUBSTITUTION JCL - UNIT=DISK,SPACE=(CYL,(1,1))
+        11 XXSYSUT4   DD  UNIT=DISK,SPACE=&amp;UTSPACE                                 00025000
+           IEFC653I SUBSTITUTION JCL - UNIT=DISK,SPACE=(CYL,(1,1))
+        12 XXSYSUT5   DD  UNIT=DISK,SPACE=&amp;UTSPACE                                 00026000
+           IEFC653I SUBSTITUTION JCL - UNIT=DISK,SPACE=(CYL,(1,1))
+        13 XXSYSUT6   DD  UNIT=DISK,SPACE=&amp;UTSPACE                                 00027000
+           IEFC653I SUBSTITUTION JCL - UNIT=DISK,SPACE=(CYL,(1,1))
+        14 XXSYSUT7   DD  UNIT=DISK,SPACE=&amp;UTSPACE                                 00028000
+           XX*                                                                     00029000
+           IEFC653I SUBSTITUTION JCL - UNIT=DISK,SPACE=(CYL,(1,1))
+        15 //COB.SYSIN DD *
+        16 XXGO     EXEC PGM=LOADER,COND=(8,LT,COB),PARM='&amp;LPARM/&amp;GPARM',          00030000
+           XX             REGION=&amp;GREGION                                          00031000
+           IEFC653I SUBSTITUTION JCL - PGM=LOADER,COND=(8,LT,COB),PARM='MAP,LET//TERMTHDACT(DUMP)',REGION=2048K
+        17 XXSYSLIB   DD  DSNAME=&amp;LEVEL..LE370.&amp;LEVER..SCEELKED,DISP=SHR           00032000
+           IEFC653I SUBSTITUTION JCL - DSNAME=SYS2.LE370.V111.SCEELKED,DISP=SHR
+        18 XXSYSLOUT  DD  SYSOUT=*                                                 00033000
+        19 XXSYSLIN   DD  DSNAME=&amp;&amp;OBJSET,DISP=(OLD,DELETE)                        00034000
+        20 XXSTEPLIB  DD  DSNAME=&amp;LEVEL..LE370.&amp;LEVER..SCEERUN,DISP=SHR            00035000
+           IEFC653I SUBSTITUTION JCL - DSNAME=SYS2.LE370.V111.SCEERUN,DISP=SHR
+        21 XXSYSPRINT DD  SYSOUT=*                                                 00036000
+        22 //GO.CEEDUMP DD SYSOUT=*
+           X/CEEDUMP  DD  SYSOUT=*                                                 00037000
+        23 XXSYSUDUMP DD  SYSOUT=*                                                 00038000
+           XX*                                                                     00039000
+           XX*      END OF IGYWCG PROC                                             00040000
+           XX*                                                                     00041000
+        24 //GO.INPUT DD DSN=T90RAZ1.PRACDATA,DISP=SHR
+        25 //GO.OUTPUT DD SYSOUT=*
+        26 //NOTIFY EXEC SWNOTIFY,PARM='T90RAZ1,WYLBUR'                            WYLBUR
+        27 XXSWNOTIFY  PROC
+           XX*
+           XX*   THIS WILL NOTIFY A USER LOGGED ON TO WYLBUR THAT A JOB
+           XX*   HAS RUN.  CALL SYSTEMS AT 3-1875 WITH PROBLEMS.
+           XX*
+        28 XXSWNOTIFY  EXEC PGM=SWNOTIFY,REGION=256K,COND=EVEN
+  STMT NO. MESSAGE
+         2 IEFC001I PROCEDURE IGYWCG WAS EXPANDED USING SYSTEM LIBRARY SYS2.PROCLIB
+        26 IEFC001I PROCEDURE SWNOTIFY WAS EXPANDED USING SYSTEM LIBRARY SYS2.PROCLIB
+ IEF236I ALLOC. FOR DUMP COB S1
+ IEF237I 050E ALLOCATED TO STEPLIB
+ IEF237I JES2 ALLOCATED TO SYSPRINT
+ IGD101I SMS ALLOCATED TO DDNAME (SYSLIN  )
+         DSN (SYS00262.T184444.RA000.DUMP.OBJSET.H01      )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP102
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT1  )
+         DSN (SYS00262.T184444.RA000.DUMP.R0176121        )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP301
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT2  )
+         DSN (SYS00262.T184444.RA000.DUMP.R0176122        )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP103
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT3  )
+         DSN (SYS00262.T184444.RA000.DUMP.R0176123        )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP101
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT4  )
+         DSN (SYS00262.T184444.RA000.DUMP.R0176124        )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP301
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT5  )
+         DSN (SYS00262.T184444.RA000.DUMP.R0176125        )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP301
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT6  )
+         DSN (SYS00262.T184444.RA000.DUMP.R0176126        )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP301
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT7  )
+         DSN (SYS00262.T184444.RA000.DUMP.R0176127        )
+         STORCLAS (TEMPSTOR) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TMP101
+ IEF237I JES2 ALLOCATED TO SYSIN
+ IEF142I DUMP COB S1 - STEP WAS EXECUTED - COND CODE 0000
+ IEF285I   SYS2.ADCOBOL.V110.SIGYCOMP                   KEPT
+ IEF285I   VOL SER NOS= SYS301.
+ IEF285I   T90RAZ1.DUMP.JOB06166.D0000102.?             SYSOUT
+ IGD106I SYS00262.T184444.RA000.DUMP.OBJSET.H01       PASSED,    DDNAME=SYSLIN
+ IGD105I SYS00262.T184444.RA000.DUMP.R0176121         DELETED,   DDNAME=SYSUT1
+ IGD105I SYS00262.T184444.RA000.DUMP.R0176122         DELETED,   DDNAME=SYSUT2
+ IGD105I SYS00262.T184444.RA000.DUMP.R0176123         DELETED,   DDNAME=SYSUT3
+ IGD105I SYS00262.T184444.RA000.DUMP.R0176124         DELETED,   DDNAME=SYSUT4
+ IGD105I SYS00262.T184444.RA000.DUMP.R0176125         DELETED,   DDNAME=SYSUT5
+ IGD105I SYS00262.T184444.RA000.DUMP.R0176126         DELETED,   DDNAME=SYSUT6
+ IGD105I SYS00262.T184444.RA000.DUMP.R0176127         DELETED,   DDNAME=SYSUT7
+ IEF285I   T90RAZ1.DUMP.JOB06166.D0000101.?             SYSIN
+ ************************************************************************************************************************************
+ *                                                  STEP TERMINATION STATISTICS                                                     *
+ *                                                                                                                                  *
+ * STEP NAME     COB         START TIME  18:44:44.28   VIRT SYS  USED     324K   PAGE INS              0  STEP CPU      00:00:00.29 *
+ * PGM NAME      IGYCRCTL    STOP  TIME 18:44:46.71    VIRT CORE USED   2,048K   PAGE OUTS             0  JOB  CPU      00:00:00.29 *
+ * DISPATCH PRTY   0         ELAP. TIME 00:00:02.43    NUMBER SWAPS           0  NUMBER PAGES          0  SRB TIME      00:00:00.02 *
+ * PERF. GROUP         0     SERV UNITS         694    TRANS ACT TIME  00:00:01.46                        COMPLETION CODE      0000 *
+ *  MAIN STORAGE UNITS           0     CPU UNITS             438     SRB UNITS              34     I/O UNITS             222        *
+ ************************************************************************************************************************************
+ *                                                   EXCP STATISTICS                                                                *
+ *                                                                                                                                  *
+ *  DDNAME   CC# UNIT EXCP COUNT  DDNAME   CC# UNIT EXCP COUNT  DDNAME   CC# UNIT EXCP COUNT  DDNAME   CC# UNIT EXCP COUNT          *
+ *  STEPLIB       50E        298  SYSLIN        53D          6  SYSUT1        536          7  SYSUT2        53E          5          *
+ *  SYSUT3        53C          1  SYSUT4        536         10  SYSUT5        536          0  SYSUT6        536          1          *
+ *  SYSUT7        53C          7                                                                                                    *
+ *                                                                                                                                  *
+ * EXCP TOTAL             335  VIO PAGE INS          0       VIO PAGE OUTS          0       PAGES SWAPPED IN          0             *
+ *                                                                                                                                  *
+ ************************************************************************************************************************************
+ IEF373I STEP/COB     /START 2000262.1844
+ IEF374I STEP/COB     /STOP  2000262.1844 CPU    0MIN 00.29SEC SRB    0MIN 00.02SEC VIRT  2048K SYS   324K EXT   32736K SYS    9368K
+ IEF236I ALLOC. FOR DUMP GO S1
+ IEF237I 050E ALLOCATED TO SYSLIB
+ IEF237I JES2 ALLOCATED TO SYSLOUT
+ IGD103I SMS ALLOCATED TO DDNAME SYSLIN
+ IEF237I 050E ALLOCATED TO STEPLIB
+ IEF237I JES2 ALLOCATED TO SYSPRINT
+ IEF237I JES2 ALLOCATED TO CEEDUMP
+ IEF237I JES2 ALLOCATED TO SYSUDUMP
+ IEF237I 050C ALLOCATED TO INPUT
+ IEF237I JES2 ALLOCATED TO OUTPUT
+ IEF237I JES2 ALLOCATED TO SYSOUT
+ IEF142I DUMP GO S1 - STEP WAS EXECUTED - COND CODE 3000
+ IEF285I   SYS2.LE370.V111.SCEELKED                     KEPT
+ IEF285I   VOL SER NOS= SYS301.
+ IEF285I   T90RAZ1.DUMP.JOB06166.D0000103.?             SYSOUT
+ IGD105I SYS00262.T184444.RA000.DUMP.OBJSET.H01       DELETED,   DDNAME=SYSLIN
+ IEF285I   SYS2.LE370.V111.SCEERUN                      KEPT
+ IEF285I   VOL SER NOS= SYS301.
+ IEF285I   T90RAZ1.DUMP.JOB06166.D0000104.?             SYSOUT
+ IEF285I   T90RAZ1.DUMP.JOB06166.D0000105.?             SYSOUT
+ IEF285I   T90RAZ1.DUMP.JOB06166.D0000106.?             SYSOUT
+ IEF285I   T90RAZ1.PRACDATA                             KEPT
+ IEF285I   VOL SER NOS= ACA301.
+ IEF285I   T90RAZ1.DUMP.JOB06166.D0000107.?             SYSOUT
+ IEF285I   T90RAZ1.DUMP.JOB06166.D0000108.?             SYSOUT
+ ************************************************************************************************************************************
+ *                                                  STEP TERMINATION STATISTICS                                                     *
+ *                                                                                                                                  *
+ * STEP NAME     GO          START TIME  18:44:46.75   VIRT SYS  USED     356K   PAGE INS              0  STEP CPU      00:00:00.47 *
+ * PGM NAME      LOADER      STOP  TIME 18:44:48.80    VIRT CORE USED   1,332K   PAGE OUTS             0  JOB  CPU      00:00:00.76 *
+ * DISPATCH PRTY   0         ELAP. TIME 00:00:02.05    NUMBER SWAPS           0  NUMBER PAGES          0  SRB TIME      00:00:00.02 *
+ * PERF. GROUP         0     SERV UNITS         921    TRANS ACT TIME  00:00:01.78                        COMPLETION CODE      3000 *
+ *  MAIN STORAGE UNITS           0     CPU UNITS             708     SRB UNITS              25     I/O UNITS             188        *
+ ************************************************************************************************************************************
+ *                                                   EXCP STATISTICS                                                                *
+ *                                                                                                                                  *
+ *  DDNAME   CC# UNIT EXCP COUNT  DDNAME   CC# UNIT EXCP COUNT  DDNAME   CC# UNIT EXCP COUNT  DDNAME   CC# UNIT EXCP COUNT          *
+ *  SYSLIB        50E         89  SYSLIN        53D          7  STEPLIB       50E        204  INPUT         50C          9          *
+ *                                                                                                                                  *
+ *                                                                                                                                  *
+ * EXCP TOTAL             309  VIO PAGE INS          0       VIO PAGE OUTS          0       PAGES SWAPPED IN          0             *
+ *                                                                                                                                  *
+ ************************************************************************************************************************************
+ IEF373I STEP/GO      /START 2000262.1844
+ IEF374I STEP/GO      /STOP  2000262.1844 CPU    0MIN 00.47SEC SRB    0MIN 00.02SEC VIRT  1332K SYS   356K EXT    1308K SYS    9436K
+ IEF142I DUMP SWNOTIFY NOTIFY - STEP WAS EXECUTED - COND CODE 0000
+ ************************************************************************************************************************************
+ *                                                  STEP TERMINATION STATISTICS                                                     *
+ *                                                                                                                                  *
+ * STEP NAME     SWNOTIFY    START TIME  18:44:48.85   VIRT SYS  USED     300K   PAGE INS              0  STEP CPU      00:00:00.03 *
+ * PGM NAME      SWNOTIFY    STOP  TIME 18:44:48.96    VIRT CORE USED      16K   PAGE OUTS             0  JOB  CPU      00:00:00.79 *
+ * DISPATCH PRTY   0         ELAP. TIME 00:00:00.11    NUMBER SWAPS           0  NUMBER PAGES          0  SRB TIME      00:00:00.00 *
+ * PERF. GROUP         0     SERV UNITS          45    TRANS ACT TIME  00:00:00.08                        COMPLETION CODE      0000 *
+ *  MAIN STORAGE UNITS           0     CPU UNITS              44     SRB UNITS               0     I/O UNITS               1        *
+ ************************************************************************************************************************************
+ IEF373I STEP/SWNOTIFY/START 2000262.1844
+ IEF374I STEP/SWNOTIFY/STOP  2000262.1844 CPU    0MIN 00.03SEC SRB    0MIN 00.00SEC VIRT    16K SYS   300K EXT      12K SYS    9352K
+ ************************************************************************************************************************************
+ *                                                  JOB TERMINATION STATISTICS                                                      *
+ *                                                                                                                                  *
+ *  JOB NAME    DUMP      JOB06166                              CPU TIME  00:00:00.79            SRB TIME            00:00:00.04    *
+ *                                                                                                                                  *
+ *  PROGRAMMER  ZERWEKH                                         INIT DATE 09/18/00   00.262      INITIATION TIME     18:44:44.28    *
+ *                                                                                                                                  *
+ *  SYSTEM ID   O2B4                                            TERM DATE 09/18/00   00.262      TERMINATION TIME    18:44:48.99    *
+ *                                                                                                                                  *
+ *  CLASS       A         PERF. GROUP      0                    SERV UNIT      1,660             ELAPSED TIME        00:00:04.71    *
+ *                                                                                                                                  *
+ *  MAIN STORAGE UNITS           0     CPU UNITS           1,190     SRB UNITS              59     I/O UNITS             411        *
+ *                                                                                                                                  *
+ *  JOB LOG DUMP     00262 18:44:43.76                          MVS REL   SP6.0.6                                                   *
+ *                                                                                                                                  *
+ *  ACCTG DATA 0114290675,T90    RAZ1,T,T90    ,ZERWEKH ROBERT A                                 COMPLETION STATUS   C0000          *
+ *                                                                                                                                  *
+ ************************************************************************************************************************************
+ IEF375I  JOB/DUMP    /START 2000262.1844
+ IEF376I  JOB/DUMP    /STOP  2000262.1844 CPU    0MIN 00.79SEC SRB    0MIN 00.04SEC
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91                Date 09/18/00  Time 18:44:44   Page     1
+0Invocation parameters:
+ MAP,TEST,APOST
+0Options in effect:
+       ADV
+       APOST
+     NOAWO
+       BUFSIZE(4096)
+     NOCMPR2
+     NOCOMPILE(S)
+     NOCURRENCY
+       DATA(31)
+     NODBCS
+     NODECK
+     NODUMP
+     NODYNAM
+     NOEVENTS
+     NOEXIT
+     NOFASTSRT
+       FLAG(I)
+     NOFLAGMIG
+     NOFLAGSAA
+     NOFLAGSTD
+       LANGUAGE(EN)
+     NOLIB
+       LINECOUNT(60)
+     NOLIST
+       MAP
+     NONAME
+     NONUMBER
+       NUMPROC(NOPFD)
+       OBJECT
+     NOOFFSET
+     NOOPTIMIZE
+       OUTDD(SYSOUT)
+     NORENT
+       SEQUENCE
+       SIZE(MAX)
+       SOURCE
+       SPACE(1)
+     NOSSRANGE
+     NOTERM
+       TEST(ALL,SYM)
+       TRUNC(STD)
+     NOVBREF
+     NOWORD
+     NOXREF
+       ZWB
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91      PRACDUMP  Date 09/18/00  Time 18:44:44   Page     2
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8  Map and Cross Reference
+0/* PRACDUMP</pre>
+
+<pre><font color="#FF0000">*****You will find an embedded MAP summary in the far right column.  BLW stands for
+Base Locator for Working-Storage item.  BLF means Base Locator for a File
+</font>
+   000001                IDENTIFICATION DIVISION.
+   000002                PROGRAM-ID.  PRACDUMP.
+   000003                AUTHOR.      Z.
+   000004                ENVIRONMENT DIVISION.
+   000005                INPUT-OUTPUT SECTION.
+   000006                FILE-CONTROL.
+   000007
+   000008                    SELECT IN-FILE  ASSIGN TO UT-S-INPUT.
+   000009                    SELECT OUT-FILE ASSIGN TO UR-S-OUTPUT.
+   000010
+   000011                DATA DIVISION.
+   000012                FILE SECTION.
+   000013
+   000014                FD  IN-FILE
+   000015                    LABEL RECORDS ARE STANDARD
+   000016                    RECORDING MODE IS F.
+   000017                                                                                       <font
+color="#FF0000">embedded map summary</font>                
+   000018                01  IN-REC.                                                                BLF=0000+000         0CL16
+   000019                    02  I-NBR            PIC 9(4).                                         BLF=0000+000,0000000 4C
+   000020                    02  I-PTS            PIC 9(5).                                         BLF=0000+004,0000004 5C
+   000021                    02  I-CNT            PIC 9(5).                                         BLF=0000+009,0000009 5C
+   000022                    02  I-DEP            PIC 99.                                           BLF=0000+00E,000000E 2C
+   000023
+   000024                FD  OUT-FILE
+   000025                    LABEL RECORDS ARE OMITTED
+   000026                    RECORDING MODE IS F.
+   000027                01  OUT-REC              PIC X(133).                                       BLF=0001+000         133C
+   000028
+   000029                WORKING-STORAGE SECTION.
+   000030                77  FILLER               PIC X(39) VALUE                                   BLW=0000+000         39C
+   000031                             '***** WORKING STORAGE STARTS HERE *****'.
+   000032
+   000033                01  MISC-VARS.                                                             BLW=0000+028         0CL5
+   000034                    02  R-CNTR          PIC S99 COMP SYNC VALUE +0.                        BLW=0000+028,0000000 1H
+   000035                    02  EOF-FLAG        PIC XXX.                                           BLW=0000+02A,0000002 3C
+   000036
+   000037                01  ACCUMULATOR-TABLE.                                                     BLW=0000+030         0CL65
+   000038                    02  ACCUM-ENTRIES   OCCURS 5 TIMES                                     BLW=0000+030,0000000 0CL13
+   000039                                        INDEXED BY ACC-NDX.                                IDX=0001+000
+   000040                        03  A-NBR       PIC 9(4).                                          BLW=0000+030,0000000 4C
+   000041                        03  A-PTS       PIC 9(5) COMP-3.                                   BLW=0000+034,0000004 3P
+   000042                        03  A-CNT       PIC 9(5) COMP.                                     BLW=0000+037,0000007 4C
+   000043                        03  A-DEP       PIC 99.                                            BLW=0000+03B,000000B 2C
+   000044
+   000045                01  WS-OUT-REC.                                                            BLW=0000+078         0CL123
+   000046                    02  FILLER          PIC X(25) VALUE SPACES.                            BLW=0000+078,0000000 25C
+   000047                    02  O-NBR           PIC X(12).                                         BLW=0000+091,0000019 12C
+   000048                    02  O-PTS           PIC X(13).                                         BLW=0000+09D,0000025 13C
+   000049                    02  O-CNT           PIC X(13).                                         BLW=0000+0AA,0000032 13C
+   000050                    02  O-DEP           PIC X(60).                                         BLW=0000+0B7,000003F 60C
+   000051
+   000052                PROCEDURE DIVISION.
+   000053                    OPEN INPUT IN-FILE OUTPUT OUT-FILE.
+   000054                    MOVE 'NO' TO EOF-FLAG.
+   000055                    MOVE ZEROS TO ACCUMULATOR-TABLE.
+   000056                    READ IN-FILE.
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91      PRACDUMP  Date 09/18/00  Time 18:44:44   Page     3
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8  Map and Cross Reference
+0  000057                    SET ACC-NDX TO 1.
+   000058                    PERFORM PROCESS-RTN UNTIL R-CNTR &gt; 4.
+   000059                    SET ACC-NDX TO 1.
+   000060                    PERFORM TOTALS-RTN UNTIL ACC-NDX &gt; 4.
+   000061                    CLOSE IN-FILE OUT-FILE.
+   000062                    STOP RUN.
+   000063
+   000064                PROCESS-RTN.
+   000065                    ADD I-NBR TO A-NBR (ACC-NDX).
+   000066                    ADD I-DEP TO A-DEP (ACC-NDX).
+   000067                    MOVE I-PTS TO O-PTS.
+   000068                    MOVE I-CNT TO O-CNT.
+   000069                    MOVE I-NBR TO O-NBR.
+   000070                    MOVE I-DEP TO O-DEP.
+   000071                    WRITE OUT-REC FROM WS-OUT-REC.
+   000072                    ADD 1 TO R-CNTR.
+   000073                    SET ACC-NDX UP BY 1.
+   000074                    READ IN-FILE.
+   000075                PROCESS-RTN-EXIT.  EXIT.
+   000076
+   000077                TOTALS-RTN.
+   000078                     MOVE A-NBR (ACC-NDX) TO O-NBR.
+   000079                     MOVE A-DEP (ACC-NDX) TO O-DEP.
+   000080                     IF EOF-FLAG = 'NO'
+   000081      1                 ADD I-PTS TO A-PTS (ACC-NDX)
+   000082      1              ADD I-CNT TO A-PTS (ACC-NDX).
+   000083                     MOVE A-PTS (ACC-NDX) TO O-PTS.
+   000084                     MOVE A-CNT (ACC-NDX) TO O-CNT.
+   000085                     WRITE OUT-REC FROM WS-OUT-REC.
+   000086                     SET ACC-NDX UP BY 1.
+   000087                TOTALS-EXIT.  EXIT.
+ */ PRACDUMP
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91      PRACDUMP  Date 09/18/00  Time 18:44:44   Page     4
+0Data Division Map
+0Data Definition Attribute codes (rightmost column) have the following meanings:</pre>
+
+<pre><font color="#FF0000">***** This is an explanation for the data attribute codes appearing in the far right column below.</font> 
+     D = Object of OCCURS DEPENDING    G = GLOBAL                             S = Spanned file
+     E = EXTERNAL                      O = Has OCCURS clause                  U = Undefined format file
+     F = Fixed-length file             OG= Group has own length definition    V = Variable-length file
+     FB= Fixed-length blocked file     R = REDEFINES                          VB= Variable-length blocked file
+</pre>
+
+<pre><font color="#FF0000">LineID = line # defined
+Hierarchy and data name = its name in the Cobol source
+Base Locator for that item (a base locator is like a base register for that item)
+Hex Displacement - Blk = Hex displacement of that item from beginning of the base locator
+Hex Displacement - Structure = Hex displacement from the beginning of the containing structure
+Asmblr Data Definition = a pseudo Assembler showing how data item is defined
+Data Type = data type and usage
+Data Definition Attributes = see Table above</font></pre>
+
+<pre>0Source   Hierarchy and                                    Base       Hex-Displacement  Asmblr Data                  Data Def
+ LineID   Data Name                                        Locator    Blk   Structure   Definition    Data Type      Attributes
+      2  PROGRAM-ID PRACDUMP -------------------------------------------------------------------------------------------------*
+     14   FD IN-FILE . . . . . . . . . . . . . . . . . . .                                            QSAM           F
+     18   01 IN-REC. . . . . . . . . . . . . . . . . . . . BLF=0000   000               DS 0CL16      Group
+     19     02 I-NBR . . . . . . . . . . . . . . . . . . . BLF=0000   000   0 000 000   DS 4C         Disp-Num
+     20     02 I-PTS . . . . . . . . . . . . . . . . . . . BLF=0000   004   0 000 004   DS 5C         Disp-Num
+     21     02 I-CNT . . . . . . . . . . . . . . . . . . . BLF=0000   009   0 000 009   DS 5C         Disp-Num
+     22     02 I-DEP . . . . . . . . . . . . . . . . . . . BLF=0000   00E   0 000 00E   DS 2C         Disp-Num
+     24   FD OUT-FILE. . . . . . . . . . . . . . . . . . .                                            QSAM           F
+     27   01 OUT-REC . . . . . . . . . . . . . . . . . . . BLF=0001   000               DS 133C       Display
+     30   77 FILLER. . . . . . . . . . . . . . . . . . . . BLW=0000   000               DS 39C        Display
+     33   01 MISC-VARS . . . . . . . . . . . . . . . . . . BLW=0000   028               DS 0CL5       Group
+     34     02 R-CNTR. . . . . . . . . . . . . . . . . . . BLW=0000   028   0 000 000   DS 1H         Binary
+     35     02 EOF-FLAG. . . . . . . . . . . . . . . . . . BLW=0000   02A   0 000 002   DS 3C         Display
+     37   01 ACCUMULATOR-TABLE . . . . . . . . . . . . . . BLW=0000   030               DS 0CL65      Group
+     38     02 ACCUM-ENTRIES . . . . . . . . . . . . . . . BLW=0000   030   0 000 000   DS 0CL13      Group          O
+     39        ACC-NDX . . . . . . . . . . . . . . . . . . IDX=0001   000                             Index-Name
+     40       03 A-NBR . . . . . . . . . . . . . . . . . . BLW=0000   030   0 000 000   DS 4C         Disp-Num
+<font
+color="#FF0000">     41       03 A-PTS . . . . . . . . . . . . . . . . . . BLW=0000   034   0 000 004   DS 3P         Packed-Dec</font>
+     42       03 A-CNT . . . . . . . . . . . . . . . . . . BLW=0000   037   0 000 007   DS 4C         Binary
+     43       03 A-DEP . . . . . . . . . . . . . . . . . . BLW=0000   03B   0 000 00B   DS 2C         Disp-Num
+     45   01 WS-OUT-REC. . . . . . . . . . . . . . . . . . BLW=0000   078               DS 0CL123     Group
+     46     02 FILLER. . . . . . . . . . . . . . . . . . . BLW=0000   078   0 000 000   DS 25C        Display
+     47     02 O-NBR . . . . . . . . . . . . . . . . . . . BLW=0000   091   0 000 019   DS 12C        Display
+     48     02 O-PTS . . . . . . . . . . . . . . . . . . . BLW=0000   09D   0 000 025   DS 13C        Display
+     49     02 O-CNT . . . . . . . . . . . . . . . . . . . BLW=0000   0AA   0 000 032   DS 13C        Display
+     50     02 O-DEP . . . . . . . . . . . . . . . . . . . BLW=0000   0B7   0 000 03F   DS 60C        Display
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91      PRACDUMP  Date 09/18/00  Time 18:44:44   Page     5
+0PROGRAM GLOBAL TABLE BEGINS AT LOCATION 0000F4 FOR 000028 BYTES
+ THE PGT CONTAINS 000001 CELL(S) FOR ADDRESSABILITY TO THE CGT
+ PBL1    AT LOCATION 000354 FOR LINE 2
+0
+ LITERAL POOL MAP FOR SYSTEM LITERALS IN THE PGT:
+ 0000F4  (LIT+0)      00000064 40404040 40404040 40404040 40404040 40404040 40404040 40        |....                            |
+1PP 5688-197 IBM SAA AD/Cycle COBOL/370 1.1.0       09/11/91      PRACDUMP  Date 09/18/00  Time 18:44:44   Page     6
+0CONSTANT GLOBAL TABLE BEGINS AT LOCATION 00011C FOR 0000F5 BYTES
+ LITERAL POOL MAP FOR LITERALS IN THE CGT:
+ </pre>
+
+<pre> 000128  (LIT+0)      00000027 00000001 00000000 000D0004 5C5C5C5C 5C40E6D6 D9D2C9D5 C740E2E3  |................***** WORKING ST|
+ 000148  (LIT+32)     D6D9C1C7 C540E2E3 C1D9E3E2 40C8C5D9 C5405C5C 5C5C5CD7 D9C1C3C4 E4D4D7E2  |ORAGE STARTS HERE *****PRACDUMPS|
+ 000168  (LIT+64)     E8E2D6E4 E34040D5 D6400000 013C0000 00020000 01340000 00010000 01380000  |YSOUT  NO ......................|
+ 000188  (LIT+96)     00010000 01940000 00010000 00000000 00008000 00000800 00000400 00004000  |.....m........................ .|
+ 0001A8  (LIT+128)    00400000 00000000 00000000 00000000 00800000 000025C0 0001C000 08080000  |. ..............................|
+ 0001C8  (LIT+160)    20004380 00000000 00000000 00000000 00000040 00010002 80008000 01000280  |................... ............|
+ 0001E8  (LIT+192)    00800000 000040C0 00014000 08080000 20004302 C0000808 00002000 43090001  |...... ... .....................|
+ 000208  (LIT+224)    40000009 00013C00 00                                                     | ........                       |
+0
+    PROGSUM TABLE LOCATED AT 00080C FOR 000138 BYTES
+    PROCTAB TABLE LOCATED AT 00094C FOR 0000D8 BYTES
+  ATTRIBUTE TABLE LOCATED AT 000AB8 FOR 0008CC BYTES
+     SYMBOL TABLE LOCATED AT 001384 FOR 000350 BYTES
+ GEN. INFO. TABLE LOCATED AT 0016D4 FOR 000108 BYTES
+       HASH TABLE LOCATED AT 0017DC FOR 001000 BYTES
+     REGION TABLE LOCATED AT 000A24 FOR 000008 BYTES
+       PATH TABLE LOCATED AT 000A2C FOR 00008C BYTES
+0
+ TGT      LOCATED AT 0027E0 FOR 000001D0 BYTES
+<font
+color="#FF0000"> DCB00001 LOCATED AT 0029B0 FOR 00000060 BYTES </font> <font
+color="#FF0000">The 2 DCB's associated with this program</font>
+ FCB00001 LOCATED AT 002A10 FOR 00000100 BYTES
+ <font
+color="#FF0000">DCB00002 LOCATED AT 002B10 FOR 00000060 BYTES</font>
+ FCB00002 LOCATED AT 002B70 FOR 00000100 BYTES
+ GDT00001 LOCATED AT 002C70 FOR 000000A0 BYTES
+ WRK-STOR LOCATED AT 002D10 FOR 000000F3 BYTES
+ SPEC-REG LOCATED AT 002E08 FOR 00000031 BYTES
+-* Statistics for COBOL program PRACDUMP:
+ *    Source records = 87
+ *    Data Division statements = 20
+ *    Procedure Division statements = 31
+0End of compilation 1,  program PRACDUMP,  no statements flagged.
+0Return code 0
+1DFSMS/MVS V1 R4.0 BINDER     18:44:46 MONDAY SEPTEMBER 18, 2000
+ BATCH EMULATOR  JOB(DUMP    ) STEP(S1      ) PGM= LOADER    PROCEDURE(GO      )
+ IEW2278I B352 INVOCATION PARAMETERS - MAP,LET//TERMTHDACT(DUMP)
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>1                         *** M O D U L E  M A P ***
+ </pre>
+
+<pre> ---------------
+ CLASS  B_TEXT            LENGTH =     3A70  ATTRIBUTES = CAT,   LOAD, RMODE= 24 ALIGN = DBLWORD
+ ---------------
+ </pre>
+
+<pre>  SECTION    CLASS                                      ------- SOURCE --------
+   OFFSET   OFFSET  NAME                TYPE    LENGTH  DDNAME   SEQ  MEMBER
+ </pre>
+
+<pre>             30000  PRACDUMP           CSECT      2E39  SYSLIN    01  **NULL**
+ </pre>
+
+<pre>             32E40  CEESG005        *  CSECT        18  SYSLIB    01  CEESG005
+ </pre>
+
+<pre>             32E58  CEEBETBL        *  CSECT        B4  SYSLIB    01  CEEBETBL
+ </pre>
+
+<pre>             32F10  CEESTART        *  CSECT       110  SYSLIB    01  CEESTART
+ </pre>
+
+<pre>             33020  IGZCBSN         *  CSECT       4B0  SYSLIB    01  IGZCBSN
+ </pre>
+
+<pre>             334D0  CEEBPIRA        *  CSECT       2D0  SYSLIB    01  CEEINT
+        0    334D0     CEEINT             LABEL
+        0    334D0     CEEBPIRB           LABEL
+        0    334D0     CEEBPIRC           LABEL
+ </pre>
+
+<pre>             337A0  CEEARLU         *  CSECT       130  SYSLIB    01  CEEARLU
+ </pre>
+
+<pre>             338D0  CEEBTRM         *  CSECT        9C  SYSLIB    01  CEEBTRM
+ </pre>
+
+<pre>             33970  CEEBLLST        *  CSECT        F8  SYSLIB    01  CEEBLLST
+       10    33980     CEELLIST           LABEL
+ </pre>
+
+<pre>             33A68  CEEBINT         *  CSECT         8  SYSLIB    01  CEEBINT
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>&nbsp;
+1          ***  DATA SET SUMMARY  ***
+ </pre>
+
+<pre> DDNAME    CONCAT   FILE IDENTIFICATION
+ SYSLIB      01     SYS2.LE370.V111.SCEELKED
+ SYSLIN      01     SYS00262.T184444.RA000.DUMP.OBJSET.H01
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>1          *** SYMBOL REFERENCES NOT ASSOCIATED WITH ANY ADCON ***
+ </pre>
+
+<pre> TYPE   SCOPE   NAME
+  ER      L     CEESG005
+  ER      M     CEEMAIN
+ </pre>
+
+<pre>           *** E N D  O F  M O D U L E  M A P ***
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>1PROCESSING OPTIONS:
+ </pre>
+
+<pre>    ALIASES             NO
+    ALIGN2              NO
+    AMODE               UNSPECIFIED
+    CALL                YES
+    CASE                UPPER
+    COMPAT              UNSPECIFIED
+    DCBS                NO
+    DYNAM               NO
+    EXTATTR             UNSPECIFIED
+    EXITS:              NONE
+    FILL                NONE
+    GID                 UNSPECIFIED
+    HOBSET              NO
+    LET                 08
+    LINECT              060
+    LIST                SUMMARY
+    LISTPRIV            NO
+    MAP                 YES
+    MAXBLK              032760
+    MSGLEVEL            00
+    OVLY                NO
+    PRINT               YES
+    RES                 YES
+    REUSABILITY         UNSPECIFIED
+    RMODE               UNSPECIFIED
+    STORENX             NO
+    TERM                NO
+    UID                 UNSPECIFIED
+    UPCASE:             NO
+    WKSPACE             000000K,000000K
+    XCAL                NO
+    XREF                NO
+    ***END OF OPTIONS***
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>1LOAD OPERATION SUMMARY:
+ </pre>
+
+<pre>    LOADED NAME         **GO
+    TIME OF LOAD        18.44.47  SEP 18, 2000
+    LOAD PT VADDR(HEX)  00030000
+    ENTRY PT VADDR(HEX) 00030000
+ </pre>
+
+<pre>&nbsp;
+1LOAD MODULE ATTRIBUTES:
+ </pre>
+
+<pre>    AMODE               ANY
+    PAGE ALIGN          NO
+    RMODE                24
+    MODULE SIZE (HEX)   00003A70
+ </pre>
+
+<pre>&nbsp;
+1DFSMS/MVS V1 R4.0 BINDER     18:44:46 MONDAY SEPTEMBER 18, 2000
+ BATCH EMULATOR  JOB(DUMP    ) STEP(S1      ) PGM= LOADER    PROCEDURE(GO      )
+ IEW2010I 0F06 LOADED PROGRAM RETURN CODE =  3000.
+ IEW2008I 0F03 PROCESSING COMPLETED.  RETURN CODE =  3000.
+ </pre>
+
+<pre>&nbsp;
+ </pre>
+
+<pre>1----------------------
+ MESSAGE SUMMARY REPORT
+ ----------------------
+  SEVERE MESSAGES        (SEVERITY = 12)
+  NONE
+ </pre>
+
+<pre>  ERROR MESSAGES         (SEVERITY = 08)
+  NONE
+ </pre>
+
+<pre>  WARNING MESSAGES       (SEVERITY = 04)
+  NONE
+ </pre>
+
+<pre>  INFORMATIONAL MESSAGES (SEVERITY = 00)
+  2008  2010  2278
+ </pre>
+
+<pre>&nbsp;
+  **** END OF MESSAGE SUMMARY REPORT ****
+ </pre>
+
+<pre>1CEE3DMP: Condition processing resulted in the Unhandled condition.     LE V1 R1.1  09/18/00 6:44:47 PM                  Page:    1
+
+</pre>
+
+<pre><font color="#FF0000">***** Beginning of Termthdact(dump) output</font></pre>
+
+<pre>  Information for enclave PRACDUMP
+ </pre>
+
+<pre>   Traceback:
+     DSA Addr  Program Unit  PU Addr   Entry          <font
+color="#FF0000">Statement</font>     Offset  Status
+     000B5018  CEEHDSP       0003DBE0  CEEHDSP                   +000017CE  Call
+     000327E0  <font
+color="#FF0000">PRACDUMP      00030000  PRACDUMP</font>             <font color="#FF0000"> 81 </font> +000006EA  Exception
+ </pre>
+
+<pre>   Condition Information for Active Routines
+     Condition Information for PRACDUMP (DSA address 000327E0)
+       CIB Address: 00082BA8
+<font
+color="#FF0000">
+*****Error and Location reported below</font>
+       Current Condition:
+         CEE3207S <font
+color="#FF0000">The system detected a Data exception</font>.
+       Location:
+<font
+color="#FF0000">         Program Unit: PRACDUMP Entry: PRACDUMP Statement: 81 Offset: +000006EA
+</font>       Machine State:
+<font
+color="#FF0000">***** The ILC, PSW, GPR's Interrupt Code
+</font>         ILC..... 0006    Interruption Code..... 0007
+         PSW..... 078D1000 800306F0
+         GPR0..... 00000001  GPR1..... 00027E80  GPR2..... 00032D10  GPR3..... 00000000
+         GPR4..... 00032A10  GPR5..... 80030662  GPR6..... 000841AC  GPR7..... 00027DE0
+         GPR8..... 00027E80  GPR9..... 00032D10  GPR10.... 0003011C  GPR11.... 00030354
+         GPR12.... 000300F4  GPR13.... 000327E0  GPR14.... 800306D0  GPR15.... 800A5478
+ </pre>
+
+<pre>   Arguments, Registers, and Variables for Active Routines:
+     CEEHDSP (DSA address 000B5018):
+       Saved Registers:
+         GPR0..... 00000000  GPR1..... 000B52C8  GPR2..... 00000007  GPR3..... 00082BA8
+         GPR4..... FFFFFFFC  GPR5..... 0000003C  GPR6..... 00082778  GPR7..... 00000008
+         GPR8..... 00000000  GPR9..... 0007BD68  GPR10.... 0003EBDF  GPR11.... 0003DBE0
+         GPR12.... 00082308  GPR13.... 000B5018  GPR14.... 8007C9CE  GPR15.... 92FDD0E0
+     PRACDUMP (DSA address 000327E0):
+       Saved Registers:
+         GPR0..... 00000001  GPR1..... 00027E80  GPR2..... 00032D10  GPR3..... 00000000
+         GPR4..... 00032A10  GPR5..... 80030662  GPR6..... 000841AC  GPR7..... 00027DE0
+         GPR8..... 00027E80  GPR9..... 00032D10  GPR10.... 0003011C  GPR11.... 00030354
+         GPR12.... 000300F4  GPR13.... 000327E0  GPR14.... 800306D0  GPR15.... 800A5478
+       Local Variables:
+               14 IN-FILE                            <font
+color="#FF0000">FILE SPECIFIED AS: ORGANIZATION=SEQUENTIAL, ACCESS</font>
+                                                    <font
+color="#FF0000">MODE=SEQUENTIAL, RECFM=FIXED.  CURRENT STATUS OF FILE IS:</font>
+                                                    <font
+color="#FF0000">OPEN STATUS=INPUT, QSAM STATUS CODE=00.</font>
+               18 01 IN-REC           AN-GR
+               19 02 I-NBR            9999 DISP        6666
+               20 02 I-PTS            9(5) DISP        66666  <font
+color="#FF0000">&lt;-- Current buffer contents</font>
+               21 02 I-CNT            9(5) DISP        66666
+               22 02 I-DEP            99 DISP          66
+               24 OUT-FILE                           FILE SPECIFIED AS: ORGANIZATION=SEQUENTIAL, ACCESS
+                                                    MODE=SEQUENTIAL, RECFM=FIXED.  CURRENT STATUS OF FILE IS:
+                                                    OPEN STATUS=OUTPUT, QSAM STATUS CODE=00.
+               27 01 OUT-REC          X(133) DISP      '                         5555        55555        55555
+                                                           55
+                                                                     '
+               30 77 FILLER           X(39) DISP       '***** WORKING STORAGE STARTS HERE *****'
+               33 01 MISC-VARS        AN-GR
+               34 02 R-CNTR           S99 COMP         +00005
+               35 02 EOF-FLAG         XXX DISP         'NO '
+               37 01 ACCUMULATOR-TABLE
+                                      AN-GR
+               38 02 ACCUM-ENTRIES    AN-GR OCCURS 5
+               39 ACC-NDX          IX               1
+1CEE3DMP: Condition processing resulted in the Unhandled condition.     LE V1 R1.1  09/18/00 6:44:47 PM                  Page:    2
+</pre>
+
+<pre><font color="#FF0000">***** Current contents of A-NBR are the result of line 66 in the program:
+ADD I-NBR TO A-NBR(ACC-NDX)</font></pre>
+
+<pre>                40 03 A-NBR            9999
+                   SUB(1)           DISP             1111
+                     SUB(2)           DISP             2222
+                       SUB(3)           DISP             3333
+                         SUB(4)           DISP             4444
+                    SUB(5)           DISP             5555
+ <font
+color="#FF0000">***** In line 81 of the program:  ADD I-PTS TO A-PTS(ACC-NDX).  A-PTS here shows
+that it contains zeros, but the usage type is COMP-3.  How can we verify that these
+are not packed zeros?
+</font>              41         03 A-PTS            9(5)
+                           SUB(1)           CMP3             000
+                           SUB(2)           CMP3             000
+                           SUB(3)           CMP3             000
+                           SUB(4)           CMP3             000
+                    SUB(5)           CMP3             000
+               42           03 A-CNT            9(5)
+                           SUB(1)           COMP             0252645136
+                           SUB(2)           COMP             0252645136
+                           SUB(3)           COMP             0252645136
+                           SUB(4)           COMP             0252645136
+                    SUB(5)           COMP             0252645136
+               43           03 A-DEP            99
+                           SUB(1)           DISP             11
+                           SUB(2)           DISP             22
+                           SUB(3)           DISP             33
+                           SUB(4)           DISP             44
+                    SUB(5)           DISP             55
+               45 01 WS-OUT-REC       AN-GR
+               46 02 FILLER           X(25) DISP       '                         '
+               47 02 O-NBR            X(12) DISP       '1111        '
+               48 02 O-PTS            X(13) DISP       '55555        '
+               49 02 O-CNT            X(13) DISP       '55555        '
+               50 02 O-DEP            X(60) DISP       '11
+                                                        '
+ </pre>
+
+<pre>   Control Blocks for Active Routines:
+     DSA for CEEHDSP: 000B5018
+       +000000  FLAGS.... 0808      member... CEE1      BKC...... 000327E0  FWC...... 000BF018  R14...... 8007C9CE
+       +000010  R15...... 92FDD0E0  R0....... 00000000  R1....... 000B52C8  R2....... 00000007  R3....... 00082BA8
+       +000024  R4....... FFFFFFFC  R5....... 0000003C  R6....... 00082778  R7....... 00000008  R8....... 00000000
+       +000038  R9....... 0007BD68  R10...... 0003EBDF  R11...... 0003DBE0  R12...... 00082308  reserved. 00000000
+       +00004C  NAB...... 000BF018  PNAB..... 000B5018  reserved. 00000000  00000000  00000000  00000000
+       +000064  reserved. 00000000  reserved. 00000000  MODE..... 8003F3B0  reserved. 00000000  00000000
+       +000078  reserved. 00000000  reserved. 00000000
+     DSA for PRACDUMP: 000327E0
+       +000000  FLAGS.... 0010      member... 8001      BKC...... 00083A98  FWC...... 00000000  R14...... 8003041E
+       +000010  R15...... 800A68C8  R0....... 000BF120  R1....... 000301E2  R2....... 00032A10  R3....... 00032B70
+       +000024  R4....... 000841AC  R5....... 0013F038  R6....... 000841AC  R7....... 00000000  R8....... 00000000
+       +000038  R9....... 00032D10  R10...... 0003011C  R11...... 00030354  R12...... 000C0D60  reserved. F3E3C7E3
+       +00004C  NAB...... 000BF018  PNAB..... 03000000  reserved. 65020220  0013F038  000841AC  00000000
+       +000064  reserved. 00000002  reserved. 000000F3  MODE..... 00000000  reserved. 00000000  0013F2F0
+       +000078  reserved. 00000000  reserved. 00000000
+     CIB for PRACDUMP: 00082BA8
+       +000000 00082BA8  C3C9C240 00000000 00000000 010C0001  00000003 00000000 00030C87 59C3C5C5  |CIB .......................g.CEE|
+       +000020 00082BC8  00000000 000829F0 00030C87 59C3C5C5  00000000 00000004 00000000 92F00DF0  |.......0...g.CEE............k0.0|
+       +000040 00082BE8  00000000 000327E0 000306F0 00082AC0  00000000 00000000 00000000 00000000  |...........0....................|
+       +000060 00082C08  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000080 00082C28 - +00009F 00082C47             same as above
+       +0000A0 00082C48  00083780 00000000 00000000 00000000  40220000 00000000 00000000 00000000  |................ ...............|
+       +0000C0 00082C68  00000000 00030014 000327E0 000327E0  000306EA 00000000 00000000 00000003  |................................|
+       +0000E0 00082C88  000327E0 00000005 00000008 00000014  00000000 00000000 00000000 00000000  |................................|
+1CEE3DMP: Condition processing resulted in the Unhandled condition.     LE V1 R1.1  09/18/00 6:44:47 PM                  Page:    3
+ </pre>
+
+<pre>       +000100 00082CA8  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+ </pre>
+
+<pre>     Program PRACDUMP was compiled 09/18/00 6:44:44 PM
+     COBOL Version = 01 Release = 01 Modification = 00     User Level = '    '
+     TGT for PRACDUMP: 000327E0
+       +000000 000327E0  00108001 00083A98 00000000 8003041E  800A68C8 000BF120 000301E2 00032A10  |.......q...........H..1....S....|
+       +000020 00032800  00032B70 000841AC 0013F038 000841AC  00000000 00000000 00032D10 0003011C  |..........0.....................|
+       +000040 00032820  00030354 000C0D60 F3E3C7E3 000BF018  03000000 65020220 0013F038 000841AC  |.......-3TGT..0...........0.....|
+       +000060 00032840  00000000 00000002 000000F3 00000000  00000000 0013F2F0 00000000 00000000  |...........3..........20........|
+       +000080 00032860  00082308 000001D0 00000000 00000000  00000003 00000001 E2E8E2D6 E4E34040  |........................SYSOUT  |
+       +0000A0 00032880  C9C7E9E2 D9E3C3C4 00000000 00000000  00000000 00000000 00000000 00000000  |IGZSRTCD........................|
+       +0000C0 000328A0  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +0000E0 000328C0  00000000 00000000 000300F4 00000001  0003298C 00000000 00030172 00032924  |...........4....................|
+       +000100 000328E0  00030000 0003011C 00032968 00030118  00032984 00032D10 00000000 40404040  |...................d........    |
+       +000120 00032900  40404040 40404040 40404040 40404040  00032E08 00032D10 00000000 00027E80  |                ..............=.|
+       +000140 00032920  00027DE0 00000000 0003080C 07FE07FE  00000000 00000000 00001FFF 07FE0000  |..'.............................|
+       +000160 00032940  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000180 00032960  00000000 00000000 00030396 0003067A  000304C6 00000000 0003067A 000307B6  |...........o...:...F.......:....|
+       +0001A0 00032980  00030396 00032A10 00032B70 C0000000  00000000 00000000 00032C70 40404040  |...o........................    |
+       +0001C0 000329A0  66666F40 40404040 F0F0FF40 40404040  00000000 00000000 0053000C 05F4503C  |..?     00.     .............4&amp;.|
+       +0001E0 000329C0  002FE5A2 05027E68 00004000 00005778  420A578A 8013F284 00A44800 009C12F4  |..Vs..=... ...........2d.u.....4|
+       +000200 000329E0  12CD2000 00CCD138 0A0A5922 02090010  30013030 00005838 00027E90 00027E80  |......J...................=...=.|
+       +000220 00032A00  00000010 00000000 00000000 00E0D9C8  C6C3C200 01020000 FFFFFFFF FFFFFFFF  |..............RHFCB.............|
+       +000240 00032A20  FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF  FFFFFFFF 00000000 00000000 00000000  |................................|
+       +000260 00032A40  00000000 00000000 00000000 000A5448  8009C448 8009C448 8009C448 00000000  |..................D...D...D.....|
+       +000280 00032A60  00000000 8009C448 00000000 00000000  00000000 00000000 80000000 00000000  |......D.........................|
+       +0002A0 00032A80  00000000 04000000 000329B0 00000000  00000000 00000000 00000000 00000000  |................................|
+       +0002C0 00032AA0  00000000 00000000 00000000 00000000  00000000 00030214 0013F300 00000000  |..........................3.....|
+       +0002E0 00032AC0  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000300 00032AE0  00000000 00000014 00000010 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000320 00032B00  00000000 00000000 00000000 00027E80  00000000 00000000 00000000 05000000  |..............=.................|
+       +000340 00032B20  00000000 01027DD8 00854000 00005758  42000001 8013F284 00B80048 009B2F80  |......'Q.e ...........2d........|
+       +000360 00032B40  92E9F6F0 00000000 000A5922 08090085  00000000 000055F8 00027E65 00027E65  |kZ60...........e.......8..=...=.|
+       +000380 00032B60  00000085 00000000 00000000 00000000  C6C3C200 02020000 FFFFFFFF FFFFFFFF  |...e............FCB.............|
+       +0003A0 00032B80  FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF  FFFFFFFF 00000000 00000000 00000000  |................................|
+       +0003C0 00032BA0  00000000 00000000 00000000 8009C448  000A549E 8009C448 8009C448 00000000  |..............D.......D...D.....|
+       +0003E0 00032BC0  00000000 8009C448 000A549E 00000000  00000000 00000000 40000000 00000000  |......D................. .......|
+       +000400 00032BE0  00400010 08000000 00032B10 00000000  00000000 00000000 00000000 00000000  |. ..............................|
+       +000420 00032C00  00000000 00000000 00000000 00000000  00000000 000302B4 00000000 00000000  |................................|
+       +000440 00032C20  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000460 00032C40  00000000 00000000 00000085 00000000  00000000 00000000 00000000 00000000  |...........e....................|
+       +000480 00032C60  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +0004A0 00032C80 - +00051F 00032CFF             same as above
+       +000520 00032D00  00000000 00000000 00000000 00000000  5C5C5C5C 5C40E6D6 D9D2C9D5 C740E2E3  |................***** WORKING ST|
+       +000540 00032D20  D6D9C1C7 C540E2E3 C1D9E3E2 40C8C5D9  C5405C5C 5C5C5C00 0005D5D6 40000000  |ORAGE STARTS HERE *****...NO ...|
+       +000560 00032D40  F1F1F1F1 F0F0F0F0 F0F0F0F1 F1F2F2F2  F2F0F0F0 F0F0F0F0 F2F2F3F3 F3F3F0F0  |11110000000112222000000022333300|
+     CLLE for PRACDUMP: 0013F1F0
+       +000000 0013F1F0  D7D9C1C3 C4E4D4D7 00000000 00000000  90810000 00030000 000327E0 00030000  |PRACDUMP.........a..............|
+     FCB for file INPUT    in program PRACDUMP: 00032A10
+       +000000 00032A10  C6C3C200 01020000 FFFFFFFF FFFFFFFF  FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF  |FCB.............................|
+       +000020 00032A30  FFFFFFFF 00000000 00000000 00000000  00000000 00000000 00000000 000A5448  |................................|
+       +000040 00032A50  8009C448 8009C448 8009C448 00000000  00000000 8009C448 00000000 00000000  |..D...D...D...........D.........|
+       +000060 00032A70  00000000 00000000 80000000 00000000  00000000 04000000 000329B0 00000000  |................................|
+       +000080 00032A90  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +0000A0 00032AB0  00000000 00030214 0013F300 00000000  00000000 00000000 00000000 00000000  |..........3.....................|
+       +0000C0 00032AD0  00000000 00000000 00000000 00000000  00000000 00000014 00000010 00000000  |................................|
+       +0000E0 00032AF0  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00027E80  |..............................=.|
+ </pre>
+
+<pre>1CEE3DMP: Condition processing resulted in the Unhandled condition.     LE V1 R1.1  09/18/00 6:44:47 PM                  Page:    4
+ </pre>
+
+<pre>     FIB for file INPUT    in program PRACDUMP: 00030214
+       +000000 00030214  C6C9C200 0103C9D5 D7E4E340 40400084  80800400 00008000 00000010 00000010  |FIB...INPUT   .d................|
+       +000020 00030234  00010000 00000000 00000000 00000000  82080000 00000000 0003020B 00000000  |................b...............|
+       +000040 00030254  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000060 00030274 - +00007F 00030293             same as above
+       +000080 00030294  0000C9D5 60C6C9D3 C5404040 40404040  40404040 40404040 40404040 40404040  |..IN-FILE                       |
+<font
+color="#FF0000">
+***** Dump of DCB for Input file:  DCB+X'24' = 90 = Fixed, Blocked
+DCB+X'30' = Read/Write Open Flags = 12 which means that the file is opend and is for input
+</font>     <font
+color="#FF0000">DCB for file INPUT    in program PRACDUMP: 000329B0</font>
+     DCB for file INPUT    in program PRACDUMP: 000329B0
+       +000000 000329B0  00000000 00000000 0053000C 05F4503C  002FE5A2 05027E68 00004000 00005778  |.............4&amp;...Vs..=... .....|
+       +000020 000329D0  <font
+color="#FF0000">90</font>0A578A 8013F284 00A44800 009C12F4  <font color="#FF0000">12</font>CD2000 00CCD138 0A0A5922 02090010  |......2d.u.....4......J.........|
+       +000040 000329F0  30013030 00005838 00027E90 00027E80  00000010 00000000 00000000 00E0D9C8  |..........=...=...............RH|
+     FCB for file OUTPUT   in program PRACDUMP: 00032B70
+       +000000 00032B70  C6C3C200 02020000 FFFFFFFF FFFFFFFF  FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFF  |FCB.............................|
+       +000020 00032B90  FFFFFFFF 00000000 00000000 00000000  00000000 00000000 00000000 8009C448  |..............................D.|
+       +000040 00032BB0  000A549E 8009C448 8009C448 00000000  00000000 8009C448 000A549E 00000000  |......D...D...........D.........|
+       +000060 00032BD0  00000000 00000000 40000000 00000000  00400010 08000000 00032B10 00000000  |........ ........ ..............|
+       +000080 00032BF0  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +0000A0 00032C10  00000000 000302B4 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +0000C0 00032C30  00000000 00000000 00000000 00000000  00000000 00000000 00000085 00000000  |...........................e....|
+       +0000E0 00032C50  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+     FIB for file OUTPUT   in program PRACDUMP: 000302B4
+       +000000 000302B4  C6C9C200 0203D6E4 E3D7E4E3 40400084  80800800 00008000 00000085 00000085  |FIB...OUTPUT  .d...........e...e|
+       +000020 000302D4  00010000 00000000 00000000 00000000  42041000 00000000 00030205 00000000  |................................|
+       +000040 000302F4  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000060 00030314 - +00007F 00030333             same as above
+       +000080 00030334  0000D6E4 E360C6C9 D3C54040 40404040  40404040 40404040 40404040 40404040  |..OUT-FILE                      |
+<font
+color="#FF0000">     DCB for file OUTPUT   in program PRACDUMP: 00032B10</font>
+       +000000 00032B10  00000000 00000000 00000000 05000000  00000000 01027DD8 00854000 00005758  |......................'Q.e .....|
+       +000020 00032B30  42000001 8013F284 00B80048 009B2F80  92E9F6F0 00000000 000A5922 08090085  |......2d........kZ60...........e|
+       +000040 00032B50  00000000 000055F8 00027E65 00027E65  00000085 00000000 00000000 00000000  |.......8..=...=....e............|
+ </pre>
+
+<pre>   Storage for Active Routines:
+     PRACDUMP:
+       Contents of base locators for files are:
+            0-00027E80        1-00027DE0
+</pre>
+
+<pre><font color="#FF0000">***** Here is where you can find the address of the 
+base locator for working storage items.</font></pre>
+
+<pre><font color="#FF0000">       Contents of base locators for working storage are:
+            0-00032D10
+</font> </pre>
+
+<pre>       Contents of base locators for the linkage section are:
+            1-00000000
+ </pre>
+
+<pre>       No variably located areas were used in this program.
+ </pre>
+
+<pre>       No EXTERNAL data was used in this program.
+ </pre>
+
+<pre>       Contents of indexes are:
+            1-00000000
+</pre>
+
+<pre><font color="#FF0000">***** Here is the dump of Base Locator 0 for working storage:</font></pre>
+
+<pre><font color="#FF0000">From the data division MAP we can find out that A-PTS is BLW0+X'34' 
+and is 3 packed bytes long The three bytes in red below represent A-PTS, 
+and you can see that they are NOT packed zeros.</font></pre>
+
+<p>&nbsp;</p>
+
+<pre>     Working storage for PRACDUMP
+     <font color="#FF0000">BLW-0: 00032D10</font>
+       +000000 00032D10  5C5C5C5C 5C40E6D6 D9D2C9D5 C740E2E3  D6D9C1C7 C540E2E3 C1D9E3E2 40C8C5D9  |***** WORKING STORAGE STARTS HER|
+       +000020 00032D30  C5405C5C 5C5C5C00 0005D5D6 40000000  F1F1F1F1 <font
+color="#FF0000">F0F0F0</font>F0 F0F0F0F1 F1F2F2F2  |E *****...NO ...1111000000011222|
+       +000040 00032D50  F2F0F0F0 F0F0F0F0 F2F2F3F3 F3F3F0F0  F0F0F0F0 F0F3F3F4 F4F4F4F0 F0F0F0F0  |20000000223333000000033444400000|
+       +000060 00032D70  F0F0F4F4 F5F5F5F5 F0F0F0F0 F0F0F0F5  F5000000 00000000 40404040 40404040  |00445555000000055.......        |
+       +000080 00032D90  40404040 40404040 40404040 40404040  40F1F1F1 F1404040 40404040 40F5F5F5  |                 1111        555|
+       +0000A0 00032DB0  F5F54040 40404040 4040F5F5 F5F5F540  40404040 404040F1 F1404040 40404040  |55        55555        11       |
+       +0000C0 00032DD0  40404040 40404040 40404040 40404040  40404040 40404040 40404040 40404040  |                                |
+       +0000E0 00032DF0  40404040 40404040 40404040 40404040  40404000 00000000 00000000 00000000  |                   .............|
+1CEE3DMP: Condition processing resulted in the Unhandled condition.     LE V1 R1.1  09/18/00 6:44:47 PM                  Page:    5
+ </pre>
+
+<pre>     Program class storage: 0013F2F0
+       +000000 0013F2F0  00000028 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000020 0013F310  00000000 00000000 0013F000 00000088  C3E2E3D2 00000000 00000000 00800001  |..........0....hCSTK............|
+ </pre>
+
+<pre>   Control Blocks Associated with the Thread:
+     CAA: 00082308
+       +000000 00082308  00000000 00000000 000BF000 0013F000  00000000 00000000 00000000 00000000  |..........0...0.................|
+       +000020 00082328  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000040 00082348 - +00011F 00082427             same as above
+       +000120 00082428  000817F0 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |...0............................|
+       +000140 00082448  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000160 00082468 - +00019F 000824A7             same as above
+       +0001A0 000824A8  00000000 00000000 07000000 07000000  07000000 07000000 07000000 07000000  |................................|
+       +0001C0 000824C8  07000000 07000000 07000000 07000000  07000000 07000000 07000000 07000000  |................................|
+       +0001E0 000824E8  07000000 07000000 07000000 07000000  00000000 00000000 00000000 00000000  |................................|
+       +000200 00082508  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000220 00082528 - +00029F 000825A7             same as above
+       +0002A0 000825A8  00000000 00000000 00000000 03030280  01000000 0006C000 0007BD68 0006C268  |..............................B.|
+       +0002C0 000825C8  000B5000 000BD000 000B69D0 12FE1B14  00000000 00000000 00082BA8 0006D090  |..&amp;........................y....|
+       +0002E0 000825E8  00083A98 00000000 00000000 00000000  000808D8 00076178 000822F0 00082308  |...q...............Q../....0....|
+       +000300 00082608  0006D1B8 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |..J.............................|
+     DUMMY DSA: 00083A98
+       +000000  FLAGS.... 0000      member... 0000      BKC...... 00005A30  FWC...... 00000000  R14...... 8004EC48
+       +000010  R15...... 00030000  R0....... 00000000  R1....... 00080964  R2....... 00000000  R3....... 00000000
+       +000024  R4....... 00000000  R5....... 00000000  R6....... 00000000  R7....... 00000000  R8....... 00000000
+       +000038  R9....... 00000000  R10...... 00000000  R11...... 00000000  R12...... 00082308  reserved. 00000000
+       +00004C  NAB...... 000BF018  PNAB..... 000BF018  reserved. 00000000  00000000  00000000  00000000
+       +000064  reserved. 00000000  reserved. 00000000  MODE..... 00000000  reserved. 00000000  00000000
+       +000078  reserved. 00000000  reserved. 00000000
+ </pre>
+
+<pre>   Enclave Control Blocks:
+     EDB: 000808D8
+       +000000 000808D8  C3C5C5C5 C4C24040 C0000001 00082178  00080E90 FFFFFFFF 00000000 00000000  |CEEEDB  ........................|
+       +000020 000808F8  00080C1C 00080C48 0007BD68 00076178  00000000 80076068 00080964 000822A0  |............../.......-.........|
+     MEML: 00082178
+       +000000 00082178  00000000 00000000 00042780 00000000  00000000 00000000 00042780 00000000  |................................|
+       +000020 00082198 - +00003F 000821B7             same as above
+       +000040 000821B8  00000000 00000000 00042780 00000000  00000000 0013F038 92F00DF0 00000000  |......................0.k0.0....|
+       +000060 000821D8  00000000 00000000 00042780 00000000  00000000 00000000 00042780 00000000  |................................|
+       +000080 000821F8 - +00011F 00082297             same as above
+     RUNCOM: 0013F038
+       +000000 0013F038  C3F3D9E4 D5C3D6D4 000001A0 80800000  000808D8 00000000 00005A30 D7D9C1C3  |C3RUNCOM...........Q......!.PRAC|
+       +000020 0013F058  C4E4D4D7 00030000 0013F1F0 00000000  00080964 00000000 00030000 00000000  |DUMP......10....................|
+       +000040 0013F078  00084A70 000841AC 00000000 00000000  00000000 00000000 00082308 00000000  |................................|
+       +000060 0013F098  00000000 0013F228 000327E0 00000000  00000000 F0F0F0F0 F0F0F0F0 00000000  |......2.............00000000....|
+       +000080 0013F0B8  00000000 00000000 00000000 0013F1F0  00000000 00000000 00000000 00000000  |..............10................|
+       +0000A0 0013F0D8  00000000 00000000 000A578A 000A5448  000A549E 000A5514 000A5556 000A55DC  |................................|
+       +0000C0 0013F0F8  0013F2A0 0013F238 000A56A8 000A54CE  000A5632 000A56DC 00000000 00000000  |..2...2....y....................|
+       +0000E0 0013F118  00000000 00000000 00000000 43201000  1B33BF37 10014420 A1149110 10004710  |..........................j.....|
+       +000100 0013F138  A10E5830 30004A30 10044110 10024110  100407FE 1A300000 00000000 00000000  |................................|
+       +000120 0013F158  00000000 00000001 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000140 0013F178  00000000 00000000 00000000 00000000  00000000 0013F1B0 00000008 00000006  |......................1.........|
+       +000160 0013F198  0013F1B4 00000000 00000000 00000005  00000000 00000000 00000000 00000000  |..1.............................|
+       +000180 0013F1B8  0013F1CC 00000000 0013F1D0 0013F1D4  00000000 00000008 00000000 00000000  |..1.......1...1M................|
+ </pre>
+
+<pre>   Enclave Storage:
+     LE/370 Anywhere Heap
+       +000000 13006000  C8C1D5C3 00080C1C 00080C1C 00080C1C  13006000 13006DF8 00008000 00007208  |HANC..............-..._8........|
+1CEE3DMP: Condition processing resulted in the Unhandled condition.     LE V1 R1.1  09/18/00 6:44:47 PM                  Page:    6
+ </pre>
+
+<pre>       +000020 13006020  13006000 00000010 D7D9C1C3 C4E4D4D7  13006000 00000010 D7D9C1C3 C4E4D4D7  |..-.....PRACDUMP..-.....PRACDUMP|
+       +000040 13006040  13006000 0000000A F8F10000 00000000  13006000 00000011 4EF0F0F0 F0F0F6C5  |..-.....81........-.....+000006E|
+       +000060 13006060  C1000000 00000000 13006000 00000010  F0F0F0F3 F0F6C5C1 13006000 000002CC  |A.........-.....000306EA..-.....|
+       +000080 13006080  FE000000 FFFFFFFF 0000003C C3C5C5C4  E4D4D740 003C0039 C3969584 89A38996  |............CEEDUMP ....Conditio|
+       +0000A0 130060A0  95409799 968385A2 A2899587 409985A2  A493A385 84408995 40A38885 40E49588  |n processing resulted in the Unh|
+       +0000C0 130060C0  81958493 85844083 96958489 A3899695  4B969584 00280013 F0F961F1 F861F0F0  |andled condition.ond....09/18/00|
+       +0000E0 130060E0  40F67AF4 F47AF4F7 40D7D440 40404040  40404040 40404040 40404040 40404040  | 6:44:47 PM                     |
+       +000100 13006100  00000006 00000009 00000003 00000000  003C0020 C9958696 999481A3 89969540  |....................Information |
+       +000120 13006120  86969940 85958393 81A58540 D7D9C1C3  C4E4D4D7 00000000 00000000 00000000  |for enclave PRACDUMP............|
+       +000140 13006140  00000000 00000000 00000000 00000000  00000121 003C0010 C5958393 81A58540  |........................Enclave |
+       +000160 13006160  E2A39699 8187857A C2939683 92A27A40  A3888540 E3889985 81847AE3 88998581  |Storage:Blocks: the Thread:Threa|
+       +000180 13006180  847AA389 A58540D9 96A4A389 9585A27A  00000000 0000000D 003C003C D3C561F3  |d:tive Routines:............LE/3|
+       +0001A0 130061A0  F7F040C1 95A8A688 85998540 C8858197  40404040 40404040 40404040 40404040  |70 Anywhere Heap                |
+       +0001C0 130061C0  40404040 40404040 40404040 40404040  40404040 40404040 0000000E 003C0010  |                        ........|
+       +0001E0 130061E0  D3968381 9340E581 99898182 9385A27A  957A0000 00000000 00000000 00000000  |Local Variables:n:..............|
+       +000200 13006200  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000036  |................................|
+       +000220 13006220  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000240 13006240 - +00025F 1300625F             same as above
+       +000260 13006260  00000000 00000000 003C0000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000280 13006280  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +0002A0 130062A0  00000000 00000000 003C0000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +0002C0 130062C0  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +0002E0 130062E0  00000000 00000000 003C0000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000300 13006300  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000320 13006320  00000000 00000000 00000000 00080008  40404040 4040F5F0 00000000 00000001  |................      50........|
+       +000340 13006340  00000001 00000000 13006000 00000428  D7D7C9C3 00080CF4 13006918 D4D461C4  |..........-.....PPIC...4....MM/D|
+       +000360 13006360  C461E8E8 40E9C87A D4C97AE2 E240C1D7  40404040 40404040 40404040 40404040  |D/YY ZH:MI:SS AP                |
+       +000380 13006380  40404040 40404040 40404040 40404040  40404040 40404040 40404040 40404040  |                                |
+       +0003A0 130063A0 - +00043F 1300643F             same as above
+       +000440 13006440  40404040 40404040 40404040 40404040  40404040 40404040 40404040 00000014  |                            ....|
+       +000460 13006460  17180046 47000607 004E4D00 4F500051  52005657 00000000 00000000 00000000  |.........+(.|&amp;.©................|
+       +000480 13006480  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +0004A0 130064A0 - +00055F 1300655F             same as above
+       +000560 13006560  00006100 00610000 4000007A 00007A00  00400000 40404040 40404040 40404040  |../../.. ..:..:.. ..            |
+       +000580 13006580  40404040 40404040 40404040 40404040  40404040 40404040 40404040 40404040  |                                |
+       +0005A0 130065A0 - +00065F 1300665F             same as above
+       +000660 13006660  D7C5D3E7 130067B8 13006838 13006798  00000000 00E80000 00000000 00000000  |PELX...........q.....Y..........|
+       +000680 13006680  00000000 0000E800 00000000 00000000  00000000 00000000 00000000 00000000  |......Y.........................|
+       +0006A0 130066A0  00000000 00000000 00000000 00000000  00000000 00E80000 00000000 00E8E800  |.....................Y.......YY.|
+       +0006C0 130066C0  E8000000 00E80000 00000000 00000000  00000000 00000000 00000000 00000000  |Y....Y..........................|
+       +0006E0 130066E0  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000700 13006700 - +00075F 1300675F             same as above
+       +000760 13006760  00000000 00000000 00000000 00000000  13006000 00000020 D7C5D3C5 13006898  |..................-.....PELE...q|
+       +000780 13006780  13006878 00000007 00000002 06064040  13006000 00000020 D7C5D3C5 130068B8  |..............  ..-.....PELE....|
+       +0007A0 130067A0  13006898 0000000A 00000002 4E4EE840  13006000 00000020 D7C5D3C5 13006858  |...q........++Y ..-.....PELE....|
+       +0007C0 130067C0  13006660 00000001 00000002 17174040  13006000 00000020 D7C5D3C5 13006878  |...-..........  ..-.....PELE....|
+       +0007E0 130067E0  13006858 00000004 00000002 46464040  13006000 00000020 D7C5D3C5 130068D8  |..............  ..-.....PELE...Q|
+       +000800 13006800  130068B8 0000000D 00000002 4F4F4040  13006000 00000020 D7C5D3C5 130068F8  |............||  ..-.....PELE...8|
+       +000820 13006820  130068D8 00000010 00000002 51514040  13006000 00000020 D7C5D3C5 13006660  |...Q........©©  ..-.....PELE...-|
+       +000840 13006840  130068F8 00000013 00000002 56564040  13006000 00000020 D7C5D3C5 130067D8  |...8..........  ..-.....PELE...Q|
+       +000860 13006860  130067B8 00000003 00000001 00614040  13006000 00000020 D7C5D3C5 13006778  |............./  ..-.....PELE....|
+       +000880 13006880  130067D8 00000006 00000001 00614040  13006000 00000020 D7C5D3C5 13006798  |...Q........./  ..-.....PELE...q|
+       +0008A0 130068A0  13006778 00000009 00000001 00404040  13006000 00000020 D7C5D3C5 130067F8  |.............   ..-.....PELE...8|
+       +0008C0 130068C0  13006798 0000000C 00000001 007A4040  13006000 00000020 D7C5D3C5 13006818  |...q.........:  ..-.....PELE....|
+       +0008E0 130068E0  130067F8 0000000F 00000001 007A4040  13006000 00000020 D7C5D3C5 13006838  |...8.........:  ..-.....PELE....|
+       +000900 13006900  13006818 00000012 00000001 00404040  13006000 00000428 D7D7C9C3 13006350  |.............   ..-.....PPIC...&amp;|
+       +000920 13006920  00080CF4 E8E8E8E8 D4D4C4C4 C8C8D4C9  E2E24040 40404040 40404040 40404040  |...4YYYYMMDDHHMISS              |
+       +000940 13006940  40404040 40404040 40404040 40404040  40404040 40404040 40404040 40404040  |                                |
+1CEE3DMP: Condition processing resulted in the Unhandled condition.     LE V1 R1.1  09/18/00 6:44:47 PM                  Page:    7
+ </pre>
+
+<pre>       +000960 13006960 - +000A1F 13006A1F             same as above
+       +000A20 13006A20  40404040 0000000E 04050607 17184647  4C4D4F50 51520000 00000000 00000000  |    ............&lt;(|&amp;©...........|
+       +000A40 13006A40  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000A60 13006A60 - +000B1F 13006B1F             same as above
+       +000B20 13006B20  00000000 00000000 00000000 00000000  00000000 00004040 40404040 40404040  |......................          |
+       +000B40 13006B40  40404040 40404040 40404040 40404040  40404040 40404040 40404040 40404040  |                                |
+       +000B60 13006B60 - +000C1F 13006C1F             same as above
+       +000C20 13006C20  40404040 40404040 D7C5D3E7 13006D40  13006DE0 13006C28 000000E8 00000000  |        PELX.._ .._...%....Y....|
+       +000C40 13006C40  00000000 00000000 00000000 0000E800  00000000 00000000 00000000 00000000  |..............Y.................|
+       +000C60 13006C60  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00E80000  |.............................Y..|
+       +000C80 13006C80  000000E8 0000E800 E8000000 00000000  00000000 00000000 00000000 00000000  |...Y..Y.Y.......................|
+       +000CA0 13006CA0  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000CC0 13006CC0 - +000D1F 13006D1F             same as above
+       +000D20 13006D20  00000000 00000000 00000000 00000000  00000000 00000000 13006000 00000020  |..........................-.....|
+       +000D40 13006D40  D7C5D3C5 13006D60 13006C28 00000001  00000004 04044040 13006000 00000020  |PELE.._-..%...........  ..-.....|
+       +000D60 13006D60  D7C5D3C5 13006D80 13006D40 00000005  00000002 17174040 13006000 00000020  |PELE.._..._ ..........  ..-.....|
+       +000D80 13006D80  D7C5D3C5 13006DA0 13006D60 00000007  00000002 46464040 13006000 00000020  |PELE.._..._-..........  ..-.....|
+       +000DA0 13006DA0  D7C5D3C5 13006DC0 13006D80 00000009  00000002 4C4C4040 13006000 00000020  |PELE.._..._.........&lt;&lt;  ..-.....|
+       +000DC0 13006DC0  D7C5D3C5 13006DE0 13006DA0 0000000B  00000002 4F4F4040 13006000 00000020  |PELE.._..._.........||  ..-.....|
+       +000DE0 13006DE0  D7C5D3C5 13006C28 13006DC0 0000000D  00000002 51514040 00000000 00000000  |PELE..%..._.........©©  ........|
+       +000E00 13006E00  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000E20 13006E20  13006E34 13006EC4 000C0118 00000009  000000E8 00000000 00000000 12FE38C8  |..&gt;...&gt;D...........Y...........H|
+       +000E40 13006E40  00000014 00000000 00000000 12FE38C8  00000014 00000000 00000000 12FE38C8  |...............H...............H|
+       +000E60 13006E60 - +000EBF 13006EBF             same as above
+       +000EC0 13006EC0  00000014 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000EE0 13006EE0  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000F00 13006F00 - +007FFF 1300DFFF             same as above
+     LE/370 Below Heap
+       +000000 0013F000  C8C1D5C3 00080C48 00080C48 00080C48  0013F000 0013F3A0 00008000 00007C60  |HANC..............0...3.......@-|
+       +000020 0013F020  0013F000 000001B8 000001B0 00000000  00000000 00000000 C3F3D9E4 D5C3D6D4  |..0.....................C3RUNCOM|
+       +000040 0013F040  000001A0 80800000 000808D8 00000000  00005A30 D7D9C1C3 C4E4D4D7 00030000  |...........Q......!.PRACDUMP....|
+       +000060 0013F060  0013F1F0 00000000 00080964 00000000  00030000 00000000 00084A70 000841AC  |..10............................|
+       +000080 0013F080  00000000 00000000 00000000 00000000  00082308 00000000 00000000 0013F228  |..............................2.|
+       +0000A0 0013F0A0  000327E0 00000000 00000000 F0F0F0F0  F0F0F0F0 00000000 00000000 00000000  |............00000000............|
+       +0000C0 0013F0C0  00000000 0013F1F0 00000000 00000000  00000000 00000000 00000000 00000000  |......10........................|
+       +0000E0 0013F0E0  000A578A 000A5448 000A549E 000A5514  000A5556 000A55DC 0013F2A0 0013F238  |..........................2...2.|
+       +000100 0013F100  000A56A8 000A54CE 000A5632 000A56DC  00000000 00000000 00000000 00000000  |...y............................|
+       +000120 0013F120  00000000 43201000 1B33BF37 10014420  A1149110 10004710 A10E5830 30004A30  |..................j.............|
+       +000140 0013F140  10044110 10024110 100407FE 1A300000  00000000 00000000 00000000 00000001  |................................|
+       +000160 0013F160  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000180 0013F180  00000000 00000000 00000000 0013F1B0  00000008 00000006 0013F1B4 00000000  |..............1...........1.....|
+       +0001A0 0013F1A0  00000000 00000005 00000000 00000000  00000000 00000000 0013F1CC 00000000  |..........................1.....|
+       +0001C0 0013F1C0  0013F1D0 0013F1D4 00000000 00000008  00000000 00000000 0013F000 00000048  |..1...1M..................0.....|
+       +0001E0 0013F1E0  00000040 00000000 0013F228 00000000  D7D9C1C3 C4E4D4D7 00000000 00000000  |... ......2.....PRACDUMP........|
+       +000200 0013F200  90810000 00030000 000327E0 00030000  00000000 00000000 00000000 00000000  |.a..............................|
+       +000220 0013F220  0013F000 000000C8 000000C0 00000000  00000000 0013F1E0 00000000 00000000  |..0....H..............1.........|
+       +000240 0013F240  00000000 500A54BC 92E9F6F0 600A5466  12CD2000 00000001 000329B0 00000041  |....&amp;...kZ60-...................|
+       +000260 0013F260  00000000 00032A10 80030662 000841AC  00027DE0 00027E70 00CD2066 00CCD138  |..................'...=.......J.|
+       +000280 0013F280  000327E0 010A5BB8 020A5BB8 040A5DA2  0C0A5DA2 060A643E 110A6064 850A5DAC  |......$...$...)s..)s......-.e.).|
+       +0002A0 0013F2A0  00000000 0013F238 00000000 00FD2C90  800A5DC4 00000000 00032B10 0003280C  |......2...........)D............|
+       +0002C0 0013F2C0  000B5018 00032B70 0013F038 0013F238  000B5538 000B50A8 000327E0 0013F038  |..&amp;.......0...2.......&amp;y......0.|
+       +0002E0 0013F2E0  800A68C8 000A78C7 0013F000 00000030  00000028 00000000 00000000 00000000  |...H...G..0.....................|
+       +000300 0013F300  00000000 00000000 00000000 00000000  00000000 00000000 0013F000 00000088  |..........................0....h|
+       +000320 0013F320  C3E2E3D2 00000000 00000000 00800001  00000002 00000068 00000000 00000000  |CSTK............................|
+       +000340 0013F340  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000360 0013F360 - +00039F 0013F39F             same as above
+       +0003A0 0013F3A0  00000000 00000000 00000000 00000000  00000000 0013F228 00000000 00000000  |......................2.........|
+       +0003C0 0013F3C0  0013F53C 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |..5.............................|
+1CEE3DMP: Condition processing resulted in the Unhandled condition.     LE V1 R1.1  09/18/00 6:44:47 PM                  Page:    8
+ </pre>
+
+<pre>       +0003E0 0013F3E0  00000000 00000000 00000000 00000000  00000000 030A0000 00000000 00000000  |................................|
+       +000400 0013F400  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000420 0013F420 - +00045F 0013F45F             same as above
+       +000460 0013F460  000C207C 000C225C 00000000 0013F728  00001000 00000000 00000003 00FFFFFF  |...@...*......7.................|
+       +000480 0013F480  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +0004A0 0013F4A0 - +0004DF 0013F4DF             same as above
+       +0004E0 0013F4E0  00000000 00000000 00000000 00000000  00000000 000C25B8 000C25E7 000C243C  |...........................X....|
+       +000500 0013F500  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000520 0013F520  00000000 00000000 00000000 00000000  00000000 00000000 00000000 D7C3D6D5  |............................PCON|
+       +000540 0013F540  E3D9D6D3 D7D9C1C3 C4E4D4D7 00000000  00000000 0008D7D9 C1C3C4E4 D4D74040  |TROLPRACDUMP..........PRACDUMP  |
+       +000560 0013F560  40404040 40404040 40404040 40404040  40404040 00000000 00030000 00000000  |                    ............|
+       +000580 0013F580  000327E0 0000013C 00000134 00000138  00000000 00000000 0000012C 00000000  |................................|
+       +0005A0 0013F5A0  00000194 000001A4 00000001 00000804  00000396 00000000 00000000 00000000  |...m...u...........o............|
+       +0005C0 0013F5C0  00000000 00000000 00000000 000317DC  00000400 00030AB8 000008CD 000007DD  |................................|
+       +0005E0 0013F5E0  000316D4 000316D4 00000000 00000000  00032968 00000000 00000000 00000000  |...M...M........................|
+       +000600 0013F600  00000000 00000211 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000620 0013F620  00000000 00000000 00000001 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000640 0013F640  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000660 0013F660 - +00071F 0013F71F             same as above
+       +000720 0013F720  00000000 00000000 00000000 00000000  00000001 00000000 00000000 00000000  |................................|
+       +000740 0013F740  40404040 40404040 00000000 00000000  F0F240D7 D9C1C3C4 E4D4D77A 6ED660C4  |        ........02 PRACDUMP:&gt;O-D|
+       +000760 0013F760  C5D740E7 4DF6F05D 40C4C9E2 D7407DF1  F1404040 40404040 40404040 40404040  |EP X(60) DISP '11               |
+       +000780 0013F780  40404040 40404040 40404040 40404040  40404040 40404040 40404040 40404040  |                                |
+       +0007A0 0013F7A0  40404040 40404040 4040407D 40404040  40F5F540 40404040 40404040 40404040  |           '     55             |
+       +0007C0 0013F7C0  40404040 40404040 40404040 40404040  40404040 40404040 40404040 40404040  |                                |
+       +0007E0 0013F7E0  40404040 40404040 40404040 40404040  40404040 4040407D 7EF0F04B 40400000  |                       '=00.  ..|
+       +000800 0013F800  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+       +000820 0013F820 - +007FFF 00146FFF             same as above
+     Rununit class storage: 0013F228
+       +000000 0013F228  000000C0 00000000 00000000 0013F1E0  00000000 00000000 00000000 500A54BC  |..............1.............&amp;...|
+       +000020 0013F248  92E9F6F0 600A5466 12CD2000 00000001  000329B0 00000041 00000000 00032A10  |kZ60-...........................|
+       +000040 0013F268  80030662 000841AC 00027DE0 00027E70  00CD2066 00CCD138 000327E0 010A5BB8  |..........'...=.......J.......$.|
+       +000060 0013F288  020A5BB8 040A5DA2 0C0A5DA2 060A643E  110A6064 850A5DAC 00000000 0013F238  |..$...)s..)s......-.e.).......2.|
+       +000080 0013F2A8  00000000 00FD2C90 800A5DC4 00000000  00032B10 0003280C 000B5018 00032B70  |..........)D..............&amp;.....|
+       +0000A0 0013F2C8  0013F038 0013F238 000B5538 000B50A8  000327E0 0013F038 800A68C8 000A78C7  |..0...2.......&amp;y......0....H...G|
+     Rununit class storage: 0013F1E0
+       +000000 0013F1E0  00000040 00000000 0013F228 00000000  D7D9C1C3 C4E4D4D7 00000000 00000000  |... ......2.....PRACDUMP........|
+       +000020 0013F200  90810000 00030000 000327E0 00030000  00000000 00000000 00000000 00000000  |.a..............................|
+ </pre>
+
+<pre> Process Control Blocks:
+ </pre>
+
+<pre>   PCB: 00076178
+     +000000 00076178  C3C5C5D7 C3C24040 03030290 00000000  00000000 00000000 00076B10 00070408  |CEEPCB  ..................,.....|
+     +000020 00076198  0006F520 0006B020 0006AA38 00000000  00000000 00000000 00076AF8 00076B10  |..5........................8..,.|
+ </pre>
+
+<pre>   MEML: 00076B10
+     +000000 00076B10  00000000 00000000 00042780 00000000  00000000 00000000 00042780 00000000  |................................|
+     +000020 00076B30 - +00003F 00076B4F             same as above
+     +000040 00076B50  00000000 00000000 00042780 00000000  00000000 00084A70 92F00DF0 00000000  |........................k0.0....|
+     +000060 00076B70  00000000 00000000 00042780 00000000  00000000 00000000 00042780 00000000  |................................|
+     +000080 00076B90 - +00011F 00076C2F             same as above
+ </pre>
+
+<pre>   THDCOM: 00084A70
+     +000000 00084A70  C3F3E3C8 C4C3D6D4 000001E8 81000000  00000100 00076178 000840F8 000841AC  |C3THDCOM...Ya........./... 8....|
+     +000020 00084A90  0013F038 00000000 D7D9C1C3 C4E4D4D7  00000000 00000000 00000000 00000000  |..0.....PRACDUMP................|
+     +000040 00084AB0  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+     +000060 00084AD0 - +00007F 00084AEF             same as above
+     +000080 00084AF0  00000000 00000000 00000000 00000000  000C34E8 00000000 00000000 00000000  |...................Y............|
+1CEE3DMP: Condition processing resulted in the Unhandled condition.     LE V1 R1.1  09/18/00 6:44:47 PM                  Page:    9
+ </pre>
+
+<pre>     +0000A0 00084B10  00000000 00000000 00000000 00000000  00000000 00000000 00084A70 00000000  |................................|
+     +0000C0 00084B30  00000000 00000000 000A78C7 00000000  00000000 00000000 00000000 00000000  |...........G....................|
+     +0000E0 00084B50  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+     +000100 00084B70 - +00017F 00084BEF             same as above
+     +000180 00084BF0  00000000 00082308 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+     +0001A0 00084C10  00000000 00000000 00000000 00000000  00000000 00084C34 00084C38 00084C3C  |......................&lt;...&lt;...&lt;.|
+     +0001C0 00084C30  00000000 00080C48 00000378 0013F3A8  00000000 00000000 00000000 00000000  |..............3y................|
+     +0001E0 00084C50  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+ </pre>
+
+<pre>   COBCOM: 000840F8
+     +000000 000840F8  C3F3C3D6 C2C3D6D4 00000978 00000000  00000000 00000000 00000000 00000000  |C3COBCOM........................|
+     +000020 00084118  00000000 00000000 00000000 00000000  00000000 00000000 00000000 00000000  |................................|
+     +000040 00084138  00000000 00000000 00000000 00000000  00000000 00000000 906008D6 000841AC  |.........................-.O....|
+     +000060 00084158  000847EC 00000000 00000000 00000000  00000000 00000000 00084A70 00000000  |................................|
+     +000080 00084178  00000000 00000000 00000000 00000000  00000000 93019FD8 00000000 00000000  |....................l..Q........|
+     +0000A0 00084198  00000000 00000000 00000000 00000000  00000000 0008442C 00084432 00084438  |................................|
+     +0000C0 000841B8  0008443E 00084444 0008444A 00084450  00084456 0008445C 00084462 00084468  |...............&amp;.......*........|
+     +0000E0 000841D8  0008446E 00084474 0008447A 00084480  00084486 0008448C 00084492 00084498  |...&gt;.......:.......f.......k...q|
+     +000100 000841F8  0008449E 000844A4 000844AA 000844B0  000844B6 000844BC 000844C2 000844C8  |.......u...................B...H|
+     +000120 00084218  000844CE 000844D4 000844DA 000844E0  000844E6 000844EC 000844F2 000844F8  |.......M...........W.......2...8|
+     +000140 00084238  000844FE 00084504 0008450A 00084510  00084516 0008451C 00084522 00084528  |................................|
+     +000160 00084258  0008452E 00084534 0008453A 00084540  00084546 0008454C 00084552 00084558  |............... .......&lt;........|
+     +000180 00084278  0008455E 00084564 0008456A 00084570  00084576 0008457C 00084582 00084588  |...;...................@...b...h|
+     +0001A0 00084298  0008458E 00084594 0008459A 000845A0  000845A6 000845AC 000845B2 000845B8  |.......m...........w............|
+     +0001C0 000842B8  000845BE 000845C4 000845CA 000845D0  000845D6 000845DC 000845E2 000845E8  |.......D...........O.......S...Y|
+     +0001E0 000842D8  000845EE 000845F4 000845FA 00084600  00084606 0008460C 00084612 00084618  |.......4........................|
+     +000200 000842F8  0008461E 00084624 0008462A 00084630  00084636 0008463C 00084642 00084648  |................................|
+     +000220 00084318  0008464E 00084654 0008465A 00084660  00084666 0008466C 00084672 00084678  |...+.......!...-.......%........|
+     +000240 00084338  0008467E 00084684 0008468A 00084690  00084696 0008469C 000846A2 000846A8  |...=...d...........o.......s...y|
+     +000260 00084358  000846AE 000846B4 000846BA 000846C0  000846C6 000846CC 000846D2 000846D8  |...................F.......K...Q|
+     +000280 00084378  000846DE 000846E4 000846EA 000846F0  000846F6 000846FC 00084702 00084708  |.......U.......0...6............|
+     +0002A0 00084398  0008470E 00084714 0008471A 00084720  00084726 0008472C 00084732 00084738  |................................|
+     +0002C0 000843B8  0008473E 00084744 0008474A 00084750  00084756 0008475C 00084762 00084768  |...............&amp;.......*........|
+     +0002E0 000843D8  0008476E 00084774 0008477A 00084780  00084786 0008478C 00084792 00084798  |...&gt;.......:.......f.......k...q|
+     +000300 000843F8  0008479E 000847A4 000847AA 000847B0  000847B6 000847BC 000847C2 000847C8  |.......u...................B...H|
+     +000320 00084418  000847CE 000847D4 000847DA 000847E0  000847E6 58F0F3C0 0B0F58F0 F3BE0B0F  |.......M...........W.03....03...|
+ </pre>
+
+<pre>   COBVEC: 000841AC
+     +000000 000841AC  0008442C 00084432 00084438 0008443E  00084444 0008444A 00084450 00084456  |...........................&amp;....|
+     +000020 000841CC  0008445C 00084462 00084468 0008446E  00084474 0008447A 00084480 00084486  |...*...........&gt;.......:.......f|
+     +000040 000841EC  0008448C 00084492 00084498 0008449E  000844A4 000844AA 000844B0 000844B6  |.......k...q.......u............|
+     +000060 0008420C  000844BC 000844C2 000844C8 000844CE  000844D4 000844DA 000844E0 000844E6  |.......B...H.......M...........W|
+     +000080 0008422C  000844EC 000844F2 000844F8 000844FE  00084504 0008450A 00084510 00084516  |.......2...8....................|
+     +0000A0 0008424C  0008451C 00084522 00084528 0008452E  00084534 0008453A 00084540 00084546  |........................... ....|
+     +0000C0 0008426C  0008454C 00084552 00084558 0008455E  00084564 0008456A 00084570 00084576  |...&lt;...........;................|
+     +0000E0 0008428C  0008457C 00084582 00084588 0008458E  00084594 0008459A 000845A0 000845A6  |...@...b...h.......m...........w|
+     +000100 000842AC  000845AC 000845B2 000845B8 000845BE  000845C4 000845CA 000845D0 000845D6  |...................D...........O|
+     +000120 000842CC  000845DC 000845E2 000845E8 000845EE  000845F4 000845FA 00084600 00084606  |.......S...Y.......4............|
+     +000140 000842EC  0008460C 00084612 00084618 0008461E  00084624 0008462A 00084630 00084636  |................................|
+     +000160 0008430C  0008463C 00084642 00084648 0008464E  00084654 0008465A 00084660 00084666  |...............+.......!...-....|
+     +000180 0008432C  0008466C 00084672 00084678 0008467E  00084684 0008468A 00084690 00084696  |...%...........=...d...........o|
+     +0001A0 0008434C  0008469C 000846A2 000846A8 000846AE  000846B4 000846BA 000846C0 000846C6  |.......s...y...................F|
+     +0001C0 0008436C  000846CC 000846D2 000846D8 000846DE  000846E4 000846EA 000846F0 000846F6  |.......K...Q.......U.......0...6|
+     +0001E0 0008438C  000846FC 00084702 00084708 0008470E  00084714 0008471A 00084720 00084726  |................................|
+     +000200 000843AC  0008472C 00084732 00084738 0008473E  00084744 0008474A 00084750 00084756  |...........................&amp;....|
+     +000220 000843CC  0008475C 00084762 00084768 0008476E  00084774 0008477A 00084780 00084786  |...*...........&gt;.......:.......f|
+     +000240 000843EC  0008478C 00084792 00084798 0008479E  000847A4 000847AA 000847B0 000847B6  |.......k...q.......u............|
+     +000260 0008440C  000847BC 000847C2 000847C8 000847CE  000847D4 000847DA 000847E0 000847E6  |.......B...H.......M...........W|
+1                         1111        11111        11111        11
+                          2222        22222        22222        22
+                          3333        33333        33333        33
+                          4444        44444        44444        44
+                          5555        55555        55555        55
+<font
+color="#FF0000"> CEE3207S The system detected a Data exception.
+          The error occurred in program unit PRACDUMP at entry point PRACDUMP at statement 81 at offset +000006EA at
+          address 000306EA.</font></pre>
+</body>
+</html>

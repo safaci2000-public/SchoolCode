@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>Passing parameters via the EXEC statement</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+
+<p><b>Passing parameters via the EXEC statement</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>You're already familiar with passing parameters from the EXEC statement
+using the PARM option.  You've passing them to the compiler, loader, and
+linkage editor up to this point.</p>
+
+<p>We can also pass parameters to application programs.</p>
+
+<p><b>In ASSEMBLER:</b></p>
+
+</font><font face="Courier New" size=4>
+<p><pre>- standard linkage conventions are followed
+
+  an area of storage to store the length and parameter values
+  is reserved.  The first item is a binary halfword that equals
+  the length of the entire parameter list.  The length will
+  include any commas or special characters that separate the
+  parameters.
+  
+  a parameter list containing the address of the storage area
+  is created.  Remember that it will only contain addresses.
+
+  register 1 will contain the address of the parameter list  
+  
+  //STEP6  EXEC  PGM=ASMPGM,PARM='11-30-1977,24',...
+  
+  
+  In ASSEMBLER program:
+  
+     L     2,0(,1)        Register 2 = addr of storage area
+     LH    3,0(,2)        Register 3 = parameter length
+     LA    4,2(,2)        Register 4 = addr of 1st parm
+
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p><b>In COBOL:</b></p>
+
+</font><font face="Courier New" size=4>
+<p><pre>- the parameters must be described in the LINKAGE SECTION
+
+  the first item is a PIC S9(4)  COMP SYNC field that will hold
+  the length of the entire parameter list.  The length will
+  include any commas or special characters that separate the
+  parameters.
+  
+  the rest of the items are a description of the parameters and
+  any characters that separate them
+  
+  
+</pre><pre>  //STEP6  EXEC  PGM=COBPGM,PARM='11-30-1977,24',...
+  
+  
+  In COBOL program:
+  
+     LINKAGE SECTION.
+     
+       01 EXEC-PARMS.
+          05  PARM-LENGTH       PIC S9(4)  COMP SYNC.
+          05  PARM-DATE         PIC X(10).
+          05                    PIC X.
+          05  PARM-AGE          PIC 9(2).
+          
+          
+     PROCEDURE DIVISION USING EXEC-PARMS.
+
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>The exec line parameters are accessed using the names in the LINKAGE
+SECTION.</p>
+
+<p>The program should verify that the parameters have been specified if 
+they are going to be referenced in the program.</p>
+
+<p>The easiest test is to make sure the length field contains a valid value.</p>
+
+<p>&nbsp;</p>
+</font><font face="Courier New" size=4>
+<p><b>Setting Return codes in COBOL</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>There is a "special register" called RETURN-CODE in every COBOL program.  It
+is defined by the system as PIC S9(4) COMP VALUE ZERO.</p>
+
+<p>At the start of a program, it is initialized to 0 and is updated after 
+each CALL statement.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>In a COBOL program that needs to set a return code:
+
+    MOVE return-code-value TO RETURN-CODE.
+    GOBACK.
+    
+
+In a COBOL program that needs to check a return code:
+
+   CALL 'SUBPGM' USING PARM1.
+   
+   IF RETURN-CODE = return-code-value
+</pre>
+</font>
+</body>
+</html>

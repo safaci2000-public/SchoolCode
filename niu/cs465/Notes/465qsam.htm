@@ -1,0 +1,356 @@
+<html>
+<head>
+<title>Queued Sequential Access Method</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+
+<p><b>Queued Sequential Access Method (QSAM)</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>An <b>access method</b> is a complete set of macros and modules that are
+used to perform I/O operations.</p>
+
+<p>QSAM is used to process sequential files.</p>
+
+<p>It is probably one of the most straightforward of the access methods because
+it does a lot of the work for a programmer.</p>
+
+<p>A data set is read into a buffer in memory one <b><u>physical record</u></b>
+or <b><u>block</u></b> at a time.</p>
+
+<p>One physical record is made up of a fixed number of <b><u>logical records</u></b>.
+The fixed number is known as the <b><u>blocking factor</u></b>.</p>
+
+<p>QSAM provides two services that some other access methods do not:</p>
+<ol>
+   <li>buffering</li>
+   <li>deblocking</li>
+</ol>
+
+<p><b><u>Buffering</u></b> is the reading of one block at a time into a buffer
+in memory.</p>
+
+<p><b><u>Deblocking</u></b> is the dividing of the physical record into the
+logical records.</p>
+
+<p>QSAM is implemented (in ASSEMBLER) by the use of 5 macros:</p>
+<ol>
+   <li>DCB</li>
+   <li>OPEN</li>
+   <li>CLOSE</li>
+   <li>GET</li>
+   <li>PUT</li>
+</ol>
+
+</font><font face="Courier New" size=4>
+<p><b>DCB macro</b> - Data Control Block</p>
+
+</font><font face="Courier New" size=3>
+
+<ul>
+  <li><p>This macro is used to describe the data set(s) that will be read from
+  or written to</p></li>
+</ul>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  column   1             16                           72
+  Format:  dcbname  DCB  DDNAME=ddname,               X
+                         DEVD=_____,                  X
+                         DSORG=_____,                 X
+                         MACRF=_____,                 X
+                         RECFM=_____,                 X
+                         LRECL=_____,                 X
+                         BLKSIZE=_____,               X
+                         EODAD=_____
+
+
+  <b>dcbname</b>   the name that will be referenced in the source code when
+            opening or closing a file
+
+
+  <b>DDNAME=ddname</b> parameter
+
+   - links the DCB to the actual file being read from / written to
+   - ddname comes from the corresponding DD statement in the JCL
+
+
+  <b>DEVD=_____</b> parameter
+
+   - specifies the type of device that the file is on
+   - 3 possible values
+
+       DA  direct access  (USE THIS ONE ALWAYS!!)
+       UT  utility class  (tape or disk)
+       UR  printer
+
+
+  <b>DSORG=_____</b> parameter
+
+   - specifies the type of organization of the data set
+   - use PS (physical sequential)
+   - MUST be coded in the DCB
+
+
+  <b>MACRF=_____</b> parameter
+
+   - specifies which format of the GET and PUT macros will be used
+     in the program
+   - 4 possible values
+
+      GL  get locate   the address of the next logical record to be
+                       read is placed in register 1.  The data is
+                       not actually moved.
+
+      GM  get move     the logical record is copied into a named
+                       area of storage
+
+      PL  put locate   the address of the next available buffer area
+                       for writing is returned in register 1.  The
+                       program must move the logical record to the
+                       address.
+
+      PM  put move     a logical record is written from a named area
+                       of storage
+
+   - If a file will be used for both input and output, specify (G_,P_)
+     as the macro format.
+
+   - MUST be specified in the DCB
+
+
+  <b>RECFM=_____</b> parameter
+
+   - specifies the format of a record
+   - 3 types
+
+        F   fixed length records
+        V   variable length records
+        U   undefined length
+
+     Fixed and variable can be further subdivided using:
+
+        B   blocked                                         (FB or VB)
+        A   ASA carriage control character in 1st byte      (FA or VA)
+        M   Machine carriage control character in 1st byte  (FM or VM)
+
+
+  <b>LRECL=_____</b> parameter
+
+   - specifies the number of bytes in a logical record
+   - integer value
+
+
+  <b>BLKSIZE=_____</b> parameter
+
+   - specifies the number of bytes in a block
+   - blocking factor * logical record length
+
+
+  <b>EODAD=_____</b> parameter
+
+   - specifies the name of an end of file routine that should be
+     performed after all of the input records have been read
+
+   - the last instruction in this routine is usually BR  14 since
+     register 14 will have the address of the instruction that
+     follows the read
+
+
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p><b>OPEN macro</b></p>
+
+</font><font face="Courier New" size=3>
+
+<ul>
+  <li><p>This macro is used to open a file for input or output</p></li>
+</ul>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  Input Format:   OPEN (dcbname,(INPUT))
+
+  Output Format:  OPEN (dcbname,(OUTPUT))
+
+  Open more than 1 file at a time format:
+   
+                  OPEN (dcbname1,(INPUT),dcbname2,(INPUT),...)
+                                  OUTPUT           OUTPUT
+
+
+   - sets a return code in register 15 (0 = success, nonzero = failure)
+
+   - If INPUT/OUTPUT is not coded, INPUT is assumed, but the comma must
+     still be coded
+
+        OPEN (dcbname,)
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p><b>CLOSE macro</b></p>
+
+</font><font face="Courier New" size=3>
+
+<ul>
+  <li><p>This macro is used to close a file</p></li>
+</ul>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  Format:   CLOSE (dcbname)
+
+  Close more than 1 file at a time:  CLOSE (dcbname1,,dcbname2,,...)
+
+
+   - sets a return code in register 15 (0 = success, nonzero = failure)
+
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p><b>GET macro</b></p>
+
+</font><font face="Courier New" size=3>
+
+<ul>
+  <li><p>This macro is used to read a LOGICAL record from a file</p></li>
+</ul>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  GM Format:   GET  dcbname,buffername
+
+    - one logical record is read from dcbname and placed into
+      buffername
+
+      GET  INDCB,BUFFER
+
+
+  GL Format:   GET  dcbname
+
+    - the address of the logical record to be read is placed in register
+      1.  It is up to the programmer to move the record to the buffer
+
+      GET  INDCB
+      MVC  BUFFER(80),0(1)
+
+
+  - When end of file occurs, the system
+
+      1) passes control to the routine specified on the EODAD parameter
+
+      2) places the address of the instruction following the GET in
+         register 14
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p><b>PUT macro</b></p>
+
+</font><font face="Courier New" size=3>
+
+<ul>
+  <li><p>This macro is used to write a LOGICAL record from a file</p></li>
+</ul>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  PM Format:   PUT  dcbname,buffername
+
+    - the contents of buffername is moved to the output buffer specified
+      by dcbname
+
+      PUT  OUTDCB,PLINE
+
+
+
+  PL Format:   PUT  dcbname
+
+    - the address of the next area available for writing is placed in
+      register 1.  It is up to the programmer to move the record to the
+      buffer
+
+      PUT  OUTDCB
+      MVC  0(132,1),PLINE
+
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p>&nbsp;</p>
+<p><b>QSAM in COBOL</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>QSAM is the access method that is commonly used in COBOL.  The DCB is
+supplied information from the SELECT statement, File Definition, and some
+Procedure Division statements.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+
+       SELECT INFILE ASSIGN TO S-SYSIN.
+
+       FD  INFILE
+           RECORDING MODE IS F
+           LABEL RECORDS ARE STANDARD
+           BLOCK CONTAINS 20 RECORDS
+           RECORD CONTAINS 80 CHARACTERS.
+
+       01  IN-REC.
+           05  FIRST-HALF    PIC X(40).
+           05  SECOND-HALF   PIC X(40).
+
+
+           OPEN INPUT INFILE.
+
+           READ INFILE AT END MOVE 'Y' TO EOF-FLAG.
+
+
+The COBOL code above will produce the following DCB:
+
+   INFILE  DCB  DDNAME=SYSIN,        X
+                BLKSIZE=1600,        X
+                DSORG=PS,            X
+                LRECL=80,            X
+                MACRF=GL,            X
+                RECFM=FB
+
+The EODAD parameter will have the address of wherever the "MOVE 'Y'
+TO EOF-FLAG" occurs.
+
+
+
+           READ INFILE INTO WS-RECORD
+              AT END MOVE 'Y' TO EOF-FLAG
+           END-READ.
+
+This READ will change the MACRF to GM
+
+
+
+           WRITE PRINT-LINE.
+
+This WRITE will use a MACRF of PL, while
+
+
+           WRITE PRINT-LINE FROM WS-RECORD.
+
+will use a MACRF of PM.
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>When a COBOL program is compiled, the DCB information is collected from:</p>
+
+<ol>
+   <li><p>inside the COBOL program</p></li>
+   <li><p>DD statement in the JCL</p></li>
+   <li><p>Label record (if any) for the data set</p></li>
+</ol>
+
+<p>The above process is known as the <b>forward merge</b>.</p>
+</font>
+</body>
+</html>

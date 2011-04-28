@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>PDSs</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+
+<p><b>Partitioned Data Set (PDS)</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>A data set that is made up of different data sets (members).</p>
+
+<p>To create a PDS, the format of the SPACE parameter must be changed to:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  FORMAT:  SPACE=(unit,(p,s,b))
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>A PDS contains a directory of its members.  The directory is stored in 256
+byte blocks.  <b>b</b> is the number of 256 byte blocks.</p>
+
+<p>A directory block contains information on approximately 5 members.</p>
+
+<p>Lets assume that a PDS called Z123456.MYPDS contains a member called MEM1.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+<b>To reference the PDS:</b>  Z123456.MYPDS
+
+<b>To reference a member of the PDS:</b>  Z123456.MYPDS(MEM1)
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p><b>NOTES:</b></p>
+<ul>
+  <li><p>On an EXEC statement with PGM=program_name, program_name is a member
+      of a partitioned data set.</p></li>
+  <li><p>The system first looks for program_name in the library specified on
+      the STEPLIB DD statement(s).  If it's not found, the system libraries
+      are checked.</p></li>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+//STEPLIB  DD  DSN=MYLIB,...        library made up of one data set
+
+
+//STEPLIB  DD  DSN=MYLIB,...        concatenated data set
+//         DD  DSN=YOURLIB,...        - the three DD statements are
+//         DD  DSN=NEWLIB,...           treated as one library
+</pre></p>
+</font><font face="Courier New" size=3>
+
+
+</ul>
+</font>
+</body>
+</html>

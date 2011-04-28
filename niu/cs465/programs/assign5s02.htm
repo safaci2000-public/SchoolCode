@@ -1,0 +1,221 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>Programming Assignment 5</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">CSCI 465</td>
+    <td width="33%"><p align="center">Programming Assignment 5 (100 points)</td>
+    <td width="34%"><p align="right">Spring 2002</td>
+  </tr>
+</table>
+
+<p>In this program you will be managing two datasets that contain information about a
+number of products from the Skymall Catalog Company.&nbsp; One dataset
+(T90RAZ1.ASS5.PRODUCTS - catalogued) contains:</p>
+
+<table border="0" width="43%">
+  <tr>
+    <td width="55%">PRODUCT-ID</td>
+    <td width="45%">PIC 9(8)</td>
+  </tr>
+  <tr>
+    <td width="55%">PRODUCT-DESCRIPTION</td>
+    <td width="45%">PIC X(25)</td>
+  </tr>
+</table>
+
+<p>The other dataset (T90RAZ1.ASS5.SALES - catalogued) contains sales and revenue
+information for the products described in the first data set. Its format is:</p>
+
+<table border="0" width="44%">
+  <tr>
+    <td width="52%">PRODUCT-ID</td>
+    <td width="48%">PIC 9(8)</td>
+  </tr>
+  <tr>
+    <td width="52%">PRODUCT-COST</td>
+    <td width="48%">PIC 9(4)V99</td>
+  </tr>
+  <tr>
+    <td width="52%">DEVELOPMENT-COST</td>
+    <td width="48%">PIC 9(4)V99</td>
+  </tr>
+  <tr>
+    <td width="52%">ADVERTISING-COST</td>
+    <td width="48%">PIC 9(4)V99</td>
+  </tr>
+</table>
+
+<p>Note that there will be a 1 to 1 match between product-ids in the two datasets.</p>
+
+<p>A COBOL main program will control the flow of execution and print a final report.
+&nbsp; It will call on two other programs to assist in the processing.&nbsp; One is to be
+written in Assembler, the other is to be written in COBOL.</p>
+
+<p align="center"><strong>COBOL MAIN PROGRAM</strong></p>
+
+<p>One of the <strong>first</strong> things the main program must do is call an Assembler
+CSECT that will open the <strong>product dataset </strong>and read all of the records in
+this dataset.&nbsp; This Assembler program should use QSAM as the access method to read
+the records.&nbsp; The COBOL main program should pass the address of a table in
+Working-Storage to the Assembler program, and the Assembler program will transfer the read
+records from the dataset to this table.&nbsp; Define this table as possibly containing up
+to 60 records and ensure that the Product-ID field in the table is declared as COMP.
+&nbsp; In addition to this table address, the main program should also pass a <strong>group</strong>
+of data items to the Assembler program.&nbsp; This item group should also be defined in
+Working-Storage of the main program and should contain the following three fields:</p>
+
+<table border="0" width="43%">
+  <tr>
+    <td width="41%">Product-Count</td>
+    <td width="59%">PIC 99 COMP.</td>
+  </tr>
+  <tr>
+    <td width="41%">Sales-Count</td>
+    <td width="59%">PIC 99 COMP.</td>
+  </tr>
+  <tr>
+    <td width="41%">Number-Merged</td>
+    <td width="59%">PIC 99 COMP.</td>
+  </tr>
+</table>
+
+<p>As the Assembler program reads records from the product dataset, it will count them and
+save the total count in the Product-Count field of the group of data items.&nbsp; </p>
+
+<p>When control is returned to the main program, it should read the records from the <strong>sales
+dataset</strong> (the second one described above) and move those records into another
+table in Working-Storage.&nbsp; This table should also specify that Product-ID is COMP and
+that the three numeric items are COMP-3.&nbsp; This table should have one extra field in
+it that represents Net-Cost.&nbsp; Also define this field as PIC 9(4)V99 COMP-3. &nbsp;
+This table too should be defined as possibly containing up to 60 records.&nbsp; As your
+program reads records from the sales dataset, keep a count of the total number of records
+read and save that total in the Sales-Count field of the Working-Storage group of data
+items.</p>
+
+<p><strong>Next</strong>, the main program should call another <strong>entry</strong>
+point in your Assembler program and pass the addresses of the Sales-information table and
+the group of data items described earlier.&nbsp; This Assembler routine will compute
+Net-Cost for each item in the Sales-information table.</p>
+
+<p>When control is returned to the main program from this second Assembler routine, the
+main program should call a COBOL sub-program and pass to it: 
+
+<ul>
+  <li>Address of Products-table</li>
+  <li>Address of Sales-table</li>
+  <li>Address of a third table that we will call the Merged-table</li>
+  <li>Address of the group of data items.</li>
+</ul>
+
+<p>The merged-table should be declared in the main program's Working-Storage area and
+should contain: 
+
+<ul>
+  <li>Product-ID&nbsp; (COMP)</li>
+  <li>Product-Description</li>
+  <li>Product-Cost&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (COMP-3)</li>
+  <li>Development-Cost&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;</li>
+  <li>Advertising-Cost
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</li>
+  <li>Net-Cost
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;</li>
+</ul>
+
+<p>Finally, the main program should print a nice looking report that contains the
+information found in the merged table.&nbsp; Use page headers, column headers, and
+floating dollar signs when printing the double spaced report.&nbsp; As the last line in
+this report, print the Number of items in the merged table, this number coming from the
+Number-Merged field in the group of data items.</p>
+
+<p align="center"><strong>The Assembler Sub-Program</strong></p>
+
+<p>This program will contain one ordinary CSECT and one other valid ENTRY point. &nbsp;
+Treat both of these entry points as though they were independent CSECTS; i.e., write
+standard entry and exit linkage for both and do not use the XSAVE or XRETURN macros.</p>
+
+<p>The first CSECT entry point will open and read (using QSAM) the information contained
+in the Products dataset. Transfer each record read to the main program Working-Storage
+table (passed to your program as an argument), and count each record you read from the
+dataset.&nbsp; Pass this number back to the main program in the first half word of the
+data item group it will receive as an argument.</p>
+
+<p>The second ENTRY point will receive the addresses of the Sales-table and the group of
+data items.&nbsp; Iterate through the sales-table and compute Net-Cost for each product in
+the table.&nbsp; Net-Cost = Product-Cost - (Development-Cost + Advertising-Cost). &nbsp;
+Use the Sales-Count number found in the group of data items to control your processing
+loop.</p>
+
+<p align="center"><strong>The COBOL Sub-Program</strong></p>
+
+<p>This program is responsible for combining the information in the products-table and
+sales-table into one record and saving that record in the merged-table. There will be a 1
+to 1 match between product id's in the two tables.&nbsp; It should also count the number
+of records that it merges together and save that count in the last half word of the group
+of data items.</p>
+
+<p align="left"><strong>PROGRAMMING NOTES:<br>
+</strong><br>
+<br>
+1.) This job should, as STEP 1, execute program SYNCSORT. Execute this program in Step 1
+to sort the products information file in ascending order by product number. Have SYNCSORT
+produce a temporary file of sorted records. It is this temporary file that your Assembler
+CSECT program should read. Similarly, in Step 2 of this job, execute program SYNCSORT a
+second time to sort (in ascending order by product number) the sales file. SYNCSORT should
+again produce a temporary file of sorted records and it is this file that your main COBOL
+program should read.<br>
+<br>
+2.) Your main program should receive a parameter from the EXEC card that invokes it. This
+parameter should be the date on which this assignment is due (DDMMYY).<br>
+<br>
+Have your main program verify that the date is a valid numeric number and that each part
+of the date is also valid; i.e., valid days are 1 - 31; valid months are 1 - 12; and valid
+year is 02. If the date is valid, use it in the heading of your report, installing slashes
+between the three items using INSPECT..REPLACING. If the date is not valid, initialize the
+date to 99/99/99, again using INSPECT..REPLACING to install the slashes. If the parameter
+has been omitted all together, set a return code of 99 (see Cobol's RETURN-CODE register)
+and don't do anything else. You may not use a GO TO.<br>
+<br>
+3.) Compile and assemble the three programs, passing the object modules to the link editor
+(HEWL). Link edit the three object modules into a load module to be stored in a <strong>temporary</strong>
+PDS.<br>
+<br>
+Execute the load module once passing it the correct parameter via the EXEC card as
+described above. Then execute it again in a subsequent job step leaving off the EXEC card
+parameter.&nbsp; So your job should have two executions of the load module. Once with the
+correct parameters (set a RETURN-CODE of zero) and once with them missing (which should
+produce a return-code of 99).<br>
+<br>
+Use the Linkage Editor <strong>ENTRY</strong> control card statement to identify to the
+Linkage Editor which of the three object modules is to be considered the entry point
+(i.e., the first program to be executed).<br>
+<br>
+4.) All table processing must be done with indexes. The only exception to this is in the
+Cobol subroutine merge process where you may use a subscript to reference entries in the
+merge-table.<br>
+<br>
+5.) Include facilities to help you debug this program. It is probably a good idea to pass
+TERMTHDACT(DUMP) as a run-time option when you execute your load module. Include an
+XSNAPOUT card (writing to the printer) in your execution steps. You can then use the XSNAP
+macro in your ASSEMBLER program to help you debug that portion of things.&nbsp; Don't
+forget to include SYS2.CALLIB if you use XSNAP.&nbsp; <strong>If you do intend to use the
+XSNAP instruction, you must include the following linkage editor control statement
+&nbsp;&nbsp; MODE AMODE(24)</strong>&nbsp;&nbsp;&nbsp; Without this card, your program
+will abend if you try to execute the XSNAP instruction.<br>
+<br>
+6.) Pass MAP and LIST as options to the Linkage Editor.<br>
+<br>
+7.) Use only one detail line (print line) in forming your report.<br>
+<br>
+<br>
+</p>
+
+<p>&nbsp;</p>
+</body>
+</html>

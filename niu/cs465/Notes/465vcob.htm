@@ -1,0 +1,317 @@
+<html>
+<head>
+<title>VSAM in COBOL</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+
+<p><b>Using VSAM in COBOL</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p><b>Changes in the ENVIRONMENT DIVISION:</b></p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+SELECT file-name ASSIGN TO ddname
+   ORGANIZATION IS type
+   ACCESS MODE IS access
+   RECORD KEY IS key1  /  RELATIVE KEY IS key2
+   FILE STATUS IS field1 [field2].
+
+
+ddname    the ddname of the VSAM file being accessed
+
+          KSDS, RRDS format: DA-ddname
+          ESDS format: DA-AS-ddname
+
+
+type   specifies the order that records have been stored in
+
+       SEQUENTIAL -- records are positioned in the order in
+                     which they were originally loaded  (ESDS)
+                     
+       INDEXED -- records are positioned according to their
+                  index field (KSDS)
+                  
+       RELATIVE -- records are positioned according to their
+                   relative record number (RRDS)
+
+
+access   specifies how records are going to be processed
+
+         SEQUENTIAL -- read/write in sequential order
+         
+         RANDOM -- read/write in a user specified order
+         
+         DYNAMIC -- read/write in sequential, random, or both
+         
+         
+key1   specifies the FD field name for the primary key field
+       KSDS only
+       value in the key must be unique
+       
+       
+key2   field in working storage that a value will be moved to
+       prior to a READ/WRITE
+       RRDS only
+       used with RANDOM or DYNAMIC access
+       
+       
+field1   PIC XX field in working storage that will be used by
+         COBOL to indicate the result of an OPEN, CLOSE, READ,
+         or WRITE
+         
+         00   success  /  non-zero  failure
+         
+         
+field2   6 byte return code that is supplied if field1 is not 00
+
+         01 VSAM-STATUS-CODES.
+            05  VSAM-RETURN-CODE         PIC 9(2)  COMP.
+            05  VSAM-FUNCTION-CODE       PIC 9     COMP.
+            05  VSAM-FEEDBACK-CODE       PIC 9(3)  COMP.
+</pre></p>
+
+</font><font face="Courier New" size=3>
+
+<p>&nbsp;</p>
+<p><b>Changes in the DATA DIVISION:</b></p>
+
+<p>VSAM records are not labeled, therefore the LABEL RECORDS ARE... 
+clause is treated as a comment, though it is required.</p>
+
+<p>VSAM records are not blocked, therefore the BLOCK CONTAINS...
+clause should not be specified.</p>
+
+<p>&nbsp;</p>
+<p><b>Changes in the PROCEDURE DIVISION:</b></p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+Opening a file:
+   
+   OPEN  INPUT   file-name.
+         OUTPUT
+         I-O
+         EXTEND
+
+
+   I-O    file that will be read from and written to
+
+   EXTEND   file that will have records added to the end
+            sequential file only
+
+
+   You can now test whether the files opened correct by testing
+   the value placed in the FILE STATUS IS variable
+
+
+
+Closing a file:
+
+   Same as before but you can now test if the close was successful
+                     
+
+
+Reading from a file:
+
+   Cluster must be opened for INPUT or I-O
+                  
+
+   Sequential Read with Sequential Access:
+
+        READ file-name RECORD [INTO ws-field]
+           AT END do something
+           NOT AT END do something else
+        END-READ.
+
+
+   Sequential Read with Dynamic Access:
+
+        READ file-name NEXT RECORD [INTO ws-field]
+           AT END do something
+           NOT AT END do something else
+        END-READ.
+
+
+   Random Read with KSDS cluster:
+
+        MOVE value TO key1.
+        READ file-name RECORD [INTO ws-field]
+           INVALID KEY do something
+           NOT INVALID KEY do something else
+        END-READ.
+
+
+   Random Read with RRDS cluster:
+
+        MOVE value TO key2.
+        READ file-name RECORD [INTO ws-field]
+           INVALID KEY do something
+           NOT INVALID KEY do something else
+        END-READ.
+
+
+
+Writing to a file:
+
+   Cluster must be opened for OUTPUT, I-O, or EXTEND
+                  
+
+   Sequential Write:
+
+        WRITE record_name [FROM ws-field].
+
+
+   Random Write for KSDS cluster:
+   
+        MOVE value TO key1.
+        WRITE record-name [FROM ws-field]
+           INVALID KEY do something
+           NOT INVALID KEY do something else
+        END-WRITE.
+
+
+   Random Write for RRDS cluster:
+   
+        MOVE value TO key2.
+        WRITE record-name [FROM ws-field]
+           INVALID KEY do something
+           NOT INVALID KEY do something else
+        END-WRITE.
+
+
+
+Rewriting a record to a file:
+
+   Cluster must be opened for I-O
+
+   Sequential Access:
+
+        Successful READ
+        REWRITE record_name [FROM ws-field]
+           INVALID KEY do something
+           NOT INVALID KEY do something else
+        END-REWRITE.
+
+
+   Rewrite for KSDS cluster:
+   
+        MOVE value TO key1.
+        REWRITE record-name [FROM ws-field]
+           INVALID KEY do something
+           NOT INVALID KEY do something else
+        END-REWRITE.
+
+
+   Rewrite for RRDS cluster:
+   
+        MOVE value TO key2.
+        REWRITE record-name [FROM ws-field]
+           INVALID KEY do something
+           NOT INVALID KEY do something else
+        END-REWRITE.
+
+
+
+Deleting a record from a file:
+
+   Cluster must be opened for I-O
+
+   Sequential Access:
+
+        DELETE file-name RECORD.
+
+
+   Delete for KSDS cluster:
+   
+        MOVE value TO key1.
+        DELETE file-name RECORD
+           INVALID KEY do something
+           NOT INVALID KEY do something else
+        END-DELETE.
+
+
+   Delete for RRDS cluster:
+   
+        MOVE value TO key2.
+        DELETE file-name RECORD
+           INVALID KEY do something
+           NOT INVALID KEY do something else
+        END-DELETE.
+
+       Records are logically deleted for RRDS
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>&nbsp;</p>
+<table border cellspacing=1 cellpadding=7 width=636>
+<tr>
+  <td width="25%" valign="center"><p>&nbsp;</p></td>
+  <td width="25%" valign="center"><p>File OPENed for</p></td>
+  <td width="25%" valign="center"><p>File / Record</p></td>
+  <td width="25%" valign="center"><p>INVALID KEY</p></td>
+</tr>
+<tr>
+  <td width="25%" valign="center"><p>READ</p></td>
+  <td width="25%" valign="center"><p>INPUT, I-O</p></td>
+  <td width="25%" valign="center"><p>File</p></td>
+  <td width="25%" valign="center"><p>no such record</p></td>
+</tr>
+<tr>
+  <td width="25%" valign="center"><p>WRITE</p></td>
+  <td width="25%" valign="center"><p>OUTPUT, I-O, EXTEND</p></td>
+  <td width="25%" valign="center"><p>Record</p></td>
+  <td width="25%" valign="center"><p>duplicate key</p></td>
+</tr>
+<tr>
+  <td width="25%" valign="center"><p>REWRITE</p></td>
+  <td width="25%" valign="center"><p>I-O</p></td>
+  <td width="25%" valign="center"><p>Record</p></td>
+  <td width="25%" valign="center"><p>no such record</p></td>
+</tr>
+<tr>
+  <td width="25%" valign="center"><p>DELETE</p></td>
+  <td width="25%" valign="center"><p>I-O</p></td>
+  <td width="25%" valign="center"><p>File</p></td>
+  <td width="25%" valign="center"><p>no such record</p></td>
+</tr>
+</table>
+
+<p>&nbsp;</p>
+<p><b>The START statement</b></p>
+
+<p>Repositions the file pointer at a record other than the next logical
+record.</p>
+
+<p>File must be opened for INPUT or I-O</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+START file-name
+   KEY IS comparison key
+   INVALID KEY do something
+   NOT INVALID KEY do something else
+END-START.
+
+
+comparison   the type of comparison to make between the records
+             key field and the contents of key
+             
+             EQUAL TO / =
+             GREATER THAN / >
+             NOT LESS THAN / NOT <
+             GREATER THAN OR EQUAL TO / >=
+             
+
+key      relative or record key field
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>START does not actually read a record, it just repositions the file
+pointer.</p>
+</font>
+</body>
+</html>

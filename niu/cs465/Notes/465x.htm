@@ -1,0 +1,162 @@
+<html>
+<head>
+<title>A few more X macros</title>
+</head>
+<body>
+
+<font face="Courier New" size=5>
+
+<p><b>A few more X macros</b></p>
+
+</font><font face="Courier New" size=4>
+
+<p><b>XDUMP</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>Produces a "dump" of the general purpose registers, or of a specified
+area of storage.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>Format 1:  XDUMP
+
+  - dumps the general purpose registers
+
+
+Format 2:  XDUMP D(X,B),length
+
+  - dumps length bytes of storage starting from the address
+    represented by D(X,B)
+    
+  - length must be between 1 and 4095 (default: 4)
+  
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>The address of the XDUMP instruction and the addresses of the storage 
+areas dumped will appear in the output.</p>
+
+<p>In the execution step, add:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>  //XSNAPOUT  DD  SYSOUT=*
+
+</pre></p>
+</font><font face="Courier New" size=4>
+
+
+<p><b>XSNAP</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>Produces a "dump" of the general purpose registers, or of a specified
+area of storage.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>Format 1:  XSNAP
+
+  - dumps the general purpose registers
+
+
+Format 2:  XSNAP LABEL='string'
+
+  - dumps the general purpose registers with an identifying
+    label of string
+
+
+</pre><pre>Format 3:  XSNAP STORAGE=(beg-addr,end-addr)
+
+  - dumps the storage starting from beg-addr and ending with 
+    end-addr as well as the general purpose registers
+    
+    beg-addr and end-addr may be:
+    
+       - an A-type constant
+       - a label in storage or from a DSECT
+
+
+Format 4:  XSNAP STORAGE=(beg-addr,end-addr),T=NOREGS
+
+  - dumps the storage starting from beg-addr and ending with 
+    end-addr
+
+
+In the loader or linkage editor step, add:
+
+  //XSNAPOUT  DD  SYSOUT=*
+
+
+In the SYSLIB of the loader or linkage editor step, add:
+
+  //          DD  DSN=SYS2.CALLIB,DISP=SHR
+
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p><b>XSAVE</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>Produces standard entry linkage.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>Format:  XSAVE SA=savearea,BR=base-register,TR=trace,RGS=regs
+
+
+  <b>savearea</b>    this is the label of 18F savearea for the routine
+  
+
+  <b>base-register</b>    this is the register number to be used as the
+                   base register for the routine
+                   
+                   default: register 12
+                   
+
+</pre><pre>&nbsp;</pre><pre>&nbsp;</pre><pre>  <b>trace</b>      indicates whether a trace of routines that have been
+             entered should be produced
+             
+             YES - a message stating that the CSECT has been
+                   entered will be produced
+                   
+             NO  - no trace will be produced  (default)                   
+
+
+  <b>regs</b>       indicates which registers to save
+  
+             usually (14-12) or (14,0-12)
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p><b>XRETURN</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>Produces standard exit linkage.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>Format:  XRETURN TR=trace,RGS=regs,RC=return-code
+
+
+  <b>trace</b>      indicates whether a trace of routines that have been
+             exited should be produced
+             
+             YES - a message stating that the CSECT has been
+                   exited will be produced
+                   
+             NO  - no trace will be produced  (default)                   
+
+
+  <b>regs</b>       indicates which registers to restore
+  
+             default: (14-12)
+
+
+  <b>return-code</b>     indicates the return code value for register 15
+  
+                  if coded, register 15 is not restored even
+                  if it's part of regs
+</pre></p>
+</font><font face="Courier New" size=3>
+</font>
+</body>
+</html>

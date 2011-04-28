@@ -1,0 +1,241 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>Program 1 - Spring 2002</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">CSCI 465</td>
+    <td width="33%"><p align="center">Programming Assignment 1 (100 points)</td>
+    <td width="34%"><p align="right">Spring 2002</td>
+  </tr>
+</table>
+
+<p>For this assignment you are to write a COBOL program that will produce weekly reports
+as well as a final report for the BIG 9 Conference's annual Tiddily-Winks Tournament. Each
+of the nine schools in the Big 9 conference has 4 teams that compete in the tournament.
+Each team plays 3 games of tiddily-winks a week for 7 weeks, the life of the tournament.</p>
+
+<p>A perfect score for one game of tiddily-winks is 100 points.&nbsp; Thus, for any given
+week, no team can score more than 300 points, and no school can score more than 1200
+points. At the end of the tournament, the team that accumulates the most points over 7
+weeks wins $5000.000, and the school whose teams score the most points during the
+tournament wins $20,000.00</p>
+
+<p>Your program should produce a weekly report for each week of the tournament similar in
+format to the Page 1 report of the Sample Report. Each weekly report must be on a separate
+page. At the end of the 7 weeks, produce a final report on a separate page that is similar
+to the sample final report.</p>
+
+<p>The following data sets will be used by your program:</p>
+
+<p>1. School names and team names are located in T90RAZ1.C465S02.NAMEFILE on ACA302.
+Assign the file to NAME. Each record in this file has the following structure:</p>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="15%">SCHOOL_NAME</td>
+    <td width="16%"></td>
+    <td width="69%">PIC X(20).</td>
+  </tr>
+  <tr>
+    <td width="15%">TEAM_NAME</td>
+    <td width="16%">OCCURS 4 TIMES</td>
+    <td width="69%">PIC X(20).</td>
+  </tr>
+</table>
+
+<p>2. Each week's tiddily-winks scores are located in T90RAZ1.C465S02.SCORFILE on ACA302.
+Assign the file to SCORE. Each record in this file has the following structure:</p>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="17%">WEEK_NUMBER</td>
+    <td width="83%">PIC 9 COMP.</td>
+  </tr>
+  <tr>
+    <td width="17%">SCHOOL_NUMBER</td>
+    <td width="83%">PIC 9 COMP.</td>
+  </tr>
+  <tr>
+    <td width="17%">WEEKLY_SCORES</td>
+    <td width="83%">OCCURS 4 TIMES.</td>
+  </tr>
+  <tr>
+    <td width="17%"></td>
+    <td width="83%"><table border="0" width="100%">
+      <tr>
+        <td width="15%">GAME_1</td>
+        <td width="10%">PIC 999</td>
+        <td width="75%">COMP.</td>
+      </tr>
+      <tr>
+        <td width="15%">GAME_2</td>
+        <td width="10%">PIC 999</td>
+        <td width="75%">COMP.</td>
+      </tr>
+      <tr>
+        <td width="15%">GAME_3</td>
+        <td width="10%">PIC 999</td>
+        <td width="75%">COMP.</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+
+<p><strong>Note that all of the numbers in this file are in BINARY format.</strong></p>
+
+<p>Your output file should be assigned to PRINTER.<br>
+<br>
+Use the following JCL to compile and execute your program. <strong>Be very careful when
+entering this JCL so that it resembles what you see below.</strong></p>
+
+<p>//a valid JOB card<br>
+//STEP1 EXEC IGYWCG,CPARM='FLAG(W,W),TEST,APOST,SSRANGE',<br>
+//&nbsp;&nbsp;&nbsp; LPARM='MAP',GPARM='/TERMTHDACT(DUMP),CHECK(ON)'<br>
+//COB.SYSIN DD *<br>
+.<br>
+(your Cobol source code)<br>
+.<br>
+/*<br>
+//GO.NAME DD DSN=T90RAZ1.C465S02.NAMEFILE,UNIT=DISK,<br>
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VOL=SER=ACA302,DISP=SHR<br>
+//GO.SCORE DD DSN=T90RAZ1.C465S02.SCORFILE,UNIT=DISK,<br>
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VOL=SER=ACA302,DISP=SHR<br>
+//GO.PRINTER DD SYSOUT=*<br>
+//GO.SYSOUT DD SYSOUT=*</p>
+
+<p>PROGRAMMING NOTES:<br>
+<br>
+1. This assignment has been designed to use one, two, and three dimensional tables. Use a
+three dimensional Working-Storage table to hold the scores for the three games played by
+each team (1-4) and that team's total score for the week (your program will compute this
+latter value), within school (1-9), within week number (1-7). </p>
+
+<p>Use a two dimensional table to hold team name and team total score for seven weeks
+within school name. Any additional tables you need to use are up to your own design.</p>
+
+<p>2. Use only indexes to access individual table entries. You may not use subscripts.
+Since you will be using multiple tables and multiple indexes, give the indexes meaningful
+and descriptive names. This is a big aid when it comes to debugging time.<br>
+<br>
+3. The date in the report headings must be the date on which the report is generated. Use
+COBOL's DATE facility to ACCEPT the date, and then use INSPECT..REPLACING to insert
+slashes (/) between year/month/day.<br>
+<br>
+4. All internal numeric data fields that are used in your program, except those which will
+eventually be printed in the report, must be declared as <strong>binary</strong> fields
+whether or not they are part of a table. The numeric fields that will eventually be
+printed in the report should be declared as <strong>packed</strong> <strong>decimal</strong>
+fields.<br>
+<br>
+5. Use AUTHOR and DATE-COMPILED in the Identification Division of your program.</p>
+
+<p><strong>PRINT/PUNCH UTILITY PROGRAM</strong><br>
+<br>
+The scores file used in this assignment is in binary format which is not printable. To
+know if your program is producing correct output, it helps to have a copy of the input
+data. There is a copy of the input data which is in display format (i.e., it's printable).
+You can use the following JCL to obtain a printed copy of the display<br>
+version of the scores file.<br>
+<br>
+//a valid JOB card<br>
+//STEP1 EXEC PGM=IEBPTPCH<br>
+//SYSPRINT DD SYSOUT=*<br>
+//SYSUT1 DD DSN=T90RAZ1.C465S02.SCORFILE.DISPLAY,UNIT=DISK,<br>
+//&nbsp;&nbsp; VOL=SER=ACA301,DISP=SHR<br>
+//SYSUT2 DD SYSOUT=*<br>
+//SYSIN DD *<br>
+&nbsp;&nbsp; PRINT TYPORG=PS,MAXFLDS=1<br>
+&nbsp;&nbsp; RECORD FIELD=(38)<br>
+/*<br>
+//<br>
+</p>
+
+<hr>
+
+<p align="center"><strong>SAMPLE REPORT </strong></p>
+
+<pre>
+<small>02/01/14                                     BIG 9 CONFERENCE TIDDILY-WINKS CHAMPIONSHIP                                PAGE 1
+                                             WOODLANDS PLAZA HOTEL - FLAGSTAFF, ARIZONA
+                                                        WEEKLY TEAM TOTALS</small></pre>
+
+<pre><small>
+ WEEK                     SCHOOL                     SCHOOL TOTAL                   TEAMS                          TEAM TOTALS
+ ------------------------------------------------------------------------------------------------------------------------------------
+   1                    DELAWARE ST.                       821                      BLUE HENS                          220
+                                                                                    HEDGE HOGS                         197
+                                                                                    CANAL SKIERS                       142
+                                                                                    NEWARK NUTS                        262</small>
+<small>
+   1                    ARKANSAS ST.                       845                      WINKERS                            106
+                                                                                    FLIPPERS                           245
+                                                                                    ARK RIDERS                         219
+                                                                                    SUNEVS                             275</small>
+<small>
+   1                    UNIV. NEW MEXICO                   977                      SUN BATHERS                        241
+                                                                                    RUIN DIGGERS                       292
+                                                                                    PLAIN CAMPERS                      152
+                                                                                    EGGHEADS                           292</small>
+<small>
+   1                    UNIV. OF ILLINOIS                  927                      CAMPUS CLOWNS                      280
+                                                                                    GREEN ST. WATCHERS                 299
+                                                                                    ILLINIWEKS                         213
+                                                                                    SAMURAIS                           135
+</small> 	
+</pre>
+
+<p align="center">Continue this report for the remaining teams and schools for week 1,
+then produce 6 more pages for weeks 2 - 7. </p>
+
+<p align="center"><strong>SAMPLE FINAL REPORT </strong></p>
+
+<pre>
+<small>02/01/14                                     BIG 9 CONFERENCE TIDDILY-WINKS CHAMPIONSHIP                                PAGE 8
+                                             WOODLANDS PLAZA HOTEL - FLAGSTAFF, ARIZONA
+                                                           FINAL RESULTS
+
+                    SCHOOL              FINAL SCHOOL TOTAL           TEAMS                       FINAL TEAM TOTAL</small></pre>
+
+<pre><small>
+                    DELAWARE ST.              5,946                 BLUE HENS                          1,126
+                                                                    HEDGE HOGS                         1,836
+                                                                    CANAL SKIERS                       1,888
+                                                                    NEWARK NUTS                        1,096</small>
+<small>
+                    ARKANSAS ST.              5,446                 WINKERS                            1,005
+                                                                    FLIPPERS                           1,463
+                                                                    ARK RIDERS                         1,511
+                                                                    SUNEVS                             1,467</small>
+<small>
+                    UNIV. NEW MEXICO          6,165                 SUN BATHERS                        1,642
+                                                                    RUIN DIGGERS                       1,826
+                                                                    PLAIN CAMPERS                      1,053
+                                                                    EGGHEADS                           1,644</small>
+<small>
+                    UNIV. OF ILLINOIS         6,770                 CAMPUS CLOWNS                      2,005
+                                                                    GREEN ST. WATCHERS                 2,091
+                                                                    ILLINIWEKS                         1,379
+                                                                    SAMURAIS                           1,295
+</small> </pre>
+
+<p align="center">Contine this page for the remaining schools and teams. At the end of
+this page, include the following summaries.</p>
+
+<p align="left">&nbsp;</p>
+
+<pre>
+                                       HIGHEST SCORING SCHOOL                    TOTAL
+                                       NIU                                       6,855
+
+                                       HIGHEST SCORING TEAM                      TOTAL
+                                       GREEN ST. WATCHERS   - UNIV. OF ILLINOIS  2,091
+</pre>
+</body>
+</html>

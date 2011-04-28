@@ -1,0 +1,223 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>CSCI 465 PROGRAMMING ASSIGNMENT 9 - Spring 2002</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">CSCI 465</td>
+    <td width="33%">ASSIGNMENT 9</td>
+    <td width="34%">Spring 2002&nbsp;&nbsp;&nbsp;&nbsp; (100 points)</td>
+  </tr>
+</table>
+
+<p>In this assignment you will write a Cobol program to process transactions against a
+master file that contains information about employees of a company. For this assignment,
+the master file will be a VSAM KSDS and the update transactions will be read from a VSAM
+ESDS.</p>
+
+<p>The data for the KSDS master file is in the QSAM file named T90RAZ1.C465S02.A9DATA and
+this is on ACA301. &nbsp; The record structure is as follows:</p>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="24%">Social Security Number</td>
+    <td width="76%">Pic 9(9)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;==primary key</td>
+  </tr>
+  <tr>
+    <td width="24%">Employee Number</td>
+    <td width="76%">Pic 9(5)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;==unique alternate key</td>
+  </tr>
+  <tr>
+    <td width="24%">Employee Lastname</td>
+    <td width="76%">Pic X(15)&nbsp;&nbsp;&nbsp;&nbsp; &lt;==non-unique alternate key</td>
+  </tr>
+  <tr>
+    <td width="24%">Employee Firstname</td>
+    <td width="76%">Pic X(10)</td>
+  </tr>
+  <tr>
+    <td width="24%">Employee&nbsp; Address</td>
+    <td width="76%">Pic X(27)</td>
+  </tr>
+  <tr>
+    <td width="24%">Department</td>
+    <td width="76%">Pic X(3)</td>
+  </tr>
+  <tr>
+    <td width="24%">Years Worked</td>
+    <td width="76%">Pic 9(2)</td>
+  </tr>
+  <tr>
+    <td width="24%">Salary</td>
+    <td width="76%">Pic 9(5)</td>
+  </tr>
+  <tr>
+    <td width="24%">Retirement Status</td>
+    <td width="76%">Pic X</td>
+  </tr>
+</table>
+
+<p><strong>Social Security Number</strong> is the primary key for this file, but the
+records in the QSAM file are currently NOT sorted by that number. You should use the
+appropriate functions of IDCAMS (and other utilities) to define a KSDS master file and to
+load the (sorted) data into your KSDS. <b>Employee Lastname</b> will be a <u>non-uniqu</u>e
+alternate key, and <b>Employee Number</b> will be a <u>unique</u> alternate key. Use
+IDCAMS to define the appropriate alternate keys and to build the alternate indexes.&nbsp;
+You may assume that the average number of occurrences of shared last names is two, while
+the maximum number of shared last names is five.</p>
+
+<p>The update transactions to be processed against your KSDS master file are in the QSAM
+file named T90RAZ1.C465S02.A9TRANS and this file is on ACA301. You should use IDCAMS to
+define an ESDS cluster and then copy the contents of the transaction file into this ESDS.
+&nbsp; Your COBOL program will read these transactions from the ESDS cluster.&nbsp; </p>
+
+<p>All records in this file begin with a 4 byte transaction code.&nbsp; Possible
+transaction codes are &#145;ADD &#146;, 'EMPN',&nbsp; &#145;INCR&#146;, &#145;NAME&#146;,
+&#145;PNAM&#146;, 'DELT',&nbsp; 'RETR', and 'SEQ '. The remainder of the record varies
+depending on which type of transaction is represented. Here is what follows each of the 8
+transaction codes.</p>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="25%">ADD</td>
+    <td width="75%" colspan="3">a new record follows with the same description as records in
+    the master file</td>
+  </tr>
+  <tr>
+    <td width="25%">EMPN</td>
+    <td width="25%">Employee Number</td>
+    <td width="24%">Pic 9(5)</td>
+    <td width="26%">unique alternate key of record</td>
+  </tr>
+  <tr>
+    <td width="25%">INCR</td>
+    <td width="25%">Increment Key (SSN)</td>
+    <td width="24%">Pic 9(9)</td>
+    <td width="26%">primary key of record</td>
+  </tr>
+  <tr>
+    <td width="25%"></td>
+    <td width="25%">Increment Amount</td>
+    <td width="24%">Pic 9(5)</td>
+    <td width="26%">add this value to Salary</td>
+  </tr>
+  <tr>
+    <td width="25%">NAME</td>
+    <td width="25%">Customer Lastname</td>
+    <td width="24%">Pic X(15)</td>
+    <td width="26%">find these customer(s)</td>
+  </tr>
+  <tr>
+    <td width="25%">PNAM</td>
+    <td width="25%">Length&nbsp;&nbsp;&nbsp; Pic 9&nbsp;&nbsp;&nbsp;&nbsp; followed by</td>
+    <td width="24%">Name&nbsp;&nbsp;&nbsp; Pic X(7)</td>
+    <td width="26%">find these customer(s)</td>
+  </tr>
+  <tr>
+    <td width="25%">DELT</td>
+    <td width="25%">Delete Key (SSN)</td>
+    <td width="24%">Pic X(9)</td>
+    <td width="26%">delete this record</td>
+  </tr>
+  <tr>
+    <td width="25%">RETR</td>
+    <td width="25%">nothing further follows</td>
+    <td width="24%"></td>
+    <td width="26%"></td>
+  </tr>
+  <tr>
+    <td width="25%">SEQ</td>
+    <td width="25%">nothing further follows</td>
+    <td width="24%"></td>
+    <td width="26%"></td>
+  </tr>
+</table>
+
+<p>After successfully defining and loading your VSAM clusters and creating your alternate
+indexes, print the contents of the <strong>two VSAM clusters</strong> and the <strong>two
+alternate indexes</strong> in CHARACTER format.&nbsp; Study the printouts of each.</p>
+
+<hr>
+
+<p>The program.......</p>
+
+<p>Your program must process each of the transaction types against the KSDS master file.
+&nbsp; For each transaction processed, your program should produce a printed line stating:</p>
+
+<p><strong>Transaction Request
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Request Key
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+What follows depends on transaction type</strong></p>
+
+<p>ADD TRANSACTIONS:&nbsp; Write the new record to the master file.&nbsp; An unsuccessful
+transaction occurs when the record already exists.&nbsp; Print a line stating whether the
+insertion was successful or not.</p>
+
+<p>EMPN TRANSACTIONS: Find the base cluster record requested by the alternate key that
+follows EMPN. e.g., EMPN 12345 means find and print the base cluster record with alternate
+key 12345. Print the retrieved base cluster record or an error message if the record was
+not found.</p>
+
+<p>INCREMENT TRANSACTIONS: Add the amount specified to the record's SALARY field. An
+unsuccessful transaction occurs when the record whose SALARY is to be incremented does not
+exist. <strong>Print</strong> the updated base cluster record, or an error message if the
+specified record did not exist.</p>
+
+<p>NAME TRANSACTIONS: Find all of the base cluster records requested by the alternate key
+last name that follows NAME. e.g., NAMEBARROW means find and <b>print</b> all of the base
+cluster records that have alternate key BARROW.</p>
+
+<p>PNAM TRANSACTIONS: Find all of the base cluster records requested by the PARTIAL
+alternate key last name that follows PNAM.&nbsp; e.g., PNAM2AN means find and <b>print</b>
+all of the base cluster records whose last name field begins with the characters 'AN'. The
+length of the partial key to be processed immediately follows the transaction code. &nbsp;
+So, for another example, you could have PNAM4JOHN. Assume that partial name requests will
+range from 1 letter to 7 letters.</p>
+
+<p>DELETE TRANSACTIONS:&nbsp; Delete the record from the master file. An unsuccessful
+transaction occurs when the record to be deleted does not exist. Print a line stating
+whether the deletion was successful or not.</p>
+
+<p>RETR TRANSACTIONS: Sequentially scan the cluster from the beginning and delete all
+customer records whose retirement status is 'R'.&nbsp; Use the START verb to reposition
+the Current Record Pointer to the beginning of the file.&nbsp; Print a line stating
+whether any records were actually deleted or not.</p>
+
+<p>SEQ TRANSACTIONS:&nbsp; Print all of the records in the base cluster in sequential
+order based on primary key.&nbsp; Again, use the START verb.</p>
+
+<p>&nbsp;</p>
+
+<p>NOTES:</p>
+
+<p>1.) As with all VSAM jobs, the first two job steps you must write are the first and the
+last.&nbsp; These are the job steps that perform an IDCAMS delete of the two VSAM clusters
+you will be working with.&nbsp; You MUST perform these two steps and you MUST code them
+FIRST.&nbsp; Sandwich all of the remaining job steps in between these two.&nbsp; The last
+job step must be coded to ensure that it executes <strong>even</strong> if there has been
+a previous abend.</p>
+
+<p>2.) In addition to the messages and records you will print based on the results of your
+transaction processing, your program should also be coded such that it will print messages
+that pertain to any other kind of I/O processing error. For example, after successfully
+changing the salary of an employee, you may (let's hope not!) encounter an I/O error when
+attempting to rewrite the record to the master file. If the rewrite operation fails, be
+sure that your program checks for this and that it prints an informative message. The same
+considerations apply to all I/O operations performed against the KSDS master file.</p>
+
+<p>3.) Your report should be double spaced, with page numbers and an appropriate header
+and column headers. Use Cobol's DATE facility to date the report.</p>
+
+<p>4.) Set a return code of zero upon successful termination of your program.</p>
+
+<p>5.) Once the Cobol program is done, CHARACTER print the contents of the KSDS VSAM file.</p>
+
+<p>6.) Do not forget to put COND= on job steps.</p>
+</body>
+</html>

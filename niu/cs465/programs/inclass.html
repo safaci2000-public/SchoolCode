@@ -1,0 +1,60 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<meta NAME="Template" CONTENT="D:\MSOFFICE\WORD97\OFFICE\html.dot">
+<title>CSCI 465 IN-CLASS DEBUGGING ASSIGNMENT </title>
+</head>
+
+<body LINK="#0000ff" VLINK="#800080">
+
+<table border="0" cellpadding="3" cellspacing="5" width="450">
+  <tr>
+    <td width="100%">&nbsp;<table CELLSPACING="0" BORDER="0" CELLPADDING="7" WIDTH="638">
+      <tr>
+        <td WIDTH="33%" VALIGN="TOP">CSCI 465</td>
+        <td WIDTH="33%" VALIGN="TOP">In Class Debugging Assignment (0 points)</td>
+        <td WIDTH="33%" VALIGN="TOP"><p ALIGN="RIGHT">Spring 2002</td>
+      </tr>
+    </table>
+    <p>This is a no-credit learning assignment. You are to write the JCL to compile and
+    execute a Cobol program that has already been written. The program will compile, with
+    informational warnings, and <strong><font color="#FF0000">will abend</font></strong> when
+    executed.</p>
+    <p>All parts of this assignment use the LE370 Compiler and Loader. <b>ALWAYS INCLUDE MAP
+    AND LET AS LOADER OPTIONS</b>. The program source code is contained in the file with
+    DSN=T90RAZ1.PRACCODE and the program's input data is in the file with
+    DSN=T90RAZ1.PRACDATA. Both files are on ACA301. Assign the input file data to a DD card
+    with the name INPUT. The program writes its output to the printer via DD card name OUTPUT.</p>
+    <p>&nbsp;</p>
+    <p><font color="#FF0000">JOB NUMBER 1.</font></p>
+    <p>*************</p>
+    <p>Pass the following parameters to the Compiler.</p>
+    <p>OFFSET, XREF, FLAG(I,I), and APOST</p>
+    <p>&nbsp;</p>
+    <p><font color="#FF0000">JOB NUMBER 2.</font></p>
+    <p>*************</p>
+    <p>Pass the following parameters to the Compiler.</p>
+    <p>LIST, VBREF, FLAG(W,W), APOST, and TEST(ALL,SYM)</p>
+    <p>&nbsp;</p>
+    <p><font color="#FF0000">JOB NUMBER 3.</font></p>
+    <p>*************</p>
+    <p>Pass the following parameters to the Compiler.</p>
+    <p>MAP, TEST, and APOST</p>
+    <p>Pass the Run-time parameter of TERMTHDACT(DUMP).</p>
+    <p>To pass a run-time parameter when using the Loader, the format is as follows:</p>
+    <p>EXEC PGM=LOADER,PARM='MAP,LET//TERMTHDACT(DUMP)'</p>
+    <p>&nbsp;</p>
+    <p>When instructed, BRING ALL 3 JOBS TO CLASS. We will discuss each JOB in detail. Without
+    the output, you will be unable to follow the discussion. </td>
+  </tr>
+</table>
+
+<table CELLSPACING="0" BORDER="0" CELLPADDING="7" WIDTH="638" height="47">
+  <tr>
+    <td height="33"></td>
+  </tr>
+</table>
+</body>
+</html>

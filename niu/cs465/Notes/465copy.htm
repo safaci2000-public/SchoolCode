@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>COBOL COPY verb</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+
+<p><b>COBOL COPY verb</b></p>
+
+</font><font face="Courier New" size=3>
+
+</font><font face="Courier New" size=4>
+<p><pre></pre></p>
+</font><font face="Courier New" size=3>
+
+<p>Copies previously written COBOL code into a program.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>Format:   COPY member-name
+               [SUPPRESS]
+               [REPLACING string1 BY string2
+                          string3 BY string4]
+               [IN/OF library-name].
+
+
+member-name   PDS member name of the code to copy into the
+              program
+                  
+                  
+SUPPRESS      the copied text will not be printed in the 
+              source code listing
+                  
+                  
+REPLACING     replaces every occurrence of string1 by string2
+  
+  
+library-name  DDname of the library (PDS) that contains 
+              member-name
+  
+              if NOT coded, SYSLIB is assumed
+
+
+Notes:
+  
+1. Text that is copied in will have a 'C' in column 1
+  
+2. Compiler option LIB must be included in the PARM parameter
+  
+3. member-name must be included in SYSLIB or library-name
+
+
+Example:
+
+In the Compiler JCL:
+
+   //SYSLIB   DD DSN=T90KJM1.CS465F99.COPYLIB,DISP=SHR
+   
+   
+In the Data Division:
+
+   COPY MASTFD.
+</pre></p>
+</font>
+</body>
+</html>

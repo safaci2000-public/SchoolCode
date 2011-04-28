@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>COBOL MERGE verb</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+
+<p><b>COBOL MERGE verb</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>The MERGE verb takes two or more files of sorted input records and merges 
+them in ascending or descending order by one or more programmer specified keys
+into one sorted file.</p>
+
+
+</font><font face="Courier New" size=4>
+<p><pre>Format:  MERGE  sd-file-name
+            ON ASCENDING/DESCENDING KEY  sd-key-name
+
+            USING fd-name1  fd-name2  ...
+
+            |GIVING merged-file-name         |
+            |OUTPUT PROCEDURE IS routine-name|.
+
+
+   sd-file-name      a temporary merge work file
+                     SD in the DATA DIVISION
+                     SELECT statement in the ENVIRONMENT DIVISION
+                     MUST be CLOSED when the merge begins
+
+
+   sd-key-name       key field from the SD record description
+   
+
+   USING fd-name1  fd-name2    these are the files to be merged
+                               FDs in the DATA DIVISION
+                               SELECT statements
+                               MUST be CLOSED when the merge begins
+         
+
+   GIVING merged-file-name    this is the resulting merged file
+                              FD in the DATA DIVISION
+                              SELECT statement
+                              MUST be CLOSED when the merge starts
+   
+
+   OUTPUT PROCEDURE IS routine-name
+   
+      - routine-name is a programmer coded routine that will
+        manipulate the records AFTER they are merged
+        
+      - rules are the same as the SORT output routine
+
+
+
+
+SORT-RETURN    after a MERGE this will contain a return code
+               
+               0    success, 16   failure
+               
+               if a programmer moves a non-zero value to this
+               register, the sort will stop on the next RETURN
+</pre></p>
+</font>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>Program 7</title>
+</head>
+
+<body>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="33%">CSCI 465</td>
+    <td width="33%"><p align="center">Programming Assignment 7 (100 points)</td>
+    <td width="34%"><p align="right">Spring 2002</td>
+  </tr>
+</table>
+
+<p><br>
+<strong>PART I</strong>. Write two <strong>instream</strong> JCL procedures, one to
+Compile a Cobol source program and the other to create and execute a load module using the
+Linkage Editor and program Fetch. The JCL for these procedures is the same as you have
+used all semester with the following changes:</p>
+
+<p><strong>COMPILER PROCEDURE</strong><br>
+<br>
+1.) Specify a symbolic parameter for the PARM option and specify TEST and APOST as the
+default.<br>
+<br>
+2.) Specify a symbolic parameter for the REGION option and specify 248K as the default.<br>
+<br>
+3.) Omit the SYSIN DD card.<br>
+<br>
+4.) Specify a symbolic parameter for the SYSLIN data set name and assign &amp;&amp;OBJSET
+as the default.<br>
+<br>
+5.) Specify a symbolic parameter for the SYSLIN data set disposition and assign
+(NEW,PASS,DELETE) as the default.<br>
+</p>
+
+<p><strong>LINKAGE EDITOR AND FETCH PROCEDURE<br>
+</strong><br>
+1.) Specify a symbolic parameter for the Linkage Editor PARM option and leave it null as a
+default setting.</p>
+
+<p>2.) Specify a symbolic parameter for the Linkage Editor COND option. Assign a null
+value as the default.</p>
+
+<p>3.) Specify a symbolic parameter for the Linkage Editor REGION option and assign 2048K
+as the default.</p>
+
+<p>4.) Specify a symbolic parameter for the SYSLIN data set name and assign
+&amp;&amp;OBJSET as the default.</p>
+
+<p>5.) Specify a symbolic parameter for the SYSLIN data set disposition and assign
+(OLD,DELETE) as the default.</p>
+
+<p>6.) Code the SYSLMOD PDS and Load Module names to be &amp;&amp;TEMPLIB(PGM7)</p>
+
+<p>7.) Specify a symbolic parameter for the program/runtime PARM option and assign
+TERMTHDACT(DUMP) as the default for the run time option.<br>
+<br>
+8.) Include a CEEDUMP card and a SYSUDUMP card in the fetch step.<br>
+</p>
+
+<p><strong>PART II</strong>. Use the TYPRUN=SCAN option to locate any syntax errors in
+your instream procedures. Keep executing your procedures with<br>
+TYPRUN=SCAN until all syntax errors have been corrected.<br>
+<br>
+<br>
+<strong>PART III</strong>. Use your instream procedures to compile and execute your
+assignment 6 source code. Include your source code as instream data.<br>
+Make the following changes to your procedures:<br>
+<br>
+1.) Override the compiler PARM so that it includes LIB and FLAG(E,E) as well as TEST and
+APOST.<br>
+<br>
+2.) Change the name of the SYSLIN data set to &amp;&amp;OBJMOD in <strong>BOTH PLACES</strong>.<br>
+<br>
+3.) Change the REGION for the Compiler to be 2048K.</p>
+
+<p>4.) Add a card to the compile step that identifies the Copy Library that is needed by
+your Cobol program. (i.e., T90RAZ1.C465S02.COPYLIB)<br>
+<br>
+5.) Add a SYSIN DD card for your <strong>instream</strong> source code.<br>
+</p>
+
+<hr>
+
+<p>6.) Add a COND= to the fetch step so that your load module will not execute if the
+return code from the link edit step is greater than zero.</p>
+
+<p>7.) Add a REGION= to the fetch step and specify 2048K as the value.<br>
+<br>
+8.) Change the Link Editor COND so that it&nbsp; will not execute if the return code from
+the Compile step is greater than 4.<br>
+<br>
+9.) Increase the Link Editor's REGION to 3000K.<br>
+<br>
+10.) Assign MAP as the Link Editor PARM.<br>
+<br>
+11.) Pass the same parameters for the program/runtime PARM option as you did in assignment
+6. Include TERMTHDACT(DUMP) as well.<br>
+<br>
+12.) Concatenate to the STEPLIB data set the Load Library that you used in your assignment
+6 program that contains the load module that is called dynamically.</p>
+
+<p>13.) Change the name of the SYSLMOD PDS to be &amp;&amp;LOADLIB <strong>in both places</strong>.</p>
+
+<p>14.) Nullify the SYSUDUMP card.<br>
+<br>
+15.) Add the cards that are required for your program to do input and output and to
+perform the sorts. <br>
+<br>
+<br>
+<strong>PART IV</strong>. After Part III runs correctly, use IEBGENER to put both
+procedures in a permanent procedure library under your own MVS logon ID. Use IEBGENER to
+put your source code into a permanent sequential data set under your own MVS logon ID.
+Remember to code the correct DCB information for these data sets.<br>
+<br>
+<br>
+<strong>PART V</strong>. Use TYPRUN=SCAN to get a listing of the two procedures in your
+procedure library.<br>
+<br>
+<br>
+<strong>PART VI</strong>. Repeat Part III using the procedures that are in your procedure
+library. All of the changes listed in Part III still apply to this run except now your
+source code is not instream, but is a permanent sequential data set.<br>
+<br>
+Add NOSOURCE to the Compiler options. On your final grade run, add a job step to delete
+your procedure library and your sequential data set that contains your source code.<br>
+<br>
+Turn in the output from Parts III, IV, and VI.&nbsp;&nbsp; <strong>THESE THREE JOBS MUST
+BE CLIPPED TOGETHER WITH A STRONG CLIP</strong>.<br>
+<br>
+Be sure to document your JCL <strong>and the procedures themselves</strong>, including an
+explanation of all symbolic parameters.<br>
+<br>
+</p>
+</body>
+</html>

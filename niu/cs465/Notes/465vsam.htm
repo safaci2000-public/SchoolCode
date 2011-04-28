@@ -1,0 +1,463 @@
+<html>
+<head>
+<title>Virtual Storage Access Method</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+
+<p><b>Virtual Storage Access Method (VSAM)</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>VSAM is an access method that:</p>
+
+<ul>
+<li><p>allows sequential access to files either by a key or by sequence</p></li>
+<li><p>allows direct access by key, relative byte address, or by relative 
+record number</p></li>
+</ul>
+
+<p>A VSAM file is known as a cluster</p>
+
+<p>There are three types of clusters:</p>
+<ol>
+  <li>Entry Sequenced Data Set (ESDS)</li>
+  <li>Relative Record Data Set (RRDS)</li>
+  <li>Key Sequenced Data Set (KSDS)</li>
+</ol>
+
+<p>&nbsp;</p>
+</font><font face="Courier New" size=4>
+<p><b>Entry Sequenced Data Set (ESDS)</b></p>
+</font><font face="Courier New" size=3>
+
+<ul>
+<li><p>allows for sequential access and organization only</p></li>
+<li><p>records are accessed by their relative byte address</p></li>
+<li><p>records are added at the end</p></li>
+<li><p>may have fixed or variable length records</p></li>
+<li><p>consists of only a data component</p></li>
+</ul>
+
+<p>&nbsp;</p>
+</font><font face="Courier New" size=4>
+<p><b>Relative Record Data Set (RRDS)</b></p>
+</font><font face="Courier New" size=3>
+
+<ul>
+<li><p>allows both random and sequential access</p></li>
+<li><p>records are accessed by a relative record number (hash number)</p></li>
+<li><p>may have fixed length records only</p></li>
+<li><p>consists of a data component only</p></li>
+</ul>
+
+<p>&nbsp;</p>
+</font><font face="Courier New" size=4>
+<p><b>Key Sequenced Data Set (KSDS)</b></p>
+</font><font face="Courier New" size=3>
+
+<ul>
+<li><p>allows both random and sequential access</p></li>
+<li><p>records are accessed by a unique key value (index)</p></li>
+<li><p>may have fixed or variable length records</p></li>
+<li><p>consists of a data and index component</p></li>
+</ul>
+
+<p>&nbsp;</p>
+<p>The <b>data component</b> is made up of <b>data records</b>, which are
+the actual records that are read into or written from a program.  The data
+records are stored in ascending key sequence.</p>
+
+<p>The data records are grouped into <b>control intervals</b>.  Each CI has a
+fixed length, may contain records and free space, and has control information
+stored at the bottom.</p>
+
+<p>The control intervals are grouped into <b>control areas</b>.  The number
+of control intervals per control area depends on how much space is reserved when
+the data set is created.</p>
+
+<p>The <b>index component</b> is made up of an <b>index set</b> and a <b>
+sequence set</b>.</p>
+
+<p>The index set lists the largest index within each control area.</p>
+
+<p>The sequence set lists the largest index within each control interval.</p>
+
+<p>&nbsp;</p>
+</font><font face="Courier New" size=4>
+<p><b>Adding records to a cluster</b></p>
+</font><font face="Courier New" size=3>
+
+<p>When there is enough free space within a control interval to add a
+new data record, the record is added in the position that will maintain
+key sequence.</p>
+
+<p>When there is an not enough free space within a control interval AND there is
+an empty control interval within the same control area, a <b>control interval split</b>
+will occur.  Records from the full control interval are moved to the empty one.</p>
+
+<p>When there is an not enough free space within a control interval AND there is
+not an empty control interval within the same control area, a <b>control area split</b>
+will occur.  Space will be allocated for a new control area.  Records are moved to the new
+control area.  A control interval split occurs in the old control area.</p>
+
+<p>&nbsp;</p>
+</font><font face="Courier New" size=4>
+<p><b>Accessing records in a cluster</b></p>
+</font><font face="Courier New" size=3>
+
+<p>Two types of pointers (<b>vertical</b> and <b>horizontal</b>) are used
+to access records.  The vertical pointers are used for direct access by key.  The
+horizontal pointers are used for sequential access.</p>
+
+<p>&nbsp;</p>
+</font><font face="Courier New" size=4>
+<p><b>Creating, maintaining, and deleting VSAM clusters</b></p>
+</font><font face="Courier New" size=3>
+
+<p>VSAM clusters are managed by a utility called IDCAMS.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+IDCAMS JCL:
+
+//stepname  EXEC  PGM=IDCAMS
+//SYSPRINT  DD  SYSOUT=*
+//SYSIN     DD  *
+  control statements
+/*
+
+
+Depending on the operation being performed, other DD statements
+might be included.
+
+
+<b>control statements</b>:
+
+ - must begin between columns 2 and 16
+ - for continuation, use a hyphen as the last non-blank character
+ - place comments between /* and */ that doesn't start in col 1
+ 
+ 
+<b>To define a cluster:</b>  DEFINE CLUSTER (parameters)
+
+Required paramters:
+
+   NAME (cluster_name)
+   
+      this specifies the name of the cluster and must be
+      between 1 and 44 characters
+      
+
+   VOLUMES (volume_number)
+   
+      this specifies the volume that the cluster will be 
+      put on.  Either: ACA301 or ACA302
+      
+      
+   TRACKS (primary secondary)
+   CYLINDERS (primary secondary)
+   RECORDS (primary secondary)   
+
+      this specifies the amount of space to reserve for the cluster
+      primary: allocated once
+      secondary: allocated up to 122 times
+      
+
+   INDEXED     NONINDEXED     NUMBERED
+    (KSDS)       (ESDS)        (RRDS)
+
+      this specifies the type of cluster that is being created
+      
+
+   KEYS (length offset)
+   
+      this specifies the key for a KSDS cluster
+      length: length of the key
+      offset: location of the key (0 based)
+
+      default:  KEYS (64 0)
+
+
+   RECORDSIZE (average maximum)
+
+      this specifies the size of a record
+      if record length is fixed, average and maximum should be equal
+      code this if the RECORDS parameter is used
+      
+      default:  RECORDSIZE (4098 4098)
+      
+
+
+Optional parameters:
+      
+   REPLICATE     NOREPLICATE
+   
+      REPLICATE specifies that each KSDS index set should be
+      written as many times as possible on a track
+      
+      default:  NOREPLICATE
+      
+
+   IMBED     NOIMBED
+   
+      IMBED specifies that each KSDS sequence set should be
+      written as many times as possible on a track
+      
+      default:  NOIMBED
+      
+
+   SPANNED     NONSPANNED
+   
+      SPANNED specifies that a large KSDS data record can
+      spill across control interval boundaries
+      
+      default:  NONSPANNED
+      
+
+   FREESPACE (control_interval_%  control_area_%)
+   
+      this specifies the amount of free space to be left in the
+      cluster after the initial load and after any split occurs.
+
+      for files with many records being inserted, some free space
+      should be specified
+
+      for static files, default is sufficient
+      
+      default:  FREESPACE (0 0)
+
+
+   REUSE     NOREUSE
+   
+      this specifies whether the cluster is temporary (REUSE) or
+      permanent (NOREUSE)
+      
+      default:  NOREUSE
+      
+      
+   OWNER (owner_id)
+   
+      this specifies who owns the cluster
+      
+      
+   TO (julian_date)
+   
+      specifies the expiration date for the file
+      
+      
+   FOR (number_of_days)
+   
+      specifies the number of days that the file should exist
+      after creation
+      
+      
+   WRITECHECK     NOWRITECHECK
+   
+      this verifies that records are being read/written correctly
+      
+      default:  NOWRITECHECK
+
+
+Example:
+
+//EXMPL1    EXEC  PGM=IDCAMS
+//SYSPRINT  DD  SYSOUT=*
+//SYSIN     DD  *
+ DEFINE CLUSTER (         /* DEFINE A CLUSTER                  */ -
+   NAME (Z123456.ESDS)    /* CLUSTER NAME IS Z123456.ESDS      */ -
+   VOLUMES (ACA302)       /* CLUSTER IS ON ACA302              */ -
+   RECORDS (20 10)        /* PRIM: 20 RECORDS, SEC: 10 RECORDS */ -
+   RECORDSIZE (40 40)     /* FIXED LENGTH 40 BYTE RECORDS      */ -
+   NONINDEXED)            /* CLUSTER IS ESDS                   */
+/*
+
+
+The data and index components for a KSDS cluster can be defined
+separately by using:
+
+   DATA (parameters)  and    INDEX (parameters)
+
+
+//EXMPL2    EXEC  PGM=IDCAMS
+//SYSPRINT  DD  SYSOUT=*
+//SYSIN     DD  *
+ DEFINE CLUSTER ( -
+   NAME (KSDSCLUS) -
+   VOLUMES (ACA301) -
+   INDEXED -
+   TRACKS (1 1))
+     DATA ( -
+   NAME (KSDSDATA) -
+   KEYS (21 37) -
+   RECORDSIZE (121 121))
+     INDEX ( -
+   NAME (KSDSNDX) -
+   REPLICATE )
+/*
+
+
+
+<b>To delete a cluster:</b>  DELETE (cluster_name)
+
+Optional paramters:
+
+   PURGE     NOPURGE
+   
+      this specifies that the cluster should be deleted even if
+      it's before the expiration date
+
+      default:  NOPURGE
+      
+
+   ERASE     NOERASE
+   
+      ERASE specifies that the space should be rewritten with
+      binary zeros
+
+      default:  NOERASE
+      
+      
+//EXMPL3    EXEC  PGM=IDCAMS
+//SYSPRINT  DD  SYSOUT=*
+//SYSIN     DD  *
+  DELETE (Z123456.ESDS)
+/*
+
+//EXMPL4    EXEC  PGM=IDCAMS
+//SYSPRINT  DD  SYSOUT=*
+//SYSIN     DD  *
+  DELETE (KSDSCLUS)
+    ERASE
+/*
+
+
+
+
+<b>To copy from/into another data set:</b>  REPRO  parameters
+
+Required paramters:
+
+   INFILE (ddname)   or   INDATASET (cluster_name)
+   
+      this specifies the file that is to be used for input
+
+
+   OUTFILE (ddname)   or   OUTDATASET (cluster_name)
+   
+      this specifies the file that is to be used for output
+
+
+   
+Optional paramter:
+
+   COUNT (n)
+   
+      this specifies that n records should be copied to the output
+      data set
+
+      default:  copy all
+      
+
+//EXMPL5    EXEC  PGM=IDCAMS
+//SYSPRINT  DD  SYSOUT=*
+//INDD      DD  DSN=Z123456.INPUT,...
+//SYSIN     DD  *
+  REPRO -
+    INFILE (INDD) -
+    OUTDATASET (Z123456.ESDS)
+/*
+
+
+//EXMPL6    EXEC  PGM=IDCAMS
+//SYSPRINT  DD  SYSOUT=*
+//INDD      DD  DSN=Z123456.INPUT,...
+//OUTDD     DD  DSN=Z123456.OUTPUT,...
+//SYSIN     DD  *
+  REPRO -
+    INFILE (INDD) -
+    OUTFILE (OUTDD)
+/*
+
+
+
+
+<b>To print a cluster:</b>  PRINT  parameters
+
+Required paramters:
+
+   INFILE (ddname)   or   INDATASET (cluster_name)
+   
+      this specifies the file that is to be printed
+
+
+
+Optional paramters:
+
+   OUTFILE (ddname)
+   
+      this specifies the file that the records are to be written to
+
+      if not specified, writes to SYSPRINT
+
+
+   CHARACTER     HEX
+   
+      this specifies the format that the records should be printed in
+
+      default:  HEX
+      
+
+//EXMPL7    EXEC  PGM=IDCAMS
+//SYSPRINT  DD  SYSOUT=*
+//SYSIN     DD  *
+  PRINT -
+    INDATASET (Z123456.ESDS) -
+    CHARACTER
+/*
+
+
+//EXMPL8    EXEC  PGM=IDCAMS
+//SYSPRINT  DD  SYSOUT=*
+//SYSIN     DD  *
+  PRINT -
+    INDATASET (Z123456.ESDS) -
+    CHARACTER
+  PRINT -
+    INDATASET (KSDSCLUS) -
+    CHARACTER
+/*
+
+
+
+
+<b>To display VSAM catalog information:</b>  LISTCAT  parameters
+
+Optional paramters:
+
+   CATALOG (catalog_name)
+   
+      this specifies which catalog contains the entries to be listed
+
+
+   NAME     VOLUME     ALLOCATION     HISTORY     ALL
+   
+      this specifies how much information should be displayed
+
+      default: NAME
+
+
+   ENTRIES (entry_name)
+
+      this specifies which entry/entries should be displayed
+
+
+   CLUSTER     DATA     INDEX     USERCATALOG
+   
+      this specifies which entry should be printed if an entry
+      specified in the ENTRIES parameter is not unique
+</pre></p>
+</font>
+</body>
+</html>

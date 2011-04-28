@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>COBOL numeric formats</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+<b><p>COBOL numeric formats</p></b>
+</font><font face="Courier New" size=3>
+
+<p>The format is specified by using the <b>USAGE IS</b> clause.</p>
+
+<p>There are four formats:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  DISPLAY    zoned decimal number
+             1 character/byte
+             default
+
+  COMP-3     packed decimal number
+             2 digits/byte - last byte contains the sign digit
+
+  COMP       binary number
+             S9     to S9(4)   - stored as 2 bytes
+             S9(5)  to S9(9)   - stored as 4 bytes
+             S9(10) to S9(18)  - stored as 8 bytes
+             NOT aligned on a specific boundary
+             also known as COMP-4
+
+  COMP SYNC  binary number on a specific boundary
+             S9     to S9(4)   - stored as 2 bytes on halfword
+             S9(5)  to S9(9)   - stored as 4 bytes on fullword
+             S9(10) to S9(18)  - stored as 8 bytes on fullword
+
+
+  01  FLD-A   PIC  S9(5)   USAGE IS DISPLAY.
+
+  01  FLD-B   PIC  S9(5)   COMP-3.
+
+  01  FLD-C   PIC  S9(5)   COMP.
+
+  01  FLD-D   PIC  S9(5)   USAGE IS COMP SYNC.
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>Using COMP SYNC can cause "slack bytes" to be embedded within the WORKING
+STORAGE because of the forced alignment.  This can affect questions as to the
+size of table entry, or computing the size of a record.</p>
+
+<p>Anything on an 01 level is automatically on a doubleword boundary.</p>
+
+<p>COBOL performs the conversions between numeric formats automatically.</p>
+
+<p>Usage guidelines:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  DISPLAY    numerical items that will not be used for arithmetic and
+             will be printed
+
+  COMP-3     numerical items that will be used in arithmetic and           
+             will eventually be printed
+
+  COMP       numerical items that will be used ONLY for arithmetic and
+             will NOT be printed
+
+
+  01  FLD-A   PIC  S9(5)   USAGE IS DISPLAY  VALUE 23.
+
+         stored as 5 bytes:  F0 F0 F0 F2 F3
+
+
+  01  FLD-B   PIC  S9(5)   COMP-3  VALUE 23.
+
+         stored as 3 bytes:  00 02 3F
+                                     
+
+  01  FLD-C   PIC  S9(5)   COMP  VALUE 23.
+
+         stored as 4 bytes:  00 00 00 17
+                                     
+</pre></p>
+</font>
+</body>
+</html>

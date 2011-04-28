@@ -1,0 +1,176 @@
+<html>
+<head>
+<title>Multidimensional Indexed Tables in COBOL</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+<b><p>Multidimensional Indexed Tables in COBOL</p></b>
+</font><font face="Courier New" size=3>
+
+<p>Indexed tables are defined in COBOL using the <b>OCCURS n TIMES</b> and
+<b>INDEXED BY</b> clauses.</p>
+
+<p>An index cannot be manipulated by the standard arithmetic verbs (ADD,
+SUBTRACT,...) or the MOVE verb.  Instead, the SET verb is used:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  FORMAT 1:  SET  var_name_1/index_1  TO  var_name_2/index_2/integer
+
+  FORMAT 2:  SET  index_1 index_2 ... UP/DOWN BY  var_name/integer
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>Indexes can also be changed by PERFORM VARYING, SEARCH, or SEARCH ALL</p>
+
+<p>Indexes are stored as a binary value that is equal to the displacement from
+the beginning of the table to the specific question.</p>
+
+<p>A multidimensional table is created by nesting OCCURS clauses.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  01  ANNUAL-SALES-DATA.
+      05  YEARLY-SALES         OCCURS 5 TIMES   INDEXED BY YR-NDX.
+          10  MONTHLY-SALES    OCCURS 12 TIMES  INDEXED BY M-NDX.
+              15  SALE-AMOUNT  PIC  9(5)V99.
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>To access an entry in a multidimensional table, the order of the indexes
+will correspond to the order of the OCCURS clauses.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  SALE-AMOUNT(1, 4)  references year 1 and month 4 (April).
+
+  SALE-AMOUNT(4, 1)  references year 4 and month 1 (January).
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>To access an entry in a multidimensional table, every field needs as many
+indexes as there are OCCURS clauses that are a part of it or above it.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  SALE-AMOUNT(4)  is invalid
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>Example of processing a multidimensional indexed table:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  01  ANNUAL-SALES-DATA.
+      05  YEARLY-SALES         OCCURS 5 TIMES   INDEXED BY YR-NDX.
+          10  MONTHLY-SALES    OCCURS 12 TIMES  INDEXED BY M-NDX.
+              15  SALE-AMOUNT  PIC  9(5)V99.
+
+
+  PERFORM VARYING YR-NDX FROM 1 BY 1 UNTIL YR-NDX > 5
+
+    PERFORM VARYING M-NDX FROM 1 BY 1 UNTIL M-NDX > 12
+
+      ADD SALE-AMOUNT(YR-NDX, M-NDX) TO TOTAL-AMOUNT
+
+    END-PERFORM
+  END-PERFORM.
+
+
+
+  PERFORM 100-ADD
+    VARYING YR-NDX FROM 1 BY 1 UNTIL YR-NDX > 5
+    AFTER M-NDX FROM 1 BY 1 UNTIL M-NDX > 12.
+
+
+  100-ADD.
+
+      ADD SALE-AMOUNT(YR-NDX, M-NDX) TO TOTAL-AMOUNT.
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>Examples of COBOL table storage:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+
+  One-dimensional table:
+
+    01  TABLE-1.
+        05  DATA-1   OCCURS 3 TIMES   PIC X(6).
+
+
+     --------------------------------------
+    |               TABLE-1                |
+     --------------------------------------
+    |   DATA-1   |   DATA-1   |   DATA-1   |
+     --------------------------------------
+
+
+  One-dimensional table:
+
+    01  TABLE-2.
+        05  DATA-2     OCCURS 3 TIMES.
+            10  FLD-A  PIC X(4).
+            10  FLD-B  PIC X(4).
+
+
+     -----------------------------------------------
+    |                     TABLE-2                   |
+     -----------------------------------------------
+    |     DATA-2    |     DATA-2    |     DATA-2    |
+     -----------------------------------------------
+    | FLD-A | FLD-B | FLD-A | FLD-B | FLD-A | FLD-B |
+     -----------------------------------------------
+
+
+  Two-dimensional table:
+
+    01  TABLE-3.
+        05  FLD-A      OCCURS 3 TIMES.
+            10  FLD-B  OCCURS 2 TIMES  PIC X(4).
+
+
+     -----------------------------------------------
+    |                   TABLE-3                     |
+     -----------------------------------------------
+    |     FLD-A     |     FLD-A     |     FLD-A     |
+     -----------------------------------------------
+    | FLD-B | FLD-B | FLD-B | FLD-B | FLD-B | FLD-B |
+     -----------------------------------------------
+
+
+  Two one-dimensional tables:
+
+    01  TABLE-4.
+        05  FLD-A      OCCURS 3 TIMES   PIC X(3).
+        05  FLD-B      OCCURS 2 TIMES   PIC X(4).
+
+
+     -----------------------------------------------
+    |                   TABLE-4                     |
+     -----------------------------------------------
+    | FLD-A | FLD-A | FLD-A |   FLD-B   |   FLD-B   |
+     -----------------------------------------------
+
+
+  Two-dimensional table:
+
+    01  TABLE-5.
+        05  FLD-A      OCCURS 2 TIMES.
+            10  FLD-B  PIC X(4).
+            10  FLD-C  OCCURS 2 TIMES  PIC X(4).
+
+
+     -----------------------------------------------
+    |                   TABLE-5                     |
+     -----------------------------------------------
+    |         FLD-A         |        FLD-A          |
+     -----------------------------------------------
+    | FLD-B | FLD-C | FLD-C | FLD-B | FLD-C | FLD-C |
+     -----------------------------------------------
+</pre></p>
+</font>
+</body>
+</html>

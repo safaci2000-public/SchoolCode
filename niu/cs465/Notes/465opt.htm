@@ -1,0 +1,242 @@
+<html>
+<head>
+<title>Compiler, Loader and Linkage Editor Options</title>
+</head>
+<body>
+
+<font face="Courier New" size=3>
+
+<p>Parameters can be supplied to the Compiler, Loader, and Linkage Editor by
+adding the PARM parameter to the EXEC statement.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+Format:   PARM='string'  or   PARM=(string)
+
+   string   a maximum of 100 characters
+
+
+   - this parameter is used to pass values to the program or procedure
+     that is being executed
+</pre></p>
+
+
+<p><b>COBOL Compiler Options</b></p>
+
+<p><pre>
+  APOST
+  QUOTE or Q  (default)
+
+    - this option determines which type of punctuation is used to
+      enclose literals
+
+
+  SOURCE or S  (default)
+  NOSOURCE or NOS
+
+    - this option determines whether or not the source code is printed
+      in the output
+
+
+  LINECOUNT(nnn) or LC(nnn)
+
+    - this option determines the number of lines printed on each page
+      of the printout
+
+    - default: 60 lines per page
+
+
+  OFFSET or OFF
+  NOOFFSET or NOOFF  (default)
+
+    - this option (OFFSET) produces a condensed list of all COBOL verbs
+      in the PROCEDURE DIVISION
+
+    - the list includes: the COBOL verb, statement number, and
+      relative location of the verb
+
+
+  LIST
+  NOLIST  (default)
+
+    - this option (LIST) produces an ASSEMBLER listing of the
+      PROCEDURE DIVISION
+
+    - also gives the location and size of WORKING STORAGE, and a
+      table of all literals used in the program
+
+    - LIST and OFFSET are mutually exclusive.  If both are specified,
+      LIST is ignored and OFFSET is used
+
+
+  LIB
+  NOLIB  (default)
+
+    - this option (LIB) is used if the COBOL COPY verb is going to
+      be used
+
+
+  MAP
+  NOMAP  (default)
+
+    - this option (MAP) produces a map of the DATA DIVISION which lists
+      the source code line number, COBOL level number, source code data
+      name, base locator, displacement from base locator, data type,
+      attributes and ASSEMBLER definition
+      PROCEDURE DIVISION
+
+
+  FLAG(x,y) or F(x,y)
+  FLAG(x)
+  NOFLAG  (default)
+
+    - this option (FLAG) controls which diagnostic messages are
+      printed at the end of the listing (x value) and embedded within
+      the listing (y value)
+
+    - messages with a level greater than or equal to x are printed
+
+    - if y is specified, it must be greater than or equal to x and
+      SOURCE must be specified as an option
+
+    - if y is specified, then messages with a level greater than or
+      equal to y are printed
+
+    - valid options for x and y:
+
+         I  informational         (return code of 0)
+         W  warning               (return code of 4)
+         E  error                 (return code of 8)
+         S  severe error          (return code of 12)
+         U  unrecoverable error   (return code of 16)
+
+
+  VBREF
+  NOVBREF  (default)
+
+    - this option (VBREF) produces a list of all COBOL verbs that were
+      used and how many times that they were used
+
+
+  XREF or X or XREF(FULL)
+  XREF(SHORT)
+  NOXREF or NOX  (default)
+
+    - this option (XREF) produces a sorted cross referenced list of all
+      data and procedure names
+
+    - combined with the option SOURCE, an embedded cross reference
+      which gives the line number of the data item definition used in
+      the COBOL statement will also be produced
+
+    - SHORT will put only the items that were specifically referenced
+      in the PROCEDURE DIVISION in the listing
+
+
+  TEST(hook,symbol)
+  NOTEST  (default)
+
+    - this option (TEST) will generate the line number of the
+      statement that caused the program to ABEND
+
+    - hook  -  specifies which lines will be flagged for errors
+
+         BLOCK   program entry and exit points
+         PATH    BLOCK plus all branching points (IF, EVALUATE, etc.)
+         STMT    PATH plus all statements
+         ALL     same as STMT
+         NONE    nothing
+
+    - symbol  -  specifies whether a formatted dump will be produced
+
+         SYM     produce a formatted dump
+         NOSYM   no dump
+
+    - if SYM is used, then the runtime option TERMTHDACT(DUMP) and
+      the DD card //CEEDUMP  DD  SYSOUT=* are required
+
+    - when TEST is used as an option, TEST(ALL,SYM) is the default
+
+
+  SSRANGE or SSR
+  NOSSRANGE or NOSSR  (default)
+
+    - this option (SSRANGE) will check that subscript/index values
+      fall within the appropriate range
+
+    - the runtime option CHECK(ON) must also be specified
+</pre></p>
+
+<p><b>Run time options:</b></p>
+
+<p><pre>
+  - options that are invoked when the program is run
+
+
+  Fetch step format:   PARM='user options/runtime options'
+
+      PARM='/CHECK(ON)'  or  PARM='/TERMTHDACT(DUMP)'
+
+
+  Loader step format:  PARM='loader option/user option/runtime option'
+
+      PARM='//CHECK(ON)'  or  PARM='//TERMTHDACT(DUMP)'
+</pre></p>
+
+<p>&nbsp;</p>
+<p><b>Loader options</b></p>
+
+<p><pre>
+  MAP
+  NOMAP  (default)
+
+    - this option (MAP) produces a map of the load module that lists
+      external names and their absolute addresses
+
+    - a SYSLOUT DD card must be specified in the LOADER step
+
+
+  PRINT  (default)
+  NOPRINT
+
+    - this option (PRINT) produces diagnostic messages on the SYSLOUT
+      data set
+
+
+  LET
+  NOLET  (default)
+
+    - this option (LET) indicates that the LOADER will try to execute
+      a program with a return code of 8 at most
+</pre></p>
+
+<p>&nbsp;</p>
+<p><b>Linkage Editor options</b></p>
+
+<p><pre>
+  MAP
+  NOMAP   (default)
+
+    - this option (MAP) produces a map of the load module control
+      sections and entry points
+
+
+  XREF
+  NOXREF  (default)
+
+    - this option (XREF) indicates that a cross reference list and a
+      module MAP are to be produced
+
+    - MAP and XREF are mutually exclusive.  XREF is used if both are
+      specified
+
+
+  LIST
+  NOLIST  (default)
+
+    - this option (LIST) indicates that any LINKAGE EDITOR control
+      statements associated with the job step are to be listed
+</pre></p>
+</font>
+</body>
+</html>

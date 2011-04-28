@@ -1,0 +1,186 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>CSCI 465 Sample Exam 1</title>
+<meta NAME="Template" CONTENT="C:\MSOFFICE\WINWORD\OFFICE\html.dot">
+<script LANGUAGE="JavaScript">
+<!--
+var ansarray;
+
+//********************************
+function mkArray()
+{
+ for (var i = 0; i < 120; i++)
+     this[i] = " ";
+}
+
+//****************************
+function doit()
+{
+  ansarray = new mkArray();
+  ansarray[0] = "Do not multiply primary allocation by 15."
+  ansarray[1] = "Do not simply add the two allocations together."
+  ansarray[2] = "I cannot follow your reasoning for this one."    
+  ansarray[3] = "Right. 4 tracks for primary allocation once, plus 15 * 6 tracks secondary allocation."
+  ansarray[4] = "Sorry, there is an answer."
+
+  ansarray[5] = "This name is OK."
+  ansarray[6] = "Right. The substring 'MYDATASET' exceeds the maximum 8 characters. "    
+  ansarray[7] = "This name is OK."
+  ansarray[8] = "Nope.  There's a problem with at least one of them."
+  ansarray[9] = "You're partially correct."
+
+  ansarray[10] = "Remember that conditions specify when NOT to execute a step."
+  ansarray[11] = "The condition does not refer to the previous step."
+  ansarray[12] = "Remember that conditions specify when NOT to execute a step."
+  ansarray[13] = "Right. Remember, if the condition specified is TRUE, you are THROUGH. "    
+
+  ansarray[14] = "Neither one is required if the data set is not used by subsequent steps."
+  ansarray[15] = "DSN is not required if data set not used later."
+  ansarray[16] = "Only two of these parameters is required."
+  ansarray[17] = "Only two of these parameters is required."
+  ansarray[18] = "Right. The only values required in this circumstance are SPACE and UNIT."    
+
+  ansarray[19] = "Source code is input to the COMPILER."
+  ansarray[20] = "Object modules are not executable."
+  ansarray[21] = "There is no such thing as a non-executable load module."
+  ansarray[22] = "This is part of the answer."
+  ansarray[23] = "This is part of the answer."
+  ansarray[24] = "Right. There is no such thing as an executable object module or non-executable load module. "    
+
+  ansarray[25] = "The first block is moved before this occurs."
+  ansarray[26] = "If the buffer is empty, a second or third block will be fetched."
+  ansarray[27] = "Right. First block of records is moved when the file is opened. "    
+  ansarray[28] = "No.  The program might not even do I/O each time."
+  ansarray[29] = "Sorry, there is a correct answer."
+
+  ansarray[30] = "Partially correct."
+  ansarray[31] = "Partially correct."
+  ansarray[32] = "The loader outputs a load module."
+  ansarray[33] = "The linkage editor outputs a load module."
+  ansarray[34] = "Right. The assembler and compiler both produce object modules as output. "    
+
+  ansarray[35] = "The assembler does not create nor execute a load module."
+  ansarray[36] = "The compiler does not create nor execute a load module."
+  ansarray[37] = "Right. Only the loader executes the load module."
+  ansarray[38] = "The Linkage editor makes a load module but does not execute it. "     
+  ansarray[39] = "Half right."
+
+  ansarray[40] = "The Assembler is normally associated with the 'ASM' step."
+  ansarray[41] = "The compiler is normally associated with the 'COB' step."
+  ansarray[42] = "Right. Only the Loader executes a program. That is the traditional 'GO' step. "    
+  ansarray[43] = "The Linkage Editor is normally associated with the 'LKED' step."
+  ansarray[44] = "Half right."
+
+  ansarray[45] = "PARM= is not a required keyword parm.  Does not cause a JCL error."
+  ansarray[46] = "Omitting PARM= would not cause a compiler error."
+  ansarray[47] = "There is no such message produced by the Loader / Linkage Editor."
+  ansarray[48] = "The program would execute, but possibly bomb if the omitted parm was crucial. "    
+  ansarray[49] = "Right, but the program may not behave correctly."
+
+  ansarray[50] = "Half Right. Cobol automatically provides for standard entry conditions."
+  ansarray[51] = "You can receive the parameters without a DSECT."
+  ansarray[52] = "Half right."
+  ansarray[53] = "Sorry.  There is a correct answer."
+  ansarray[54] = "Right. Both are true."
+
+  ansarray[55] = "This will end the run unit."
+  ansarray[56] = "Right. GOBACK causes a return to the program's caller. "    
+  ansarray[57] = "This is used in the Cobol SORT feature."
+  ansarray[58] = "Sorry, there is an answer."
+  ansarray[59] = "Sorry, there is only one answer."
+
+  ansarray[60] = "Right. The linkage section simply describes the structure of the incoming parms. "    
+  ansarray[61] = "No because the linkage section is not a list of addresses."
+  ansarray[62] = "This is true only of the main program's linkage section."
+  ansarray[63] = "There is an answer."
+  ansarray[64] = "Only one item is true."
+
+  ansarray[65] = "Not even close."
+  ansarray[66] = "Halfway there."
+  ansarray[67] = "Right. Every PDS directory block is always 256 bytes long. "    
+  ansarray[68] = "Reduce this by half and you're there."
+  ansarray[69] = "Sorry, there is an answer."
+
+  ansarray[70] = "This is the minimum, but some PDS members may be larger."
+  ansarray[71] = "This is the size of a member's name."
+  ansarray[72] = "This is the maximum, but some PDS members may be smaller."
+  ansarray[73] = "No.  Member names are always 8 bytes long."
+  ansarray[74] = "Right. Some members will be the minimum 12 bytes, others the maximum 74 bytes, others in between. "    
+
+  ansarray[75] = "This usually represents printed output."
+  ansarray[76] = "This handles messages from the loader."
+  ansarray[77] = "Right. SYSLMOD is the output from the link editor, i.e., a permanent load module."    
+  ansarray[78] = "This represents the object module input."
+  ansarray[79] = "Sorry, there is an answer."
+
+  ansarray[80] = "No.  Object modules are sequential files."
+  ansarray[81] = "Right. Load modules must always be saved in a PDS. "    
+  ansarray[82] = "May be saved as PDS member, but does not have to be."
+  ansarray[83] = "I made this up.  I don't even know what it means."
+  ansarray[84] = "Sorry, there is an answer."
+
+  ansarray[85] = "It represents a displacement, but not this one."
+  ansarray[86] = "Right. Indexes always hold displacements from the beginning of the table. "    
+  ansarray[87] = "Never.  Although coded in this fashion, internally it is not stored like this."
+  ansarray[88] = "How would this help find a particular slot?"
+  ansarray[89] = "Sorry, there is an answer."
+
+  ansarray[90] = "This tells the compiler you'll be using single quotes around literals."
+  ansarray[91] = "Tells the compiler to do range checking."
+  ansarray[92] = "Right. What more can I say?. "    
+  ansarray[93] = "Tells the compiler what level of error messages to flag."
+  ansarray[94] = "Sorry, there is an answer."
+
+  ansarray[95] = "Half right."
+  ansarray[96] = "Not the same as the PIC clause."
+  ansarray[97] = "Size has nothing to do with the sign."
+  ansarray[98] = "Since it's 01 level, we know it's double word aligned."
+  ansarray[99] = "Right. Any binary item 10 - 18 digits in length takes up 8 bytes. "    
+
+  ansarray[100] = "This improves numeric processing efficiency. "    
+  ansarray[101] = "This is NOT required, but is a good suggestion."
+  ansarray[102] = "Programmers generally declare subscripts as display items, thus too slow."
+  ansarray[103] = "Indexes are compiler generated binary items. "    
+  ansarray[104] = "If the data set is really a temp (begins with &&) it will not be saved. "    
+  ansarray[105] = "If the data set is really a temp (begins with &&) it will not be saved. "    
+  ansarray[106] = "The compiler will always reserve room for the maximum number of items. "    
+  ansarray[107] = "With DEPENDING ON, you never know how many items there will be."
+  ansarray[108] = "L stands for Locate.  M stands for Move."
+  ansarray[109] = "If it is a Locate mode, then you must transfer the data. "    
+  ansarray[110] = "What do you think is in SYSLIB?"
+  ansarray[111] = "It can accept load modules, object modules, and text cards as input. "    
+  ansarray[112] = "A called program does not necessarily have to return control. "    
+  ansarray[113] = "A called program does not necessarily have to return control. "    
+  ansarray[114] = "Location in memory depends on the Loader."
+  ansarray[115] = "It merely determines where to start the location counter value."    
+  ansarray[116] = "Group moves are always treated as alphanumeric."    
+  ansarray[117] = "Group moves are always treated as alphanumeric."    
+  ansarray[118] = "All existing data sets have a DSCB."    
+  ansarray[119] = "If no DSCB, how is LRECL determined?"
+  document.myform.ans.value = "";
+
+}
+
+//*******************************
+function showans(x)
+{
+  document.myform.ans.value = "";
+
+  document.myform.ans.value = ansarray[x-1];
+}
+
+
+//  -->
+</script>
+</head>
+
+<body onLoad="doit();">
+
+<form NAME="myform">
+  <p><input TYPE="text" NAME="ans" SIZE="150" VALUE> </p>
+</form>
+</body>
+</html>

@@ -1,0 +1,863 @@
+<html>
+<head>
+<title>Utilities</title>
+</head>
+<body>
+
+<font face="Courier New" size=5>
+
+<p><b>Utilities</b></p>
+
+</font><font face="Courier New" size=4>
+
+<p><b>IEFBR14</b></p>
+
+<p><pre>  - consists of one instruction  BR 14
+  
+  - used to fool the operating system into processing the data sets
+    associated with the step because the operating system will not
+    process the DD statements unless a program is executed
+    
+  - used to create, delete, catalog, and uncatalog data sets
+  
+  - the type of action that is performed is determined by the DISP
+    parameter
+    
+    DISP=(NEW,KEEP,KEEP)        creates a data set
+    
+    DISP=(OLD,DELETE,DELETE)    deletes a data set
+    
+    DISP=(OLD,CATLG,KEEP)       catalogs a data set
+    
+    DISP=(OLD,UNCATALG,KEEP)    uncatalogs a data set
+
+
+//JOB1  JOB ,'Example'
+//BR14STEP  EXEC  PGM=IEFBR14
+//DELETE1   DD    DSN=Z123456.MYLIB,UNIT=DISK,VOL=SER=ACA302,
+//     DISP=(OLD,DELETE,DELETE)
+//*
+//CREATE1   DD    DSN=Z123456.NEWFILE,UNIT=DISK,VOL=SER=ACA302,
+//     DISP=(NEW,KEEP,KEEP)
+//
+</pre></p>
+
+<p><b>IEBPTPCH</b></p>
+
+<p><pre>  - writes all or some of the records from an input file to an
+    output data set
+  
+  - the records in the output data set may or may not be edited
+
+  <b>Format:</b>    
+  
+  //stepname  EXEC  PGM=IEBPTPCH
+  //SYSUT1    DD    DSN=input data set information goes here
+  //SYSUT2    DD    DSN=output data set information goes here
+  //SYSPRINT  DD    SYSOUT=*
+  //SYSIN     DD    *
+    control statements
+  /*
+  
+  
+  <b>control statements:</b>
+  
+  <b>PRINT  options</b>
+  
+     - indicates that the output is to be printed
+     
+     options:
+     
+        <b>PREFORM=A</b>  or  <b>PREFORM=M</b>
+        
+          Specifies the type of carriage control character that is
+          in the first character position
+          
+          Default: neither
+          
+          If used, all other options except TYPORG are ignored
+
+
+        <b>TYPORG=PO</b>  or  <b>TYPORG=PS</b>
+        
+          Specifies the type of data set that SYSUT1
+          
+          PO -- SYSUT1 is a partitioned data set
+          
+          PS -- SYSUT1 is a sequential data set
+          
+          Default: PS
+          
+
+        <b>TOTCONV=XE</b>  or  <b>TOTCONV=PZ</b>
+        
+          Specifies the type of data conversion that should take
+          place
+          
+          XE -- print in 2 character per byte format
+          
+          PZ -- convert PACKED decimal to ZONED decimal
+          
+          Default: neither
+          
+
+        <b>CNTRL=1</b>  or  <b>CNTRL=2</b>  or  <b>CNTRL=3</b>
+        
+          Specifies the type of line spacing for the output
+          
+          Default: 1
+          
+
+        <b>STRTAFT=m</b>
+        
+          Specifies the number of records to skip before printing
+          
+          m &lt;= 32767
+          
+          Default: 0
+          
+
+        <b>STOPAFT=n</b>
+        
+          Specifies the number of records to print
+          
+          n &lt;= 32767
+          
+          Default: print everything
+          
+
+        <b>SKIP=p</b>
+        
+          Specifies that every p<sup>th</sup> record should be skipped
+          
+          Default: print all records
+          
+
+        <b>MAXNAME=q</b>
+        
+          Specifies the number of member names appearing on
+          subsequent MEMBER statements
+          
+          required if there are any MEMBER statements
+          
+          q &lt;= 32767
+          
+
+        <b>MAXFLDS=r</b>
+        
+          Specifies the number of FIELD parameters appearing on
+          subsequent RECORD statements
+          
+          required if there are any FIELD statements
+          
+          r &lt;= 32767
+          
+
+        <b>MAXGPS=s</b>
+        
+          Specifies the number of IDENT parameters appearing on
+          subsequent RECORD statements
+          
+          required if there are any IDENT statements
+          
+          s &lt;= 32767
+
+
+        <b>MAXLITS=t</b>
+        
+          Specifies the number of characters appearing in the IDENT
+          literals of any subsequent RECORD statements
+          
+          required if there are any literals at all
+          
+          t &lt;= 32767
+
+
+        <b>INITPG=u</b>
+        
+          Specifies the inital page number for the output
+          
+          1 <u>&lt;</u> u <u>&lt;</u> 9999
+          
+          Default: 1
+
+
+        <b>MAXLINE=x</b>
+        
+          Specifies the maximum number of lines to print on a page
+          
+          Default: 60
+
+  
+   PRINT  TYPORG=PS,
+          CNTRL=2,
+          SKIP=4
+  
+     - SYSUT1 is a physical sequential data set that will be printed
+       double spaced.  Every 4th record will be skipped.
+
+
+     
+  <b>TITLE  ITEM=('title',m)</b>
+  
+     - specifies a title and/or column headings that should be
+       printed as the first TWO lines of each page of output
+     
+       title      string to print
+                  maximum of 40 characters
+                  
+       m          indicates the column to start printing in
+                  default: 1
+                  
+     - a TITLE may have multiplte ITEM statements
+     
+     - maximum of 2 TITLE statements
+     
+     
+     TITLE  ITEM=('Big 9 Conference',33)
+     TITLE  ITEM=('School Name',10),
+            ITEM=('Team Name',28),
+            ITEM=('Score 1',43),
+            ITEM=('Score 2',53),
+            ITEM=('Score 3',63)
+            
+
+                      Big 9 Conference
+School Name      Team Name      Score 1   Score 2   Score 3
+
+
+
+     
+  <b>MEMBER NAME=member-name</b>
+  
+     - specifies which members of the PDS to print
+     
+     - may have multiple MEMBER statements
+     
+     - if not specified and SYSUT1 data set is PDS, all members 
+       will be printed
+
+
+
+  
+  <b>RECORD  options</b>
+  
+     - used to define a group of records in a member of a PDS or
+       in a sequential data set
+     
+     options:
+
+        <b>IDENT=(m,'string',n)</b>
+        
+          Identifies the last record in a group of records
+          
+          m         length of the field to match in the record
+                    m <u>&lt;</u> 8
+          
+          string    field in the record to match
+          
+          n         starting position (column) of the field to
+                    match
+
+
+        <b>FIELD=(p,q,conversion,r)</b>
+        
+          Used to edit a record
+          
+          p         length of the field to be edited
+          
+          q         starting position (column) of the field to edit
+                    optional
+                    default: 1
+
+          conversion    type of conversion to perform on the field
+                        if not specified, no conversion takes place
+                        
+                        PZ   packed decimal to zoned decimal
+                        
+                        XE   alphanumeric to hexadecimal
+                             (this doubles the length of the field)
+
+          r         starting position (column) to place the field
+                    in the output
+                    optional
+                    default: 1
+
+
+  //PRNTSTEP  EXEC  PGM=IEBPTPCH
+  //SYSUT1    DD    DSN=T90RAZ1.CS465S02.NAMEFILE,DISP=SHR
+  //SYSUT2    DD    SYSOUT=*
+  //SYSPRINT  DD    SYSOUT=*
+  //SYSIN     DD    *
+    PRINT  TYPORG=PS,
+           CNTRL=2,
+           SKIP=4,
+           MAXFLDS=5
+    TITLE  ITEM=('Big 9 Conference',35)
+    TITLE  ITEM=('School Name',10),
+           ITEM=('Team Name',30),
+           ITEM=('Score 1',55),
+           ITEM=('Score 2',65),
+           ITEM=('Score 3',75)
+    RECORD FIELD=(20,1,,10),
+           FIELD=(20,21,,30),
+           FIELD=(3,41,,56),
+           FIELD=(3,44,,66),
+           FIELD=(3,47,,76)
+  /*
+
+
+<b>Two ways to print a PDS member:</b>
+
+1. Specify the PDS name on the SYSUT1 DD card
+   Use TYPORG=PO
+   Specify a MEMBER=member-name paramter
+   
+2. Specify the specific member on the SYSUT1 DD card
+   Use TYPORG=PS
+
+</pre></p>
+
+<p><b>IEBGENER</b></p>
+
+<p><pre>  - writes all or some of the records from an input file to an
+    output data set
+  
+  - the records in the output data set may or may not be edited
+  
+  - the output data set can be either a sequential data set or a
+    member of a PDS
+    
+  - most common use is to place instream data into a PDS
+
+  <b>Format:</b>    
+  
+  //stepname  EXEC  PGM=IEBGENER
+  //SYSUT1    DD    input data set information goes here
+  //SYSUT2    DD    DSN=output data set information goes here
+  //SYSPRINT  DD    SYSOUT=*
+  //SYSIN     DD    *
+    control statements
+  /*
+
+    
+  - DCB information must be specified with the SYSUT2 data set
+
+  
+  
+  <b>control statements:</b>
+  
+  <b>GENERATE  options</b>
+  
+     - indicates that data is being copied or edited or PDS
+       members are being created
+     
+     - two main activites can be performed using this option
+     
+       1. A group of records from a sequential data set can be
+          copied in new members of a PDS.
+          
+          If this is the case, it is necessary to provide a name
+          for each member and to specify the end of the group.
+          
+          
+       2. Edit a group of records as they are being copied.
+
+
+     options:
+     
+        <b>MAXNAME=q</b>
+        
+          Specifies the number of member names appearing on
+          subsequent MEMBER statements
+          
+          required if there are any MEMBER statements
+          
+
+        <b>MAXFLDS=r</b>
+        
+          Specifies the number of FIELD parameters appearing on
+          subsequent RECORD statements
+          
+          required if there are any FIELD statements
+          
+
+        <b>MAXGPS=s</b>
+        
+          Specifies the number of IDENT parameters appearing on
+          subsequent RECORD statements
+          
+          required if there are any IDENT statements
+          
+
+        <b>MAXLITS=t</b>
+        
+          Specifies the number of characters appearing in the IDENT
+          literals of any subsequent RECORD statements
+          
+          required if there are any literals at all
+
+          
+
+  <b>MEMBER NAME=member-name</b>
+  
+     - used when a member of a PDS is being created
+     
+     - must be one for each member being created
+     
+     - if not specified, the SYSUT2 data set is organized 
+       sequentially
+
+
+
+  
+  <b>RECORD  options</b>
+  
+     - used to define a group of records in a member of a PDS or
+       in a sequential data set
+     
+     options:
+
+        <b>IDENT=(m,'string',n)</b>
+        
+          Identifies the last record in a group of records
+          
+          m         length of the field to match in the record
+                    m <u>&lt;</u> 8
+          
+          string    field in the record to match
+          
+          n         starting position (column) of the field to
+                    match
+
+
+        <b>FIELD=(p,q,conversion,r)</b>
+        
+          Used to edit a record
+          
+          p         length of the field to be edited
+                    default: 80
+          
+          q         starting position (column) of the field to edit
+                    optional
+                    default: 1
+
+          conversion    type of conversion to perform on the field
+                        if not specified, no conversion takes place
+                        
+                        PZ   packed decimal to zoned decimal
+                        
+                        ZP   zoned decimal to packed decimal
+
+          r         starting position (column) to place the field
+                    in the output
+                    optional
+                    default: 1
+
+
+        <b>FIELD=(p,'literal',conversion,r)</b>
+        
+          Used to put a literal into a record
+          
+          p         length of the specified literal
+                    p <u>&lt;</u> 40
+          
+          literal   string to put into the record
+
+          conversion    type of conversion to perform on the literal
+                        if not specified, no conversion takes place
+                        
+                        PZ   packed decimal to zoned decimal
+                        
+                        ZP   zoned decimal to packed decimal
+
+          r         starting position (column) to place the literal
+                    in the output
+                    optional
+                    default: 1
+
+
+  //GENSTEP1  EXEC  PGM=IEBGENER
+  //SYSUT1    DD    DSN=T90AJB1.FILE1,DISP=SHR
+  //SYSUT2    DD    DSN=T90AJB1.NEWFILE,DISP=SHR
+  //SYSPRINT  DD    SYSOUT=*
+  //SYSIN     DD    *
+    GENERATE  MAXNAME=3,MAXGPS=2
+      MEMBER  NAME=MEMBER1
+      RECORD  IDENT=(8,'FIRSTMEM',1)
+      MEMBER  NAME=MEMBER2
+      RECORD  IDENT=(8,'SECNDMEM',40)
+      MEMBER  NAME=MEMBER3
+  /*
+
+The above step will create three PDS members in T90AJB1.NEWFILE.
+Their names will be MEMBER1, MEMBER2, and MEMBER3.
+
+MEMBER1  will contain everything from the beginning of the file
+         through a record with 'FIRSTMEM' in the first 8 columns
+
+MEMBER2  will contain everything from the record with 'FIRSTMEM'
+         in the first 8 columns through a record with 'SECNDMEM'
+         starting in column 40
+
+MEMBER3  will contain everything from the record with 'SECNDMEM'
+         starting in column 40 through the end of the file
+
+
+  //GENSTEP2  EXEC  PGM=IEBGENER
+  //SYSUT1    DD    DSN=T90RAZ1.CS465S02.NAMEFILE,DISP=SHR
+  //SYSUT2    DD    DSN=T90AJB1.NEWFILE,DISP=SHR,
+  //     DCB=(LRECL=55,BLKSIZE=550,RECFM=FB)
+  //SYSPRINT  DD    SYSOUT=*
+  //SYSIN     DD    *
+    GENERATE  MAXFLDS=3,MAXLITS=14
+      RECORD  FIELD=(20,1,,35),
+              FIELD=(14,'ARE A TEAM AT ',21),
+              FIELD=(20,21,,1)
+  /*
+
+The above step will create a sequential file from the records in
+T90RAZ1.CS465S02.NAMEFILE.  The records in the new file will have
+a format similar to:
+
+BLUE HENS           ARE A TEAM AT DELAWARE ST.
+HEDGE HOGS          ARE A TEAM AT DELAWARE ST.
+
+</pre></p>
+
+<p><b>IEBCOPY</b></p>
+
+<p><pre>  - copy utility that can be used to replace/rename PDS
+    members, or to copy a PDS member to a sequential data set
+  
+  <b>Format:</b>    
+  
+  //stepname  EXEC  PGM=IEBCOPY
+  //ddname1   DD    DSN=input PDS information goes here
+  //ddname2   DD    DSN=output PDS information goes here
+  //SYSPRINT  DD    SYSOUT=*
+  //SYSIN     DD    *
+    control statements
+  /*
+
+    
+  - may have more than 1 input or output PDSs
+
+
+  <b>control statements:</b>
+  
+  <b>COPY  INDD=ddname1,OUTDD=ddname2</b>
+  
+     - the members from the ddname1 PDS are copied into the ddname2
+       PDS
+     
+
+  <b>COPY  INDD=ddname1,OUTDD=ddname2,LIST=YES</b>
+
+  or
+  
+  <b>COPY  INDD=ddname1,OUTDD=ddname2,LIST=NO</b>
+  
+     - the members from the ddname1 PDS are copied into the ddname2
+       PDS
+       
+     - YES  the names of the members that are copied will be listed
+       in the printed output
+       
+     - default: YES
+     
+
+  
+  <b>COPY  INDD=((ddname1,R)),OUTDD=ddname2</b>
+  
+     - the members from the ddname1 PDS that have a name that 
+       matches a member name in the ddname2 PDS will replace
+       that PDS
+     
+  
+  <b>SELECT MEMBER=name</b>
+  
+     - copies the named member from the input PDS to the output
+       PDS
+     
+  
+  <b>SELECT MEMBER=(name1,name2,...)</b>
+  
+     - copies the named members from the input PDS to the output
+       PDS
+     
+  
+  <b>SELECT MEMBER=((name,newname,R))</b>
+  
+     - copies the named member from the input PDS to the output
+       PDS and changes its name to newname
+     
+  
+  <b>SELECT MEMBER=((name,,R))</b>
+  
+     - replaces the member named name in the output PDS with the
+       member named name from the input PDS
+     
+  
+  <b>EXCLUDE MEMBER=name</b>
+  
+     - copies all of the members from the input PDS to the output
+       PDS EXCEPT for name
+     
+  
+  <b>SELECT MEMBER=(name1,name2,...)</b>
+  
+     - copies all of the members from the input PDS to the output
+       PDS EXCEPT for name1, name2, etc...
+
+
+  
+  //COPYSTEP  EXEC  PGM=IEBCOPY
+  //INFILE    DD    DSN=Z123456.INPUT,DISP=SHR
+  //OUTFILE   DD    DSN=Z123456.OUTPUT,DISP=SHR
+  //SYSPRINT  DD    SYSOUT=*
+  //SYSIN     DD    *
+    COPY  INDD=INFILE,OUTDD=OUTFILE
+      SELECT  MEMBER=(MEM1,MEM3,MEM5)
+  /*
+
+The above step will copy the members MEM1, MEM3, and MEM5 to
+Z123456.OUTPUT.
+
+</pre></p>
+
+<p><b>IEHLIST</b></p>
+
+<p><pre>  - used to list the members of a PDS
+  
+  <b>Format:</b>    
+  
+  //stepname  EXEC PGM=IEHLIST
+  //SYSPRINT  DD   SYSOUT=*
+  //ANY1      DD   UNIT=DISK,VOL=SER=volume#,SPACE=(TRK,0),DISP=OLD
+  //SYSIN     DD   *
+    LISTPDS  DSNAME=PDS name goes here,VOL=<b>DISK</b>=volume#
+  /*
+
+  - this will list all of the members in the specified PDS
+
+  
+  //stepname  EXEC PGM=IEHLIST
+  //SYSPRINT  DD   SYSOUT=*
+  //ANY1      DD   UNIT=DISK,VOL=SER=volume#,SPACE=(TRK,0),DISP=OLD
+  //SYSIN     DD   *
+    LISTPDS  DSNAME=PDS name goes here,VOL=<b>DISK</b>=volume#,DUMP
+  /*
+
+  - this will list all of the members in the specified PDS in an
+    unedited format such that only the member names will be readable
+
+  
+  //stepname  EXEC PGM=IEHLIST
+  //SYSPRINT  DD   SYSOUT=*
+  //ANY1      DD   UNIT=DISK,VOL=SER=volume#,SPACE=(TRK,0),DISP=OLD
+  //SYSIN     DD   *
+    LISTPDS  DSNAME=PDS name goes here,VOL=<b>DISK</b>=volume#,FORMAT
+  /*
+
+  - this will list all of the members in the specified PDS in an
+    edited format
+    
+    intended ONLY for listing load modules
+
+  
+  
+  - may have more than 1 LISTPDS, but each must have a corresponding
+    "ANY" data set
+
+</pre></p>
+
+<p><b>SYNCSORT</b></p>
+
+<p><pre>  - utility that can be used to sort a sequential data set or
+    merge up to 32 sequential data sets
+  
+  <b>Format:</b>    
+  
+  //stepname  EXEC  PGM=SYNCSORT,PARM='options'
+  //SORTIN    DD    DSN=input file to be sorted goes here
+  //SORTOUT   DD    DSN=sorted output file information goes here
+  //SYSOUT    DD    SYSOUT=*
+  //SORTWK01  DD    DSN=&&SORTWK01,UNIT=PUB,DISP=(NEW,DELETE),
+  //    SPACE=(TRK,(1,1))
+  //SYSIN     DD    *
+    control statements
+  /*
+
+    
+  <b>PARM options:</b>
+  
+  <b>CORE=nK</b>
+
+     - specifies the amount of memory available to perform the sort
+
+     - default: all available memory
+
+  
+  <b>CMP=CLC</b>  or  <b>CMP=CPD</b>
+
+     - identifies which compare instruction to use when the fields
+       being sorted contain numeric data
+
+     - CLC   non-packed decimal fields
+       
+       CPD   packed decimal fields
+             if the field is not packed, a SOC 7 will occur
+
+
+
+  <b>control statements:</b>
+  
+  <b>SORT options</b>
+  
+     - provides information about the field(s) that will be used for
+       sorting
+
+     options:
+
+       <b>FIELDS=(p,l,ff,o)</b>
+     
+         - used to specify the key field(s)
+       
+         - maximum of 64
+       
+         p      starting position of the key field
+       
+         l      length of the key field
+       
+         ff     data format of the control field
+       
+                CH    EBCDIC alphanumeric
+                ZD    Zoned decimal
+                PD    Packed decimal
+                FI    Fixed point
+                BI    Binary
+ 
+         o      collating sequence
+         
+                A    ascending order
+                D    descending order
+
+
+
+       <b>SKIPREC=r</b>
+      
+         - do not include the first r records of the SORTIN data set
+           in the sort
+
+       
+       <b>FILSZ=Ez</b>
+     
+         - specifies that z records are estimated to be written to
+           the SORTOUT data set
+
+
+  <b>RECORD</b>
+  
+     - specifies that the file contains variable length records
+
+
+  <b>INCLUDE  COND=(comparison)</b>  or
+  
+  <b>INCLUDE  COND=(comparison1,AND,comparison2)</b>  or
+     
+  <b>INCLUDE  COND=(comparison1,OR,comparison2)</b>
+  
+
+    - specifies which records to include in the sort
+     
+    - comparison format 1:
+     
+      p,l,ff,mnemonic,p2,l2,ff2
+
+       
+      p,p2      starting position of the two fields to compare
+       
+      l,l2      length of the two fields to compare
+       
+      ff,ff2    data format of the fields to compare
+       
+                CH    EBCDIC alphanumeric
+                ZD    Zoned decimal
+                PD    Packed decimal
+                FI    Fixed point
+                BI    Binary
+
+      mnemonic   comparison type
+       
+                EQ     equality
+                NE     not equal
+                GT     greater than
+                GE     greater than or equal to
+                LT     less than
+                LE     less than or equal to
+  
+     
+    - comparison format 2:
+     
+      p,l,ff,mnemonic,self-defining term
+
+       
+      self-defining term     hard coded value to use in the
+                             comparison
+                              
+                             signed/unsigned decimal number
+                             character string  C'xxxxxxx'
+                             hexadecimal string  X'hhhhhh'
+       
+
+
+  <b>OMIT  COND=(comparison)</b>  or
+  
+  <b>OMIT  COND=(comparison1,AND,comparison2)</b>  or
+     
+  <b>OMIT  COND=(comparison1,OR,comparison2)</b>
+  
+
+    - specifies which records to omit from the sort
+
+
+  OMIT  COND=(1,1,BI,EQ,X'FF',OR,8,5,PD,LT,+1)
+  
+  
+Any record containing X'FF' in the 1st byte OR a packed decimal
+value less than 1 in the 5 byte field starting in column 8 should
+be omitted from the output.
+
+
+
+  //SORTSTEP  EXEC  PGM=SYNCSORT
+  //SORTIN    DD    DSN=Z123456.INPUT,DISP=SHR
+  //SORTOUT   DD    DSN=Z123456.SORTED,DISP=(NEW,PASS,DELETE),
+  //    UNIT=DISK,VOL=SER=ACA301,SPACE=(TRK,(1,1))
+  //SYSOUT    DD    SYSOUT=*
+  //SORTWK01  DD    DSN=&&SORTWK01,UNIT=PUB,DISP=(NEW,DELETE),
+  //    SPACE=(TRK,(1,1))
+  //SYSIN     DD    *
+    SORT  FIELDS=(2,4,CH,A,8,5,PD,D),
+          SKIPREC=1
+          FILSZ=E400
+  /*
+
+The above step will:
+
+ 1. Skip the first record
+ 
+ 2. Sort the remaining records in <b>A</b>scending order based on the
+    <b>CH</b>aracters in the <b>4</b> byte field starting in position
+    <b>2</b>.
+    
+ 3. If there is a match, sort in <b>D</b>escending order based on the
+    <b>P</b>acked <b>D</b>ecimal number in the <b>5</b> byte field
+    starting in position <b>8</b>.
+    
+ 4. The file will contain an estimated 400 records
+</pre></p>
+</font>
+</body>
+</html>

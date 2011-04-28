@@ -1,0 +1,149 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>Programming Assignment 8</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">CSCI 465</td>
+    <td width="33%"><p align="center">Programming Assignment 8</td>
+    <td width="34%"><p align="right">Spring 2001</td>
+  </tr>
+</table>
+
+<p>For this assignment you must run a single job to create four VSAM clusters (i.e., data
+sets). You will create a KSDS, an ESDS, and two RRDS clusters. The data to be loaded into
+these clusters is in T90RAZ1.A8DATA and it is on ACA302.&nbsp; The data set is a file of
+book information and each record has the following fields:</p>
+
+<table border="0" width="41%">
+  <tr>
+    <td width="42%">ISBN number </td>
+    <td width="58%">PIC 9(8)</td>
+  </tr>
+  <tr>
+    <td width="42%">AUTHOR</td>
+    <td width="58%">PIC X(25)</td>
+  </tr>
+  <tr>
+    <td width="42%">TITLE</td>
+    <td width="58%">PIC X(40)</td>
+  </tr>
+  <tr>
+    <td width="42%">CODE-NUMBER</td>
+    <td width="58%">PIC 9(6)</td>
+  </tr>
+  <tr>
+    <td width="42%">QUAN-ON-HAND</td>
+    <td width="58%">PIC S9(3)</td>
+  </tr>
+</table>
+
+<p>ISBN number is the key field, but the records are <strong>not currently sorted.</strong><br>
+<br>
+Use the AMS IDCAMS utility to perform the following 12 job steps:<br>
+<br>
+1. Delete the VSAM clusters defined in steps 3, 5, 7, and 9.<br>
+<br>
+2. Use SYNCSORT to sort the QSAM input file in ascending order by ISBN number, producing a
+temporary sorted file.<br>
+<br>
+3. Define a KSDS cluster.<br>
+<br>
+4. Load the sorted data into the KSDS.<br>
+<br>
+5. Define an ESDS cluster.<br>
+<br>
+6. Load the original (unsorted) file into the ESDS.<br>
+<br>
+7. Define an RRDS cluster.<br>
+<br>
+8. Load the original (unsorted) file into the RRDS.<br>
+<br>
+9. Define a second RRDS cluster.<br>
+<br>
+10. Load the original (unsorted) data into the RRDS using a COBOL load program that you
+are to write (see below). Use the cataloged procedure IGYWCG to compile and execute your
+COBOL program. You can obtain a copy of this procedure beforehand to examine by coding
+TYPRUN=SCAN on your job card, or you can find it in the 465 Course Notes.<br>
+<br>
+11. Print the KSDS, ESDS, and both RRDS clusters in character format. Print the KSDS a
+second time using the DUMP format.&nbsp; Study the printed output of the two RRDS
+clusters. Are the records loaded in the same order? Write your answer on your output and <strong>explain
+why there are differences, if any</strong>.<br>
+<br>
+12. Delete all of the clusters you have defined above using COND=EVEN.<br>
+<br>
+NOTES:<br>
+<br>
+1. You must be sure to perform the first and last job steps as specified. VSAM data sets
+can only be completely deleted by using the IDCAMS delete function. Any other method
+leaves a partial entry in the VSAM catalog. So always make sure to have a delete step at
+the beginning and at the end of each VSAM job.<br>
+<br>
+2. Code a COND= parameter on each job step. There is no sense in trying to load data into
+a cluster that has been defined incorrectly.<br>
+<br>
+3. Put all of your VSAM clusters on ACA301 and name them according to the following naming
+convention:<br>
+<br>
+Znnnnnn.C465S02.VSAM.xxDS where xx = KS, ES, or RS and nnnnnn = your MVS logonid<br>
+<br>
+If you prefer to have separate index and data components for your KSDS, append .NDX and
+.DATA to the name of the cluster as specified above.<br>
+<br>
+4. Space allocation for ESDS and RRDS: 70 records primary, 10 secondary
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for
+KSDS: 1 track primary, 1 secondary<br>
+<br>
+<br>
+<strong>COBOL LOAD PROGRAM</strong><br>
+<br>
+<br>
+Records in an RRDS are accessed directly by relative record number (RRN). Your Cobol
+program will load the RRDS by specifying the RRN of the record to be loaded. Your program
+should determine the RRN for each record by hashing the ISBN number associated with each
+record. Determine the hash value (i.e., relative record number) by dividing the ISBN
+number by the number of available record slots in the RRDS (70), adding one to the
+remainder after division. This<br>
+remainder plus one is the RRN.<br>
+<br>
+Your Cobol program should then use this RRN to write the record to the RRDS. If the slot
+is already occupied by another record, then you must implement a 'linear probe with
+wraparound' collision procedure to locate the next available slot. The following
+pseudocode should help.<br>
+<br>
+Save the hashed key value<br>
+Set done-flag off<br>
+Set full-flag off<br>
+While not done and not full do<br>
+&nbsp;&nbsp;&nbsp; Try to write the record to the RRDS<br>
+&nbsp;&nbsp;&nbsp; If write is successful<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; turn on done-flag<br>
+&nbsp;&nbsp;&nbsp; else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; find next slot<br>
+&nbsp;&nbsp;&nbsp; endif <br>
+end while <br>
+<br>
+Find next slot<br>
+**************<br>
+If hashed key value is last slot in RRDS<br>
+&nbsp;&nbsp;&nbsp; set slot number = 1<br>
+else<br>
+&nbsp;&nbsp;&nbsp; add one to slot number<br>
+endif<br>
+If slot number = save hashed key value<br>
+&nbsp;&nbsp;&nbsp; turn on full-flag<br>
+endif<br>
+end /* find next slot */<br>
+<br>
+<br>
+</p>
+</body>
+</html>

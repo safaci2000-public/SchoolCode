@@ -1,0 +1,74 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+<title>Programmming Assignment 2</title>
+</head>
+
+<body>
+
+<p><strong>//CSCI 465<br>
+//PROGRAM 2<br>
+//50 POINTS<br>
+/*JCL</strong><br>
+<br>
+This assignment consists of three separate jobs.&nbsp; All three jobs must be run as <strong>separate
+jobs</strong>. JCL must be properly documented in all parts. Turn in all three jobs when
+the assignment is due.&nbsp; <strong><font color="#FF0000">USE A BLACK CLIP TO CLIP ALL 3
+PROGRAMS TOGETHER</font>.</strong><br>
+<br>
+JOB I - 20 points<br>
+<br>
+Compile and execute your assignment 1 COBOL program using the Loader (i.e., HEWLDRGO). Use
+NOSOURCE, APOST, and FLAG(W,W) as Compiler options and the MAP Loader option. Do not allow
+the Loader to execute if the return code from the Compiler is greater than zero.<br>
+<br>
+JOB II - 20 points<br>
+<br>
+Compile your assignment 1 source code using the same Compiler options as above, then use
+the Linkage Editor (HEWL) with the MAP option to create a load module stored in a
+permanent PDS on your own MVS account. The Link Editor step should not execute if the
+Compile step return code is not zero. If the Linkage Editor step terminates abnormally,
+you will have to delete the PDS before you can rerun this part. Read about the IEFBR14
+utility in your class notes (pp. 117 - 118) which you can use to delete a PDS.&nbsp; See
+further discussion of this below.<br>
+<br>
+JOB III - 10 points<br>
+<br>
+Execute the load module created by the Linkage Editor in part II. On your final run, the
+one you turn in to be graded, add a job step (or two) to execute IEFBR14 to (uncatalog)
+and/or delete your PDS.&nbsp; Again, see further discussion below.</p>
+
+<p><big>Permanent Data Sets</big></p>
+
+<p>When you create a permanent data set here at NIU, you have to specify whether or not to
+catalog it.&nbsp; If you do not catalog a data set, then it will be removed from the
+volume on which it was saved by the next day.&nbsp; This is important to know.&nbsp; If,
+for example, you ran job II above on a Tuesday and created a permanent library with your
+load module in it that was not catalogued, then if you came in to run job III on
+Wednesday, the library (and your load module) will not be there. You would have to first
+rerun job II.&nbsp; If you ran job III on Tuesday (the same day as the day you created the
+library), then everything would be fine.</p>
+
+<p>To get a data set to stay permanently on a volume, you must specify that it is to be
+catalogued when you create it. If a data set is catalogued, then in order to successfully
+delete it, you must run IEFBR14 TWICE.&nbsp; The first time you indicate that the data set
+should be uncatalogued.&nbsp; The second time you indicate that it should be deleted.</p>
+
+<p>What does all of this mean?&nbsp; Well, it means that when you run job II, if your PDS
+gets <strong>catalogued</strong> and your job abends, then before you can rerun part II
+you must first execute IEFBR14 <strong>twice</strong>...once to uncatalog it and once to
+delete it.&nbsp; If you run job II and <strong>DO NOT</strong> catalog your PDS, then you
+would only have to execute IEFBR14 once (just to delete the library) before you could run
+job II a second time on the same day.</p>
+
+<p>Likewise for job III.&nbsp; On your grade run you are to delete the PDS that contains
+your load module.&nbsp; If the PDS was catalogued, then you need to execute IEFBR14
+twice...once to uncatalog and once to delete.&nbsp; If the PDS was not catalogued, then
+you only need to execute IEFBR14 once, just to delete the library.</p>
+
+<p><br>
+<br>
+</p>
+</body>
+</html>

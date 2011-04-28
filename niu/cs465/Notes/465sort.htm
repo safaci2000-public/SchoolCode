@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>COBOL SORT verb</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+
+<p><b>COBOL SORT verb</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>The SORT verb takes one or more files of input records and sorts them
+in ascending or descending order by one or more programmer specified keys.</p>
+
+<p>The result is a single sorted file.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>Format:  SORT  sd-file-name
+            ON ASCENDING/DESCENDING KEY  sd-key-name
+
+            |USING input-file-name          |
+            |INPUT PROCEDURE IS routine-name|
+
+            |GIVING sorted-file-name         |
+            |OUTPUT PROCEDURE IS routine-name|.
+
+
+   sd-file-name      a temporary sort work file
+                     SD in the DATA DIVISION
+                     SELECT statement in the ENVIRONMENT DIVISION
+                     MUST be CLOSED when the sort is called
+
+
+   sd-key-name       key field from the SD record description
+
+
+   USING input-file-name    this is the file that will be sorted
+                            FD in the DATA DIVISION
+                            SELECT stmt in the ENVIRONMENT DIVISION
+                            MUST be CLOSED when the sort is called
+   
+   
+   INPUT PROCEDURE IS routine-name
+   
+      - routine-name is a programmer coded routine that will
+        select which records are to be used in the sort
+      
+      - input procedure pseudocode:
+      
+          OPEN input-file-name
+         
+          READ the first record
+          
+          While there are input records
+            Modify the current record
+            MOVE record to sd-file-record
+            RELEASE sd-file-record
+            READ next record
+          Endwhile
+          
+          CLOSE input-file-name
+
+          
+       - To release a record to the sort:
+       
+          RELEASE sd-file-record [FROM ws-area].
+          
+
+         this is equivalent to a WRITE in COBOL except that its
+         performed on an SD file and is used ONLY in an input
+         procedure
+         
+   
+   GIVING sorted-file-name  this is the resulting sorted file
+                            FD in the DATA DIVISION
+                            SELECT stmt in the ENVIRONMENT DIVISION
+                            MUST be CLOSED when the sort is called
+   
+   
+   OUTPUT PROCEDURE IS routine-name
+   
+      - routine-name is a programmer coded routine that will
+        manipulate the records AFTER they are sorted
+      
+      - output procedure pseudocode:
+      
+          OPEN sorted-file-name
+         
+          RETURN the first sd-file-record
+          
+          While there are input records
+            Modify the sorted record
+            MOVE sd-file-record to sorted-file-record
+            WRITE sorted-file-record
+            RETURN the next sd-file-record
+          Endwhile
+          
+          CLOSE sorted-file-name
+
+          
+       - To return a record:
+       
+          RETURN sd-file-name [INTO ws-area]
+            [AT END do something]
+            [NOT AT END do something else]
+          END-RETURN.
+          
+         this is equivalent to a READ in COBOL except that it is
+         performed on an SD file and is used ONLY in an output
+         procedure
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>The COBOL SORT verb calls SYNCSORT to do its work.</p>
+
+<p>There are some "special" registers that are set by the SORT verb and
+can be set or tested by a programmer.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>SORT-RETURN    after a SORT this will contain a return code that
+               can be tested
+               
+               0    success
+               16   failure
+               
+               if a programmer moves a non-zero value to this
+               register, the sort will stop on the next RETURN
+               or RELEASE
+               
+
+SORT-FILE-SIZE    equivalent to SYNCSORTs FILSZ
+
+
+SORT-MESSAGE   can use this one to specify an 8 byte ddname for
+               SYNCSORT to write its messages to
+               
+               In COBOL:  MOVE 'SORTOUT' TO SORT-MESSAGE.
+               
+               In JCL:  //SYSOUT   DD  SYSOUT=*
+                        //SORTOUT  DD  SYSOUT=*
+</pre></p>
+</font>
+</body>
+</html>

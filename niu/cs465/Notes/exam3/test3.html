@@ -1,0 +1,473 @@
+<html>
+
+<head>
+<title>CSCI 465 Sample Exam 2</title>
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<X-SAS-WINDOW TOP="0" BOTTOM="483" LEFT="0" RIGHT="788">
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="Template" CONTENT="C:\MSOFFICE\WINWORD\OFFICE\html.dot">
+<script LANGUAGE="JavaScript"><!--
+
+
+
+
+
+//********************************
+
+function initl()
+
+{
+
+  document.testf.a1.value = "";
+
+  document.testf.a2.value = "";
+
+  document.testf.a3.value = "";
+
+  document.testf.a4.value = "";
+
+  document.testf.a5.value = "";
+
+  document.testf.a6.value = "";
+
+  document.testf.a7.value = "";
+
+  document.testf.a8.value = "";
+
+  document.testf.a9.value = "";
+
+  document.testf.a10.value = "";
+
+  document.testf.a11.value = "";
+
+  document.testf.a12.value = "";
+
+  document.testf.a13.value = "";
+
+  document.testf.a14.value = "";
+
+  document.testf.a15.value = "";
+
+  document.testf.a16.value = "";
+
+  document.testf.a17.value = "";
+
+  document.testf.a18.value = "";
+
+  document.testf.a19.value = "";
+
+  document.testf.a20.value = "";
+
+  document.testf.a21.value = "";
+
+  document.testf.a22.value = "";
+
+  document.testf.a23.value = "";
+
+  document.testf.a24.value = "";
+
+  document.testf.a25.value = "";
+
+  document.testf.a26.value = "";
+
+  document.testf.a27.value = "";
+
+  document.testf.a28.value = "";
+
+  document.testf.a29.value = "";
+
+  document.testf.a30.value = "";
+
+
+
+
+
+}
+
+
+
+// *******************************
+
+function judge(input, target, answer, qnum)
+
+{
+
+  if (input == answer)
+
+      target.value = "Correct!";
+
+  else
+
+      target.value = "Wrong  :-(";
+
+   
+
+  top.bottomframe.showans(qnum);
+
+}
+
+
+
+//  --></script>
+</head>
+
+<body VLINK="#800080" onload="initl();">
+
+<form action method="POST" name="testf">
+  <div align="center"><center><h3>Sample Examination </h3>
+  </center></div><p>These questions are representative of the kinds of multiple choice and
+  true false questions I will ask on the third examination. Many of them are taken from past
+  examinations. Your examinations will also have short answer and coding exercises.</p>
+  <div align="center"><center><h3><font COLOR="#0000AF">I am watching your test.</font> </h3>
+  </center></div><div align="center"><center><h3><img SRC="aeye.gif" WIDTH="80" HEIGHT="60"
+  X-SAS-UseImageWidth X-SAS-UseImageHeight ALIGN="bottom"></h3>
+  </center></div><h3>Multiple Choice Questions</h3>
+  <p>Select the correct answer by clicking the appropriate radio button<br>
+  1.) Which of the following correctly specifies the order in which changes must be coded
+  when executing an existing procedure?<br>
+  <input TYPE="radio" NAME="aa1" VALUE="a" unchecked
+  onclick="judge('a', this.form.a1, 'd', 1)"> a.) additions for all steps followed by
+  modifications for all steps<br>
+  <input TYPE="radio" NAME="aa1" VALUE="b" unchecked
+  onclick="judge('b', this.form.a1, 'd', 2)"> b.) modifications for all steps followed by
+  additions for all steps<br>
+  <input TYPE="radio" NAME="aa1" VALUE="c" unchecked
+  onclick="judge('c', this.form.a1, 'd', 3)"> c.) additions followed by modifications by
+  step and in step order<br>
+  <input TYPE="radio" NAME="aa1" VALUE="d" unchecked
+  onclick="judge('d', this.form.a1, 'd', 4)"> d.) modifications followed by additions by
+  step and in step order<br>
+  <input TYPE="radio" NAME="aa1" VALUE="e" unchecked
+  onclick="judge('e', this.form.a1, 'd', 5)"> e.) None of the above.<br>
+  <input TYPE="text" NAME="a1" VALUE SIZE="30"><br>
+  <br>
+  2.) Which of the following represents a &quot;refer back&quot; to the same step in the
+  same job?<br>
+  <input TYPE="radio" NAME="2" VALUE="a" onclick="judge('a', this.form.a2, 'b', 6)"> a.)
+  DSN=*.STEP1.COB.COBCO.DD1<br>
+  <input TYPE="radio" NAME="2" VALUE="b" onclick="judge('b', this.form.a2, 'b', 7)"> b.)
+  DSN=*.DD1<br>
+  <input TYPE="radio" NAME="2" VALUE="c" onclick="judge('c', this.form.a2, 'b', 8)"> c.)
+  DSN=*.STEP2.DD2<br>
+  <input TYPE="radio" NAME="2" VALUE="d" onclick="judge('d', this.form.a2, 'b', 9)"> d.)
+  DSN=*.STEP2.COB.DD1<br>
+  <input TYPE="radio" NAME="2" VALUE="e" onclick="judge('e', this.form.a2, 'b', 10)"> e.)
+  None of the above<br>
+  <input TYPE="text" NAME="a2" VALUE SIZE="30"><br>
+  <br>
+  3.) Which of the following is true of a procedure?<br>
+  <input TYPE="radio" NAME="3" VALUE="a" onclick="judge('a', this.form.a3, 'd', 11)"> a.)
+  Must have // to indicate end of procedure<br>
+  <input TYPE="radio" NAME="3" VALUE="b" onclick="judge('b', this.form.a3, 'd', 12)"> b.) A
+  catalogued procedure ends with a PEND card<br>
+  <input TYPE="radio" NAME="3" VALUE="c" onclick="judge('c', this.form.a3, 'd', 13)"> c.) To
+  execute a procedure, the EXEC statement MUST contain the word PROC= on it<br>
+  <input TYPE="radio" NAME="3" VALUE="d" onclick="judge('d', this.form.a3, 'd', 14)"> d.)
+  None of the above.<br>
+  <input TYPE="text" NAME="a3" VALUE SIZE="30"><br>
+  <br>
+  4.) Which of the following VSAM data sets CANNOT be accessed in random mode<br>
+  in any computing environment?<br>
+  <input TYPE="radio" NAME="4" VALUE="a" onclick="judge('a', this.form.a4, 'e', 15)"> a.)
+  KSDS<br>
+  <input TYPE="radio" NAME="4" VALUE="b" onclick="judge('b', this.form.a4, 'e', 16)"> b.)
+  RRDS<br>
+  <input TYPE="radio" NAME="4" VALUE="c" onclick="judge('c', this.form.a4, 'e', 17)"> c.)
+  ESDS<br>
+  <input TYPE="radio" NAME="4" VALUE="d" onclick="judge('d', this.form.a4, 'e', 18)"> d.)
+  MMDS<br>
+  <input TYPE="radio" NAME="4" VALUE="e" onclick="judge('e', this.form.a4, 'e', 19)"> e.)
+  None of the above<br>
+  <input TYPE="text" NAME="a4" VALUE SIZE="30"><br>
+  <br>
+  5.) Which of the following is the only way in which a VSAM cluster can be completely
+  removed from the system?<br>
+  <input TYPE="radio" NAME="5" VALUE="a" onclick="judge('a', this.form.a5, 'b', 20)"> a.)
+  IEFBR14 utility program<br>
+  <input TYPE="radio" NAME="5" VALUE="b" onclick="judge('b', this.form.a5, 'b', 21)"> b.)
+  IDCAMS DELETE command<br>
+  <input TYPE="radio" NAME="5" VALUE="c" onclick="judge('c', this.form.a5, 'b', 22)"> c.)
+  SUPERWYLBUR SCRATCH command<br>
+  <input TYPE="radio" NAME="5" VALUE="d" onclick="judge('d', this.form.a5, 'b', 23)"> d.)
+  JCL DISP=(OLD,DELETE)<br>
+  <input TYPE="radio" NAME="5" VALUE="e" onclick="judge('e', this.form.a5, 'b', 24)"> e.)
+  Any of the above will work<br>
+  <input TYPE="radio" NAME="5" VALUE="f" onclick="judge('f', this.form.a5, 'b', 25)"> f.)
+  None of the above will work<br>
+  <input TYPE="text" NAME="a5" VALUE SIZE="30"><br>
+  <br>
+  6.) Which of the following VSAM file status values indicates end of file condition?<br>
+  <input TYPE="radio" NAME="6" VALUE="a" onclick="judge('a', this.form.a6, 'd', 26)"> a.) 22<br>
+  <input TYPE="radio" NAME="6" VALUE="b" onclick="judge('b', this.form.a6, 'd', 27)"> b.) 23<br>
+  <input TYPE="radio" NAME="6" VALUE="c" onclick="judge('c', this.form.a6, 'd', 28)"> c.) 92<br>
+  <input TYPE="radio" NAME="6" VALUE="d" onclick="judge('d', this.form.a6, 'd', 29)"> d.) 10<br>
+  <input TYPE="radio" NAME="6" VALUE="e" onclick="judge('e', this.form.a6, 'd', 30)"> e.)
+  None of the above.<br>
+  <input TYPE="text" NAME="a6" VALUE SIZE="30"><br>
+  <br>
+  7.) A &quot;duplicate record found&quot; error while writing to a VSAM KSDS file is
+  indicated by<br>
+  <input TYPE="radio" NAME="7" VALUE="a" onclick="judge('a', this.form.a7, 'a', 31)"> a.)
+  FILE STATUS 22<br>
+  <input TYPE="radio" NAME="7" VALUE="b" onclick="judge('b', this.form.a7, 'a', 32)"> b.)
+  FILE STATUS 23<br>
+  <input TYPE="radio" NAME="7" VALUE="c" onclick="judge('c', this.form.a7, 'a', 33)"> c.)
+  FILE STATUS 00<br>
+  <input TYPE="radio" NAME="7" VALUE="d" onclick="judge('d', this.form.a7, 'a', 34)"> d.)
+  FILE STATUS 90<br>
+  <input TYPE="radio" NAME="7" VALUE="e" onclick="judge('e', this.form.a7, 'a', 35)"> e.)
+  None of the above.<br>
+  <input TYPE="text" NAME="a7" VALUE SIZE="30"><br>
+  <br>
+  8.) The imperative statement after the INVALID KEY clause on a KSDS READ statement is
+  activated when:<br>
+  <input TYPE="radio" NAME="8" VALUE="a" onclick="judge('a', this.form.a8, 'a', 36)"> a.)
+  the requested key is not in the file<br>
+  <input TYPE="radio" NAME="8" VALUE="b" onclick="judge('b', this.form.a8, 'a', 37)"> b.) an
+  attempt is made to read past end of file<br>
+  <input TYPE="radio" NAME="8" VALUE="c" onclick="judge('c', this.form.a8, 'a', 38)"> c.) an
+  empty slot is found<br>
+  <input TYPE="radio" NAME="8" VALUE="d" onclick="judge('d', this.form.a8, 'a', 39)"> d.)
+  All of the above<br>
+  <input TYPE="radio" NAME="8" VALUE="e" onclick="judge('e', this.form.a8, 'a', 40)"> e.)
+  None of the above<br>
+  <input TYPE="text" NAME="a8" VALUE SIZE="30"><br>
+  <br>
+  9.) When defining a KSDS, what would you code to specify that the KEY field is 9 bytes
+  long, beginning in the tenth column?<br>
+  <input TYPE="radio" NAME="9" VALUE="a" onclick="judge('a', this.form.a9, 'c', 41)"> a.)
+  KEYS(9 10)<br>
+  <input TYPE="radio" NAME="9" VALUE="b" onclick="judge('b', this.form.a9, 'c', 42)"> b.)
+  KEYS(10 9)<br>
+  <input TYPE="radio" NAME="9" VALUE="c" onclick="judge('c', this.form.a9, 'c', 43)"> c.)
+  KEYS(9 9)<br>
+  <input TYPE="radio" NAME="9" VALUE="d" onclick="judge('d', this.form.a9, 'c', 44)"> d.)
+  LEN(9) DISP(10)<br>
+  <input TYPE="radio" NAME="9" VALUE="e" onclick="judge('e', this.form.a9, 'c', 45)"> e.)
+  None of the above<br>
+  <input TYPE="text" NAME="a9" VALUE SIZE="30"><br>
+  <br>
+  10.) Which of the following utiltities can be used to print any data set?<br>
+  <input TYPE="radio" NAME="10" VALUE="a" onclick="judge('a', this.form.a10, 'c', 46)"> a.)
+  IEBPTPCH<br>
+  <input TYPE="radio" NAME="10" VALUE="b" onclick="judge('b', this.form.a10, 'c', 47)"> b.)
+  IEBGENER<br>
+  <input TYPE="radio" NAME="10" VALUE="c" onclick="judge('c', this.form.a10, 'c', 48)"> c.)
+  IDCAMS<br>
+  <input TYPE="radio" NAME="10" VALUE="d" onclick="judge('d', this.form.a10, 'c', 49)"> d.)
+  All of the above<br>
+  <input TYPE="radio" NAME="10" VALUE="d" onclick="judge('e', this.form.a10, 'c', 50)"> e.)
+  A or C<br>
+  <input TYPE="text" NAME="a10" VALUE SIZE="30"><br>
+  <br>
+  11.) Which is the best utility to use to uncatalog a data set?<br>
+  <input TYPE="radio" NAME="11" VALUE="a" onclick="judge('a', this.form.a11, 'd', 51)"> a.)
+  IEBCAT<br>
+  <input TYPE="radio" NAME="11" VALUE="b" onclick="judge('b', this.form.a11, 'd', 52)"> b.)
+  IEBCOPY<br>
+  <input TYPE="radio" NAME="11" VALUE="c" onclick="judge('c', this.form.a11, 'd', 53)"> c.)
+  IEBGENER<br>
+  <input TYPE="radio" NAME="11" VALUE="d" onclick="judge('d', this.form.a11, 'd', 54)"> d.)
+  IEFBR14<br>
+  <input TYPE="radio" NAME="11" VALUE="e" onclick="judge('e', this.form.a11, 'd', 55)"> e.)
+  None of the above<br>
+  <input TYPE="text" NAME="a11" VALUE SIZE="30"><br>
+  <br>
+  12.) The records will be written in the order they are entered. This statement is true of:<br>
+  <input TYPE="radio" NAME="12" VALUE="a" onclick="judge('a', this.form.a12, 'e', 56)"> a.)
+  ESDS<br>
+  <input TYPE="radio" NAME="12" VALUE="b" onclick="judge('b', this.form.a12, 'e', 57)"> b.)
+  KSDS<br>
+  <input TYPE="radio" NAME="12" VALUE="c" onclick="judge('c', this.form.a12, 'e', 58)"> c.)
+  RRDS<br>
+  <input TYPE="radio" NAME="12" VALUE="d" onclick="judge('d', this.form.a12, 'e', 59)"> d.)
+  QSAM<br>
+  <input TYPE="radio" NAME="12" VALUE="d" onclick="judge('e', this.form.a12, 'e', 60)"> e.)
+  A and D<br>
+  <input TYPE="text" NAME="a12" VALUE SIZE="30"><br>
+  <br>
+  13.) File Status of 22 would mean that a duplicate record has been found. This statement
+  is true of:<br>
+  <input TYPE="radio" NAME="13" VALUE="a" onclick="judge('a', this.form.a13, 'b', 61)"> a.)
+  ESDS<br>
+  <input TYPE="radio" NAME="13" VALUE="b" onclick="judge('b', this.form.a13, 'b', 62)"> b.)
+  KSDS<br>
+  <input TYPE="radio" NAME="13" VALUE="c" onclick="judge('c', this.form.a13, 'b', 63)"> c.)
+  RRDS<br>
+  <input TYPE="radio" NAME="13" VALUE="d" onclick="judge('d', this.form.a13, 'b', 64)"> d.)
+  QSAM<br>
+  <input TYPE="radio" NAME="13" VALUE="d" onclick="judge('e', this.form.a13, 'b', 65)"> e.)
+  b and c.<br>
+  <input TYPE="text" NAME="a13" VALUE SIZE="30"><br>
+  <br>
+  14.) An RRN is associated with each record in the file. This statement is true of:<br>
+  <input TYPE="radio" NAME="14" VALUE="a" onclick="judge('a', this.form.a14, 'c', 66)"> a.)
+  ESDS<br>
+  <input TYPE="radio" NAME="14" VALUE="b" onclick="judge('b', this.form.a14, 'c', 67)"> b.)
+  KSDS <br>
+  <input TYPE="radio" NAME="14" VALUE="c" onclick="judge('c', this.form.a14, 'c', 68)"> c.)
+  RRDS <br>
+  <input TYPE="radio" NAME="14" VALUE="d" onclick="judge('d', this.form.a14, 'c', 69)"> d.)
+  QSAM<br>
+  <input TYPE="radio" NAME="14" VALUE="d" onclick="judge('e', this.form.a14, 'c', 70)"> e.)
+  B and C<br>
+  <input TYPE="text" NAME="a14" VALUE SIZE="30"><br>
+  <br>
+  15.) The VSAM cluster supports an alternate index. This statement is true of:<br>
+  <input TYPE="radio" NAME="15" VALUE="a" onclick="judge('a', this.form.a15, 'e', 71)"> a.)
+  ESDS <br>
+  <input TYPE="radio" NAME="15" VALUE="b" onclick="judge('b', this.form.a15, 'e', 72)"> b.)
+  KSDS<br>
+  <input TYPE="radio" NAME="15" VALUE="c" onclick="judge('c', this.form.a15, 'e', 73)"> c.)
+  RRDS<br>
+  <input TYPE="radio" NAME="15" VALUE="d" onclick="judge('d', this.form.a15, 'e', 74)"> d.)
+  QSAM<br>
+  <input TYPE="radio" NAME="15" VALUE="d" onclick="judge('e', this.form.a15, 'e', 75)"> e.)
+  A and B<br>
+  <input TYPE="text" NAME="a15" VALUE SIZE="30"><br>
+  <br>
+  16.) After opening the data set, you should check for success. This statement is true of:<br>
+  <input TYPE="radio" NAME="16" VALUE="a" onclick="judge('a', this.form.a16, 'e', 76)"> a.)
+  ESDS<br>
+  <input TYPE="radio" NAME="16" VALUE="b" onclick="judge('b', this.form.a16, 'e', 77)"> b.)
+  KSDS<br>
+  <input TYPE="radio" NAME="16" VALUE="c" onclick="judge('c', this.form.a16, 'e', 78)"> c.)
+  RRDS<br>
+  <input TYPE="radio" NAME="16" VALUE="d" onclick="judge('d', this.form.a16, 'e', 79)"> d.)
+  QSAM<br>
+  <input TYPE="radio" NAME="16" VALUE="d" onclick="judge('e', this.form.a16, 'e', 80)"> e.)
+  All of the above.<br>
+  <input TYPE="text" NAME="a16" VALUE SIZE="30"><br>
+  <br>
+  17.) If a SELECT clause reads &quot;ORGANIZATION IS INDEXED&quot; this describes what kind
+  of file?<br>
+  <input TYPE="radio" NAME="17" VALUE="a" onclick="judge('a', this.form.a17, 'b', 81)"> a.)
+  ESDS<br>
+  <input TYPE="radio" NAME="17" VALUE="b" onclick="judge('b', this.form.a17, 'b', 82)"> b.)
+  KSDS<br>
+  <input TYPE="radio" NAME="17" VALUE="c" onclick="judge('c', this.form.a17, 'b', 83)"> c.)
+  RRDS<br>
+  <input TYPE="radio" NAME="17" VALUE="d" onclick="judge('d', this.form.a17, 'b', 84)"> d.)
+  QSAM<br>
+  <input TYPE="radio" NAME="17" VALUE="d" onclick="judge('e', this.form.a17, 'b', 85)"> e.)B
+  or C.<br>
+  <input TYPE="text" NAME="a17" VALUE SIZE="30"><br>
+  <br>
+  18.) With a KSDS, what determines whether a READ statement is a direct read or a
+  sequential read?<br>
+  <input TYPE="radio" NAME="18" VALUE="a" onclick="judge('a', this.form.a18, 'b', 86)"> a.)
+  How the file was opened<br>
+  <input TYPE="radio" NAME="18" VALUE="b" onclick="judge('b', this.form.a18, 'b', 87)"> b.)
+  The syntax of the read statement<br>
+  <input TYPE="radio" NAME="18" VALUE="c" onclick="judge('c', this.form.a18, 'b', 88)"> c.)
+  Where the read occurs in the procedure division<br>
+  <input TYPE="radio" NAME="18" VALUE="d" onclick="judge('d', this.form.a18, 'b', 89)"> d.)
+  Whether there is also an ESDS transaction file being processed<br>
+  <input TYPE="radio" NAME="18" VALUE="d" onclick="judge('e', this.form.a18, 'b', 90)"> e.)
+  None of the above.<br>
+  <input TYPE="text" NAME="a18" VALUE SIZE="30"><br>
+  <br>
+  19.) This file type supports physical deletion of records. This statement is true of:<br>
+  <input TYPE="radio" NAME="19" VALUE="a" onclick="judge('a', this.form.a19, 'c', 91)"> a.)
+  ESDS<br>
+  <input TYPE="radio" NAME="19" VALUE="b" onclick="judge('b', this.form.a19, 'e', 92)"> b.)
+  KSDS<br>
+  <input TYPE="radio" NAME="19" VALUE="c" onclick="judge('c', this.form.a19, 'e', 93)"> c.)
+  RRDS<br>
+  <input TYPE="radio" NAME="19" VALUE="d" onclick="judge('d', this.form.a19, 'e', 94)"> d.)
+  QSAM<br>
+  <input TYPE="radio" NAME="19" VALUE="d" onclick="judge('e', this.form.a19, 'e', 95)"> e.)
+  B and C<br>
+  <input TYPE="text" NAME="a19" VALUE SIZE="30"><br>
+  <br>
+  20.) This data set is the best one to use if you want to economize on space requirements.<br>
+  <input TYPE="radio" NAME="20" VALUE="a" onclick="judge('a', this.form.a20, 'a', 96)"> a.)
+  ESDS<br>
+  <input TYPE="radio" NAME="20" VALUE="b" onclick="judge('b', this.form.a20, 'a', 97)"> b.)
+  KSDS<br>
+  <input TYPE="radio" NAME="20" VALUE="c" onclick="judge('c', this.form.a20, 'a', 98)"> c.)
+  RRDS<br>
+  <input TYPE="radio" NAME="20" VALUE="d" onclick="judge('d', this.form.a20, 'a', 99)"> d.)
+  MMDS<br>
+  <input TYPE="radio" NAME="20" VALUE="d" onclick="judge('e', this.form.a20, 'a', 100)"> e.)
+  All of the above.<br>
+  <input TYPE="text" NAME="a20" VALUE SIZE="30"><br>
+  <br>
+  </p>
+  <h3>TRUE/FALSE QUESTIONS</h3>
+  <p><br>
+  <br>
+  1.) A KSDS can support up to 253 alternate indexes.<br>
+  <input TYPE="radio" NAME="21" VALUE="a"
+  onclick="judge('TRUE', this.form.a21, 'TRUE', 101)"> a.) TRUE<br>
+  <input TYPE="radio" NAME="21" VALUE="b"
+  onclick="judge('FALSE', this.form.a21, 'TRUE', 102)"> b.) FALSE<br>
+  <input TYPE="text" NAME="a21" VALUE SIZE="30"><br>
+  <br>
+  2.) A procedure must have a PROC card if symbolic parameters are assigned default values.<br>
+  <input TYPE="radio" NAME="22" VALUE="a"
+  onclick="judge('TRUE', this.form.a22, 'TRUE', 103)">a.) TRUE<br>
+  <input TYPE="radio" NAME="22" VALUE="b"
+  onclick="judge('FALSE', this.form.a22, 'TRUE', 104)">b.) FALSE<br>
+  <input TYPE="text" NAME="a22" VALUE SIZE="30"><br>
+  <br>
+  3.) Only the RRDS cluster is subject to control interval splits.<br>
+  <input TYPE="radio" NAME="23" VALUE="a"
+  onclick="judge('TRUE', this.form.a23, 'FALSE', 105)"> a.) TRUE<br>
+  <input TYPE="radio" NAME="23" VALUE="b"
+  onclick="judge('FALSE', this.form.a23, 'FALSE', 106)"> b.) FALSE<br>
+  <input TYPE="text" NAME="a23" VALUE SIZE="30"><br>
+  <br>
+  4.) An alternate index may be unique or non unique.<br>
+  <input TYPE="radio" NAME="24" VALUE="a"
+  onclick="judge('TRUE', this.form.a24, 'TRUE', 107)"> a.) TRUE<br>
+  <input TYPE="radio" NAME="24" VALUE="b"
+  onclick="judge('FALSE', this.form.a24, 'TRUE', 108)"> b.) FALSE<br>
+  <input TYPE="text" NAME="a24" VALUE SIZE="30"><br>
+  <br>
+  5.) An RRDS does not support retrieval of records in sequential key order.<br>
+  <input TYPE="radio" NAME="25" VALUE="a"
+  onclick="judge('TRUE', this.form.a25, 'TRUE', 109)"> a.) TRUE<br>
+  <input TYPE="radio" NAME="25" VALUE="b"
+  onclick="judge('FALSE', this.form.a25, 'TRUE', 110)"> b.) FALSE<br>
+  <input TYPE="text" NAME="a25" VALUE SIZE="30"><br>
+  <br>
+  6.) A KSDS does not require reorganization.<br>
+  <input TYPE="radio" NAME="26" VALUE="a"
+  onclick="judge('TRUE', this.form.a26, 'FALSE', 111)"> a.) TRUE<br>
+  <input TYPE="radio" NAME="26" VALUE="b"
+  onclick="judge('FALSE', this.form.a26, 'FALSE', 112)"> b.) FALSE<br>
+  <input TYPE="text" NAME="a26" VALUE SIZE="30"><br>
+  <br>
+  7.) An RRDS permits saving variable length records.<br>
+  <input TYPE="radio" NAME="27" VALUE="a"
+  onclick="judge('TRUE', this.form.a27, 'TRUE', 113)"> a.) TRUE<br>
+  <input TYPE="radio" NAME="27" VALUE="b"
+  onclick="judge('FALSE', this.form.a27, 'TRUE', 114)"> b.) FALSE<br>
+  <input TYPE="text" NAME="a27" VALUE SIZE="30"><br>
+  <br>
+  8.) The FILE STATUS field defined in an FD is a compiler generated and managed area of
+  storage.<br>
+  <input TYPE="radio" NAME="28" VALUE="a"
+  onclick="judge('TRUE', this.form.a28, 'FASLE', 115)">a.) TRUE<br>
+  <input TYPE="radio" NAME="28" VALUE="b"
+  onclick="judge('FALSE', this.form.a28, 'FALSE', 116)">b.) FALSE<br>
+  <input TYPE="text" NAME="a28" VALUE SIZE="30"><br>
+  <br>
+  9.) The Current Record Pointer is not affected by a Read statement.<br>
+  <input TYPE="radio" NAME="29" VALUE="a"
+  onclick="judge('TRUE', this.form.a29, 'FALSE', 117)"> a.) TRUE<br>
+  <input TYPE="radio" NAME="29" VALUE="b"
+  onclick="judge('FALSE', this.form.a29, 'FALSE', 118)"> b.) FALSE<br>
+  <input TYPE="text" NAME="a29" VALUE SIZE="30"><br>
+  <br>
+  10.) If you want to process an RRDS both sequentially and randomly,<br>
+  you should specify an Access Mode of &quot;RANDOM&quot;.<br>
+  <input TYPE="radio" NAME="30" VALUE="a"
+  onclick="judge('TRUE', this.form.a30, 'FALSE', 119)">a.) TRUE<br>
+  <input TYPE="radio" NAME="30" VALUE="b"
+  onclick="judge('FALSE', this.form.a30, 'FALSE', 120)">b.) FALSE<br>
+  <input TYPE="text" NAME="a30" VALUE SIZE="30"></p>
+</form>
+</body>
+</html>

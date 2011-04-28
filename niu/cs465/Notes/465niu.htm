@@ -1,0 +1,281 @@
+<html>
+<head>
+<title>NIU Structured Macros</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+
+<p><b>NIU Structured Macros</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>These were designed to make the implementation of control structures in
+ASSEMBLER easier.</p>
+
+</font><font face="Courier New" size=4>
+
+<p><b>IF macro</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>This macro was designed to make coding a decision structure easier.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+IF Formats:
+
+  IF (condition)
+     code to execute if the condition is TRUE
+  ENDIF
+
+
+  IF (condition)
+     code to execute if the condition is TRUE
+  ELSE
+     code to execute if the condition is FALSE
+  ENDIF
+
+
+  IF
+    COND (condition1)
+      code to execute if condition1 is TRUE
+
+    COND (condition2)
+      code to execute if condition1 is FALSE and condition2 is TRUE
+    ...
+    ...
+    COND ELSE
+      code to execute if all previous conditions are FALSE
+  ENDIF
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>IF rules:</p>
+
+<ol>
+  <li><p>Every IF must have a corresponding ENDIF</p></li>
+  <li><p>Once the code following a true COND is executed, the line of code
+  immediately after the ENDIF is executed.</p></li>
+  <li><p>COND ELSE must not be the only COND in the case structure.  If coded,
+  it must be the last COND in the case structure</p></li>
+  <li><p>COND ELSE is optional.  If it is not coded and none of conditions is
+  true, the program will ABEND with a return code of 50.</p></li>
+</ol>
+
+<p>&nbsp;</p>
+
+</font><font face="Courier New" size=4>
+
+<p><b>DO WHILE macro</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>This macro was designed to make coding loops easier.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+DO WHILE Formats:
+
+  DO WHILE=(simple condition)
+     code to execute while the condition is TRUE
+  ENDDO
+
+
+  DO WHILE,(compound condition)
+     code to execute while the condition is TRUE
+  ENDDO
+
+
+  DO
+    COND condition1
+      code to execute if condition1 is TRUE
+
+    COND condition2
+      code to execute if condition1 is FALSE and condition2 is TRUE
+    ...
+    ...
+    COND condition-n
+      code to execute if all previous conditions are FALSE and
+      condition-n is TRUE
+  ENDDO
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>DO WHILE case structure rules:</p>
+
+<ol>
+  <li><p>The loop is terminated when none of the conditions is true.</p></li>
+  <li><p>Only the code associated with the first true COND condition is
+  executed on each pass through the loop.</p></li>
+</ol>
+
+<p>All DO WHILE format rules:</p>
+
+<ol>
+  <li><p>Every DO must have a corresponding ENDDO.</p></li>
+  <li><p>Once the condition is false, the line of code immediately following
+  the ENDDO is executed.</p></li>
+</ol>
+
+<p>&nbsp;</p>
+
+</font><font face="Courier New" size=4>
+
+<p><b>Simple Conditions</b></p>
+
+</font><font face="Courier New" size=3>
+
+<ol>
+  <li><p>The macro is coded AFTER an instruction that sets the condition code.
+  So, a <b>condition code value is placed in the parentheses</b>.</p></li>
+
+  </font><font face="Courier New" size=4>
+  <p><pre>
+  Set register 15 to 4 if FIELD1 is less than or equal to
+  FIELD2.  Otherwise, set register 15 to 0.
+
+  <b>Before NIU macros:</b>           SR    15,15
+                               CLC   FIELD1,FIELD2
+                               BC    B'0010',AROUND
+                               LA    15,4
+                      AROUND   ...
+
+
+  <b>After NIU macros:</b>            SR    15,15
+                               CLC   FIELD1,FIELD2
+                               IF    (2)
+                                   LA    15,4
+                               ENDIF
+  </pre></p>
+  </font><font face="Courier New" size=3>
+
+  <li><p>The macro is coded AFTER an instruction that sets the condition code.
+  So, an <b>extended mnemonic is placed in the parentheses</b>.</p></li>
+
+  <table border cellspacing=1 cellpadding=7 width=638>
+  <tr>
+    <td width="15%" valign="top"><p>&nbsp;</p></td>
+    <td width="10%" valign="top"><p><b><center>Mnemonic</b></center></p></td>
+    <td width="20%" valign="top"><p><b><center>Meaning</b></center></p></td>
+    <td width="10%" valign="top"><p><b><center>Complement</b></center></p></td>
+  </tr>
+  <tr>
+    <td width="15%" valign="top"><p><center>After compare instructions</center></p></td>
+    <td width="10%" valign="top"><p><center>H, GT<br>L, LT<br>E, EQ</center></p></td>
+    <td width="20%" valign="top"><p><center>high, greater than<br>low, less than<br>equal</center></p></td>
+    <td width="10%" valign="top"><p><center>NH, LE<br>NL, GE<br>NE</center></p></td>
+  </tr>
+  <tr>
+    <td width="15%" valign="top"><p><center>After arithmetic instructions</center></p></td>
+    <td width="10%" valign="top"><p><center>P<br>M<br>Z<br>O</center></p></td>
+    <td width="20%" valign="top"><p><center>plus<br>minus<br>zero<br>overflow</center></p></td>
+    <td width="10%" valign="top"><p><center>NP<br>NM<br>NZ<br>NO</center></p></td>
+  </tr>
+  <tr>
+    <td width="15%" valign="top"><p><center>After test under mask instructions</center></p></td>
+    <td width="10%" valign="top"><p><center>O<br>M<br>Z</center></p></td>
+    <td width="20%" valign="top"><p><center>ones<br>mixed<br>zeros</center></p></td>
+    <td width="10%" valign="top"><p><center>NO<br>NM<br>NZ</center></p></td>
+  </tr>
+  </table>
+
+  </font><font face="Courier New" size=4>
+  <p><pre>
+  Set register 15 to 4 if FIELD1 is equal to FIELD2.
+  Otherwise, set register 15 to 0.
+
+  <b>Before NIU macros:</b>           SR    15,15
+                               CLC   FIELD1,FIELD2
+                               BC    B'0110',AROUND
+                               LA    15,4
+                      AROUND   ...
+
+
+  <b>After NIU macros:</b>            SR    15,15
+                               CLC   FIELD1,FIELD2
+                               IF    (EQ)
+                                   LA    15,4
+                               ENDIF
+  </pre></p>
+  </font><font face="Courier New" size=3>
+
+  <li><p>A condition code setting instruction (other than a compare instruction)
+  followed by the desired conditon code value (or extended mnemonic).</p></li>
+
+  </font><font face="Courier New" size=4>
+  <p><pre>
+
+  Condition Format: (instruction,mnemonic or condition code value)
+
+
+  Add the value in register 6 to the value in register 5 fifteen
+  times.
+
+  <b>Before NIU macros:</b>           LA    4,15
+                      DO1      LTR   4,4
+                               BZ    ENDDO1
+                               AR    5,6
+                               BCTR  4,0
+                               B     DO1
+                      ENDDO1   ...
+
+
+  <b>After NIU macros:</b>            LA    4,15
+                               DO WHILE=(LTR,4,4,NZ)
+                                  AR    5,6
+                                  BCTR  4,0
+                               ENDDO
+  </pre></p>
+  </font><font face="Courier New" size=3>
+
+  <li><p>A compare instruction and the desired conditon code value (or
+  extended mnemonic).</p></li>
+
+  </font><font face="Courier New" size=4>
+  <p><pre>
+
+  Condition Format: (opcode,operand1,mnemonic,operand2)
+
+
+  Add the value in register 6 to the value in register 5 fifteen
+  times.
+
+  <b>Before NIU macros:</b>           LA    4,15
+                      DO2      C     4,=F'0'
+                               BE    ENDDO2
+                               AR    5,6
+                               BCTR  4,0
+                               B     DO2
+                      ENDDO2   ...
+
+
+  <b>After NIU macros:</b>            LA    4,15
+                               DO WHILE=(C,4,NE,=F'0')
+                                  AR    5,6
+                                  BCTR  4,0
+                               ENDDO
+  </pre></p>
+</ol>
+
+<p>&nbsp;</p>
+
+</font><font face="Courier New" size=4>
+
+<p><b>Compound Conditions</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>A <b>compound condition</b> is two or more simple conditions separated by
+logical operators.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+AND Format:  (condition1),AND,(condition2)
+
+OR Format:   (condition1),OR,(condition2)
+</pre></p>
+</font><font face="Courier New" size=3>
+</font>
+</body>
+</html>

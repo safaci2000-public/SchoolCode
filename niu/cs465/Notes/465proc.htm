@@ -1,0 +1,391 @@
+<html>
+<head>
+<title>JCL Procedures</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+
+<p><b>JCL Procedures</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>A JCL procedure is a batch of prewritten JCL statements that can be
+executed.</p>
+
+<p>A common use is to execute a program that is run often with the same
+steps in the same order.</p>
+
+<p>A procedure will contain one or more steps, each with an EXEC card and
+DD statements.</p>
+
+<p>A procedure may contain <b>symbolic parameters</b> with default values
+that the user may change when he/she executes the procedure.</p>
+
+<p>A procedure may not contain instream data or a JOB statement.</p>
+
+</font><font face="Courier New" size=4>
+<p>&nbsp;</p>
+<p><b>Symbolic Parameters</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>These are the arguments that can be passed to a procedure.</p>
+
+<p>A symbolic parameter name is:</p>
+<ul>
+  <li>1-7 characters</li>
+  <li>alphanumeric, $, #, @</li>
+  <li>cannot start with a number</li>
+</ul>
+
+<p><b>To create a symbolic parameter:</b> parm_name=</p>
+
+<p><b>To create a symbolic parameter w/ default value:</b> parm_name=value</p>
+
+<p><b>To reference a symbolic parameter in procedure:</b> &amp;parm_name</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+Example:  NUM=302
+
+In procedure:  VOL=SER=ACA&NUM
+
+   this will produce VOL=SER=ACA302 when the procedure expands
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>If the symbolic parameter is going to be concatenated on the "front" of
+another value (rather than the "back" as in the above example), the
+parameter name must be followed by a period (.).</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+Example:  VOLM=ACA
+
+In procedure:  VOL=SER=&VOLM.301
+
+   this will produce VOL=SER=ACA301 when the procedure expands
+</pre></p>
+
+<p>&nbsp;</p>
+<p><b>Instream Procedures</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>An instream procedure is a procedure that is located within the same JOB
+as the steps that will execute it.</p>
+
+<p>May have up to 15 in one job.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+Format:  //procname  PROC  parameter_list
+           ...
+           JCL procedure statements go here
+           ...
+         //          PEND
+
+
+<b>procname</b>       the name of the procedure
+               the name that will be used to execute the procedure
+
+<b>PROC</b>           signals the start of a procedure
+
+<b>parameter_list</b>   list of symbolic parameters
+                 separated by commas
+
+<b>PEND</b>           signals the end of an instream procedure
+
+
+<b>To execute:</b>  //stepname EXEC procname,parameters
+        or:  //stepname EXEC  PROC=procname,parameters
+
+
+<b>An example instream procedure:</b>
+
+//*
+//*******************************************************************
+//*  'PROC1' will compile COBOL source code                         *
+//*                                                                 *
+//*  Symbolic Parameters:                                           *
+//*                                                                 *
+//*  CPARM     Compiler Options                                     *
+//*  CREGION   Amount of region needed                              *
+//*  CSYSLIN   The object module name                               *
+//*  CDISP     The object module disposition                        *
+//*******************************************************************
+//*
+//PROC1   PROC CPARM=,
+//             CREGION=128K,
+//             CSYSLIN=&&OBJSET,
+//             CDISP=(NEW,PASS,DELETE)
+//COMP     EXEC PGM=IGYCRCTL,REGION=&CREGION,
+//             PARM='APOST,&CPARM'
+//STEPLIB  DD DSN=SYS2.ADCOBOL.V110.SIGYCOMP,DISP=SHR
+//SYSLIN   DD DSN=&CSYSLIN,UNIT=PUB,DISP=&CDISP,
+//             SPACE=(TRK,(3,3))
+//SYSPRINT DD SYSOUT=*
+//*
+//*******************************************************************
+//* SYSUT1 - SYSUT7   DATASETS REQUIRED BY THE COMPILER             *
+//*******************************************************************
+//*
+//SYSUT1   DD UNIT=PUB,SPACE=(CYL,(1,1))
+//SYSUT2   DD UNIT=PUB,SPACE=(CYL,(1,1))
+//SYSUT3   DD UNIT=PUB,SPACE=(CYL,(1,1))
+//SYSUT4   DD UNIT=PUB,SPACE=(CYL,(1,1))
+//SYSUT5   DD UNIT=PUB,SPACE=(CYL,(1,1))
+//SYSUT6   DD UNIT=PUB,SPACE=(CYL,(1,1))
+//SYSUT7   DD UNIT=PUB,SPACE=(CYL,(1,1))
+//*
+//         PEND
+
+</pre></p>
+
+
+<p>&nbsp;</p>
+<p><b>Catalogued Procedures</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>A catalogued procedure is a procedure that is coded outside of the JOB
+that will execute it.</p>
+
+<p>It must be a member of a PDS (system or private library).</p>
+
+<p>If the procedure is in a private library, must include a line of code
+to inform the system of the name of the library:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>     //   JCLLIB  ORDER=(library_name1, library_name2,...)</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>When a procedure is called, the libraries listed in JCLLIB will be
+searched first.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+Format:  //procname  PROC  parameter_list
+           ...
+           JCL procedure statements go here
+           ...
+
+
+<b>procname</b>       the name of the procedure
+
+<b>PROC</b>           signals the start of a procedure
+
+<b>parameter_list</b>   list of symbolic parameters
+                 separated by commas
+
+
+
+<b>To execute:</b>  //stepname EXEC  member_name,parameters
+        or:  //stepname EXEC  PROC=member_name,parameters
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>The name of the PDS member is used to execute a catalogued procedure,
+rather than the procedure name.</p>
+
+<p>&nbsp;</p>
+</font><font face="Courier New" size=4>
+<p><b>Output from a Procedure</b></p>
+
+<p><pre>
+Lines starting with:        From:
+
+      //                    original JCL
+      //*                   comment from original JCL
+
+      XX                    catalogued procedure
+      XX*                   comment in a catalogued procedure
+      X/                    overridden lines in a catalogued procedure
+
+      ++                    instream procedure
+      ++*                   comment in an instream procedure
+      +/                    overridden lines in an instream proc
+</pre></p>
+
+<p>&nbsp;</p>
+<p><b>Changes that can be made when calling a procedure</b></p>
+
+<p><pre>
+<b>1) Provide/modify EXEC line parameters</b>
+
+   Format:  parameter_name.stepname
+
+
+   Suppose that PROC1 has 3 steps: STEP1, STEP2, STEP3
+
+   //STEPA  EXEC PROC1,REGION.STEP1=128K,COND.STEP2=(0,NE)
+
+     the REGION parameter of STEP1 will be changed to 128K
+
+     the COND parameter of STEP2 will be changed to (0,NE)
+
+
+   If REGION is unqualified, applies to 1<sup>st</sup> step only
+
+   If COND or TIME is unqualified, applies to all steps
+
+
+   Order of modification:  unqualified parameters
+                           qualified parameters in step order
+
+
+
+<b>2) Provide/modify values of symbolic parameters</b>
+
+   Format 1:  symbolic_parameter='value'
+
+   Format 2:  symbolic_parameter=
+
+
+   Format 2 will nullify a default value
+
+
+   //STEPA  EXEC IGYWCG,CPARM='APOST'
+
+
+
+<b>3) Modify DD statements on a step</b>
+
+   Format:  //stepname.ddname  DD  new parameters
+
+
+
+   Suppose that STEP2 of PROC1 has:
+
+     //MUSICDD  DD  DSN=ROCK.N.ROLL,UNIT=DISK,VOL=SER=ACA301,DISP=SHR
+
+
+   To change the filename to CLASSIC.ROCK:
+
+     //STEP2.MUSICDD  DD  DSN=CLASSIC.ROCK
+
+
+   Will produce:
+
+     //MUSICDD  DD  DSN=CLASSIC.ROCK,UNIT=DISK,VOL=SER=ACA301,DISP=SHR
+
+
+
+   Suppose that STEP1 of PROC1 has:
+
+     //CONCATDD  DD  DSN=ROCK.LIB,...
+     //          DD  DSN=COUNTRY.LIB,...
+     //          DD  DSN=POP.LIB,...
+
+
+   Executing:
+
+     //STEP1.CONCATDD  DD  DSN=RAP.LIB,...
+
+
+   Will produce:
+
+     //CONCATDD  DD  DSN=RAP.LIB,...
+
+     all of the other DD statements will be wiped out
+
+
+   To add RAP.LIB and leave ROCK.LIB, COUNTRY.LIB and POP.LIB
+   unchanged:
+
+     //STEP1.CONCATDD  DD
+     //                DD
+     //                DD
+     //                DD  DSN=RAP.LIB,...
+
+
+   To replace COUNTRY.LIB with RAP.LIB and leave ROCK.LIB and POP.LIB
+   unchanged:
+
+     //STEP1.CONCATDD  DD
+     //                DD  DSN=RAP.LIB,...
+     //                DD
+
+
+
+<b>4) Add DD statements to a step</b>
+
+   Format:  //stepname.newDDname  DD  parameters
+
+
+   To add HAIRDD to STEP1 of PROC1:
+
+     //STEP1.HAIRDD  DD  DSN=POISON,DISP=SHR
+</pre></p>
+
+<p>&nbsp;</p>
+<p><b>Backwards Reference</b></p>
+</font><font face="Courier New" size=3>
+
+<p>Backwards referencing is the ability to refer back to lines
+of JCL that have already been executed.</p>
+
+<p>We can then copy information from the earlier lines to later lines.</p>
+
+<p>&nbsp;</p>
+</font><font face="Courier New" size=4>
+
+<p><pre>
+<b>1) Backwards referencing within the same step</b>
+
+      Format:  *.name_to_reference
+
+
+      //STEP1   EXEC ...
+      //INPUTDD DD   DSN=INPUT1,...
+      //*
+      //DD2     DD   DSN=*.INPUTDD,...
+   
+      The *.INPUTDD will be replaced with INPUT1.
+
+
+<b>2) Backwards referencing within a previous step</b>
+
+      Format:  *.step_name.name_to_reference
+
+
+      //STEP1   EXEC ...
+      //INPUTDD DD   DSN=INPUT1,...
+      //*
+      //STEP2   EXEC ...
+      //INDD2   DD   DSN=*.STEP1.INPUTDD,...
+   
+      Now both INPUTDD and INDD2 refer to the same data set.
+
+
+<b>3) Backwards referencing within a step of a procedure that was 
+   called earlier</b>
+
+      Format:  *.procedure_step_name.name_to_reference
+
+
+      Suppose that APROC has a step called STEPA, and:
+      
+      //APROC   PROC
+      //...
+      //STEPA   EXEC ...
+      //PROCDD  DD   DSN=DDA,...
+      //...
+      
+      
+      //STEP1   EXEC APROC
+      //*
+      //STEP2   EXEC ...
+      //*
+      //INDD2   DD   DSN=*.STEPA.PROCDD,...
+   
+      Now PROCDD in APROC's STEPA and INDD2 refer to the same data
+      set.
+   
+
+
+</pre></p>
+</font>
+</body>
+</html>

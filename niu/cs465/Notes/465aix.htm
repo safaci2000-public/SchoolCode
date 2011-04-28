@@ -1,0 +1,175 @@
+<html>
+<head>
+<title>Alternate Indexes</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+
+<p><b>Alternate Indexes</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>An <b>alternate index</b> is another key that can be used to retrieve
+records from a cluster.</p>
+
+<p>There are three steps that need to be performed in order to use an 
+alternate index.<p>
+
+<p>STEP 1: Define the alternate index<br>
+STEP 2: Define a path for the alternate index<br>
+STEP 3: Generate the alternate index</p>
+
+<p>&nbsp;</p>
+</font><font face="Courier New" size=4>
+<p><pre>
+<b>STEP 1: Define the alternate index</b>
+
+DEFINE ALTERNATEINDEX (parameters)  or  DEFINE AIX (parameters)
+
+Parameters:
+
+   NAME (alternate_index_name)
+   
+      specifies the name of the alternate index
+   
+  
+   RELATE (cluster_name)
+   
+      specifies the name of the cluster that the alternate index
+      is being created for
+      
+      
+   RECORDS (pr  sc)  or  TRACKS (pr  sc)  or CYLINDERS (pr  sc)
+   
+      specifies the amount of space to allocate for the alternate
+      index
+      
+      
+   KEYS (length  displacement)
+   
+      specifies the alternate key field  (displacement is 0 based)
+      
+   
+   UNIQUEKEY  or  NONUNIQUEKEY
+   
+      specifies whether the alternate index is unique (UNIQUEKEY)
+      or if there may be duplicates (NONUNIQUEKEY)
+   
+   
+   UPGRADE  or  NOUPGRADE
+   
+      specifies that the alternate index should be modified if the
+      base cluster is modified (UPGRADE) or that the alternate
+      indexes should be left alone if the base cluster is
+      modified (NOUPGRADE)
+   
+   
+   VOLUMES (volume_numer)
+   
+      specifies the volume that the alternate index should reside on
+      
+      
+   RECORDSIZE (avg  max)
+   
+      specifies the size of the alternate index
+      
+      avg = 5 + alternate_index_length + (N/2 * primary_key_length)
+      
+      max = 5 + alternate_index_length + (N * primary_key_length)
+      
+      N = 1 if alternate index is unique
+          maximum # of primary keys associated with 1 alternate key
+          
+      NOTE: round up to nearest integer for N/2
+
+
+
+<b>STEP 2: Define a path for the alternate index</b>
+
+DEFINE PATH ( -
+  NAME (path_name) -
+  PATHENTRY (alternate_index_name))
+
+
+
+<b>STEP 3: Generate the alternate index</b>
+
+BLDINDEX -
+  INDATASET (cluster_name) -
+  OUTDATASET (alternate_index_name)
+</pre></p>
+
+<p>&nbsp;</p>
+<p><b>Using alternate indexes in COBOL</b></p>
+<p><pre>
+<b>Changes in the JCL:</b>
+
+1. Need a DD statement for the cluster
+
+   //KSDSDD   DD  DSN=......
+
+
+2. Need a DD statement for each path that is defined
+
+   The ddname for the path(s) will be the same as the ddname for the
+   cluster but 1, 2, etc... will be appended
+   
+   //KSDSDD1  DD  DSN=......
+
+
+
+<b>Change in the ENVIRONMENT DIVISON:</b>
+
+1. A SELECT statement for the cluster only
+
+   SELECT file_name ASSIGN TO ksds_ddname
+      ORGANIZATION IS INDEXED
+      ACCESS MODE IS DYNAMIC
+      RECORD KEY IS primary_key_name
+      ALTERNATE RECORD KEY IS alt_index_name  [WITH DUPLICATES]
+      FILE STATUS IS ws_field.
+      
+   
+   NOTE 1: if there are more than 1 alternate index, then add another
+           "ALTERNATE RECORD KEY IS ..." clause
+         
+   NOTE 2: if there are more than 1 alternate index, they must be
+           specified in the order that they're defined    
+
+
+
+<b>Sequential read using alternate indexes:</b>
+
+MOVE value TO alt_index_name.
+
+START file_name
+  KEY IS _____ alt_index_name
+END-START.
+
+READ file-name RECORD
+   INVALID KEY do something
+   NOT INVALID KEY do something else
+END-READ.
+
+
+
+<b>Random read using alternate indexes:</b>
+
+MOVE value TO alt_index_name.
+
+READ file-name RECORD
+   KEY IS alt_index_name
+   INVALID KEY do something
+   NOT INVALID KEY do something else
+END-READ.
+
+
+File status values:
+
+  00   last matching record was just read
+  02   there are more matching records to read
+</pre></p>
+</font>
+</body>
+</html>

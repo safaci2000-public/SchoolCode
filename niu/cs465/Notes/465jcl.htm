@@ -1,0 +1,414 @@
+<html>
+<head>
+<title>JCL</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+<b><p>Job Control Language</p></b>
+</font><font face="Courier New" size=3>
+
+<p>Controls jobs submitted to the operating system for execution.</p>
+
+<p>JCL will supply the operating system with information about:</p>
+
+<ol>
+  <li>the entire job</li>
+  <li>a specific step of the entire job</li>
+  <li>a data set used within a job step</li>
+</ol>
+
+<p>Three types of JCL statements:</p>
+
+<ol>
+  <li>JOB statement</li>
+  <li>EXEC statement</li>
+  <li>DD statement</li>
+</ol>
+
+<p>All valid JCL statements begin with // starting in column 1, except for
+the end-of-data statement which begins with /*.</p>
+
+</font><font face="Courier New" size=4>
+<p><b>JOB statement</b></p>
+
+<p><pre>
+  FORMAT:  //jobname JOB ,'your name',parameters
+
+     jobname   name assigned to the job
+               1 to 8 alphanumeric and/or national characters ($, @, #)
+               must NOT begin with a number
+
+     your name   1 to 20 characters
+                 printed on the banner page
+
+     parameters   specify traits of the entire job
+                  separated by commas
+
+           TIME=(m,s)
+
+              specifies the amount of time the job will need
+              m - number of minutes (integer)
+              s - number of seconds (integer)
+              default: TIME=(0,5) or TIME=(,5)
+
+
+           REGION=(nK)
+                  (mM)
+
+              specifies the maximum amount of memory for the job
+              n - number of Kilobytes (should be a multiple of 4)
+                - 1 <u>&lt;</u> n <u>&lt;</u> 2097128
+
+              m - number of Megabytes
+                - 1 <u>&lt;</u> n <u>&lt;</u> 2047
+
+              default: REGION=128K
+
+
+           TYPRUN=SCAN
+              the JCL is checked for syntax errors, but is NOT run
+
+
+  //EXAMPLE1 JOB ,'TONY AMONTE'
+
+  //EXAMPLE2 JOB ,'STEVE SULLIVAN',REGION=2048K
+
+  //EXAMPLE3 JOB ,'JIM MILLER',TIME=(0,8),REGION=2048K
+</pre></p>
+
+<p><b>EXEC statement</b></p>
+</font><font face="Courier New" size=3>
+
+<p>Used to specify which program or procedure to execute.</p>
+
+<p>May have up to 255 in one job.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+                             procedure-name
+  FORMAT:  //stepname  EXEC  PROC=procedure-name,parameters
+                             PGM=program-name
+
+     stepname  name assigned to a specific step of the job
+               1 to 8 alphanumeric and/or national characters ($, @, #)
+               must NOT begin with a number
+
+     procedure-name   name of a procedure to execute
+                      PROC= is optional
+                      default format
+
+     PGM=program-name   specifies the name of a program to execute
+
+
+     parameters   specify traits of the specific step
+                  separated by commas
+
+           TIME=(m,s)
+
+              specifies the amount of time for the step
+              m - number of minutes (integer)
+              s - number of seconds (integer)
+              default: TIME=(0,5) or TIME=(,5)
+
+              If TIME is specified on both JOB and EXEC statements, then
+              the TIME on the JOB statement has precedence.
+
+
+           REGION=(nK)
+                  (mM)
+
+              specifies the maximum amount of memory for the step
+              n - number of Kilobytes (should be a multiple of 4)
+                - 1 <u>&lt;</u> n <u>&lt;</u> 2097128
+
+              m - number of Megabytes
+                - 1 <u>&lt;</u> n <u>&lt;</u> 2047
+
+              default: REGION=128K
+
+              If REGION is specified on both JOB and EXEC statements,
+              then the REGION on the JOB statement has precedence.
+
+
+           COND=(m,operator)
+                (m,operator,stepname)
+                ONLY
+                EVEN
+
+              used to conditionally execute a step
+
+              m   return code to be used in comparison
+                  0   step ran successfully
+                  4   warning
+                  8   an error exists (probable ABEND)
+                  12  a serious error
+                  16  a severe error
+
+              operator   type of comparison to make
+                         GT    greater than
+                         GE    greater than or equal to
+                         LT    less than
+                         LE    less than or equal to
+                         EQ    equal to
+                         NE    not equal to
+
+              stepname   name of the step whose return code is to
+                         be used in the comparison (if stepname is not
+                         used, the comparison is made to all preceding
+                         return codes from all the preceding steps).
+
+              ONLY     the step is executed ONLY if the previous step
+                       ABENDed
+
+              EVEN     the step is executed EVEN if the previous step
+                       ABENDed
+
+              If the COND condition evaluates to TRUE, then the step
+              is NOT executed.
+
+
+              COND=(8,LT)
+
+                 If 8 is LESS THAN the return code from any of the
+                 previous steps, do not execute this step.
+
+                 If the return code is 12 or 16, condition is TRUE and
+                 the step does NOT execute.
+
+                 If the return code is 0, 4, or 8, condition is FALSE and
+                 the step executes.
+
+
+
+              COND=(4,NE,STEP2)
+
+                 If 4 is NOT EQUAL TO the return code from STEP2, then
+                 do not execute this step.
+
+                 If the return code is 0, 8, 12 or 16, condition is TRUE
+                 and the step does NOT execute.
+
+                 If the return code is 4, condition is FALSE and the
+                 step executes.
+
+
+  //STEP1  EXEC  PROC1
+
+        Executes a procedure called PROC1
+
+
+  //STEP2  EXEC  PGM=IGYCRCTL,COND=ONLY
+
+        Executes a program called IGYCRCTL (the COBOL compiler)
+        ONLY if the previous step ABENDed
+</pre></p>
+
+<p><b>DD statement</b></p>
+</font><font face="Courier New" size=3>
+
+<p>Used to define the data that will be used.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  FORMAT 1:  //ddname  DD *
+                    ...
+                    ...
+             /*
+
+     used for instream data (data not from a file).  The /* signals
+     the end of the data
+
+
+  FORMAT 2:  //ddname  DD DATA
+                    ...
+                    ...
+             /*
+
+     used for instream data that might contain // in columns 1 and 2.
+     The /* signals the end of the data.
+
+
+  FORMAT 3:  //ddname  DD DATA,DLM='xx'
+                    ...
+                    ...
+             xx
+
+     used for instream data that might contain // or /* in columns 1
+     and 2.  xx can be any two characters.
+
+
+  FORMAT 4:  //ddname  DD SYSOUT=class-name
+
+     used to route data to an output device.  class-name is most
+     commonly *
+
+
+  FORMAT 5:  //ddname  DD DSN=data-set-name,parameters
+
+     used to specify a specific file
+
+
+  ddname   used to link a DD statement with a specific file that is
+           used in a program
+
+           In COBOL, the DD statement for a data set is associated with
+           the proper file via the SELECT statement.
+
+              SELECT file-name ASSIGN TO ddname.
+
+
+  data-set-name   the name of the data set as it is known by the
+                  operating system
+
+                  made up of groups of 1-8 characters that are joined
+                  together by periods (maximum of 44 characters)
+
+                  T90AJB1.FILE1
+                  T90AJB1.ACCTNG.PAYROLL
+                  T90AJB1.DATA.PROCESS.DEPT.EMPLOYEE.DATA
+
+                  may be a temporary data set - it is created during
+                  the job and deleted at the end of the job.
+
+                  a temporary data set name begins with two ampersands
+                  (&&) and is followed by 1 to 8 characters
+
+
+  parameters   specify traits of the specific dataset
+               separated by commas
+
+         SPACE=(unit,allocation)
+               (unit,allocation,,CONTIG)
+
+            specifies the amount of space needed for a data set
+
+            unit  specifies the type of storage
+                  TRK  if data set is stored on tracks
+                  CYL  if data set is stored on cylinders
+                  integer equal to number of blocks
+
+            allocation   specifies the amount of storage
+               FORMAT:  (p,s)
+
+                 p  primary allocation - initial number of tracks,
+                    cylinders, or blocks
+
+                 s  secondary allocation - the number of tracks,
+                    cylinders, or blocks to allocate when needed (up to
+                    15 times).
+
+            CONTIG  requests contiguous space for the primary allocation
+
+
+            SPACE=(TRK,(7,3))
+
+               start with 7 tracks and add 3 more tracks at a time as
+               needed up to 15 times
+
+               maximum of 52 tracks.  7 + 3*15 = 7 + 45 = 52
+
+
+
+         UNIT=PUB
+              DISK
+
+            specifies the type of data set
+
+            PUB is used for temporary data sets
+
+            DISK is used for all others
+
+
+
+         DISP=(status,normal,abnormal)
+
+            status  the status of a data set at the beginning of a job
+
+                    NEW - the data set is to be created (default)
+
+                    OLD - the data set has already been created
+                        - reserved exclusively for the program running
+                          in the job step (no other programs may access
+                          the data set while the step is being executed)
+
+                    SHR - the data set has already been created
+                        - other programs may access the data set
+                          simultaneously and the access will be read only
+
+                    MOD - data can be added to the end of an existing
+                          data set
+                        - if data set does not exist, it is created
+
+
+            normal  specifies what to do with the data set if the
+                    program terminates normally
+
+                    KEEP - the data set is to be saved at the end of
+                           the step
+
+                    PASS - the data set is to be passed to a subsequent
+                           step within the job
+
+                    DELETE - the data set is to be deleted at the end
+                             of the job step
+
+
+            abnormal  specifies what to do with the data set if the
+                      program terminates abnormally (it ABENDs)
+
+                    KEEP - the data set is to be saved at the end of
+                           the step
+
+                    DELETE - the data set is to be deleted at the end
+                             of the job step
+
+
+            DISP=(NEW,KEEP)  equivalent to DISP=(NEW,KEEP,KEEP)
+
+            DISP=NEW  equivalent to DISP=(NEW,DELETE,DELETE)
+
+            DISP=OLD  equivalent to DISP=(OLD,KEEP,KEEP)
+
+            DISP=(,KEEP)  equivalent to  DISP=(NEW,KEEP,KEEP)
+
+
+
+         VOL=SER=volume-number
+
+            specifies where the data set is located
+
+            volume-number   usually ACA301 or ACA302
+
+</pre></p>
+
+<b><p>NIU Control statements</p></b>
+</font><font face="Courier New" size=3>
+
+<p>The following is used to specify options for a job run.</p>
+
+<p>Immediately after the JOB statement.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+  FORMAT:  /*JOBPARM parameters
+
+    parameters:
+
+       ROOM=nnnn  specifies the 4-digit bin number where the job output
+                  is to be placed
+
+       LINES=nn   specifies the maximum number of lines of output (in
+                  thousands) that the job is allowed to print.
+
+                  Default: LINES=2
+
+       COPIES=n   specifies the number of copies to print
+
+                  Maximum: 3
+
+                  Default: 1
+</pre></p>
+</font>
+</body>
+</html>

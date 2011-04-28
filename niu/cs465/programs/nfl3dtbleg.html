@@ -1,0 +1,257 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>Numeric Representation in Cobol</title>
+<meta NAME="Template" CONTENT="D:\MSOFFICE\WORD97\OFFICE\html.dot">
+</head>
+
+<body LINK="#0000ff" VLINK="#800080">
+<font SIZE="4">
+
+<p>&nbsp;<b>TABLE PROCESSING</p>
+</b>
+
+<p>Indexes, when used in table processing, are internally defined as COMP. (In use, a
+value is put into a register and incremented quickly with LA R4,x(R4))<br>
+<br>
+Invisible to the programmer, but much faster than converting a display type index, adding
+to it, and reconverting.</p>
+
+<p>Table: a data structure made up of a number of identically formatted records. 
+
+<ul>
+  <li>A specific record is called an <u>entry</u> or <u>element</u> of the table. </li>
+  <li>May be accessed by the number of the entry in the table (<u>subscripts</u>) or the
+    displacement of the entry into the table (<u>indexing</u>). </li>
+  <li>Array used synonymously with table.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>Tables are defined using the Occurs clause.</p>
+
+<p><br>
+<br>
+01 DRUG-TABLE.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 02 DRUG-ENTRY OCCURS 100 TIMES.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 03 DRUG-NUM PIC 9(5).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 03 DRUG-NAME PIC X(20).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<strong>This is a 1-D table</strong></p>
+
+<p>&nbsp;</p>
+
+<p>01 DRUG-TABLE.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 02 DRUG-ENTRY OCCURS 100 TIMES.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 03 DRUG-NAME OCCURS 3 TIMES<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 04
+DRUG-NUM PIC 9(5).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 04
+DRUG-COST PIC 9(3)V99.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>This is a
+2-D table</strong></p>
+
+<p>Table entrys can be located with either subscripts or indexes. Where one is permitted,
+so is the other. Indexing, however, is more efficient.</p>
+<b>
+
+<p>Subscripts</b> 
+
+<ul>
+  <li>Reference table entrys by specifying the <u>occurrence number</u> of a table element. </li>
+  <li>The subscript is a number from 1 </font><font FACE="Wingdings" SIZE="4">à</font><font
+    SIZE="4"> n </li>
+  <li>Can be in any data format (packed, display, binary) </li>
+  <li>User defined in W-S.</li>
+</ul>
+<b>
+
+<p>Indexes</b> 
+
+<ul>
+  <li>A <u>Compiler</u> generated area (4 bytes) </li>
+  <li>Is in Binary (Comp) format </li>
+  <li>Represents the <u>displacement</u> from the <u>beginning</u> of the table to the desired
+    entry. </li>
+  <li>Specified by &quot;indexed by&quot; option on the occurs clause. </li>
+  <li>Initialized through Set, Perform, Search All statements.</li>
+</ul>
+
+<p>e.g., SET INDEX TO 1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; index = 0
+displ.</p>
+
+<p>SET INDEX UP BY 1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+index = 25 displ in first 1-D drug table 
+
+<ul>
+  <li>Set verbs are actually LA instructions LA Rx, 25(Rx) </li>
+  <li>Indexing is faster and more efficient than either display or packed items as subscripts.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>If we had a 1-D drug table that was very active (e.g., lots of additions/deletions), we
+would want to read in a file of records and load them into the table for each processing
+run.</p>
+
+<p>01 DRUG-TABLE.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 02 DRUG-ENTRY OCCURS 1 TO 100 TIMES<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEPENDING ON DRUG-COUNT<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; INDEXED BY DRUG-PTR<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ASCENDING/DESCENDING KEY IS
+DRUG-NUM<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 03 DRUG-NUM PIC
+9(5).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 03 DRUG-NAME PIC
+X(20).</p>
+
+<p>&nbsp; 
+
+<ul>
+  <li>Occurs clause will cause compiler to set aside 2500 bytes </li>
+  <li>Drug-count in the Depending on clause is a field in W-S that we add to each time we read
+    in a new record </li>
+  <li>Indexed by clause is the only place we state we want to use an index </li>
+  <li>Ascending/Descending key clause promises that records will be sorted on drug-num. We are
+    responsible for this. This is necessary if you intend to use Search or Search All.</li>
+</ul>
+
+<p>We should initialize Drug-count to zero and increment it each time a record is loaded
+into table. At EOF, this field will contain the count of the number of records in the
+table.</p>
+
+<p>&nbsp;</p>
+<u>
+
+<p>Using Search and Search All 
+
+<ul>
+  </u>
+  <li>Will &quot;think&quot; table has number of entries in drug-count </li>
+  <li>For Search, use Set, Set Up, Set Down to assign values to the index. </li>
+  <li>Search and Search All will set the table's index to the correct value upon locating the
+    desired entry.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><strong>Search</strong> is a linear search; on average about half of the entrys are
+checked.</p>
+
+<p>SET DRUG-PTR TO 1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font
+FACE="Wingdings" SIZE="4">à</font><font SIZE="4"> Begin linear search w/ 1<sup>st</sup>
+entry<br>
+SEARCH DRUG-ENTRY<br>
+&nbsp;&nbsp;&nbsp;&nbsp; AT END MOVE &quot;NOT FOUND&quot; TO OUTPUT-FLD<br>
+&nbsp;&nbsp;&nbsp;&nbsp; WHEN DRUG-NUM-IN = DRUG-NUM(DRUG-PTR)<br>
+&nbsp;&nbsp;&nbsp;&nbsp; MOVE DRUG-NAME(DRUG-PTR) TO PUTPUT-FLD<br>
+END-SEARCH.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Search All</strong> (requires ascending key clause) is a binary search and so
+is done in logarithmic time</p>
+
+<p>SEARCH ALL DRUG-ENTRY
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+no set index needed here<br>
+&nbsp;&nbsp;&nbsp;&nbsp; AT END MOVE &quot;NOT FOUND&quot; TO OUTPUT-FLD<br>
+&nbsp;&nbsp;&nbsp;&nbsp; WHEN DRUG-NUM-IN = DRUG-NUM(DRUG-PTR)<br>
+&nbsp;&nbsp;&nbsp;&nbsp; MOVE DRUG-NAME(DRUG-PTR) TO OUTPUT-FLD.<br>
+END-SEARCH</p>
+
+<p ALIGN="CENTER"><strong>3D TABLE EXAMPLE</strong></p>
+
+<p>&nbsp;</p>
+
+<p>Assume we want to keep information about football conferences, divisions, and teams.
+Assume there are 2 conference, 3 disisions per conference, and 5 teams per division. We
+want to keep information about each team&#146;s offensive points scored and defensive
+points allowed. </p>
+
+<p>Define the following table:</p>
+
+<p>01 FOOTBALL-TABLE.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 02 CONFERENCE OCCURS 2 TIMES&nbsp; INDEXED BY CONF-NDX.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 03 DIVISION OCCURS 3 TIMES &nbsp;
+INDEXED BY DIV-NDX.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 04
+TEAM OCCURS 5 TIMES&nbsp;&nbsp; INDEXED BY TEAM-NDX.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+05 OFFENSIVE-PTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PIC 9(7) COMP.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+05 DEFENSIVE-PTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PIC 9(5) COMP.<br>
+</p>
+
+<p>The number of elements in this table is 30 (2 * 3 * 5). Offensive-pts and defensive-pts
+are the only elementary items, therefore they&#146;re the only items with Picture clauses.
+It would be acceptable, however, for there to be elementary items at both the Conference
+and Division levels of the table (e.g., total offensive-pts for each conference and each
+division.) </p>
+
+<p>We will fill this table with information read from an <b>input file</b> with the
+following description:</p>
+
+<p>FD INPUT-FILE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RECORDING MODE IS F<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DATA RECORD IS INFO-IN.</p>
+
+<p>01 INFO-IN.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; 02 TEAM-INFO OCCURS 5 TIMES INDEXED BY TEAM-IN-NDX.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 03 OFFENSIVE-PTS-IN
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PIC 9(7).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 03 DEFENSIVE-PTS-IN
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PIC 9(5).</p>
+
+<p>Here is some sample code to read the input file and fill the Football-Table.&nbsp; This
+sample does not use inline performs, but instead calls a separate routine to do the actual
+work.</p>
+
+<p>READ INPUT-FILE<br>
+AT END MOVE &#145;Y&#146; TO EOF-FLAG<br>
+END-READ</p>
+
+<p>/* Fill-football-table will be executed 30 times unless the input file does not have
+enough information for all 30 teams. */</p>
+
+<p>PERFORM FILL-FOOTBALL-TABLE <br>
+&nbsp;&nbsp; VARYING CONF-NDX FROM 1 BY 1<br>
+&nbsp;&nbsp; UNTIL CONF-NDX &gt; 2 OR EOF-FLAG = &#145;Y&#146;<br>
+AFTER DIV-NDX FROM 1 BY 1 <br>
+&nbsp;&nbsp; UNTIL DIV-NDX &gt; 3<br>
+AFTER TEAM-NDX FROM 1 BY 1<br>
+&nbsp;&nbsp; UNTIL TEAM-NDX &gt; 5<br>
+END-PERFORM</p>
+
+<p>FILL-FOOTBALL-TABLE.<br>
+<br>
+/* Team-in-ndx, which references occurrences in the Input file, is set to the index of the
+current team being processed */</p>
+
+<p><br>
+SET TEAM-IN-NDX TO TEAM-NDX <br>
+<br>
+MOVE OFFENSIVE-PTS-IN(TEAM-IN-NDX) TO<br>
+OFFENSIVE-PTS(CONF-NDX DIV-NDX TEAM-NDX) </p>
+
+<p>MOVE DEFENSIVE-PTS-IN(TEAM-IN-NDX) TO <br>
+DEFENSIVE-PTS(CONF-NDX DIV-NDX TEAM-NDX)</p>
+
+<p>/* we could be doing other things to the table at this point. e.g., we could be
+computing new numeric items for each team based on the information just read; we could be
+accumulating offensive and defensive totals for each division and conference as well if we
+had defined elementary fields for them in our table */</p>
+
+<p>IF TEAM-NDX = 5<br>
+&nbsp;&nbsp;&nbsp;&nbsp; READ INPUT-FILE AT END MOVE &#145;Y&#146; TO EOF-FLAG<br>
+&nbsp;&nbsp;&nbsp;&nbsp; END-READ<br>
+END-IF</p>
+
+<p>FILL-FOOTBALL-TABLE-EXIT. EXIT.</p>
+</font>
+</body>
+</html>

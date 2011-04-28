@@ -1,0 +1,251 @@
+<html>
+<head>
+<title>A few more macros</title>
+</head>
+<body>
+
+<font face="Courier New" size=4>
+
+<p><b>TIME macro</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>This macro gets the current date and the time of day that the program
+source is executed.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+Column   1       10    16
+Format:  label   TIME  DEC
+
+
+  - The current date is returned in PACKED DECIMAL format in register 1
+
+  - Date Format:  00YYDDDF
+
+       YY   last two digits of the year
+       DDD  day of the year
+       F    sign digit
+
+  - When printed, the date should be printed in YY.DDD format
+
+  - The time of day is returned in PACKED DECIMAL format in register 0
+
+  - Time Format:  HHMMSSth
+
+       HH   hour (24 hour clock)
+       MM   minutes
+       SS   seconds
+       t    tenths of a second
+       h    hundredths of a second
+
+  - When printed, the time should be printed in HH.MM.SS format
+
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p>&nbsp;</p>
+<p><b>SNAP macro</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>This macro is used for debugging.  It can be used to print out the contents
+of registers, the PSW, areas of storage, or other control blocks.</p>
+
+<p>A few requirements:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+JCL:  //ddname  DD  SYSOUT=*
+
+  - this is where output from SNAP will be written
+
+  - ddname cannot be SYSABEND, SYSMDUMP, or SYSUDUMP
+
+
+
+DCB:  //dcbname  DCB  DDNAME=ddname,             X
+                      DSORG=PS,                  X
+                      RECFM=VBA,                 X
+                      LRECL=nnn,                 X
+                      BLKSIZE=mmm,               X
+                      MACRF=(W)
+
+  - LRECL is usually 125 and BLKSIZE is usually 882 or 1632 because
+    120 characters will be printed per line in a standard dump
+
+  - DCB should be opened for output and later closed
+
+
+
+Registers:  0, 1, 14, and 15 may be altered
+
+
+
+Format:  SNAP  DCB=dcbname,options
+
+  - options may be
+
+      PDATA=PSW    the PSW is to be printed
+
+      PDATA=REGS   the contents of the registers are to be printed
+
+      PDATA=(PSW,REGS)   both the PSW and registers are to be printed
+
+
+      STORAGE=(start_addr,end_addr)
+
+        - storage starting from start_addr and ending with end_addr is
+          printed
+
+        - the addresses are rounded to the nearest fullword boundaries
+
+        - more than 1 area of storage can be printed using the
+          following format:
+
+            STORAGE=(start_addr1,end_addr1,start_addr2,end_addr2,...)
+
+
+      STRHDR=header
+
+        - prints headers for the storage that is to be dumped
+
+        - the 1st byte is the length of the header
+
+        - the rest is the actual header to be printed
+
+        - more than 1 header can be printed for more than 1 area of
+          storage by using the following format:
+
+            STRHDR=(header1,header2,...)
+
+
+
+  - a return code is set in register 15
+
+      0        success
+      4        DCB was not opened before the snap was issued
+      others   more serious errors
+
+
+
+In a program:
+
+  OPEN  (SNAPDCB,(OUTPUT))
+  ...
+  ...
+  SNAP  DCB=SNAPDCB,STORAGE=(AREA1,AREA1END),STRHDR=HDR1
+
+
+In storage:
+
+  AREA1    DC   X'Storage starts here'
+  ...
+  ...
+  AREA1END DC   X'Storage ends here'
+  HDR1     DC   X'16'
+           DC   X'Header for AREA1'
+  *
+  SNAPDCB  DCB  DDNAME=SNAPDD,             X
+                DSORG=PS,                  X
+                RECFM=VBA,                 X
+                LRECL=125,                 X
+                BLKSIZE=1632,              X
+                MACRF=(W)
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p>&nbsp;</p>
+<p><b>PGMDUMP macro</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>This macro is used to make a dump similar to the ones produced in 360 when
+a program ABENDs.</p>
+
+<p>A few requirements:</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+Add a 3rd line to the Assembler JCL:
+
+   //SYSLIB  DD  DSN=SYS2.MACLIB,DISP=SHR
+   //        DD  DSN=SYS1.MACLIB,DISP=SHR
+   <b>//        DD  DSN=T90CSCI.CSCI464.MACLIB,DISP=SHR</b>
+
+
+
+Add 3 lines to the Execution Step JCL:
+
+   //STEPLIB  DD  DSN=T90CSCI.CSCI464.MACLIB,DISP=SHR
+
+   //SYS$DUMP DD  SYSOUT=*
+
+   //SPX$DUMP DD  SYSOUT=*
+
+
+
+Immediately after the standard entry linkage add:
+
+   PGMDUMP
+
+      results in a 32-bytes per line dump of memory
+
+
+   PGMDUMP TYPE=C
+
+      results in a 16-bytes per line dump of memory
+</pre></p>
+</font><font face="Courier New" size=3>
+
+<p>To find specific areas in the dump, add the displacement of the field from
+the beginning of the program (found in the 1st column of each source code
+statement) to the entry point address.</p>
+
+<p>The entry point address is the address in memory where the program was loaded
+for execution and can be found in the Loader output messages.</p>
+
+<p>Do not code a SYSUDUMP DD statement.</p>
+
+</font><font face="Courier New" size=4>
+
+<p>&nbsp;</p>
+<p><b>ABEND macro</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>This macro is used to make a program terminate abnormally.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+Format:   ABEND  code
+
+  code   an integer value that will be used as the return code for
+         the program
+
+
+Example:    ABEND  465
+</pre></p>
+</font><font face="Courier New" size=4>
+
+<p>&nbsp;</p>
+<p><b>START</b></p>
+
+</font><font face="Courier New" size=3>
+
+<p>This is used in place of CSECT to specify a specific starting address.</p>
+
+</font><font face="Courier New" size=4>
+<p><pre>
+Format:   label   START  address
+
+  label     the name of the routine
+
+  address   the hexadecimal address for the program to start at
+
+
+Example:  MAIN  START  X'30000'
+</pre></p>
+</font>
+</body>
+</html>

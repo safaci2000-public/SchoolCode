@@ -1,0 +1,186 @@
+<html>
+
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<title>CSCI 465 Sample Exam 2</title>
+<meta NAME="Template" CONTENT="C:\MSOFFICE\WINWORD\OFFICE\html.dot">
+<script LANGUAGE="JavaScript">
+<!--
+var ansarray;
+
+//********************************
+function mkArray()
+{
+ for (var i = 0; i < 120; i++)
+     this[i] = " ";
+}
+
+//****************************
+function doit()
+{
+  ansarray = new mkArray();
+  ansarray[0] = "This is part of the answer."
+  ansarray[1] = "This is true also, but only part of the answer."
+  ansarray[2] = "This is true also, but only part of the answer. "    
+  ansarray[3] = "This is the right answer."
+  ansarray[4] = "Sorry, there is an answer."
+
+  ansarray[5] = "The program should NEVER open/close Cobol's Sort File."
+  ansarray[6] = "If you use USING...GIVING then you do not need Release/Return. "    
+  ansarray[7] = "If you use USING...GIVING then you do not need to open or close any files."
+  ansarray[8] = "Right."
+  ansarray[9] = "With USING..GIVING there's no need to Open/Close or Release/Return."
+
+  ansarray[10] = "This is part of the answer."
+  ansarray[11] = "This is part of the answer."
+  ansarray[12] = "This is part of the answer."
+  ansarray[13] = "Right. They are all true. "    
+
+  ansarray[14] = "Nope.  There is no such DD statement."
+  ansarray[15] = "Nope.  I made up this name."
+  ansarray[16] = "Right. Syslib identifies the library that contains the copy code."
+  ansarray[17] = "Neither one of these is a DDname."
+  ansarray[18] = "Wrong.  One of these is required."    
+
+  ansarray[19] = "Nope.  You are not required to use an Input or Output procedure."
+  ansarray[20] = "Correct.  You cannot have an input procedure with Merge."
+  ansarray[21] = "Why?  What if I only need to sort one input data set?"
+  ansarray[22] = "Wrong.  It can if if your program needs to."
+  ansarray[23] = "One of them is true."
+  ansarray[24] = "Neither one of them is true. "    
+
+  ansarray[25] = "I made this name up."
+  ansarray[26] = "I made this name up."
+  ansarray[27] = "Right.  Look in this special register for a zero return code after the Sort. "    
+  ansarray[28] = "No, only one of the above."
+  ansarray[29] = "Sorry.  One of them is correct."
+
+  ansarray[30] = "Release is closer to a Write.  Besides, these is no AT END with Release."
+  ansarray[31] = "Right.  You Return (like read) records from the sorted work file until EOF."
+  ansarray[32] = "Nope.  You Return INTO, not FROM."
+  ansarray[33] = "Sorry.  There's only one correct answer."
+  ansarray[34] = "Sorry.  There is a correct answer. "    
+
+  ansarray[35] = "Right.  The input procedure must Release records to the Sort file."
+  ansarray[36] = "Nope.  Here, you RETURN records."
+  ansarray[37] = "Nope.  Here, you RETURN records."
+  ansarray[38] = "Merge cannot have an input procedure. "     
+  ansarray[39] = "Half right."
+
+  ansarray[40] = "Nope.  This is OK."
+  ansarray[41] = "Nope.  This is OK."
+  ansarray[42] = "Correct. Either use an Input Procedure or use Using, not both. "    
+  ansarray[43] = "Nope.  This is OK."
+  ansarray[44] = "Sorry.  One combination is wrong."
+
+  ansarray[45] = "Not even close."
+  ansarray[46] = "The compiler does not care one way or the other is a program receives parms."
+  ansarray[47] = "There is no such message produced by the Loader / Linkage Editor."
+  ansarray[48] = "The program would execute, but possibly bomb if the omitted parm was crucial. "    
+  ansarray[49] = "Right, but the program may not behave correctly."
+
+  ansarray[50] = "Half Right. Cobol automatically provides for standard entry conditions."
+  ansarray[51] = "You can receive the parameters without a DSECT."
+  ansarray[52] = "Half Right."
+  ansarray[53] = "Sorry.  There is a correct answer."
+  ansarray[54] = "Right.  Both are true."
+
+  ansarray[55] = "This will end the run unit."
+  ansarray[56] = "Right. GOBACK causes a return to the program's caller. "    
+  ansarray[57] = "This is used in the Cobol SORT feature."
+  ansarray[58] = "Sorry, there is an answer."
+  ansarray[59] = "Sorry, there is only one answer."
+
+  ansarray[60] = "Right. The linkage section simply describes the structure of the incoming parms. "    
+  ansarray[61] = "No because the linkage section is not a list of addresses."
+  ansarray[62] = "This is true only of the main program's linkage section."
+  ansarray[63] = "There is an answer."
+  ansarray[64] = "Only one item is true."
+
+  ansarray[65] = "With the Using option, you do not open the input data set."
+  ansarray[66] = "Right.  You would have to open the Print data set in the Output Procedure."
+  ansarray[67] = "This is a temporary work data set used by Syncsort. "    
+  ansarray[68] = "Sorry.  Only one right answer."
+  ansarray[69] = "Half right."
+
+  ansarray[70] = "Silly person.  Of course you can have DD cards in a procedure."
+  ansarray[71] = "Silly person.  Of course you can have EXEC cards in a procedure."
+  ansarray[72] = "Right.  But this is only part of the answer."
+  ansarray[73] = "Right.  But this is only part of the answer."
+  ansarray[74] = "Right. "    
+
+  ansarray[75] = "Right."
+  ansarray[76] = "Sorry.  It cannot go there."
+  ansarray[77] = "Sorry.  It cannot go there."    
+  ansarray[78] = "Half right."
+  ansarray[79] = "Sorry, there is an answer."
+
+  ansarray[80] = "Nope.  The OS decides this."
+  ansarray[81] = "Half right. "    
+  ansarray[82] = "Half right."
+  ansarray[83] = "Nope.  It goes in column 10, just like a CSECT."
+  ansarray[84] = "Right."
+
+  ansarray[85] = "You have to specify which step these parms belong to."
+  ansarray[86] = "Right.  ParmName.Stepname=new value. "    
+  ansarray[87] = "Reverse order of stepname.parmname."
+  ansarray[88] = "S2.REGION is backwards."
+  ansarray[89] = "Sorry, there is a correct answer."
+
+  ansarray[90] = "Too much."
+  ansarray[91] = "Twice as large as it is."
+  ansarray[92] = "That's right.  It occupies a full word. "    
+  ansarray[93] = "Double this and you're there."
+  ansarray[94] = "Sorry, there is a correct answer."
+
+  ansarray[95] = "This performs range checking."
+  ansarray[96] = "This shows line number that causes an abend."
+  ansarray[97] = "This says literals are enclosed in single quotes."
+  ansarray[98] = "This produces assembler expansion of source."
+  ansarray[99] = "Right.  This produces the Condensed Verb listing" 
+
+  ansarray[100] = "Nope.  Static calls load one copy on first call. "    
+  ansarray[101] = "Right.  Static calls load one copy on first call, no new fresh copies."
+  ansarray[102] = "Yes.  Just code DISP=(NEW,KEEP) and give it some space."
+  ansarray[103] = "Consult your course notes about IEFBR14. "    
+  ansarray[104] = "If it uses symbolic parameters, it MUST have a PROC card. "    
+  ansarray[105] = "It must have one if symbolic parameters are used. "    
+  ansarray[106] = "Yes.  By default, source code always has LRECL=80. "    
+  ansarray[107] = "Well then what should its LRECL be?"
+  ansarray[108] = "Yes it can, if it makes sense to do so."
+  ansarray[109] = "Yes it can, if it makes sense to do so. "    
+  ansarray[110] = "Nope.  Only dynamically loaded programs can be removed."
+  ansarray[111] = "Right.  Only programs loaded dynamically can be removed from memory. "    
+  ansarray[112] = "No.  Length is determined by how many characters are passed. "    
+  ansarray[113] = "Right. 100 is the maximum, but actual length may be shorter. "    
+  ansarray[114] = "No.  The OS determines this."
+  ansarray[115] = "It merely determines where to start the location counter value."    
+  ansarray[116] = "Yes.  It can turn PS data sets into PO and vice versa."    
+  ansarray[117] = "Consult your class and course notes."    
+  ansarray[118] = "This is true."    
+  ansarray[119] = "This is false."
+  document.myform.ans.value = "";
+
+}
+
+//*******************************
+function showans(x)
+{
+  document.myform.ans.value = "";
+
+  document.myform.ans.value = ansarray[x-1];
+}
+
+
+//  -->
+</script>
+</head>
+
+<body onLoad="doit();">
+
+<form NAME="myform">
+  <p><input TYPE="text" NAME="ans" SIZE="150" VALUE> </p>
+</form>
+</body>
+</html>
