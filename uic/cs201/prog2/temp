@@ -1,0 +1,48 @@
+/*****************************************************************************
+ * Method:  		mergeSort()
+ * Function:		performs a merge sort on the array with min and max as lower
+ * 					and upper bound
+ * Arguments:  		int [] array // the array
+ * 					int min // lower bound
+ * 					int max // upper bound
+ * Returns:         None 
+ * Notes:			NA
+*****************************************************************************
+   public static void mergeSort(int array[], int min, int max)
+   {
+		if (min == max)
+			return;
+		else {
+			int mid = (min + max)/2;
+			mergeSort(array,min,mid);
+			mergeSort(array,mid+1,max);
+			int a[] = new int[mid];
+			int[] b = new int[max - (mid+1)];
+			for (int i=0; i < mid; i++)
+			{  a[i] = array[i]; }
+			for (int i=0; i < (max- ++mid); i++)
+			{  b[i] = array[i]; }
+			merge(a,mid,b,(max -(mid+1)));
+		}
+   } */ 
+/*****************************************************************************
+ * Method:  		merge two arrays 
+ * Function:		
+ * Arguments:  		
+ * Returns:         None 
+ * Notes:			NA
+*****************************************************************************
+   public static int[] merge(int[] first, int min, int[] second, int max)
+   {
+	  int[] combined = new int[100];
+	  for (int i = 0, j=0, k=0; k < min+max; k++ )
+	  {
+		 if (i == min) { combined[k] = second[j++]; continue;}
+		 if (j == max) { combined[k] = first[i++]; continue; } 
+		 combined[k] = (first[i] < second[j])? first[i++] : second[j++];
+	  }
+
+	  return combined;
+
+   }
+*/

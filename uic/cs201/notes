@@ -1,0 +1,64 @@
+Mon Nov  7 13:56:44 CST 2005
+
+[
+  November 14. quiz2  // one question?
+  Midterm Nov. 17
+  Assignment Nov. 21st
+
+  Intro to Trees and Graphs.
+
+  type of trees.  Organization Char, expression Tree
+               +				(inorder)
+		*              5
+	3        2
+
+  there is an edge between parent and child denoted as (u,v)  u=parent, v=child
+
+  internal node  === !leaf
+
+  nodes of same level are siblings
+
+  binary = tree with only 2 branches per node.
+     full tree has 2^(h-1) = # nof nodes in a full bin. tree (h= heigh of tree)
+     minimum height of bin tree is log(n+1);
+
+]
+
+
+Thu Nov 10 14:03:50 CST 2005
+[
+	Trees:  
+		traversal:  pre-order, inorder, postorder, level traversal
+
+		time complexity of level traversal O(n);
+
+		general tree Imp.
+
+		class treeNode										
+		{
+		  Object element
+		  TreeNode *firstChild
+		  TreeNode *nextsibling
+		}
+	Graphs:        *yuppie*
+
+	   consists of V nodes (vertices )  { nodes == vertices }
+	   and E of edges:  each ede connects two nodes
+
+	   each node is an item
+	   each edge represents a relationship between 2 items
+
+		no root
+
+		v = { 1, 2, 3, 5}
+		e = { (1,2), (1,3), (3,5), (5,2)}
+
+		2 nodes u and are are said to be adjacent if (u,v) is a member of e
+		path:  nodes to go through to get from node x to node y.
+		
+		
+		
+
+
+
+]
