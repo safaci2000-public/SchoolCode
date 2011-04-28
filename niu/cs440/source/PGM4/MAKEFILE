@@ -1,0 +1,9 @@
+driver:
+	gpp -o p4.exe p4.cc
+
+clean:
+	del *.exe
+	del *.o
+
+
+

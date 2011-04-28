@@ -1,0 +1,5 @@
+prog:
+	gpp -o prog6.exe prog6.cc
+
+sort:
+	gpp -g -o sort.exe insort.cc

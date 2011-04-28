@@ -1,0 +1,79 @@
+first:
+  isEmpty? yes
+  isFull?  no
+  size = 0
+
+first:
+  error: insert: out-of-range (k = -1)
+  size = 2
+  size = 4
+  size = 6
+  size = 8
+  size = 10
+  size = 12
+  size = 14
+  size = 16
+  size = 18
+  size = 20
+  error: insert: list is full
+  error: insert: list is full
+  size = 20
+  error: insert: list is full
+  error: insert: list is full
+  size = 20
+  error: insert: list is full
+  error: insert: list is full
+  size = 20
+
+first:
+  isEmpty? no
+  isFull?  yes
+
+first: 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 
+first: 2 3 5 8 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 
+first: 3 4 6 9 12 14 18 20 24 30 32 38 42 44 48 54 60 62 68 72 
+first: 2 3 5 8 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 
+  error: remove: out-of-range (k = 10)
+  error: remove: out-of-range (k = 11)
+  error: remove: out-of-range (k = 12)
+  error: remove: out-of-range (k = 13)
+  error: remove: out-of-range (k = 14)
+  error: remove: out-of-range (k = 15)
+  error: remove: out-of-range (k = 16)
+  error: remove: out-of-range (k = 17)
+  error: remove: out-of-range (k = 18)
+  error: remove: out-of-range (k = 19)
+
+size = 10
+first: 3 8 13 19 29 37 43 53 61 71 
+entry 7 not in list
+
+size = 5
+second: 1.3 2.7 -0.5 17 -99.9 
+second: 2.3 3.7 0.5 18 -98.9 
+entry 3.7 in position 1
+
+size = 2
+third: CSCI Programming 
+third: CSCI Computer 
+
+size = 4
+third: CSCI 440: Computer Assignment 4 
+
+size = 3
+third: CSCI 440: Computer 
+entry "Computer" in position 2
+
+size = 0
+third: 
+
+size = 10
+fourth: 3 8 13 19 29 37 43 53 61 71 
+fourth: 71 61 53 43 37 29 19 13 8 3 
+
+size = 5
+fourth: 71 53 37 19 8 
+
+size = 2
+fifth: Computer CSCI 
+

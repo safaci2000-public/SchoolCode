@@ -1,0 +1,16 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.2.3	//
+clear	parTree.h	/^void parTree::clear()$/;"	f	class:parTree
+clear	parTree.h	/^void parTree::clear(parTNode<string>* currNode)$/;"	f	class:parTree
+makeTree	parTree.h	/^void parTree::makeTree(const string & expr)$/;"	f	class:parTree
+makeTree	parTree.h	/^void parTree::makeTree(parTNode<string>*& currNode, const string& expr)$/;"	f	class:parTree
+parTree	parTree.h	/^class parTree$/;"	c
+parTree	parTree.h	/^parTree::parTree()$/;"	f	class:parTree
+printTree	parTree.h	/^void parTree::printTree() const$/;"	f	class:parTree
+printTree	parTree.h	/^void parTree::printTree(const parTNode<string>* currNode) const$/;"	f	class:parTree
+root	parTree.h	/^    parTNode<string>* root;                \/\/ root node of Tree.$/;"	m	class:parTree
+~parTree	parTree.h	/^parTree::~parTree()$/;"	f	class:parTree

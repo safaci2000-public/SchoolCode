@@ -1,0 +1,5 @@
+prog: 
+	gpp -o prog8.exe prog8.cc
+
+debug: 
+	gpp -g -o prog8.exe prog8.cc

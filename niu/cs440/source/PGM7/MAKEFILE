@@ -1,0 +1,5 @@
+test:
+	gpp -o main.exe main.cc
+
+main:
+	gpp -o p7.exe p7.cc

@@ -1,0 +1,5 @@
+prog:
+	gpp -o p3.exe p3.cc
+
+clean:
+	del p3.exe

@@ -1,0 +1,5 @@
+p1:
+	gpp -o p1.exe p1.cc
+
+clean:
+	del p1.exe

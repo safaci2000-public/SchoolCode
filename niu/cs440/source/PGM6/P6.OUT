@@ -1,0 +1,129 @@
+
+	*** CSCI 440: Program 6 - Output ***
+
+first list - unsorted
+      28     -647     -382       69      895     -655      404     -546 
+      -9     -749     -831     -220     -444     -263      966       71 
+     531      293      534      560      646     -695      251     -369 
+    -305      834       40     -197      213      571      863      739 
+     733      349      517      164     -220     -288     -598      654 
+    -167      -72      958     -746     -573      916      475     -181 
+     560      516      913     -942     -361      514     -513      179 
+    -912      912     -361     -880     -115      830      144     -761 
+     139     -495       -7     -525      -45     -187      746     -145 
+    -282     -235     -912     -677       45      393     -804     -197 
+     547     -509     -313     -539     -403     -390      774     -925 
+     302     -202      352      465      875     -532      677      934 
+     557     -136      348      618 
+
+first list - sorted
+    -942     -925     -912     -912     -880     -831     -804     -761 
+    -749     -746     -695     -677     -655     -647     -598     -573 
+    -546     -539     -532     -525     -513     -509     -495     -444 
+    -403     -390     -382     -369     -361     -361     -313     -305 
+    -288     -282     -263     -235     -220     -220     -202     -197 
+    -197     -187     -181     -167     -145     -136     -115      -72 
+     -45       -9       -7       28       40       45       69       71 
+     139      144      164      179      213      251      293      302 
+     348      349      352      393      404      465      475      514 
+     516      517      531      534      547      557      560      560 
+     571      618      646      654      677      733      739      746 
+     774      830      834      863      875      895      912      913 
+     916      934      958      966 
+
+second list - unsorted
+ -126.17  -329.04  -170.40   163.42  -279.66   355.67  -207.22    59.06 
+  184.38   189.87   454.23  -834.74    64.03  -630.81  -191.03  -251.65 
+  398.76    -1.87   468.44   378.53  -280.54   580.12   350.48   299.95 
+ -441.58   387.50  -290.67     0.63  -680.65  -728.50   565.64  -497.48 
+ -492.66   132.27  -323.52  -688.54  -361.08  -391.15  -254.70  -152.79 
+  711.98  -330.79  -648.02   113.42   455.87   580.20  -397.21   167.67 
+  -18.69   337.60  -239.58  -208.58  -209.56  -583.92  -286.04   200.05 
+  346.79   199.22   168.89  -327.15   365.32  -430.49   177.14  -176.99 
+   42.38   118.35  -393.01    87.63   105.74    76.02  -286.83   197.70 
+  104.55   721.75  -473.20  -391.86   499.40   873.65   225.40   -32.23 
+ -567.73   878.72     2.91   -10.69   136.53  -237.10   -40.34  -180.62 
+  486.99  -778.98  -267.60    88.52    29.85     6.82   344.29   201.17 
+ -587.31  -157.06   974.89   425.67 
+
+second list - sorted
+ -834.74  -778.98  -728.50  -688.54  -680.65  -648.02  -630.81  -587.31 
+ -583.92  -567.73  -497.48  -492.66  -473.20  -441.58  -430.49  -397.21 
+ -393.01  -391.86  -391.15  -361.08  -330.79  -329.04  -327.15  -323.52 
+ -290.67  -286.83  -286.04  -280.54  -279.66  -267.60  -254.70  -251.65 
+ -239.58  -237.10  -209.56  -208.58  -207.22  -191.03  -180.62  -176.99 
+ -170.40  -157.06  -152.79  -126.17   -40.34   -32.23   -18.69   -10.69 
+   -1.87     0.63     2.91     6.82    29.85    42.38    59.06    64.03 
+   76.02    87.63    88.52   104.55   105.74   113.42   118.35   132.27 
+  136.53   163.42   167.67   168.89   177.14   184.38   189.87   197.70 
+  199.22   200.05   201.17   225.40   299.95   337.60   344.29   346.79 
+  350.48   355.67   365.32   378.53   387.50   398.76   425.67   454.23 
+  455.87   468.44   486.99   499.40   565.64   580.12   580.20   711.98 
+  721.75   873.65   878.72   974.89 
+
+third list - unsorted
+PREFACE This is a book about the computer 
+language called C If you are seeking a 
+book to increase your typing speed expand on 
+your knowledge of word processing or learn the 
+secrets of chip fabrication and design this is 
+not the one for you However if you 
+want to become thoroughly familiar with the C 
+programming language then you have made a wise 
+choice For this book is devoted to just 
+that help you become proficient in C It 
+is one thing to read about a language 
+it is quite another to get involved in 
+it The best and 
+
+third list - sorted
+C C C For However If It PREFACE 
+The This a a a a about about 
+and and another are become become best book 
+book book called chip choice computer design devoted 
+expand fabrication familiar for get have help if 
+in in increase involved is is is is 
+is it it just knowledge language language language 
+learn made not of of on one one 
+or processing proficient programming quite read secrets seeking 
+speed that the the the the then thing 
+this this thoroughly to to to to to 
+typing want wise with word you you you 
+you you your your 
+
+fourth list - unsorted
+      20       19       14       23       16       10       18 
+
+ *** size = 1
+      20 
+      20 
+
+ *** size = 2
+      20       19 
+      19       20 
+
+ *** size = 3
+      19       20       14 
+      14       19       20 
+
+ *** size = 4
+      14       19       20       23 
+      14       19       20       23 
+
+ *** size = 5
+      14       19       20       23       16 
+      14       16       19       20       23 
+
+ *** size = 6
+      14       16       19       20       23       10 
+      10       14       16       19       20       23 
+
+ *** size = 7
+      10       14       16       19       20       23       18 
+      10       14       16       18       19       20       23 
+
+fourth list - sorted
+      10       14       16       18       19       20       23 
+
+	*** End of Program Execution ***
+

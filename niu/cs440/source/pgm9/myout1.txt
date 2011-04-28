@@ -1,0 +1,86 @@
+[2J	*********************************************************
+	*                                                       *
+	*                CSCI 440 - Program 9                   *
+	*                     Spring 2002                       *
+	*        Parse Trees and Expression Evaluation          *
+	*                       Phase 2                         *
+	*                                                       *
+	*********************************************************
+
+EXPR	A12+
+
+	The parse tree for the above expression is: 
+
+	k	entry[k]	left[k]		right[k]
+	_	--------	-------		--------
+        1	    A		    0		    0
+        2	    12		    0		    0
+        3	    +		    1		    2
+
+EVAL	1.35
+
+	The variables are assigned the values: 
+
+	A =  1.35
+
+	To evaluate the expression, following computations were performed: 
+
+	operator	L operand	R operand	 result
+	--------	---------	---------	---------
+            +           1.35e+00         1.20e+01        1.33e+01
+
+	Value of the Expression = 1.33e+01
+
+EXPR	DA+CB-/
+
+	The parse tree for the above expression is: 
+
+	k	entry[k]	left[k]		right[k]
+	_	--------	-------		--------
+        1	    D		    0		    0
+        2	    A		    0		    0
+        3	    +		    1		    2
+        4	    C		    0		    0
+        5	    B		    0		    0
+        6	    -		    4		    5
+        7	    /		    3		    6
+
+EVAL	1.0 3.0 2.0 0.5
+
+	The variables are assigned the values: 
+
+	A =  1.00
+	B =  3.00
+	C =  2.00
+	D =  0.50
+
+	To evaluate the expression, following computations were performed: 
+
+	operator	L operand	R operand	 result
+	--------	---------	---------	---------
+            +           5.00e-01         1.00e+00        1.50e+00
+            -           2.00e+00         3.00e+00       -1.00e+00
+            /           1.50e+00        -1.00e+00       -1.50e+00
+
+	Value of the Expression = -1.50e+00
+
+EVAL	3.25 0.75 4.66 -3.4
+
+	The variables are assigned the values: 
+
+	A =  3.25
+	B =  0.75
+	C =  4.66
+	D =  -3.40
+
+	To evaluate the expression, following computations were performed: 
+
+	operator	L operand	R operand	 result
+	--------	---------	---------	---------
+            +          -3.40e+00         3.25e+00       -1.50e-01
+            -           4.66e+00         7.50e-01        3.91e+00
+            /          -1.50e-01         3.91e+00       -3.84e-02
+
+	Value of the Expression = -3.84e-02
+
+QUIT

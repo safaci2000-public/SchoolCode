@@ -1,0 +1,9 @@
+driver:
+	gpp -o p5.exe p5.cc
+
+object:
+	gpp -c p5.cc
+
+clean:
+	del p5.exe
+	del *.o
