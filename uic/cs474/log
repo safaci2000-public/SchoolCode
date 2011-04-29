@@ -1,0 +1,4 @@
+meeting.h:83: warning: unused parameter 'input'
+calendar.h:33: error: redefinition of 'void Calendar_Record::addMeeting()'
+calendar.h:28: error: 'void Calendar_Record::addMeeting()' previously defined here
+make: *** [main.o] Error 1

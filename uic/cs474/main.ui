@@ -1,0 +1,816 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1029</width>
+    <height>736</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>CS474 - Calendar Application</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <widget class="QRadioButton" name="bt_browse" >
+    <property name="geometry" >
+     <rect>
+      <x>510</x>
+      <y>10</y>
+      <width>131</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Browse Entries</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="bt_new" >
+    <property name="geometry" >
+     <rect>
+      <x>380</x>
+      <y>10</y>
+      <width>110</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>New Entry</string>
+    </property>
+   </widget>
+   <widget class="QTabWidget" name="tab_control" >
+    <property name="geometry" >
+     <rect>
+      <x>40</x>
+      <y>40</y>
+      <width>961</width>
+      <height>651</height>
+     </rect>
+    </property>
+    <property name="currentIndex" >
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tb_contacts" >
+     <attribute name="title" >
+      <string>Contacts</string>
+     </attribute>
+     <widget class="QLabel" name="label_5" >
+      <property name="geometry" >
+       <rect>
+        <x>370</x>
+        <y>240</y>
+        <width>101</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Zip:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="le_city" >
+      <property name="geometry" >
+       <rect>
+        <x>180</x>
+        <y>200</y>
+        <width>151</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="le_hphone" >
+      <property name="geometry" >
+       <rect>
+        <x>180</x>
+        <y>280</y>
+        <width>151</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="le_addr2" >
+      <property name="geometry" >
+       <rect>
+        <x>180</x>
+        <y>150</y>
+        <width>431</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="le_cphone" >
+      <property name="geometry" >
+       <rect>
+        <x>180</x>
+        <y>320</y>
+        <width>151</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_lname" >
+      <property name="geometry" >
+       <rect>
+        <x>30</x>
+        <y>80</y>
+        <width>101</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Last Name:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_addr" >
+      <property name="geometry" >
+       <rect>
+        <x>30</x>
+        <y>120</y>
+        <width>101</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Address:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_city" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>200</y>
+        <width>101</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>City
+</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_hphone" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>280</y>
+        <width>101</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Home Phone:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_cphone" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>320</y>
+        <width>101</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Cell Phone:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_email" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>360</y>
+        <width>101</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Email</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_fname" >
+      <property name="geometry" >
+       <rect>
+        <x>30</x>
+        <y>30</y>
+        <width>101</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>First Name:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_state" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>250</y>
+        <width>101</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>State</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="le_state" >
+      <property name="geometry" >
+       <rect>
+        <x>180</x>
+        <y>240</y>
+        <width>171</width>
+        <height>24</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="le_lname" >
+      <property name="geometry" >
+       <rect>
+        <x>180</x>
+        <y>70</y>
+        <width>151</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="le_addr1" >
+      <property name="geometry" >
+       <rect>
+        <x>180</x>
+        <y>110</y>
+        <width>431</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="le_fname" >
+      <property name="geometry" >
+       <rect>
+        <x>180</x>
+        <y>30</y>
+        <width>150</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="le_email" >
+      <property name="geometry" >
+       <rect>
+        <x>180</x>
+        <y>360</y>
+        <width>151</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bt_save" >
+      <property name="geometry" >
+       <rect>
+        <x>180</x>
+        <y>410</y>
+        <width>92</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Save</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="le_prev" >
+      <property name="geometry" >
+       <rect>
+        <x>480</x>
+        <y>20</y>
+        <width>31</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>&lt;&lt;</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="le_next" >
+      <property name="geometry" >
+       <rect>
+        <x>520</x>
+        <y>20</y>
+        <width>31</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>>></string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="le_zip" >
+      <property name="geometry" >
+       <rect>
+        <x>450</x>
+        <y>230</y>
+        <width>81</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="inputMask" >
+       <string/>
+      </property>
+      <property name="maxLength" >
+       <number>32767</number>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tb_appts" >
+     <attribute name="title" >
+      <string>Appointments</string>
+     </attribute>
+     <widget class="QLabel" name="lb_endat" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>110</y>
+        <width>81</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Ending at:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_addr_appt" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>160</y>
+        <width>81</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Address:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>340</y>
+        <width>101</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Description:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="le_state_2" >
+      <property name="geometry" >
+       <rect>
+        <x>140</x>
+        <y>290</y>
+        <width>171</width>
+        <height>24</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_starat" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>81</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Starting at:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_state_2" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>300</y>
+        <width>71</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>State:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_city_2" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>250</y>
+        <width>81</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>City:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_zip" >
+      <property name="geometry" >
+       <rect>
+        <x>340</x>
+        <y>300</y>
+        <width>66</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Zip:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>560</y>
+        <width>100</width>
+        <height>38</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Requirement
+Specifications:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>450</y>
+        <width>66</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Deadline:</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rd_personal" >
+      <property name="geometry" >
+       <rect>
+        <x>330</x>
+        <y>20</y>
+        <width>110</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Personal</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11" >
+      <property name="geometry" >
+       <rect>
+        <x>590</x>
+        <y>50</y>
+        <width>81</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-weight:600; color:#ff0000;">Attendees:&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+      </property>
+      <property name="textFormat" >
+       <enum>Qt::RichText</enum>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="rd_business" >
+      <property name="geometry" >
+       <rect>
+        <x>190</x>
+        <y>20</y>
+        <width>110</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Business</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lb_addr2" >
+      <property name="geometry" >
+       <rect>
+        <x>140</x>
+        <y>200</y>
+        <width>431</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lb_addr1" >
+      <property name="geometry" >
+       <rect>
+        <x>140</x>
+        <y>150</y>
+        <width>431</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="lb_emergency" >
+      <property name="geometry" >
+       <rect>
+        <x>140</x>
+        <y>490</y>
+        <width>171</width>
+        <height>24</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="lb_guests" >
+      <property name="geometry" >
+       <rect>
+        <x>690</x>
+        <y>80</y>
+        <width>211</width>
+        <height>221</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="lb_new_contact" >
+      <property name="geometry" >
+       <rect>
+        <x>700</x>
+        <y>330</y>
+        <width>121</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>New Contact</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="lb_save" >
+      <property name="geometry" >
+       <rect>
+        <x>700</x>
+        <y>390</y>
+        <width>121</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Save</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="tb_requirements" >
+      <property name="geometry" >
+       <rect>
+        <x>140</x>
+        <y>520</y>
+        <width>431</width>
+        <height>94</height>
+       </rect>
+      </property>
+      <property name="tabChangesFocus" >
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lb_zip" >
+      <property name="geometry" >
+       <rect>
+        <x>430</x>
+        <y>290</y>
+        <width>141</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="inputMask" >
+       <string/>
+      </property>
+      <property name="maxLength" >
+       <number>32767</number>
+      </property>
+     </widget>
+     <widget class="QDateTimeEdit" name="lb_sdate" >
+      <property name="geometry" >
+       <rect>
+        <x>140</x>
+        <y>50</y>
+        <width>194</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QDateTimeEdit" name="lb_edate" >
+      <property name="geometry" >
+       <rect>
+        <x>140</x>
+        <y>100</y>
+        <width>194</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QDateEdit" name="lb_deadline" >
+      <property name="geometry" >
+       <rect>
+        <x>140</x>
+        <y>440</y>
+        <width>110</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="budget_label" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>490</y>
+        <width>66</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Budget:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9" >
+      <property name="geometry" >
+       <rect>
+        <x>20</x>
+        <y>490</y>
+        <width>82</width>
+        <height>38</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Emergency 
+Contact:</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="lb_desc" >
+      <property name="geometry" >
+       <rect>
+        <x>140</x>
+        <y>330</y>
+        <width>431</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="tabChangesFocus" >
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lb_city" >
+      <property name="geometry" >
+       <rect>
+        <x>140</x>
+        <y>250</y>
+        <width>141</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lb_transportation" >
+      <property name="geometry" >
+       <rect>
+        <x>140</x>
+        <y>440</y>
+        <width>141</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lb_budget" >
+      <property name="geometry" >
+       <rect>
+        <x>140</x>
+        <y>490</y>
+        <width>141</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bt_next" >
+      <property name="geometry" >
+       <rect>
+        <x>510</x>
+        <y>20</y>
+        <width>31</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>>></string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bt_prev" >
+      <property name="geometry" >
+       <rect>
+        <x>470</x>
+        <y>20</y>
+        <width>31</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>&lt;&lt;</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1029</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionOpen" />
+    <addaction name="actionSave" />
+    <addaction name="action_Exit" />
+   </widget>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout" />
+   </widget>
+   <addaction name="menu_File" />
+   <addaction name="menuHelp" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <action name="actionOpen" >
+   <property name="text" >
+    <string>&amp;Open</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSave" >
+   <property name="text" >
+    <string>&amp;Save</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_Exit" >
+   <property name="text" >
+    <string>&amp;Exit</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+F4</string>
+   </property>
+  </action>
+  <action name="actionAbout" >
+   <property name="text" >
+    <string>&amp;About</string>
+   </property>
+   <property name="shortcut" >
+    <string>F1</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>le_fname</tabstop>
+  <tabstop>le_lname</tabstop>
+  <tabstop>le_addr1</tabstop>
+  <tabstop>le_addr2</tabstop>
+  <tabstop>le_city</tabstop>
+  <tabstop>le_state</tabstop>
+  <tabstop>le_zip</tabstop>
+  <tabstop>le_hphone</tabstop>
+  <tabstop>le_cphone</tabstop>
+  <tabstop>le_email</tabstop>
+  <tabstop>bt_save</tabstop>
+  <tabstop>rd_business</tabstop>
+  <tabstop>lb_addr1</tabstop>
+  <tabstop>lb_addr2</tabstop>
+  <tabstop>lb_city</tabstop>
+  <tabstop>le_state_2</tabstop>
+  <tabstop>lb_zip</tabstop>
+  <tabstop>lb_desc</tabstop>
+  <tabstop>lb_emergency</tabstop>
+  <tabstop>tb_requirements</tabstop>
+  <tabstop>lb_guests</tabstop>
+  <tabstop>lb_new_contact</tabstop>
+  <tabstop>lb_save</tabstop>
+  <tabstop>tab_control</tabstop>
+  <tabstop>bt_browse</tabstop>
+  <tabstop>bt_new</tabstop>
+  <tabstop>rd_personal</tabstop>
+ </tabstops>
+ <resources>
+  <include location="icon.qrc" />
+ </resources>
+ <connections/>
+</ui>

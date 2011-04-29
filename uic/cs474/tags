@@ -1,0 +1,229 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+AR	Makefile	/^AR            = ar cqs$/;"	m
+CC	Makefile	/^CC            = gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS        = -pipe -march=i686 -O2 -pipe -mno-tls-direct-seg-refs -Wall -W -D_REENTRANT  $(DEFINES)$/;"	m
+CHK_DIR_EXISTS	Makefile	/^CHK_DIR_EXISTS= test -d$/;"	m
+COMPRESS	Makefile	/^COMPRESS      = gzip -9f$/;"	m
+COPY	Makefile	/^COPY          = cp -f$/;"	m
+COPY_DIR	Makefile	/^COPY_DIR      = $(COPY) -r$/;"	m
+COPY_FILE	Makefile	/^COPY_FILE     = $(COPY)$/;"	m
+CXX	Makefile	/^CXX           = g++$/;"	m
+CXXFLAGS	Makefile	/^CXXFLAGS      = -pipe -march=i686 -O2 -pipe -mno-tls-direct-seg-refs -Wall -W -D_REENTRANT  $(DEFINES)$/;"	m
+Calendar_Record	calendar.h	/^class Calendar_Record$/;"	c
+Calendar_Record	calendar.h	/^inline Calendar_Record::Calendar_Record()$/;"	f	class:Calendar_Record
+DEFINES	Makefile	/^DEFINES       = -DQT_NO_DEBUG -DQT_GUI_LIB -DQT_CORE_LIB -DQT_SHARED$/;"	m
+DEL_DIR	Makefile	/^DEL_DIR       = rmdir$/;"	m
+DEL_FILE	Makefile	/^DEL_FILE      = rm -f$/;"	m
+DESTDIR	Makefile	/^DESTDIR       = $/;"	m
+DIST	Makefile	/^DIST          = \/usr\/share\/qt4\/mkspecs\/common\/unix.conf \\$/;"	m
+INCPATH	Makefile	/^INCPATH       = -I\/usr\/share\/qt4\/mkspecs\/linux-g++ -I. -I\/usr\/include\/qt4\/QtCore -I\/usr\/include\/qt4\/QtCore -I\/usr\/include\/qt4\/QtGui -I\/usr\/include\/qt4\/QtGui -I\/usr\/include\/qt4 -I. -I. -I.$/;"	m
+INSTALL_DIR	Makefile	/^INSTALL_DIR   = $(COPY_DIR)$/;"	m
+INSTALL_FILE	Makefile	/^INSTALL_FILE  = install -m 644 -p$/;"	m
+INSTALL_PROGRAM	Makefile	/^INSTALL_PROGRAM = install -m 755 -p$/;"	m
+LEX	Makefile	/^LEX           = flex$/;"	m
+LEXFLAGS	Makefile	/^LEXFLAGS      = $/;"	m
+LFLAGS	Makefile	/^LFLAGS        = $/;"	m
+LIBS	Makefile	/^LIBS          = $(SUBLIBS)  -L\/usr\/lib\/qt4 -lQtGui -L\/usr\/lib\/mysql -L\/usr\/lib\/qt4 -L\/usr\/lib -lpng -lSM -lICE -lXrender -lXrandr -lXfixes -lXcursor -lXinerama -lfreetype -lfontconfig -lXext -lX11 -lQtCore -lz -lm -ldl -lpthread$/;"	m
+LINK	Makefile	/^LINK          = g++$/;"	m
+MKDIR	Makefile	/^MKDIR         = mkdir -p$/;"	m
+MOVE	Makefile	/^MOVE          = mv -f$/;"	m
+MainWidget	mainwidget.cc	/^MainWidget::MainWidget(QMainWindow *parent) : QMainWindow(parent) $/;"	f	class:MainWidget
+MainWidget	mainwidget.h	/^class MainWidget : public QMainWindow, private Ui::MainWindow$/;"	c
+MainWindow	ui_main.h	/^    class MainWindow: public Ui_MainWindow {};$/;"	c	namespace:Ui
+OBJECTS	Makefile	/^OBJECTS       = main.o \\$/;"	m
+OBJECTS_DIR	Makefile	/^OBJECTS_DIR   = .\/$/;"	m
+OpenFile	mainwidget.cc	/^void MainWidget::OpenFile()$/;"	f	class:MainWidget
+QMAKE	Makefile	/^QMAKE         = \/usr\/bin\/qmake$/;"	m
+QMAKE_TARGET	Makefile	/^QMAKE_TARGET  = main$/;"	m
+RANLIB	Makefile	/^RANLIB        = $/;"	m
+SOURCES	Makefile	/^SOURCES       = main.cc \\$/;"	m
+SYMLINK	Makefile	/^SYMLINK       = ln -sf$/;"	m
+TAR	Makefile	/^TAR           = tar -cf$/;"	m
+TARGET	Makefile	/^TARGET        = main$/;"	m
+UI_MAIN_H	ui_main.h	11;"	d
+Ui	ui_main.h	/^namespace Ui {$/;"	n
+Ui_MainWindow	ui_main.h	/^class Ui_MainWindow$/;"	c
+YACC	Makefile	/^YACC          = yacc$/;"	m
+YACCFLAGS	Makefile	/^YACCFLAGS     = -d$/;"	m
+actionOpen	ui_main.h	/^    QAction *actionOpen;$/;"	m	class:Ui_MainWindow
+actionSave	ui_main.h	/^    QAction *actionSave;$/;"	m	class:Ui_MainWindow
+action_Exit	ui_main.h	/^    QAction *action_Exit;$/;"	m	class:Ui_MainWindow
+addMeeting	calendar.h	/^void Calendar_Record::addMeeting()$/;"	f	class:Calendar_Record
+address1	contacts.h	/^			address1,$/;"	m	class:contacts
+address1	meeting.h	/^	 		 address1,$/;"	m	class:meeting
+address2	contacts.h	/^			address2,$/;"	m	class:contacts
+address2	meeting.h	/^	 		 address2,$/;"	m	class:meeting
+advisorNotes	business.h	/^	QString advisorNotes;$/;"	m	class:business
+bt_browse	ui_main.h	/^    QRadioButton *bt_browse;$/;"	m	class:Ui_MainWindow
+bt_new	ui_main.h	/^    QRadioButton *bt_new;$/;"	m	class:Ui_MainWindow
+bt_save	ui_main.h	/^    QPushButton *bt_save;$/;"	m	class:Ui_MainWindow
+budget	personal.h	/^	double budget;$/;"	m	class:personal
+business	business.h	/^class business: meeting$/;"	c
+business_h	business.h	3;"	d
+calendar_h	calendar.h	6;"	d
+centralwidget	ui_main.h	/^    QWidget *centralwidget;$/;"	m	class:Ui_MainWindow
+city	contacts.h	/^			city,$/;"	m	class:contacts
+city	meeting.h	/^			 city,$/;"	m	class:meeting
+console_code	main.cc	/^void console_code()$/;"	f
+contactCount	contacts.h	/^	static int contactCount;$/;"	m	class:contacts
+contactCount	contacts.h	/^int contacts::contactCount = 0;$/;"	m	class:contacts
+contact_h	contacts.h	5;"	d
+contact_list	calendar.h	/^    static std::vector<contacts> contact_list;$/;"	m	class:Calendar_Record
+contacts	contacts.h	/^class contacts \/\/ : QString(fname),QSring(lname),QString(address1),QString(address2),QString(city),QString(state),QString(city),QString(state),QString(zip), QString(hphone), QString(cphone), QString(wphone), QString(email)$/;"	c
+contacts	contacts.h	/^inline contacts::contacts()$/;"	f	class:contacts
+cphone	contacts.h	/^			cphone,$/;"	m	class:contacts
+deadline	business.h	/^    QDateTimeEdit deadline;$/;"	m	class:business
+description	business.h	/^  	QString description;$/;"	m	class:business
+directions	personal.h	/^  	QString directions;$/;"	m	class:personal
+edate	meeting.h	/^	 QDateTime edate;  \/\/ handles ending date and time $/;"	m	class:meeting
+eday	meeting.h	/^	 		 eday,			\/\/ class$/;"	m	class:meeting
+email	contacts.h	/^			email;$/;"	m	class:contacts
+emergency	business.h	/^	QString emergency;$/;"	m	class:business
+fname	contacts.h	/^  	QString fname,$/;"	m	class:contacts
+getAddress1	contacts.h	/^QString contacts::getAddress1()$/;"	f	class:contacts
+getAddress1	meeting.h	/^QString meeting:: getAddress1()$/;"	f	class:meeting
+getAddress2	contacts.h	/^QString contacts::getAddress2()$/;"	f	class:contacts
+getAddress2	meeting.h	/^QString meeting:: getAddress2()$/;"	f	class:meeting
+getBudget	personal.h	/^double personal:: getBudget()$/;"	f	class:personal
+getCity	meeting.h	/^QString meeting:: getCity()$/;"	f	class:meeting
+getCphone	contacts.h	/^QString contacts::getCphone()$/;"	f	class:contacts
+getDirections	personal.h	/^QString personal:: getDirections()$/;"	f	class:personal
+getEdate	meeting.h	/^QDateTime meeting::getEdate()$/;"	f	class:meeting
+getEday	meeting.h	/^QString meeting:: getEday()$/;"	f	class:meeting
+getEmail	contacts.h	/^QString contacts::getEmail()$/;"	f	class:contacts
+getFname	contacts.h	/^QString contacts::getFname()$/;"	f	class:contacts
+getHphone	contacts.h	/^QString contacts::getHphone()$/;"	f	class:contacts
+getLname	contacts.h	/^QString contacts::getLname()$/;"	f	class:contacts
+getSdate	meeting.h	/^QDateTime meeting::getSdate()$/;"	f	class:meeting
+getSday	meeting.h	/^QString meeting:: getSday()$/;"	f	class:meeting
+getState	contacts.h	/^QString contacts::getState()$/;"	f	class:contacts
+getState	meeting.h	/^QString meeting:: getState()$/;"	f	class:meeting
+getTransportation	personal.h	/^QString personal:: getTransportation()$/;"	f	class:personal
+getWphone	contacts.h	/^QString contacts::getWphone()$/;"	f	class:contacts
+getZip	contacts.h	/^QString contacts::getZip()$/;"	f	class:contacts
+getZip	meeting.h	/^QString meeting:: getZip()$/;"	f	class:meeting
+hphone	contacts.h	/^			hphone,$/;"	m	class:contacts
+id	contacts.h	/^	int id;$/;"	m	class:contacts
+label_10	ui_main.h	/^    QLabel *label_10;$/;"	m	class:Ui_MainWindow
+label_11	ui_main.h	/^    QLabel *label_11;$/;"	m	class:Ui_MainWindow
+label_5	ui_main.h	/^    QLabel *label_5;$/;"	m	class:Ui_MainWindow
+label_7	ui_main.h	/^    QLabel *label_7;$/;"	m	class:Ui_MainWindow
+label_8	ui_main.h	/^    QLabel *label_8;$/;"	m	class:Ui_MainWindow
+label_9	ui_main.h	/^    QLabel *label_9;$/;"	m	class:Ui_MainWindow
+lb_addr	ui_main.h	/^    QLabel *lb_addr;$/;"	m	class:Ui_MainWindow
+lb_addr1	ui_main.h	/^    QLineEdit *lb_addr1;$/;"	m	class:Ui_MainWindow
+lb_addr2	ui_main.h	/^    QLineEdit *lb_addr2;$/;"	m	class:Ui_MainWindow
+lb_addr_appt	ui_main.h	/^    QLabel *lb_addr_appt;$/;"	m	class:Ui_MainWindow
+lb_city	ui_main.h	/^    QLabel *lb_city;$/;"	m	class:Ui_MainWindow
+lb_city1	ui_main.h	/^    QLineEdit *lb_city1;$/;"	m	class:Ui_MainWindow
+lb_city_2	ui_main.h	/^    QLabel *lb_city_2;$/;"	m	class:Ui_MainWindow
+lb_cphone	ui_main.h	/^    QLabel *lb_cphone;$/;"	m	class:Ui_MainWindow
+lb_deadline	ui_main.h	/^    QLineEdit *lb_deadline;$/;"	m	class:Ui_MainWindow
+lb_desc	ui_main.h	/^    QTextEdit *lb_desc;$/;"	m	class:Ui_MainWindow
+lb_edate	ui_main.h	/^    QLineEdit *lb_edate;$/;"	m	class:Ui_MainWindow
+lb_email	ui_main.h	/^    QLabel *lb_email;$/;"	m	class:Ui_MainWindow
+lb_emergency	ui_main.h	/^    QComboBox *lb_emergency;$/;"	m	class:Ui_MainWindow
+lb_endat	ui_main.h	/^    QLabel *lb_endat;$/;"	m	class:Ui_MainWindow
+lb_fname	ui_main.h	/^    QLabel *lb_fname;$/;"	m	class:Ui_MainWindow
+lb_guests	ui_main.h	/^    QTableWidget *lb_guests;$/;"	m	class:Ui_MainWindow
+lb_hphone	ui_main.h	/^    QLabel *lb_hphone;$/;"	m	class:Ui_MainWindow
+lb_lname	ui_main.h	/^    QLabel *lb_lname;$/;"	m	class:Ui_MainWindow
+lb_new_contact	ui_main.h	/^    QPushButton *lb_new_contact;$/;"	m	class:Ui_MainWindow
+lb_save	ui_main.h	/^    QPushButton *lb_save;$/;"	m	class:Ui_MainWindow
+lb_sdate	ui_main.h	/^    QLineEdit *lb_sdate;$/;"	m	class:Ui_MainWindow
+lb_starat	ui_main.h	/^    QLabel *lb_starat;$/;"	m	class:Ui_MainWindow
+lb_state	ui_main.h	/^    QLabel *lb_state;$/;"	m	class:Ui_MainWindow
+lb_state_2	ui_main.h	/^    QLabel *lb_state_2;$/;"	m	class:Ui_MainWindow
+lb_zip	ui_main.h	/^    QLabel *lb_zip;$/;"	m	class:Ui_MainWindow
+lb_zip1	ui_main.h	/^    QLineEdit *lb_zip1;$/;"	m	class:Ui_MainWindow
+le_addr1	ui_main.h	/^    QLineEdit *le_addr1;$/;"	m	class:Ui_MainWindow
+le_addr2	ui_main.h	/^    QLineEdit *le_addr2;$/;"	m	class:Ui_MainWindow
+le_city	ui_main.h	/^    QLineEdit *le_city;$/;"	m	class:Ui_MainWindow
+le_cphone	ui_main.h	/^    QLineEdit *le_cphone;$/;"	m	class:Ui_MainWindow
+le_email	ui_main.h	/^    QLineEdit *le_email;$/;"	m	class:Ui_MainWindow
+le_fname	ui_main.h	/^    QLineEdit *le_fname;$/;"	m	class:Ui_MainWindow
+le_hphone	ui_main.h	/^    QLineEdit *le_hphone;$/;"	m	class:Ui_MainWindow
+le_lname	ui_main.h	/^    QLineEdit *le_lname;$/;"	m	class:Ui_MainWindow
+le_state	ui_main.h	/^    QComboBox *le_state;$/;"	m	class:Ui_MainWindow
+le_state_2	ui_main.h	/^    QComboBox *le_state_2;$/;"	m	class:Ui_MainWindow
+le_zip	ui_main.h	/^    QLineEdit *le_zip;$/;"	m	class:Ui_MainWindow
+lname	contacts.h	/^			lname,$/;"	m	class:contacts
+main	main.cc	/^int main(int argc, char *argv[])$/;"	f
+meeting	meeting.h	/^class meeting$/;"	c
+meeting	meeting.h	/^inline meeting::meeting()$/;"	f	class:meeting
+meeting_h	meeting.h	3;"	d
+meeting_list	calendar.h	/^    static std::vector<meeting> meeting_list;$/;"	m	class:Calendar_Record
+menu_File	ui_main.h	/^    QMenu *menu_File;$/;"	m	class:Ui_MainWindow
+menubar	ui_main.h	/^    QMenuBar *menubar;$/;"	m	class:Ui_MainWindow
+metaObject	moc_mainwidget.cpp	/^const QMetaObject *MainWidget::metaObject() const$/;"	f	class:MainWidget
+on_bt_save_clicked	mainwidget.cc	/^void MainWidget::on_bt_save_clicked() $/;"	f	class:MainWidget
+on_edate_focus	mainwidget.cc	/^void MainWidget::on_edate_focus()$/;"	f	class:MainWidget
+on_lb_save_clicked	mainwidget.cc	/^void MainWidget::on_lb_save_clicked()$/;"	f	class:MainWidget
+on_sdate_focus	mainwidget.cc	/^void MainWidget::on_sdate_focus()$/;"	f	class:MainWidget
+personal	personal.h	/^class personal : meeting$/;"	c
+personal_h	personal.h	2;"	d
+populateStates	mainwidget.cc	/^void MainWidget::populateStates()$/;"	f	class:MainWidget
+qt_meta_data_MainWidget	moc_mainwidget.cpp	/^static const uint qt_meta_data_MainWidget[] = {$/;"	v	file:
+qt_meta_stringdata_MainWidget	moc_mainwidget.cpp	/^static const char qt_meta_stringdata_MainWidget[] = {$/;"	v	file:
+qt_metacall	moc_mainwidget.cpp	/^int MainWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)$/;"	f	class:MainWidget
+qt_metacast	moc_mainwidget.cpp	/^void *MainWidget::qt_metacast(const char *_clname)$/;"	f	class:MainWidget
+rd_business	ui_main.h	/^    QRadioButton *rd_business;$/;"	m	class:Ui_MainWindow
+rd_personal	ui_main.h	/^    QRadioButton *rd_personal;$/;"	m	class:Ui_MainWindow
+retranslateUi	ui_main.h	/^    void retranslateUi(QMainWindow *MainWindow)$/;"	f	class:Ui_MainWindow
+sdate	meeting.h	/^     QDateTime sdate;  \/\/ handles starting date and time$/;"	m	class:meeting
+sday	meeting.h	/^	 QString sday,			\/\/ day of week (check if implemented by date $/;"	m	class:meeting
+setAddress1	contacts.h	/^void contacts::setAddress1(QString input)$/;"	f	class:contacts
+setAddress1	meeting.h	/^void meeting::setAddress1(QString input)$/;"	f	class:meeting
+setAddress2	contacts.h	/^void contacts::setAddress2(QString input)$/;"	f	class:contacts
+setAddress2	meeting.h	/^void meeting::setAddress2(QString input)$/;"	f	class:meeting
+setAdvisorNotes	business.h	/^QString business::setAdvisorNotes(QString input )$/;"	f	class:business
+setAdvisorNotes	business.h	/^void business::setAdvisorNotes(QString input )$/;"	f	class:business
+setBudget	personal.h	/^void personal::setBudget(double input )$/;"	f	class:personal
+setCity	meeting.h	/^void meeting::setCity(QString input)$/;"	f	class:meeting
+setCphone	contacts.h	/^void contacts::setCphone(QString input)$/;"	f	class:contacts
+setDeadline	business.h	/^QDateTimeEdit business::setDeadline(QString input )$/;"	f	class:business
+setDeadline	business.h	/^void business::setDeadline(QDateTimeEdit input )$/;"	f	class:business
+setDescription	business.h	/^QString business::setDescription(QString input )$/;"	f	class:business
+setDescription	business.h	/^void business::setDescription(QString input )$/;"	f	class:business
+setDirections	personal.h	/^void personal::setDirections(QString input )$/;"	f	class:personal
+setEdate	meeting.h	/^void meeting::setEdate(QDateTime input)$/;"	f	class:meeting
+setEday	meeting.h	/^void meeting::setEday(QString input)$/;"	f	class:meeting
+setEmail	contacts.h	/^void contacts::setEmail(QString input)$/;"	f	class:contacts
+setEmergency	business.h	/^QString business::setEmergency(QString input )$/;"	f	class:business
+setEmergency	business.h	/^void business::setEmergency(QString input )$/;"	f	class:business
+setFname	contacts.h	/^void contacts::setFname(QString input)$/;"	f	class:contacts
+setHphone	contacts.h	/^void contacts::setHphone(QString input)$/;"	f	class:contacts
+setLname	contacts.h	/^void contacts::setLname(QString input)$/;"	f	class:contacts
+setSdate	meeting.h	/^void meeting::setSdate(QDateTime input)$/;"	f	class:meeting
+setSday	meeting.h	/^void meeting::setSday(QString input)$/;"	f	class:meeting
+setSpecs	business.h	/^QString business::setSpecs(QString input )$/;"	f	class:business
+setSpecs	business.h	/^void business::setSpecs(QString input )$/;"	f	class:business
+setState	contacts.h	/^void contacts::setState(QString input)$/;"	f	class:contacts
+setState	meeting.h	/^void meeting::setState(QString input)$/;"	f	class:meeting
+setTransportation	personal.h	/^void personal::setTransportation(QString input )$/;"	f	class:personal
+setWphone	contacts.h	/^void contacts::setWphone(QString input)$/;"	f	class:contacts
+setZip	contacts.h	/^void contacts::setZip(QString input)$/;"	f	class:contacts
+setZip	meeting.h	/^void meeting::setZip(QString input)$/;"	f	class:meeting
+setupUi	ui_main.h	/^    void setupUi(QMainWindow *MainWindow)$/;"	f	class:Ui_MainWindow
+specs	business.h	/^	QString specs;$/;"	m	class:business
+state	contacts.h	/^			state,$/;"	m	class:contacts
+state	meeting.h	/^			 state,$/;"	m	class:meeting
+staticMetaObject	moc_mainwidget.cpp	/^const QMetaObject MainWidget::staticMetaObject = {$/;"	m	class:MainWidget	file:
+statusbar	ui_main.h	/^    QStatusBar *statusbar;$/;"	m	class:Ui_MainWindow
+tab_control	ui_main.h	/^    QTabWidget *tab_control;$/;"	m	class:Ui_MainWindow
+tb_appts	ui_main.h	/^    QWidget *tb_appts;$/;"	m	class:Ui_MainWindow
+tb_contacts	ui_main.h	/^    QWidget *tb_contacts;$/;"	m	class:Ui_MainWindow
+tb_requirements	ui_main.h	/^    QTextEdit *tb_requirements;$/;"	m	class:Ui_MainWindow
+terminateProg	mainwidget.cc	/^void MainWidget::terminateProg()$/;"	f	class:MainWidget
+transportation	personal.h	/^	QString transportation;$/;"	m	class:personal
+wphone	contacts.h	/^			wphone,$/;"	m	class:contacts
+x	calendar.h	/^	int x;$/;"	m	class:Calendar_Record
+zip	contacts.h	/^			zip,$/;"	m	class:contacts
+zip	meeting.h	/^			 zip;$/;"	m	class:meeting
+~contacts	contacts.h	/^contacts::~contacts()$/;"	f	class:contacts
+~meeting	meeting.h	/^meeting::~meeting()$/;"	f	class:meeting
