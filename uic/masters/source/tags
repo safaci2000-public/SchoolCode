@@ -1,0 +1,55 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.7	//
+CalcSigma	finger.cc	/^double finger::CalcSigma(int cnt[], int k)$/;"	f	class:finger
+FINGER_H	finger.h	2;"	d
+Trap	test/test2.cc	/^float Trap(float local_a, float local_b, int local_n, float h)$/;"	f
+Xh	finger.cc	/^int finger::Xh(int count )$/;"	f	class:finger
+_debug	finger.h	/^const bool _debug = 0;$/;"	v
+attr	finger.h	/^        field_data attr;   \/\/ struct which retrieves various info$/;"	m	class:finger
+bi	finger.cc	/^int finger::bi(int x[], int i )$/;"	f	class:finger
+binStr	finger.h	/^        std::string inStr, binStr, finalStr;$/;"	m	class:finger
+binarize	finger.cc	/^void finger::binarize(int cpuid, int numCores)$/;"	f	class:finger
+bitssample	finger.h	/^    uint16  bitssample;$/;"	m	struct:field_data
+compare	finger.cc	/^double finger::compare(finger dst) const$/;"	f	class:finger
+emptyid	finger.h	/^        int emptyid;$/;"	m	class:finger
+f	test/test2.cc	/^float f(float x)$/;"	f
+field_data	finger.h	/^    field_data() $/;"	f	struct:field_data
+field_data	finger.h	/^struct field_data$/;"	s
+finalStr	finger.h	/^        std::string inStr, binStr, finalStr;$/;"	m	class:finger
+finger	finger.cc	/^finger::finger()$/;"	f	class:finger
+finger	finger.h	/^class finger$/;"	c
+getPixels	finger.cc	/^long long finger::getPixels()$/;"	f	class:finger
+getRaster	finger.cc	/^unsigned char * finger::getRaster()$/;"	f	class:finger
+getdir	main.cc	/^int getdir (std::string dir, std::vector<std::string> &files)$/;"	f
+height	finger.h	/^        unsigned int width, height; \/\/ $/;"	m	class:finger
+height	finger.h	/^    int height;$/;"	m	struct:field_data
+hild	finger.h	/^        bool * hild;        \/\/ bool array which tracks checked pixels using hilditch algo.$/;"	m	class:finger
+hildTest	finger.cc	/^void finger::hildTest(int loc)$/;"	f	class:finger
+in	finger.h	/^        TIFF *in,           \/\/ input image $/;"	m	class:finger
+inStr	finger.h	/^        std::string inStr, binStr, finalStr;$/;"	m	class:finger
+main	main.cc	/^int main(int argc, char * argv[])$/;"	f
+main	test.cc	/^int main(int argc, char* argv[])$/;"	f
+main	test/test.cc	/^int main(int argc, char* argv[])$/;"	f
+main	test/test2.cc	/^int main(int argc, char* argv[])$/;"	f
+npixels	finger.h	/^        long long npixels;    \/\/ count of number of pixels in image$/;"	m	class:finger
+out	finger.h	/^             *out;          \/\/ binary image$/;"	m	class:finger
+parallelize	finger.h	/^        static void parallelize()$/;"	f	class:finger
+process	main.cc	/^void process(const std::vector<std::string>& files, const finger& src, int filesCount, int core, int numprocs, finger dst[])$/;"	f
+raster	finger.h	/^        unsigned char * raster;    \/\/ array which holds all pixels in image$/;"	m	class:finger
+readImage	finger.cc	/^void finger::readImage(std::string in)$/;"	f	class:finger
+rowsperstrip	finger.h	/^    uint32 rowsperstrip;$/;"	m	struct:field_data
+sampleperpixel	finger.h	/^    uint16 sampleperpixel;$/;"	m	struct:field_data
+search	main.cc	/^std::string search(const std::vector<std::string>& files, const finger& src, int start, int end, finger dst[] )$/;"	f
+thinning	finger.cc	/^void finger::thinning(int rank, int numprocs)$/;"	f	class:finger
+u_char	finger.h	/^typedef unsigned char u_char;$/;"	t
+unique	finger.h	/^        bool * unique;      \/\/ Bool Array storing the location of unique marks in print being analyzed\/searched for.$/;"	m	class:finger
+width	finger.h	/^        unsigned int width, height; \/\/ $/;"	m	class:finger
+width	finger.h	/^    int width;$/;"	m	struct:field_data
+writeImage	finger.cc	/^void finger::writeImage(std::string in)$/;"	f	class:finger
+x_res	finger.h	/^    float x_res;$/;"	m	struct:field_data
+y_res	finger.h	/^    float y_res;$/;"	m	struct:field_data
+~finger	finger.cc	/^finger::~finger()$/;"	f	class:finger
